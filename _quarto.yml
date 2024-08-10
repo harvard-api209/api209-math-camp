@@ -1,0 +1,95 @@
+project:
+  type: website
+  render:
+    - "*.qmd"
+    - "!slides/"
+    - "!projects/"
+    - "!files/projects/"
+  resources:
+    - "files/"
+    - "projects/"
+    - "slides/*.html"
+    - "slides/*.pdf"
+    - "slides/img/"
+    - "slides/libs/"
+    - "slides/css/"
+    - "slides/*_files/"
+  preview:
+    port: 3333
+
+execute:
+  freeze: auto  # Re-render only when source changes
+  
+website:
+  title: "API-209 R-Programming (Math Camp) 2024"
+  description: "Conceptual mastery of statistical methods for public policy, focusing on application rather than mechanics"
+  site-url: "https://rrmaximiliano.github.io/api209-math-camp"
+  
+  favicon: "/files/favicon-512.png"
+  
+  repo-url: "https://github.com/rrmaximiliano/api209-math-camp"
+  repo-actions: [edit, issue]
+  
+  page-navigation: true
+  
+  navbar:
+    pinned: true
+    background: "#A51C30"
+    right:
+      - syllabus.qmd
+      - schedule.qmd
+      - text: "Content"
+        file: content/index.qmd
+      - text: "Lessons"
+        file: lesson/index.qmd
+      - text: "Assignments"
+        file: assignment/index.qmd
+      - text: "Resources"
+        file: resource/index.qmd
+      - text: "News"
+        file: news/index.qmd
+      - icon: slack
+        href: "https://harvard.enterprise.slack.com"
+        aria-label: Slack
+      - icon: cloud-fill
+        href: "https://posit.cloud"
+        aria-label: Posit.cloud
+  
+  sidebar:
+    - title: "Classes and readings"
+      style: "docked"
+      search: false
+      background: light
+      contents:
+        - section: "Overview"
+          contents:
+            - content/index.qmd
+        - section: "Foundations"
+          contents:
+            - text: "R Lesson 1: Foundations"
+              files: content/01-content.qmd
+    
+    - title: "Assignments"
+      contents:
+        - section: "Overview"
+          contents:
+            - assignment/index.qmd
+  
+  page-footer:
+    left: |
+      Original content {{< fa brands creative-commons >}} {{< var course.copyright_year >}} by [{{< var attribution.name_no_title >}}]({{< var attribution.url >}}) <br>
+      Additional content {{< fa brands creative-commons >}} {{< var course.copyright_year >}} by [{{< var instructor.name_no_title >}}]({{< var instructor.url >}}) <br>
+      All content licensed under a {{< fa brands creative-commons >}}
+      {{< fa brands creative-commons-by >}} {{< fa brands creative-commons-nc >}}
+      [Creative Commons Attribution-NonCommercial 4.0 International license (CC BY-NC 4.0)](https://creativecommons.org/licenses/by-nc/4.0/)
+    right: |
+      Made with {{< fa brands r-project >}} and [Quarto](https://quarto.org/)<br>
+      [View the source at {{< fa brands github >}} GitHub]({{< var course.github >}})
+      
+format:
+  html:
+    theme:
+      - cosmo
+      - html/custom.scss
+    toc: true
+    highlight-style: monokai

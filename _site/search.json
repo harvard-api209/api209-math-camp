@@ -1,0 +1,238 @@
+[
+  {
+    "objectID": "resource/install.html",
+    "href": "resource/install.html",
+    "title": "Installing R, RStudio, tidyverse, and tinytex",
+    "section": "",
+    "text": "You will do all of your work in this class with the open source (and free!) programming language R. You will use RStudio as the main program to access R. Think of R as an engine and RStudio as a car dashboard—R handles all the calculations and the actual statistics, while RStudio provides a nice interface for running R code."
+  },
+  {
+    "objectID": "resource/install.html#posit.cloud",
+    "href": "resource/install.html#posit.cloud",
+    "title": "Installing R, RStudio, tidyverse, and tinytex",
+    "section": "Posit.cloud",
+    "text": "Posit.cloud\nR is free, but it can sometimes be a pain to install and configure. To make life easier, you can (and should!) use the free Posit.cloud service initially, which lets you run a full instance of RStudio in your web browser. This means you won’t have to install anything on your computer to get started with R! We will have a shared class workspace in Posit.cloud that will let you quickly copy templates for assignments.\nGo to https://posit.cloud/ and create an account. You’ll receive a link to join the shared class workspace separately. If you don’t get this link, let me know and I will invite you."
+  },
+  {
+    "objectID": "resource/install.html#rstudio-on-your-computer",
+    "href": "resource/install.html#rstudio-on-your-computer",
+    "title": "Installing R, RStudio, tidyverse, and tinytex",
+    "section": "RStudio on your computer",
+    "text": "RStudio on your computer\nPosit.cloud is convenient, but it can be slow and it is not designed to be able to handle larger datasets, more complicated analysis, or fancier graphics. Over the course of the semester, you should wean yourself off of Posit.cloud and install all these things locally. This is also important if you want to customize fonts, since Posit.cloud has extremely limited support for fonts other than Helvetica.\nHere’s how you install all these things\n\nInstall R\nFirst you need to install R itself (the engine).\n\nGo to the CRAN (Collective R Archive Network) website: https://cran.r-project.org/\nClick on “Download R for XXX”, where XXX is either Mac or Windows:\n\n\n\n\n\n\n\n\n\n\nIf you use macOS, scroll down to the first .pkg file in the list of files (in this picture, it’s R-4.0.0.pkg; as of right now, the current version is 4.4.0) and download it.\n\n\n\n\n\n\n\n\n\nIf you use Windows, click “base” (or click on the bolded “install R for the first time” link) and download it.\n\n\n\n\n\n\n\n\n\n\nDouble click on the downloaded file (check your Downloads folder). Click yes through all the prompts to install like any other program.\nIf you use macOS, download and install XQuartz. You do not need to do this on Windows.\n\n\n\nInstall RStudio\nNext, you need to install RStudio, the nicer graphical user interface (GUI) for R (the dashboard). Once R and RStudio are both installed, you can ignore R and only use RStudio. RStudio will use R automatically and you won’t ever have to interact with it directly.\n\nGo to the free download location on RStudio’s website: https://www.rstudio.com/products/rstudio/download/#download\nThe website should automatically detect your operating system (macOS or Windows) and show a big download button for it:\n\n\n\n\n\n\n\n\n\nIf not, scroll down a little to the large table and choose the version of RStudio that matches your operating system.\n\n\n\n\n\n\n\n\n\nDouble click on the downloaded file (again, check your Downloads folder). Click yes through all the prompts to install like any other program.\n\nDouble click on RStudio to run it (check your applications folder or start menu).\n\n\nInstall tidyverse\nR packages are easy to install with RStudio. Select the packages panel, click on “Install,” type the name of the package you want to install, and press enter.\n\n\n\n\n\n\n\n\n\nThis can sometimes be tedious when you’re installing lots of packages, though. The tidyverse, for instance, consists of dozens of packages (including {ggplot2}) that all work together. Rather than install each individually, you can install a single magical package and get them all at the same time.\nGo to the packages panel in RStudio, click on “Install,” type “tidyverse”, and press enter. You’ll see a bunch of output in the RStudio console as all the tidyverse packages are installed.\n\n\n\n\n\n\n\n\n\nNotice also that RStudio will generate a line of code for you and run it: install.packages(\"tidyverse\"). You can also just paste and run this instead of using the packages panel.\n\n\nInstall TinyTeX\nWhen you render to PDF, R uses a special scientific typesetting program named LaTeX (pronounced “lay-tek” or “lah-tex”; for goofy nerdy reasons, the x is technically the “ch” sound in “Bach”, but most people just say it as “k”—saying “layteks” is frowned on for whatever reason).\nLaTeX is neat and makes pretty documents, but it’s a huge program—the macOS version, for instance, is nearly 4 GB! To make life easier, there’s a smaller version named TinyTeX that automatically deals with differences between macOS and Windows and automatically installs any missing LaTeX packages as needed.\nHere’s how to install TinyTeX so you can create pretty PDFs:\n\nOpen the Terminal panel in RStudio (down in the bottom left corner where the Console panel is; there’s a tab named “Terminal” there)\nType this:\nquarto install tinytex"
+  },
+  {
+    "objectID": "content/01-content.html",
+    "href": "content/01-content.html",
+    "title": "Truth, beauty, and data + R and tidyverse",
+    "section": "",
+    "text": "The syllabus, content, lessons, examples, and assignments pages for this class\n Tim Harford, “Florence Nightingale: Data Viz Pioneer,” 99% Invisible, episode 433, March 2, 2021 (this is a podcast; listen to it in your browser or use an app like Overcast or Spotify)\n Chapter 1 in Data Visualization [@Healy:2018]\n Chapters 2 and 3 in The Truthful Art [@Cairo:2016] (skim the introduction and chapter 1)\n Study: Charts change hearts and minds better than words do\n\n\n\n\n\n\n\n\n\nThis is not a required list!\n\n\n\nRemember, you don’t need to answer all of these—or even any of them! These are just here to help guide your thinking. Write about whatever you want.\n\n\n\nHow do we know what is true?\nAre facts truth?\nWhy do we visualize data?\nWhat makes a great visualization?\nHow do you choose which kind of visualization to use?"
+  },
+  {
+    "objectID": "content/01-content.html#readings",
+    "href": "content/01-content.html#readings",
+    "title": "Truth, beauty, and data + R and tidyverse",
+    "section": "",
+    "text": "The syllabus, content, lessons, examples, and assignments pages for this class\n Tim Harford, “Florence Nightingale: Data Viz Pioneer,” 99% Invisible, episode 433, March 2, 2021 (this is a podcast; listen to it in your browser or use an app like Overcast or Spotify)\n Chapter 1 in Data Visualization [@Healy:2018]\n Chapters 2 and 3 in The Truthful Art [@Cairo:2016] (skim the introduction and chapter 1)\n Study: Charts change hearts and minds better than words do\n\n\n\n\n\n\n\n\n\nThis is not a required list!\n\n\n\nRemember, you don’t need to answer all of these—or even any of them! These are just here to help guide your thinking. Write about whatever you want.\n\n\n\nHow do we know what is true?\nAre facts truth?\nWhy do we visualize data?\nWhat makes a great visualization?\nHow do you choose which kind of visualization to use?"
+  },
+  {
+    "objectID": "content/01-content.html#slides",
+    "href": "content/01-content.html#slides",
+    "title": "Truth, beauty, and data + R and tidyverse",
+    "section": "Slides",
+    "text": "Slides\nThe slides for this week’s lesson are available online as an HTML file. Use the buttons below to open the slides either as an interactive website or as a static PDF (for printing or storing for later). You can also click in the slides below and navigate through them with your left and right arrow keys.\n\n View all slides in new window  Download PDF of all slides\n\n\n\n\n\n\n\n\n\n\n\nTip\n\n\n\nFun fact: If you type ? (or shift + /) while going through the slides, you can see a list of special slide-specific commands."
+  },
+  {
+    "objectID": "content/01-content.html#videos",
+    "href": "content/01-content.html#videos",
+    "title": "Truth, beauty, and data + R and tidyverse",
+    "section": "Videos",
+    "text": "Videos\nVideos for each section of the lecture are available at this YouTube playlist.\n\nIntroduction\nFacts, truth, and beauty\nData, truth, and beauty\nBeautiful visualizations\nClass details\n\nYou can also watch the playlist (and skip around to different sections) here:"
+  },
+  {
+    "objectID": "lesson/01-lesson.html",
+    "href": "lesson/01-lesson.html",
+    "title": "Introduction to R and the tidyverse",
+    "section": "",
+    "text": "For the first part of this week’s lesson, you need to work through a few of Posit’s introductory primers. You’ll do these in your browser and type code and see results there.\nYou’ll learn some of the basics of R, as well as some powerful methods for manipulating data with the {dplyr} package.\nComplete these primers. It seems like there are a lot, but they’re short and go fairly quickly (especially as you get the hang of the syntax). Also, I have no way of seeing what you do or what you get wrong or right, and that’s totally fine! If you get stuck and want to skip some (or if it gets too easy), go right ahead and skip them!\n\nThe Basics\n\nVisualization basics\nProgramming basics\n\nWork with Data\n\nWorking with tibbles\nIsolating data with {dplyr}\nDeriving information with {dplyr}\n\n\nThe content from these primers comes from the (free and online!) book R for Data Science by Garrett Grolemund and Hadley Wickham. I highly recommend the book as a reference and for continuing to learn and use R in the future (like running regression models and other types of statistical analysis)"
+  },
+  {
+    "objectID": "lesson/01-lesson.html#part-1-the-basics-of-r-and-dplyr",
+    "href": "lesson/01-lesson.html#part-1-the-basics-of-r-and-dplyr",
+    "title": "Introduction to R and the tidyverse",
+    "section": "",
+    "text": "For the first part of this week’s lesson, you need to work through a few of Posit’s introductory primers. You’ll do these in your browser and type code and see results there.\nYou’ll learn some of the basics of R, as well as some powerful methods for manipulating data with the {dplyr} package.\nComplete these primers. It seems like there are a lot, but they’re short and go fairly quickly (especially as you get the hang of the syntax). Also, I have no way of seeing what you do or what you get wrong or right, and that’s totally fine! If you get stuck and want to skip some (or if it gets too easy), go right ahead and skip them!\n\nThe Basics\n\nVisualization basics\nProgramming basics\n\nWork with Data\n\nWorking with tibbles\nIsolating data with {dplyr}\nDeriving information with {dplyr}\n\n\nThe content from these primers comes from the (free and online!) book R for Data Science by Garrett Grolemund and Hadley Wickham. I highly recommend the book as a reference and for continuing to learn and use R in the future (like running regression models and other types of statistical analysis)"
+  },
+  {
+    "objectID": "lesson/01-lesson.html#part-2-getting-familiar-with-rstudio",
+    "href": "lesson/01-lesson.html#part-2-getting-familiar-with-rstudio",
+    "title": "Introduction to R and the tidyverse",
+    "section": "Part 2: Getting familiar with RStudio",
+    "text": "Part 2: Getting familiar with RStudio\nThe RStudio primers you just worked through are a great introduction to writing and running R code, but you typically won’t type code in a browser when you work with R. Instead, you’ll use a nicer programming environment like RStudio, which lets you type and save code in scripts, run code from those scripts, and see the output of that code, all in the same program.\nTo get familiar with RStudio, watch this video:"
+  },
+  {
+    "objectID": "lesson/01-lesson.html#part-3-rstudio-projects",
+    "href": "lesson/01-lesson.html#part-3-rstudio-projects",
+    "title": "Introduction to R and the tidyverse",
+    "section": "Part 3: RStudio Projects",
+    "text": "Part 3: RStudio Projects\nOne of the most powerful and useful aspects of RStudio is its ability to manage projects.\nWhen you first open R, it is “pointed” at some folder on your computer, and anything you do will be relative to that folder. The technical term for this is a “working directory.”\nWhen you first open RStudio, look in the area right at the top of the Console pane to see your current working directory. Most likely you’ll see something cryptic: ~/\n\n\n\n\n\n\n\n\n\nThat tilde sign (~) is a shortcut that stands for your user directory. On Windows this is C:\\Users\\your_user_name\\; on macOS this is /Users/your_user_name/. With the working directory set to ~/, R is “pointed” at that folder, and anything you save will end up in that folder, and R will expect any data that you load to be there too.\nIt’s always best to point R at some other directory. If you don’t use RStudio, you need to manually set the working directory to where you want it with setwd(), and many R scripts in the wild include something like setwd(\"C:\\\\Users\\\\bill\\\\Desktop\\\\Important research project\") at the beginning to change the directory. THIS IS BAD THOUGH (see here for an explanation). If you ever move that directory somewhere else, or run the script on a different computer, or share the project with someone, the path will be wrong and nothing will run and you will be sad.\nThe best way to deal with working directories with RStudio is to use RStudio Projects. These are special files that RStudio creates for you that end in a .Rproj extension. When you open one of these special files, a new RStudio instance will open up and be pointed at the correct directory automatically. If you move the folder later or open it on a different computer, it will work just fine and you will not be sad.\nRead this super short chapter on RStudio projects.\nIn general, you can create a new project by going to File &gt; New Project &gt; New Directory &gt; Empty Project, which will create a new folder on your computer that is empty except for a single .Rproj file. Double click on that file to open an RStudio instance that is pointed at the correct folder."
+  },
+  {
+    "objectID": "lesson/01-lesson.html#part-4-getting-familiar-with-quarto",
+    "href": "lesson/01-lesson.html#part-4-getting-familiar-with-quarto",
+    "title": "Introduction to R and the tidyverse",
+    "section": "Part 4: Getting familiar with Quarto",
+    "text": "Part 4: Getting familiar with Quarto\nTo ensure that the analysis and graphics you make are reproducible, you’ll do the majority of your work in this class using Quarto files.\nDo the following things:\n\nWatch this video. It’s all about R Markdown, which is Quarto’s predecessor. The same general principles apply.\n\n\n\n\n\n \n\nSkim through the content at these pages. Again, lots of these resources mention R Markdown, which is Quarto’s predecessor, but the same principles apply to Quarto\n\nUsing Markdown\nUsing Quarto\nHow it Works\nCode Chunks\nInline Code\nPublish and Share with Quarto\nPublish and Share with Quarto cheatsheet\n\nWatch this video:"
+  },
+  {
+    "objectID": "schedule.html",
+    "href": "schedule.html",
+    "title": "Schedule",
+    "section": "",
+    "text": "Here’s your roadmap for the summar camp!\n\nContent (): This page contains the readings, slides, and recorded lectures for the topic. Read and watch these first.\nLesson (): This page contains an interactive lesson that teaches you the principles and code you need to know. Go through these after doing the content.\nExample (): This page contains fully annotated R code that you can use as a reference for creating your own visualizations. This is only a reference page—you don’t have to necessarily do anything here. Each section also contains videos of me live coding the examples so you can see what it looks like to work with R in real time. This page will be very helpful as you work on your assignments.\nAssignment (): This page contains the instructions for either the session exercise (1–3 brief tasks), or for the two mini projects and final project. Assignments are due by 11:59 PM on the Monday after their corresponding sessions. That’s confusing in sentence form—see the schedule table below to see how it works.\n\n\n\n\n\ntl;dr: You should follow this general process for each session:\n\nDo everything on the content page ()\nWork through the lesson page ()\nComplete the assignment () while referencing the example ()\n\n\n\n\n\n\n\n\n\n\n\n\nSubscribe!\n\n\n\nYou can subscribe to this calendar URL in Outlook, Google Calendar, or Apple Calendar:"
+  },
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "About",
+    "section": "",
+    "text": "About this site\n\n1 + 1\n\n[1] 2"
+  },
+  {
+    "objectID": "lesson/index.html",
+    "href": "lesson/index.html",
+    "title": "Interactive lessons",
+    "section": "",
+    "text": "Each class session has an interactive lesson that you will work through after doing the readings and watching the lecture. These lessons are a central part of the class—they will teach you how to use {ggplot2} and other packages in the tidyverse to create beautiful and truthful visualizations with R.\nInteractive code sections look like this. Make changes in the text box and click on the green “Run Code” button to see the results. Sometimes there will be a tab with a hint or solution.\n\n\n\n\n\n\nYour turn\n\n\n\nModify the code here to show the relationship between health and wealth for 2002 instead of 2007.\n\n Interactive editor Hint\n\n\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\nHint: You’ll want to change something in the code that creates gapminder_filtered. The text in the subtitle won’t change automatically, so you’ll want to edit that too.\n\n\n\n\n\nIf you’re curious how this works, each interactive code section uses the amazing {quarto-webr} package to run R directly in your browser."
+  },
+  {
+    "objectID": "assignment/index.html",
+    "href": "assignment/index.html",
+    "title": "Assignment overview",
+    "section": "",
+    "text": "You will get the most of out this class if you:\nEach type of assignment in this class helps with one of these strategies."
+  },
+  {
+    "objectID": "assignment/index.html#reflections",
+    "href": "assignment/index.html#reflections",
+    "title": "Assignment overview",
+    "section": "Reflections",
+    "text": "Reflections\nTo encourage engagement with the course content, you’ll need to write a ≈150 word reflection about the readings and lectures for the session That’s fairly short: there are ≈250 words on a typical double-spaced page in Microsoft Word (500 when single-spaced)."
+  },
+  {
+    "objectID": "content/index.html",
+    "href": "content/index.html",
+    "title": "Readings, lectures, and videos",
+    "section": "",
+    "text": "Each class session has a set of required readings that you should complete before watching the lecture or working through the lesson.\nI’ve included a set of questions that might guide your reflection response. You should not try to respond to all of these (or any of them if you don’t want to)—they’ll just help you know what to look for and think about as you read.\nEvery class session also has a YouTube playlist of short recorded videos for each of the lecture sections. The lecture slides are special HTML files made with the R package {xaringan} (R can do so much!). On each class session page you’ll buttons for opening the presentation in a new tab or for downloading a PDF of the slides in case you want to print them or store them on your computer:\n\n View all slides in new window  Download PDF of all slides\n\nThe slides are also embedded on each page. You can click in the slides and navigate through them with ← and →. If you type ? (or shift + /) while viewing the slides you can see a list of slide-specific commands (like f for fullscreen or p for presenter mode if you want to see my notes).",
+    "crumbs": [
+      "Content",
+      "Overview",
+      "Readings, lectures, and videos"
+    ]
+  },
+  {
+    "objectID": "resource/index.html",
+    "href": "resource/index.html",
+    "title": "Helpful resources",
+    "section": "",
+    "text": "I have included a bunch of extra resources and guides related to graphic design, visualization, R, data, and other relevant topics. Enjoy!"
+  },
+  {
+    "objectID": "news/index.html",
+    "href": "news/index.html",
+    "title": "News",
+    "section": "",
+    "text": "Subscribe!\n\n\n\nYou can use a feed reader like Feedly or use an RSS-to-email service like Blogtrottr to subscribe to these updates and messages. I’ll also e-mail out links to them when there are new updates.\n\n\n\n RSS\n\n\n\n\n\n\n\n\n\n\n\n\n    \n      \n      \n    \n\n\n\n\n\nDate\n\n\nTitle\n\n\nCategories\n\n\n\n\n\n\n\nNo matching items"
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "\n            Advanced Quantitative Methods: Description and Prediction\n        ",
+    "section": "",
+    "text": "Advanced Quantitative Methods: Description and Prediction\n        \n        \n            Conceptual mastery of statistical methods for public policy, focusing on application rather than mechanics\n        \n        \n            API 209 • Summer 2024Prof: Dan Levy | Summer TF: Rony RodriguezHarvard University\n        \n    \n    \n      \n        \n        \n        \n      \n    \n\n\n\n\n\n\nSummer TF\n\n Rony Rodriguez-Ramirez\n 55 Park Place SE, Room 464\n rrodriguezramirez@g.harvard.edu\n Bluesky\n\n\n\nCourse details\n\n Any day\n June 3–July 23, 2024\n Asynchronous\n Anywhere\n\n\n\nContacting me\n\n Schedule an appointment\n Slack\n\nE-mail and Slack are the best ways to get in contact with me. I will try to respond to all course-related e-mails and Slack messages within 24 hours (really), but also remember that life can be busy and chaotic for everyone (including me!), so if I don’t respond right away, don’t worry!"
+  },
+  {
+    "objectID": "assignment/01-exercise.html",
+    "href": "assignment/01-exercise.html",
+    "title": "Introduction to R and the tidyverse",
+    "section": "",
+    "text": "Important\n\n\n\nBefore starting this exercise, make sure you complete everything at the lesson for this week, especially the Posit Primers."
+  },
+  {
+    "objectID": "assignment/01-exercise.html#task-1-make-an-rstudio-project",
+    "href": "assignment/01-exercise.html#task-1-make-an-rstudio-project",
+    "title": "Introduction to R and the tidyverse",
+    "section": "Task 1: Make an RStudio Project",
+    "text": "Task 1: Make an RStudio Project\n\nUse either Posit.cloud or RStudio on your computer (preferably RStudio on your computer! Follow these instructions to get started!) to create a new RStudio Project.\nCreate a folder named “data” in the project folder you just made.\nDownload this CSV file and place it in that folder:\n\n cars.csv\n\nIn RStudio, go to “File” &gt; “New File…” &gt; “Quarto Document…” and click “OK” in the dialog without changing anything.\nDelete all the placeholder text in that new file and replace it with this:\n---\ntitle: \"Introduction to R and the tidyverse\"\nsubtitle: \"Exercise 1 --- PMAP 8551, Summer 2024\"\nformat: \n  html:\n    toc: true\n  pdf:\n    toc: true\n  docx:\n    toc: true\n---\n\n```{r}\n#| label: load-libraries-data\n#| warning: false\n#| message: false\n\nlibrary(tidyverse)\n\ncars &lt;- read_csv(\"data/cars.csv\")\n```\n\n# Reflection\n\nReplace this text with your reflection\n\n\n# My first plots\n\nInsert a chunk below and use it to create a scatterplot (hint: `geom_point()`) with diplacement (`displ`) on the x-axis, city MPG (`cty`) on the y-axis, and with the points colored by drive (`drv`).\n\nPUT CHUNK HERE\n\nInsert a chunk below and use it to create a histogram (hint: `geom_histogram()`) with highway MPG (`hwy`) on the x-axis. Do not include anything on the y-axis (`geom_histogram()` will do that automatically for you). Choose an appropriate bin width. If you're brave, facet by drive (`drv`).\n\nPUT CHUNK HERE\n\n\n# My first data manipulation\n\nInsert a chunk below and use it to calculate the average city MPG (`cty`) by class of car (`class`). This won't be a plot---it'll be a table. Hint: use a combination of `group_by()` and `summarize()`.\n\nPUT CHUNK HERE\nSave the Quarto file with some sort of name (without any spaces!)\nYour project folder should look something like this:\n\n\n\n\n\n\n\n\n\nExample project folder on macOS\n\n\n\n\n \n\n\n\n\n\nExample project folder on Windows"
+  },
+  {
+    "objectID": "assignment/01-exercise.html#task-2-work-with-r",
+    "href": "assignment/01-exercise.html#task-2-work-with-r",
+    "title": "Introduction to R and the tidyverse",
+    "section": "Task 2: Work with R",
+    "text": "Task 2: Work with R\n\nAdd your reading reflection to the appropriate place in the Quarto file. You can type directly in RStudio if you want (though there’s no spell checker), or you can type it in Word or Google Docs and then paste it into RStudio.\nRemove the text that says “PUT CHUNK HERE” and insert a new R code chunk. Either type ctrl + alt + i on Windows, or ⌘ + ⌥ + i on macOS, or use the “Insert Chunk” menu:\n\n\n\n\n\n\n\n\n\nFollow the instructions for the three chunks of code.\nRender your document as a Word file (or PDF if you’re brave and installed LaTeX). Use the “Render” menu:\n\n\n\n\n\n\n\n\n\nUpload the rendered document to iCollege.\n🎉 Party! 🎉\n\n\n\n\n\n\n\nFile organization\n\n\n\nYou’ll be doing this same process for all your future exercises. Each exercise will involve an Quarto file. Or you can create individual projects for each assignment and mini-project (recommended!):\n\n\n\n\n\n\n\n\n\nIndividual folders for each project on macOS\n\n\n\n\n \n\n\n\n\n\nIndividual folders for each project on Windows\n\n\n\n\n\nOr you can create a new RStudio Project directory for all your work (not recommended!):\n\n\n\n\n\n\n\n\n\nOne folder for everything on macOS\n\n\n\n\n \n\n\n\n\n\nOne folder for everything on Windows"
+  },
+  {
+    "objectID": "syllabus.html",
+    "href": "syllabus.html",
+    "title": "Syllabus",
+    "section": "",
+    "text": "Rony Rodriguez-Ramirez\n 55 Park Place SE, Room 464\n rrodriguezramirez@g.harvard.edu\n Bluesky\n\n\n\n\n\n Any day\n June 3–July 23, 2024\n Asynchronous\n Anywhere\n\n\n\n\n\n Schedule an appointment\n Slack"
+  },
+  {
+    "objectID": "syllabus.html#course-objectives",
+    "href": "syllabus.html#course-objectives",
+    "title": "Syllabus",
+    "section": "Course objectives",
+    "text": "Course objectives\nData rarely speaks for itself. On their own, the facts contained in raw data are difficult to understand, and in the absence of beauty and order, it is impossible to understand the truth that the data shows.\nIn this class, you’ll learn how to use industry-standard graphic and data design techniques to create beautiful, understandable visualizations and uncover truth in data.\nBy the end of this course, you will become (1) literate in data and graphic design principles, and (2) an ethical data communicator, by producing beautiful, powerful, and clear visualizations of your own data. Specifically, you should:\n\nUnderstand the principles of data and graphic design\nEvaluate the credibility, ethics, and aesthetics of data visualizations\nCreate well-designed data visualizations with appropriate tools\nShare data and graphics in open forums\nBe curious and confident in consuming and producing data visualizations\n\nThis class will expose you to R—one of the most popular, sought-after, and in-demand statistical programming languages. Armed with the foundation of R skills you’ll learn in this class, you’ll know enough to be able to find how to visualize and analyze any sort of data-based question in the future."
+  },
+  {
+    "objectID": "syllabus.html#important-pep-talk",
+    "href": "syllabus.html#important-pep-talk",
+    "title": "Syllabus",
+    "section": "Important pep talk!",
+    "text": "Important pep talk!\nI promise you can succeed in this class.\nLearning R can be difficult at first—it’s like learning a new language, just like Spanish, French, or Chinese. Hadley Wickham—the chief data scientist at RStudio and the author of some amazing R packages you’ll be using like {ggplot2}—made this wise observation:\n\nIt’s easy when you start out programming to get really frustrated and think, “Oh it’s me, I’m really stupid,” or, “I’m not made out to program.” But, that is absolutely not the case. Everyone gets frustrated. I still get frustrated occasionally when writing R code. It’s just a natural part of programming. So, it happens to everyone and gets less and less over time. Don’t blame yourself. Just take a break, do something fun, and then come back and try again later.\n\nEven experienced programmers find themselves bashing their heads against seemingly intractable errors. If you’re finding yourself taking way too long hitting your head against a wall and not understanding, take a break, talk to classmates, e-mail me, etc.\n\n\n\n\n\n\n\n\n\n\n\n\nAlison Horst: Gator error"
+  },
+  {
+    "objectID": "syllabus.html#course-materials",
+    "href": "syllabus.html#course-materials",
+    "title": "Syllabus",
+    "section": "Course materials",
+    "text": "Course materials\nAll of the readings and software in this class are free. There are free online version of all the textbooks, R and RStudio are inherently free, and GSU provides free access to Adobe Illustrator.\n\nBooks, articles, and other materials\nWe’ll rely heavily on these books, which are all available online (for free!). I recommend getting the printed versions of these books if you are interested, but it is not required.\n\nAlberto Cairo, The Truthful Art: Data, Charts, and Maps for Communication (Berkeley, California: New Riders, 2016). $20 used, $50 new at Amazon.\nA free eBook version is available through GSU’s library through O’Reilly’s Higher Education database. The easiest way to access it is to visit a special URL (http://go.oreilly.com/georgia-state-university), log in with your GSU account, and then search for “The Truthful Art”.\nKieran Healy, Data Visualization: A Practical Introduction (Princeton: Princeton University Press, 2018), http://socviz.co/. FREE online; $20 used, $40 new at Amazon.\nClaus E. Wilke, Fundamentals of Data Visualization (Sebastopol, California: O’Reilly Media, 2018), https://serialmentor.com/dataviz/. FREE online; $36 used, $50 new at Amazon. An eBook version is also available through the O’Reilly database, but you can just use the online version.\n\nThere will occasionally be additional articles and videos to read and watch. When this happens, links to these other resources will be included on the content page for that session.\nI also highly recommend subscribing to the R Weekly newsletter. This e-mail is sent every Monday and is full of helpful tutorials about how to do stuff with R.\n\n\nR and RStudio\nYou will do all of your analysis with the open source (and free!) programming language R. You will use RStudio as the main program to access R. Think of R as an engine and RStudio as a car dashboard—R handles all the calculations produces the actual statistics and graphical output, while RStudio provides a nice interface for running R code.\nR is free, but it can sometimes be a pain to install and configure. To make life easier, you can (and should!) use the free Posit.cloud service, which lets you run a full instance of RStudio in your web browser. This means you won’t have to install anything on your computer to get started with R! We will have a shared class workspace in Posit.cloud that will let you quickly copy templates for examples, exercises, and mini projects.\nPosit.cloud is convenient, but it can be slow and it is not designed to be able to handle larger datasets or more complicated analysis and graphics. You also can’t use your own custom fonts with Posit.cloud. Over the course of the semester, you’ll probably want to get around to installing R, RStudio, and other R packages on your computer and wean yourself off of Posit.cloud. This isn’t 100% necessary, but it’s helpful.\nYou can find instructions for installing R, RStudio, and all the tidyverse packages here.\n\n\nOnline help\nData science and statistical programming can be difficult. Computers are stupid and little errors in your code can cause hours of headache (even if you’ve been doing this stuff for years!).\nFortunately there are tons of online resources to help you with this. Two of the most important are StackOverflow (a Q&A site with hundreds of thousands of answers to all sorts of programming questions) and Posit Community (a forum specifically designed for people using RStudio and the tidyverse (i.e. you)).\nIf you use Mastodon or Twitter, post R-related questions and content with #rstats. The community there is exceptionally generous and helpful.\nChatGPT is generally relatively okay with R questions, but it will often hallucinate responses—it really likes to imagine packages that don’t exist and then give you answers with them. Think of it as glorified autocomplete. I’d encourage you to read the first few paragraphs here about a few important things to keep in mind when using ChatGPT, though.\nSearching for help with R on Google can sometimes be tricky because the program name is, um, a single letter. Google is generally smart enough to figure out what you mean when you search for “r scatterplot”, but if it does struggle, try searching for “rstats” instead (e.g. “rstats scatterplot”). Also, since most of your R work will deal with {ggplot2}, it’s often easier to just search for that instead of the letter “r” (e.g. “ggplot scatterplot”).\nAdditionally, we have a class chatroom at Slack where anyone in the class can ask questions and anyone can answer. I will monitor Slack regularly and will respond quickly. (It’s one of the rare Slack workspaces where I actually have notifications enabled!) Ask questions about the readings, exercises, and mini projects. You’ll likely have similar questions as your peers, and you’ll likely be able to answer other peoples’ questions too."
+  },
+  {
+    "objectID": "syllabus.html#course-schedule",
+    "href": "syllabus.html#course-schedule",
+    "title": "Syllabus",
+    "section": "Course schedule",
+    "text": "Course schedule\nWe have no regularly scheduled meeting times.\nInstead, 100% of the class content is asynchronous. You can do the readings and watch the videos on your own schedule at whatever time works best for you. Many of you work full time and you have childcare and parental care responsibilities, leaving you with only evenings for coursework. I’ve designed this asynchronous system with you specifically in mind. I also can only really do teaching work at night when my kids are in bed—I recorded all these videos between like 10 PM and 2 AM. We’re all in similar pandemic boats.\nEach week has (1) a set of readings and an accompanying lecture, (2) a lesson, (3) an example with lots of reference code, and (4) a short assignment. The schedule page provides an overview of all these moving parts.\nI recommend following this general process for each session:\n\nDo everything on the content page ()\nWork through the lesson page ()\nComplete the assignment () while referencing the example ()"
+  },
+  {
+    "objectID": "syllabus.html#course-policies",
+    "href": "syllabus.html#course-policies",
+    "title": "Syllabus",
+    "section": "Course policies",
+    "text": "Course policies\nBe nice. Be honest. Don’t cheat.\nWe will also follow Georgia State’s Code of Conduct.\nThis syllabus reflects a plan for the semester. Deviations may become necessary as the course progresses.\n\nStudent hours\nPlease watch this video: (this is not me, btw—this is a different Andrew)\n\n\n\n\n \nStudent hours are set times dedicated to all of you (most professors call these “office hours”; I don’t1). This means that I will be in my office at home (wistfully) waiting for you to come by talk to me remotely with whatever questions you have. This is the best and easiest way to find me and the best chance for discussing class material and concerns.\nBecause of the pandemic, I am not on campus often and generally cannot meet in person. I will generally try to be on campus at least once a week though (typically on Mondays), and I can always meet you online via Webex. Make an appointment with me here. You can choose an online or in-person slot—if you choose an online slot, the confirmation e-mail will contain a link for a Webex meeting. You can also find me through e-mail and Slack.\n\n\nLearning during a pandemic\nLife absolutely sucks right now. None of us is really okay. We’re all just pretending.\nYou most likely know people who have lost their jobs, have gotten COVID-19, have been hospitalized, or perhaps have even died. You all have increased (or possibly decreased) work responsibilities and increased family care responsibilities—you might be caring for extra people (young and/or old!) right now, and you are likely facing uncertain job prospects (or have been laid off!).\nI’m fully committed to making sure that you learn everything you were hoping to learn from this class! I will make whatever accommodations I can to help you finish your exercises, do well on your projects, and learn and understand the class material. Under ordinary conditions, I am flexible and lenient with grading and course expectations when students face difficult challenges. Under pandemic conditions, that flexibility and leniency is intensified.\nIf you tell me you’re having trouble, I will not judge you or think less of you. I hope you’ll extend me the same grace.\nYou never owe me personal information about your health (mental or physical). You are always welcome to talk to me about things that you’re going through, though. If I can’t help you, I usually know somebody who can.\nIf you need extra help, or if you need more time with something, or if you feel like you’re behind or not understanding everything, do not suffer in silence! Talk to me! I will work with you. I promise.\nPlease sign up for a time to meet with me during student hours at https://calendly.com/andrewheiss/. I’m also available through e-mail and Slack. I’ve enabled notifications on my Slack account, so I’ll see your messages quickly!\nI want you to learn lots of things from this class (Graphic design! Fancy charts! R! ggplot!), but I primarily want you to stay healthy, balanced, and grounded during this crisis.\n\n\nLate work\nWith the exception of the mini projects and the final project, there’s no penalty for late work. I would highly recommend staying caught up as much as possible, but if you need to turn something in late, that’s fine. I might not be able to give you good feedback if you turn something in late, but that’s really the only practical penalty—there’s no harm to your grade.\n\n\nCounseling and Psychological Services (CPS)\nLife at GSU can be complicated and challenging (especially during a pandemic!). You might feel overwhelmed, experience anxiety or depression, or struggle with relationships or family responsibilities. Counseling and Psychological Services (CPS) provides free, confidential support for students who are struggling with mental health and emotional challenges. The CPS office is staffed by professional psychologists who are attuned to the needs of all types of college and professional students. Please do not hesitate to contact CPS for assistance—getting help is a smart and courageous thing to do.\n\n\nBasic needs security\nIf you have difficulty affording groceries or accessing sufficient food to eat every day, or if you lack a safe and stable place to live, and you believe this may affect your performance in this course, please contact the Dean of Students for support. They can provide a host of services including free groceries from the Panther Pantry and assisting with homelessness with the Embark Network. Additionally, please talk to me if you are comfortable in doing so. This will enable me to provide any resources that I might possess.\n\n\nLauren’s Promise\nI will listen and believe you if someone is threatening you.\nLauren McCluskey, a 21-year-old honors student athlete, was murdered on October 22, 2018 by a man she briefly dated on the University of Utah campus. We must all take action to ensure that this never happens again.\nIf you are in immediate danger, call 911 or GSU police (404-413-3333).\nIf you are experiencing sexual assault, domestic violence, or stalking, please report it to me and I will connect you to resources or call GSU’s Counseling and Psychological Services (404-413-1640).\nAny form of sexual harassment or violence will not be excused or tolerated at Georgia State. GSU has instituted procedures to respond to violations of these laws and standards, programs aimed at the prevention of such conduct, and intervention on behalf of the victims. Georgia State University Police officers will treat victims of sexual assault, domestic violence, and stalking with respect and dignity. Advocates on campus and in the community can help with victims’ physical and emotional health, reporting options, and academic concerns.\n\n\nAcademic honesty\nViolation of GSU’s Policy on Academic Honesty will result in an F in the course and possible disciplinary action.2 All violations will be formally reported to the Dean of Students.\n\n\nSpecial needs\nStudents who wish to request accommodation for a disability may do so by registering with the Office of Disability Services. Students may only be accommodated upon issuance by the Office of Disability Services of a signed Accommodation Plan and are responsible for providing a copy of that plan to instructors of all classes in which accommodations are sought.\nStudents with special needs should then make an appointment with me during the first week of class to discuss any accommodations that need to be made."
+  },
+  {
+    "objectID": "syllabus.html#assignments-and-grades",
+    "href": "syllabus.html#assignments-and-grades",
+    "title": "Syllabus",
+    "section": "Assignments and grades",
+    "text": "Assignments and grades\nYou can find descriptions for all the assignments on the assignments page.\n\n\n\n\n\n  \n    \n      \n      Assignment\n      Points\n      Percent\n    \n  \n  \n    \nReflections (15 × 10)\n150\n23%\n    \nExercises (15 × 10)\n150\n23%\n    \nMini project 1\n75\n12%\n    \nMini project 2\n75\n12%\n    \nFinal project\n200\n31%\n    Total\n—\n650\n100%\n  \n  \n  \n\n\n\n\n\n\n\n\n\n  \n    \n      Grade\n      Range\n      Grade\n      Range\n    \n  \n  \n    A\n93–100%\nC\n73–76%\n    A−\n90–92%\nC−\n70–72%\n    B+\n87–89%\nD+\n67–69%\n    B\n83–86%\nD\n63–66%\n    B−\n80–82%\nD−\n60–62%\n    C+\n77–79%\nF\n&lt; 60%"
+  },
+  {
+    "objectID": "syllabus.html#recipes",
+    "href": "syllabus.html#recipes",
+    "title": "Syllabus",
+    "section": "Recipes",
+    "text": "Recipes\nOnce you have read this entire syllabus and the assignments page, please click here and e-mail me your favorite recipe. I love cooking (see here for a feed of some of my cooking adventures) and I’m always on the lookout for new things!"
+  },
+  {
+    "objectID": "syllabus.html#footnotes",
+    "href": "syllabus.html#footnotes",
+    "title": "Syllabus",
+    "section": "Footnotes",
+    "text": "Footnotes\n\n\nThere’s fairly widespread misunderstanding about what office hours actually are! Many students often think that they are the times I shouldn’t be disturbed, which is the exact opposite of what they’re for!↩︎\nSo seriously, just don’t cheat or plagiarize!↩︎"
+  }
+]

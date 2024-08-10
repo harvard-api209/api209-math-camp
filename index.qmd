@@ -1,0 +1,58 @@
+---
+title: "Advanced Quantitative Methods: Description and Prediction"
+subtitle: "Conceptual mastery of statistical methods for public policy, focusing on application rather than mechanics"
+details: |
+  API 209 • Summer 2024<br>**Prof**: Dan Levy | **Summer TF**: Rony Rodriguez<br>Harvard University
+sidebar: false
+toc: false
+page-layout: full
+format:
+  html:
+    template-partials:
+      - html/home/title-block.html
+course-logo: /files/course-icon.png
+---
+
+```{r set-dependencies, include=FALSE}
+# # Site-wide targets dependencies
+# withr::with_dir(here::here(), {
+#   targets::tar_load(all_zipped_projects)
+#   targets::tar_load(all_slides)
+# })
+```
+
+::: {.home}
+
+:::: {.grid .course-details}
+
+::: {.g-col-12 .g-col-sm-6 .g-col-md-4}
+
+### Summer TF
+
+- [{{< fa user >}}]{.fa-li} [{{< var instructor.name >}}]({{< var instructor.url >}})
+- [{{< fa university >}}]{.fa-li} {{< var instructor.office >}}
+- [{{< fa envelope >}}]{.fa-li} <a href='mailto:{{< var instructor.email >}}'>{{< var instructor.email >}}</a>
+- [{{< iconify ph butterfly-bold size=1.2em title='Bluesky' >}}]{.fa-li} [Bluesky]({{< var instructor.bluesky >}})
+:::
+
+::: {.g-col-12 .g-col-sm-6 .g-col-md-4}
+### Course details
+
+- [{{< fa calendar >}}]{.fa-li} {{< var course.days >}}
+- [{{< fa calendar-alt >}}]{.fa-li} {{< var course.dates >}}
+- [{{< fa clock >}}]{.fa-li} {{< var course.time >}}
+- [{{< fa location-dot >}}]{.fa-li} {{< var course.location >}}
+:::
+
+::: {.g-col-12 .g-col-md-4 .contact-policy}
+### Contacting me
+
+- [{{< fa calendar-check >}}]{.fa-li} [Schedule an appointment]({{< var instructor.appointment_url >}})
+- [{{< fa brands slack >}}]{.fa-li} [Slack]({{< var course.slack >}})
+
+{{< var instructor.contact_policy >}}
+:::
+
+::::
+
+:::
