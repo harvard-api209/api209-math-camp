@@ -26,11 +26,11 @@ course:
   days: "Any day"
   time: "Asynchronous"
   location: "Anywhere"
-  dates: "June 3–July 23, 2024"
-  github: "https://www.github.com/andrewheiss/datavizs24.classes.andrewheiss.com"
-  url: "https://datavizs24.classes.andrewheiss.com"
+  dates: "August 15–August 28, 2024"
+  github: "https://github.com/harvard-api209/api209-math-camp"
+  url: "https://harvard-api209.github.io/api209-math-camp/"
   copyright_year: "2024"
-  slack: "https://gsudatavizs2024.slack.com"
+  slack: "https://harvard.enterprise.slack.com"
 
 university:
   name: Harvard University

@@ -23,11 +23,11 @@ execute:
 website:
   title: "API-209 R-Programming (Math Camp) 2024"
   description: "Conceptual mastery of statistical methods for public policy, focusing on application rather than mechanics"
-  site-url: "https://rrmaximiliano.github.io/api209-math-camp"
+  site-url: "https://harvard-api209.github.io/api209-math-camp/"
   
   favicon: "/files/favicon-512.png"
   
-  repo-url: "https://github.com/rrmaximiliano/api209-math-camp"
+  repo-url: "https://github.com/harvard-api209/api209-math-camp/"
   repo-actions: [edit, issue]
   
   page-navigation: true
