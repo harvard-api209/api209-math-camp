@@ -1,5 +1,5 @@
 ---
-title: "Advanced Quantitative Methods: Description and Prediction"
+title: "Advanced Quantitative Methods: Description and Prediction <br> Summer Math Camp"
 subtitle: "Conceptual mastery of statistical methods for public policy, focusing on application rather than mechanics"
 details: |
   API 209 • Summer 2024<br>**Prof**: Dan Levy | **Summer TF**: Rony Rodriguez<br>Harvard University

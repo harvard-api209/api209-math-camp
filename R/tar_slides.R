@@ -1,6 +1,8 @@
+devtools::source_gist("https://gist.github.com/gadenbuie/f6b8ec0335bdd45ed5a68bead60ef4fa")
+
 slides <- tibble::tibble(
   path = list.files(here_rel("slides"), pattern = "\\.Rmd", full.names = TRUE)
-) |>
+  ) |>
   mutate(
     name = tools::file_path_sans_ext(basename(path)),
     sym = syms(janitor::make_clean_names(paste0("slide_rmd_", name))),
@@ -53,22 +55,3 @@ render_xaringan <- function(slide_path) {
   return(paste0(tools::file_path_sans_ext(slide_path), ".html"))
 }
 
-
-# Use pagedown to convert xaringan HTML slides to PDF. Return a relative path to
-# the PDF to keep targets happy.
-#
-# Slides for sessions 12 are huge, so use chromote to convert them instead
-xaringan_to_pdf <- function(slide_path) {
-  path_sans_ext <- tools::file_path_sans_ext(slide_path)
-
-  if (path_sans_ext == "slides/12-slides") {
-    return(here::here("slides/12-slides.pdf"))
-  }
-  
-  renderthis::to_pdf(
-    slide_path,
-    to = paste0(path_sans_ext, ".pdf")
-  )
-
-  return(paste0(tools::file_path_sans_ext(slide_path), ".pdf"))
-}

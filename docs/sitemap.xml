@@ -1,8 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://harvard-api209.github.io/api209-math-camp/resource/colors.html</loc>
+    <lastmod>2024-08-08T20:28:22.400Z</lastmod>
+  </url>
+  <url>
     <loc>https://harvard-api209.github.io/api209-math-camp/resource/install.html</loc>
     <lastmod>2024-08-08T20:28:22.502Z</lastmod>
+  </url>
+  <url>
+    <loc>https://harvard-api209.github.io/api209-math-camp/syllabus.html</loc>
+    <lastmod>2024-08-10T02:44:39.527Z</lastmod>
+  </url>
+  <url>
+    <loc>https://harvard-api209.github.io/api209-math-camp/resource/quarto.html</loc>
+    <lastmod>2024-08-08T20:28:22.505Z</lastmod>
+  </url>
+  <url>
+    <loc>https://harvard-api209.github.io/api209-math-camp/resource/markdown.html</loc>
+    <lastmod>2024-08-08T20:28:22.504Z</lastmod>
   </url>
   <url>
     <loc>https://harvard-api209.github.io/api209-math-camp/content/01-content.html</loc>
@@ -13,12 +29,20 @@
     <lastmod>2024-08-08T20:28:22.093Z</lastmod>
   </url>
   <url>
-    <loc>https://harvard-api209.github.io/api209-math-camp/schedule.html</loc>
-    <lastmod>2024-08-09T18:28:59.292Z</lastmod>
+    <loc>https://harvard-api209.github.io/api209-math-camp/news/index.html</loc>
+    <lastmod>2024-08-08T20:28:22.245Z</lastmod>
   </url>
   <url>
-    <loc>https://harvard-api209.github.io/api209-math-camp/about.html</loc>
-    <lastmod>2024-08-09T01:55:49.012Z</lastmod>
+    <loc>https://harvard-api209.github.io/api209-math-camp/resource/visualization.html</loc>
+    <lastmod>2024-08-08T20:28:22.507Z</lastmod>
+  </url>
+  <url>
+    <loc>https://harvard-api209.github.io/api209-math-camp/resource/index.html</loc>
+    <lastmod>2024-08-08T20:28:22.501Z</lastmod>
+  </url>
+  <url>
+    <loc>https://harvard-api209.github.io/api209-math-camp/resource/data.html</loc>
+    <lastmod>2024-08-08T20:28:22.400Z</lastmod>
   </url>
   <url>
     <loc>https://harvard-api209.github.io/api209-math-camp/lesson/index.html</loc>
@@ -33,23 +57,47 @@
     <lastmod>2024-08-08T20:28:20.902Z</lastmod>
   </url>
   <url>
-    <loc>https://harvard-api209.github.io/api209-math-camp/resource/index.html</loc>
-    <lastmod>2024-08-08T20:28:22.501Z</lastmod>
+    <loc>https://harvard-api209.github.io/api209-math-camp/resource/citations.html</loc>
+    <lastmod>2024-08-08T20:28:22.399Z</lastmod>
   </url>
   <url>
-    <loc>https://harvard-api209.github.io/api209-math-camp/news/index.html</loc>
-    <lastmod>2024-08-08T20:28:22.245Z</lastmod>
+    <loc>https://harvard-api209.github.io/api209-math-camp/resource/design.html</loc>
+    <lastmod>2024-08-08T20:28:22.401Z</lastmod>
+  </url>
+  <url>
+    <loc>https://harvard-api209.github.io/api209-math-camp/resource/r.html</loc>
+    <lastmod>2024-08-08T20:28:22.505Z</lastmod>
+  </url>
+  <url>
+    <loc>https://harvard-api209.github.io/api209-math-camp/about.html</loc>
+    <lastmod>2024-08-09T01:55:49.012Z</lastmod>
   </url>
   <url>
     <loc>https://harvard-api209.github.io/api209-math-camp/index.html</loc>
-    <lastmod>2024-08-09T17:31:25.786Z</lastmod>
+    <lastmod>2024-08-10T22:57:48.090Z</lastmod>
   </url>
   <url>
     <loc>https://harvard-api209.github.io/api209-math-camp/assignment/01-exercise.html</loc>
     <lastmod>2024-08-08T20:28:20.880Z</lastmod>
   </url>
   <url>
-    <loc>https://harvard-api209.github.io/api209-math-camp/syllabus.html</loc>
-    <lastmod>2024-08-10T02:44:39.527Z</lastmod>
+    <loc>https://harvard-api209.github.io/api209-math-camp/content/02-content.html</loc>
+    <lastmod>2024-08-08T20:28:20.893Z</lastmod>
+  </url>
+  <url>
+    <loc>https://harvard-api209.github.io/api209-math-camp/schedule.html</loc>
+    <lastmod>2024-08-11T05:09:59.257Z</lastmod>
+  </url>
+  <url>
+    <loc>https://harvard-api209.github.io/api209-math-camp/resource/pipes.html</loc>
+    <lastmod>2024-08-08T20:28:22.504Z</lastmod>
+  </url>
+  <url>
+    <loc>https://harvard-api209.github.io/api209-math-camp/resource/unzipping.html</loc>
+    <lastmod>2024-08-08T20:28:22.507Z</lastmod>
+  </url>
+  <url>
+    <loc>https://harvard-api209.github.io/api209-math-camp/resource/style.html</loc>
+    <lastmod>2024-08-08T20:28:22.506Z</lastmod>
   </url>
 </urlset>

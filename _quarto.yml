@@ -67,8 +67,10 @@ website:
             - content/index.qmd
         - section: "Foundations"
           contents:
-            - text: "R Lesson 1: Foundations"
-              files: content/01-content.qmd
+            - text: "1: Truth, beauty, and data + the tidyverse"
+              file: content/01-content.qmd
+            - text: "2: Graphic design"
+              file: content/02-content.qmd
     
     - title: "Assignments"
       contents:
