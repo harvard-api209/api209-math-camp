@@ -23,11 +23,9 @@ ical_url_absolute <- paste0(base_url, "/", schedule_ical_file)
 
 Here's your roadmap for the summer camp!
 
-- [**Content**](/content/index.qmd) ({{< fa book-open-reader >}}): This page contains the readings, slides, and recorded lectures for the topic. Read and watch these first.
+- [**Lessons**](/content/index.qmd) ({{< fa book-open-reader >}}): This page contains the slides for the topic. Read and watch these first.
 
-- [**Lesson**](/lesson/index.qmd) ({{< fa chalkboard-teacher >}}): This page contains an interactive lesson that teaches you the principles and code you need to know. Go through these after doing the content.
-
-- [**Assignment**](/assignment/index.qmd) ({{< fa pen-ruler >}}): This page contains the instructions for either the session exercise or the labs. **Assignments are <del>due</del> by 11:59 PM on the Monday**.
+- [**Labs**](/lesson/index.qmd) ({{< fa chalkboard-teacher >}}): This page contains, when needed, interactive sessions, and also the contents for each lab. Go through these after doing the lessons.
 
 :::::: {.row .d-flex .justify-content-center}
 ::::: {.col-12 .col-sm-10 .col-md-6}
@@ -36,9 +34,8 @@ Here's your roadmap for the summer camp!
 
 **tl;dr**: You should follow this general process for each session:
 
-- Do everything on the content page ({{< fa book-open-reader >}})
-- Work through the lesson page ({{< fa chalkboard-teacher >}})
-- Complete the assignment ({{< fa pen-ruler >}}) while referencing the example ({{< fa laptop-code >}})
+- Do everything on the lewsson page ({{< fa book-open-reader >}})
+- Work through the labs page ({{< fa chalkboard-teacher >}})
 
 :::
 ::::
