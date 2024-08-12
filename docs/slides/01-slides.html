@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="" xml:lang="">
   <head>
-    <title>Truth, beauty, and data</title>
+    <title>R Lesson: Data Manipulation in R</title>
     <meta charset="utf-8" />
-    <meta name="author" content="Andrew Heiss" />
-    <meta name="date" content="2024-08-11" />
+    <meta name="author" content="Rony Rodrigo Maximiliano Rodriguez-Ramirez" />
+    <meta name="date" content="2024-08-12" />
     <script src="libs/header-attrs-2.27/header-attrs.js"></script>
     <link href="libs/remark-css-0.0.1/default.css" rel="stylesheet" />
     <link href="libs/tile-view-0.2.6/tile-view.css" rel="stylesheet" />
@@ -30,14 +30,14 @@
 
 class: center middle main-title section-title-4
 
-# Truth, beauty,&lt;br&gt;and data
+# Data Manipulation in R
 
 .class-info[
 
-**Session 1**
+**Lesson 1**
 
-.light[PMAP 8921: Data Visualization with R&lt;br&gt;
-Andrew Young School of Policy Studies&lt;br&gt;
+.light[API 209: Advanced Quantative Methods&lt;br&gt;
+TF: Rony Rodriguez-Ramirez&lt;br&gt;
 Summer 2024]
 
 ]
@@ -45,620 +45,222 @@ Summer 2024]
 ---
 
 name: outline
-class: title title-inv-7
+class: title title-inv-5
 
 # Plan for today
 
---
-
-.box-2.medium.sp-after-half[Facts, truth, and beauty]
-
---
-
-.box-3.medium.sp-after-half[Data, truth, and beauty]
-
---
-
-.box-6.medium.sp-after-half[Beautiful visualizations]
-
---
-
-.box-7.medium[Class details]
-
+1. Getting to know each other
+2. The layout of this summer camp (just the R part)
+3. Why R, RStudio, Positron?
+4. Data manipulation in R
 
 ---
 
 layout: false
-name: facts-truth-beauty
-class: center middle section-title section-title-2 animated fadeIn
+name: knowing-each-other
+class: center middle section-title section-title-crimson
 
-# Facts, truth, and beauty
-
----
-
-layout: true
-class: title title-2
-
----
-
-# What is truth?
-
-.box-inv-2.medium[Core principles of the universe?]
-
---
-
-.box-inv-2.medium[Underlying trends in society?]
-
---
-
-.box-inv-2.medium[Something transcendental?]
-
---
-
-.box-inv-2.medium[Reality?]
-
----
-
-# How do we find truth?
-
-.box-inv-2.medium[Science!]
-
-.center[
-&lt;figure&gt;
-  &lt;img src="img/01/ndgt-scientism.png" alt="Neil deGrasse Tyson on science" title="Neil deGrasse Tyson on science" width="70%"&gt;
-&lt;/figure&gt;
-]
-
-???
-
-[Original tweet](https://twitter.com/neiltyson/status/345551599382446081)
-
----
-
-# But wait!
-
-.box-inv-2.medium.sp-after[Beware of scientism!]
-
-.box-2["… promotion of science as the best or only&lt;br&gt;objective means by which society should determine&lt;br&gt;normative and epistemological values"]
-
-???
-
-[Wikipedia](https://en.wikipedia.org/wiki/Scientism)
-
----
-
-# Science is not the only way
-
-.box-inv-2.medium[Art]
-
-.box-inv-2.medium[Music]
-
-.box-inv-2.medium[Literature]
-
-.box-inv-2.medium[Religion]
-
-.box-inv-2.medium[Nature]
-
-???
-
-None of these methods deal with raw facts, though!
-
----
-
-# Nothing here is factual…
-
-.box-inv-2[…but it all reveals truth]
-
-.pull-left[
-
-.pull-left[
-&lt;figure&gt;
-  &lt;img src="img/01/les-mis.jpg" alt="ZZZ" title="ZZZ" width="100%"&gt;
-  &lt;figcaption&gt;Cosette&lt;/figcaption&gt;
-&lt;/figure&gt;
-]
-
-.pull-right[
-&lt;figure&gt;
-  &lt;img src="img/01/King_Lear.jpg" alt="King Lear" title="King Lear" width="100%"&gt;
-  &lt;figcaption&gt;King Lear&lt;/figcaption&gt;
-&lt;/figure&gt;
-]
-
-]
-
-.pull-right[
-&lt;figure&gt;
-  &lt;img src="img/01/beethoven.png" alt="ZZZ" title="ZZZ" width="100%"&gt;
-  &lt;figcaption&gt;Beethoven's 9th symphony&lt;/figcaption&gt;
-&lt;/figure&gt;
-]
-
-???
-
-Sources: 
-
-- [Cosette](https://commons.wikimedia.org/wiki/File:Cosette-sweeping-les-miserables-albert-bellenger-1886.jpg)
-- [King Lear](https://commons.wikimedia.org/wiki/File:King_Lear.jpg)
-- [Beethoven](https://commons.wikimedia.org/wiki/File:Beethoven,_Symphony_No._9,_finale,_bars_116-123.png)
-
----
-
-layout: false
-class: middle
-
-.box-2.huge[Facts ≠ truth]
-
----
-
-class: middle
-
-.box-2.large.sp-after[Where does truth come when&lt;br&gt;there are no facts?]
-
---
-
-.box-inv-2.huge[Beauty]
-
+# Getting to know each other
 
 ---
 
 layout: true
-class: title title-2
+class: title title-crimson
 
 ---
 
-# Beauty in science
+# Who am I?
 
-.pull-left.center[
-
-&lt;figure&gt;
-  &lt;img src="img/01/beautiful-question.jpg" alt="Frank Wilczek's A Beautiful Question" title="Frank Wilczek's A Beautiful Question" width="60%"&gt;
-&lt;/figure&gt;
-
-]
-
-.box-inv-2.medium[This is also true for science and math&lt;br&gt;and other more&lt;br&gt;factual realms]
-
----
-
-# Rhetoric and beauty
-
-.box-inv-2[λόγος&amp;emsp;•&amp;emsp;λέξις]
-
-.box-inv-2.tiny.sp-after[Logos&amp;emsp;•&amp;emsp;Lexis]
-
-.box-inv-2[Res&amp;emsp;•&amp;emsp;Verba]
-
-.box-inv-2[Essence&amp;emsp;•&amp;emsp;Structure]
-
-.box-inv-2.sp-after[Content&amp;emsp;•&amp;emsp;Form]
-
-.box-2.medium[Truth&amp;emsp;•&amp;emsp;Beauty]
-
-???
-
-One is the underlying metaphysical meaning—what the author or artist intends. The other is *how* they convey that message—what it looks like, what they used, etc.
-
----
-
-# Content + form
-
-.box-inv-2.large[Art is how we translate core,&lt;br&gt;essential **content** (or truth!)&lt;br&gt;to different **forms**&lt;br&gt;for specific **audiences**.]
-
----
-
-# Truth is beautiful
-
-.box-inv-2.medium[Truth ≠ facts]
-
-.box-inv-2.medium.sp-after[Truth comes from aesthetic&lt;br&gt;combination of content and form]
-
-.box-2.medium[Facts require beauty to be true]
-
----
-
-layout: false
-name: data-truth-beauty
-class: center middle section-title section-title-3 animated fadeIn
-
-# Data, truth, and beauty
-
----
-
-layout: true
-class: title title-3
-
----
-
-# Just show me the data!
-
-
+.box-inv-crimson.medium[Rony Rodriguez-Ramirez (G2)]
 
 --
 
-.pull-left-3.small-code[
+.box-inv-crimson.medium[Ed Policy (Economics of Education) Program]
 
-``` r
-head(my_data, 10)
-```
+--
 
-```
-## # A tibble: 10 × 2
-##        x     y
-##    &lt;dbl&gt; &lt;dbl&gt;
-##  1  55.4  97.2
-##  2  51.5  96.0
-##  3  46.2  94.5
-##  4  42.8  91.4
-##  5  40.8  88.3
-##  6  38.7  84.9
-##  7  35.6  79.9
-##  8  33.1  77.6
-##  9  29.0  74.5
-## 10  26.2  71.4
-```
+.box-inv-crimson.medium[Previous exp: The World Bank]
+
+--
+
+.box-inv-crimson.medium[Like coding!]
+
+---
+
+# My role (?)
+
+**What should you expect from me?**
+
+.small[
+1. My job if that you feel confident in R.
+2. I should be there if you have any questions.
+3. Reply to your emails or slack messages.
 ]
 
 --
 
-.pull-middle-3.small-code[
+**At the end of this summer camp?**
 
-``` r
-mean(my_data$x)
-```
-
-```
-*## [1] 54.26327
-```
-
-``` r
-mean(my_data$y)
-```
-
-```
-*## [1] 47.83225
-```
-
-``` r
-cor(my_data$x, my_data$y)
-```
-
-```
-*## [1] -0.06447185
-```
-]
-
---
-
-.pull-right-3[
-&amp;nbsp;
-
-.box-inv-3[Seems reasonable]
-
-&amp;nbsp;
-
-.box-inv-3[Seems reasonable]
-
-&amp;nbsp;
-
-.box-inv-3[No correlation]
+.small[
+1. You should be ready for the semester.
+2. Know enough about R.
+3. Know how to craft questions and where to look for answers.
+4. Be happy (?)
 ]
 
 ---
 
-# oh no
-
-.center[
-&lt;figure&gt;
-  &lt;img src="img/01/DinoSequentialSmaller.gif" alt="Datasaurus Dozen" title="Datasaurus Dozen" width="100%"&gt;
-  &lt;figcaption&gt;&lt;a href="https://www.autodeskresearch.com/publications/samestats" target="_blank"&gt;The Datasaurus Dozen&lt;/a&gt;&lt;/figcaption&gt;
-&lt;/figure&gt;
-]
-
----
-
-# Raw data is not enough
-
-.box-inv-3.small[Each of these has the same mean, standard deviation, variance, and correlation]
-
-&lt;img src="01-slides_files/figure-html/plot-full-dozen-1.png" width="100%" style="display: block; margin: auto;" /&gt;
-
-
----
-
-# Humans love patterns
-
-.center[
-&lt;figure&gt;
-  &lt;img src="img/01/pattern-processing.png" alt="Pattern processing" title="Pattern processing" width="100%"&gt;
-  &lt;figcaption&gt;&lt;a href="https://doi.org/10.3389/fnins.2014.00265" target="_blank"&gt;https://doi.org/10.3389/fnins.2014.00265&lt;/a&gt;&lt;/figcaption&gt;
-&lt;/figure&gt;
-]
-
----
-
-# (Sometimes we love them too much)
-
---
-
-.center[
-.box-inv-3.sp-after[**Pareidolia**: seeing patterns that aren't there.]
-]
-
---
+# Course assistants for Math Camp
 
 .pull-left-3[
-![](img/01/pareidolia-1.jpg)
+**Hussaini Shan-e-Abbas**
 ]
-
---
 
 .pull-middle-3[
-![](img/01/pareidolia-2.jpg)
+**Ayush Shukla**
 ]
-
---
 
 .pull-right-3[
-![](img/01/pareidolia-3.jpg)
-]
-
----
-
-# Beauty is necessary to see patterns
-
-.pull-left[
-
-&lt;figure&gt;
-  &lt;img src="img/01/amount-diffs-table.png" alt="Amount donated table" title="Amount donated table" width="100%"&gt;
-&lt;/figure&gt;
-
-]
-
---
-
-.pull-right.center[
-
-&lt;figure&gt;
-  &lt;img src="img/01/amount-diffs.png" alt="Amount donated graph" title="Amount donated graph" width="85%"&gt;
-&lt;/figure&gt;
-
+**Sara Wong Becerra**
 ]
 
 ---
 
 layout: false
-name: beautiful-visualizations
-class: center middle section-title section-title-6 animated fadeIn
+name: layout-summer-camp
+class: center middle section-title section-title-crimson
 
-# Beautiful visualizations
+# The layout
 
 ---
 
 layout: true
-class: title title-6
+class: title title-crimson 
 
 ---
 
-# What makes a great visualization?
+# The layout
 
-.box-inv-6.medium[Truthful]
+**What are we going during math camp (R Part)?**
 
-.box-inv-6.medium[Functional]
+.small[
+8 sessions over the next weeks:
 
-.box-inv-6.medium[Beautiful]
-
-.box-inv-6.medium[Insightful]
-
-.box-inv-6.medium[Enlightening]
-
-.box-6.tiny[Alberto Cairo, *The Truthful Art*]
-
-???
-
-Alberto Cairo, *The Truthful Art*:
-
-&gt; 1. It is truthful, as it’s based on thorough and honest research.
-&gt; 
-&gt; 2. It is functional, as it constitutes an accurate depiction of the data, and it’s built in a way that lets people do meaningful operations based on it (seeing change in time).
-&gt; 
-&gt; 3. It is beautiful, in the sense of being attractive, intriguing, and even aesthetically pleasing for its intended audience—scientists, in the first place, but the general public, too.
-&gt; 
-&gt; 4. It is insightful, as it reveals evidence that we would have a hard time seeing otherwise.
-&gt; 
-&gt; 5. It is enlightening because if we grasp and accept the evidence it depicts, it will change our minds for the better.
-
----
-
-# What makes a great visualization?
-
-.box-inv-6["Graphical excellence is the **well-designed presentation of interesting data**—a matter of substance, of statistics, and of design … [It] consists of complex ideas communicated with clarity, precision, and efficiency. … [It] is that which **gives to the viewer the greatest number of ideas in the shortest time with the least ink in the smallest space** … [It] is nearly always multivariate … And graphical excellence requires **telling the truth about the data**."]
-
-.box-6.tiny[Edward Tufte, *The Visual Display of Quantitative Information*, p. 51]
-
----
-
-# What makes a great visualization?
-
-.box-inv-6.medium[Good aesthetics]
-
---
-
-.box-inv-6.medium[No substantive issues]
-
---
-
-.box-inv-6.medium[No perceptual issues]
-
---
-
-.box-inv-6.medium[Honesty + good judgment]
-
-.box-6.tiny[Kieran Healy, *Data Visualization: A Practical Introduction*]
-
----
-
-# What's wrong?
-
-.center[
-&lt;figure&gt;
-  &lt;img src="img/01/pie-genus.png" alt="Distribution of genus" title="Distribution of genus" width="60%"&gt;
-&lt;/figure&gt;
+1. 4 Lessons (2 hours)
+  - I will discuss about coding, strategies, and implementation
+2. 4 Labs (1.5 hours)
+  - It will be a hands-on session. I will provide you with exercises and we will solve them together.
+3. Optional: Office hours
 ]
 
-???
+---
 
-- Aesthetic issues
-- Substantive issues
-- Perceptual issues
-- Honesty + judgment issues
+# The layout
+
+There is a website for this summer camp:
+
+.box-inv-crimson.medium[[website](https://harvard-api209.github.io/api209-math-camp/)]
+
+It is not up-to-date; but every week, you will have the materials for that respective week, i.e., you should have already your lab for tomorrow.
 
 ---
 
-# What's wrong?
+# Coding
 
-.center[
-&lt;figure&gt;
-  &lt;img src="img/01/changing-face-of-america.png" alt="Changing face of America" title="Changing face of America" width="45%"&gt;
-&lt;/figure&gt;
-]
+Coding is a Skill
 
-???
-
-- Aesthetic issues
-- Substantive issues
-- Perceptual issues
-- Honesty + judgment issues
+.box-inv-crimson.medium[**It is most fun to practice a skill with people you know.**]
 
 ---
 
-# What's wrong?
-
-.center[
-&lt;figure&gt;
-  &lt;img src="img/01/how-stuff-works-recidivism.png" alt="Recidivism pie chart" title="Recidivism pie chart" width="45%"&gt;
-&lt;/figure&gt;
-]
-
-???
-
-- Aesthetic issues
-- Substantive issues
-- Perceptual issues
-- Honesty + judgment issues
-
----
-
-# What's right?
+# Discussion Activity: Archetypes
 
 .pull-left[
 
-&lt;img src="01-slides_files/figure-html/flatten-the-curve-1.png" width="100%" style="display: block; margin: auto;" /&gt;
+&lt;img src="01-slides_files/figure-html/plot-archetype-1.png" width="100%" style="display: block; margin: auto;" /&gt;
+]
+
+.pull-right[
+
+.small[
+
+- **Intros**: Name, where you’re from, favorite midday snack or superhero.
+- **Experience**: With statistics, programming, and/or R? (Yes/No)
+- **Which quadrant describes you?**
+]
 
 ]
 
-???
+---
 
-- Aesthetic issues
-- Substantive issues
-- Perceptual issues
-- Honesty + judgment issues
+# Classroom Norms
 
---
+**Class is a collective enterprise!**
 
-.pull-right.center[
-
-&lt;figure&gt;
-  &lt;img src="img/01/bergstrom-tweet.png" alt="Carl Bergstrom tweet" title="Carl Bergstrom tweet" width="80%"&gt;
-  &lt;figcaption&gt;&lt;a href="https://twitter.com/CT_Bergstrom/status/1235865328074153986" target="_blank"&gt;Thread by Carl T. Bergstrom&lt;/a&gt;&lt;/figcaption&gt;
-&lt;/figure&gt;
-
-]
-
-???
-
-[Carl Bergstrom on the flatten the curve visualization](https://twitter.com/CT_Bergstrom/status/1235865328074153986)
+- Allow everyone the chance to speak.
+- Be mindful of thoughts and actions.
+- Understand differing levels of knowledge and experience.
+- Help others in your group!
+- Don’t be afraid to ask questions!
+- Respect others’ opinions and suggestions.
+- Try questions on your own first, then come together.
+- Take breaks and have fun!
 
 ---
 
 layout: false
-name: class-details
-class: center middle section-title section-title-7 animated fadeIn
+name: why-r
+class: center middle section-title section-title-crimson
 
-# Class details
+# Why R, RStudio, Positron?
 
 ---
 
 layout: true
-class: title title-7
+class: title title-crimson 
 
 ---
 
-# Goal for the class
+# Why R, RStudio, and Positron?
 
-.center[
-.box-inv-7.huge[Recognize and create beautiful and truthful visualizations with real world data]
+**Why R?**
+
+- Open-source and free.
+- Extensive ecosystem for statistical analysis.
+- Wide range of packages for data manipulation and visualization.
+- Active and supportive community.
+
+---
+
+# RStudio and Positron: The IDEs for R
+
+.small[
+
+**Why RStudio?**
+- Integrated development environment (IDE) that simplifies coding in R.
+- Built-in tools for code development, debugging, and collaboration.
+- Seamless integration with RMarkdown for dynamic report generation.
+- Powerful tools for data visualization and manipulation.
+
+**Why Positron?**
+- New, modern IDE designed to enhance the R programming experience.
+- Sleeker interface with enhanced performance and features.
+- Supports the latest R packages and workflows.
+- Focuses on integrating modern development tools and practices.
+
 ]
 
 ---
 
-# Plan for the class
+# Which IDE Should You Use?
 
-&amp;nbsp;
+**RStudio vs. Positron**
 
-.center[
-&lt;figure&gt;
-  &lt;img src="img/01/dataviz-flowchart.png" alt="Class flowchart" title="Class flowchart" width="100%"&gt;
-&lt;/figure&gt;
-]
-
----
-
-# Class technology
-
-.center[
-&lt;figure&gt;
-  &lt;img src="img/01/complexity-chart@4x.png" alt="Complexity chart" title="Complexity chart" width="65%"&gt;
-&lt;/figure&gt;
-]
-
----
-
-# Class technology
-
-.pull-left-3.center[
-
-&lt;figure&gt;
-  &lt;img src="img/01/Rlogo.png" alt="R logo" title="R logo" width="80%"&gt;
-&lt;/figure&gt;
-
-&lt;figure&gt;
-  &lt;img src="img/01/rstudio-logo.png" alt="R logo" title="R logo" width="100%"&gt;
-&lt;/figure&gt;
-
-]
-
---
-
-.pull-middle-3[
-
-&lt;figure&gt;
-  &lt;img src="img/01/ggplot-logo.png" alt="ggplot logo" title="ggplot logo" width="100%"&gt;
-&lt;/figure&gt;
-
-]
-
---
-
-.pull-right-3[
-
-&amp;nbsp;
-
-&lt;figure&gt;
-  &lt;img src="img/03/ggplot-layers@4x.png" alt="ggplot logo" title="ggplot logo" width="100%"&gt;
-&lt;/figure&gt;
-
-]
+- **RStudio** is well-established with a large user base and extensive support.
+- **Positron** offers cutting-edge features for those looking to adopt the latest tools.
+- Consider trying both to see which fits your workflow best.
+- During the pre-summer assignment, we used **Posit Cloud**.
+  - For those who haven't installed, either RStudio not Positron in your computer, there is a Posit Cloud Project [here]()
 
 ---
 
@@ -670,16 +272,45 @@ class: title title-7
 &lt;/figure&gt;
 ]
 
+
 ---
 
-# Sucking
+layout: false
+name: data-manipulation
+class: center middle section-title section-title-crimson
+
+# Data manipulation
+
+---
+
+layout: true
+class: title title-crimson 
+
+---
+
+# Advanced Data Manipulation
+
+**Mastering Data Manipulation in R**
+
+- **Advanced Filtering and Selection**: 
+    - Use of conditional filtering and dynamic column selection.
+- **Complex Mutate Operations**:
+    - Creating conditional columns, using lag and lead.
+- **Data Reshaping**:
+    - Pivoting data, advanced grouping.
+- **Efficient Data Handling**:
+    - Joining datasets, parallel processing.
+
+---
+
+# Sucking (Slide from Prof. Andrew Heiss)
 
 .center[
-.box-inv-7.medium[“There is no way of knowing nothing about a subject to knowing something about a subject without going through a period of much frustration and suckiness.”]
+.box-inv-crimson.medium[“There is no way of knowing nothing about a subject to knowing something about a subject without going through a period of much frustration and suckiness.”]
 
-.box-inv-7.medium[**“Push through. You’ll suck less.”**]
+.box-inv-crimson.medium[**“Push through. You’ll suck less.”**]
 
-.box-inv-7.tiny[Hadley Wickham, author of {ggplot2}]
+.box-inv-crimson.tiny[Hadley Wickham, author of {ggplot2}]
 ]
 
 ???
@@ -692,18 +323,9 @@ class: title title-7
 
 &amp;nbsp;
 
-.pull-left[
+.center[
 &lt;figure&gt;
-  &lt;img src="img/01/sucking-first-step.jpg" alt="Sucking at something is the first step towards being sort of good at something" title="Sucking at something is the first step towards being sort of good at something" width="100%"&gt;
-&lt;/figure&gt;
-]
-
---
-
-.pull-right[
-&lt;figure&gt;
-  &lt;img src="img/01/sucking-nyt.png" alt="It's great to suck at something" title="It's great to suck at something" width="100%"&gt;
-  &lt;figcaption&gt;&lt;a href="https://www.nytimes.com/2017/04/28/opinion/its-great-to-suck-at-surfing.html" target="_blank"&gt;Karen Rinaldi, "(It's Great to) Suck at Something"&lt;/a&gt;&lt;/figcaption&gt;
+  &lt;img src="img/01/sucking-first-step.jpg" alt="Sucking at something is the first step towards being sort of good at something" title="Sucking at something is the first step towards being sort of good at something" width="70%"&gt;
 &lt;/figure&gt;
 ]
     </textarea>

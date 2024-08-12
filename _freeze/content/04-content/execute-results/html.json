@@ -1,0 +1,19 @@
+{
+  "hash": "2b564873df10e2ab9165c947f8397566",
+  "result": {
+    "engine": "knitr",
+    "markdown": "---\ntitle: \"Streamlining Research with R\"\ndate: \"2024-08-26\"\n---\n\n\n\n\n\n\n## Overview\n\nIN CONSTRUCTION!\n\n\n## Guiding Questions\n\n::: {.callout-warning}\n\n#### These are optional!\n\nYou don't need to answer all of these—or even any of them! They are here to help guide your thinking and reflection on the content. Feel free to explore whatever aspects you find most interesting.\n:::\n\n- Question 1\n\n## Readings\n\n- No readings for this session.\n\n## Slides\n\nThe slides for this session are available online as an HTML file. Use the buttons below to open the slides either as an interactive website or as a static PDF (for printing or storing for later). You can also navigate through the embedded slides directly on this page using your left and right arrow keys.\n\n\n\n\n<p class=\"text-center buttons\"><a class=\"btn btn-danger\" target=\"_blank\" href=\"/slides/04-slides.html\"><i class=\"fa-solid fa-arrow-up-right-from-square\"></i> View all slides in new window</a> <a class=\"btn btn-danger\" target=\"_blank\" href=\"/slides/04-slides.pdf\" role=\"button\"><i class=\"fa-solid fa-file-pdf\"></i> Download PDF of all slides</a></p>\n\n```{=html}\n<div class=\"shareagain\" style=\"min-width:300px;margin:0 auto;\" data-exeternal=\"1\">\n<iframe src=\"/slides/04-slides.html\" width=\"1600\" height=\"900\" style=\"border:none;\" loading=\"lazy\" allowfullscreen></iframe>\n<script>fitvids('.shareagain', {players: 'iframe'});</script>\n</div>\n```\n\n\n\n\n:::{.callout-tip}\n**Pro tip**: If you type <kbd>?</kbd> (or <kbd>shift</kbd> + <kbd>/</kbd>) while viewing the slides, you can access a list of special commands to enhance your experience.\n:::\n",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {
+      "include-in-header": [
+        "<script src=\"../site_libs/fitvids-2.1.1/fitvids.min.js\"></script>\n"
+      ]
+    },
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

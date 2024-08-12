@@ -99,23 +99,15 @@ ul.task-list li input[type="checkbox"] {
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="./content/index.html"> 
-<span class="menu-text">Content</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="./lesson/index.html"> 
 <span class="menu-text">Lessons</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./assignment/index.html"> 
-<span class="menu-text">Assignments</span></a>
+    <a class="nav-link" href="./lesson/index.html"> 
+<span class="menu-text">Labs</span></a>
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="./resource/index.html"> 
 <span class="menu-text">Resources</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="./news/index.html"> 
-<span class="menu-text">News</span></a>
   </li>  
   <li class="nav-item compact">
     <a class="nav-link" href="https://harvard.enterprise.slack.com"> <i class="bi bi-slack" role="img" aria-label="Slack">
@@ -162,12 +154,11 @@ ul.task-list li input[type="checkbox"] {
 
 
 <div class="schedule-page">
-<p>Here’s your roadmap for the summar camp!</p>
+<p>Here’s your roadmap for the summer camp!</p>
 <ul>
 <li><p><a href="./content/index.html"><strong>Content</strong></a> (<i class="fa-solid fa-book-open-reader" aria-label="book-open-reader"></i>): This page contains the readings, slides, and recorded lectures for the topic. Read and watch these first.</p></li>
 <li><p><a href="./lesson/index.html"><strong>Lesson</strong></a> (<i class="fa-solid fa-chalkboard-teacher" aria-label="chalkboard-teacher"></i>): This page contains an interactive lesson that teaches you the principles and code you need to know. Go through these after doing the content.</p></li>
-<li><p><a href=".\example/index.qmd"><strong>Example</strong></a> (<i class="fa-solid fa-laptop-code" aria-label="laptop-code"></i>): This page contains fully annotated R code that you can use as a reference for creating your own visualizations. This is only a reference page—you don’t have to necessarily do anything here. Each section also contains videos of me live coding the examples so you can see what it looks like to work with R in real time. This page will be <em>very</em> helpful as you work on your assignments.</p></li>
-<li><p><a href="./assignment/index.html"><strong>Assignment</strong></a> (<i class="fa-solid fa-pen-ruler" aria-label="pen-ruler"></i>): This page contains the instructions for either the session exercise (1–3 brief tasks), or for the two mini projects and final project. <strong>Assignments are due by 11:59 PM on the Monday after their corresponding sessions.</strong> That’s confusing in sentence form—see the schedule table below to see how it works.</p></li>
+<li><p><a href="./assignment/index.html"><strong>Assignment</strong></a> (<i class="fa-solid fa-pen-ruler" aria-label="pen-ruler"></i>): This page contains the instructions for either the session exercise or the labs. <strong>Assignments are <del>due</del> by 11:59 PM on the Monday</strong>.</p></li>
 </ul>
 <div class="row d-flex justify-content-center">
 <div class="col-12 col-sm-10 col-md-6">
@@ -197,31 +188,290 @@ Subscribe!
 <p>You can subscribe to this calendar URL in Outlook, Google Calendar, or Apple Calendar:</p>
 <div class="grid">
 <div class="g-col-12 g-col-md-2">
-
+<p class="download-btn">
+<a class="btn btn-danger btn-sm" href="./files/schedule.ics" role="button"><i class="fa-solid fa-calendar-alt" aria-label="calendar-alt"></i> Download</a>
+</p>
 </div>
 <div class="g-col-12 g-col-md-10">
-
+<p>
+<input class="form-control" type="text" value="https://harvard-api209.github.io/api209-math-camp//files/schedule.ics" onclick="this.select()" readonly="">
+</p>
 </div>
 </div>
 </div>
 </div>
-<!-- ```{r build-table, include=FALSE} -->
-<!-- show_table <- function(group_id) { -->
-<!--   # Add a heading -->
-<!--   cat(as.character(paste("\n\n###", schedule_nested$group[[group_id]], "\n\n"))) -->
-<!--   # Make the table -->
-<!--   tbl <- schedule_nested$data[[group_id]] |>  -->
-<!--     kbl(escape = FALSE, align = "rlcccc", table.attr = 'class="schedule-table"') |>  -->
-<!--     kable_styling() |>  -->
-<!--     column_spec(1, width = "20%", extra_css = "padding-right: 20px;") |>  -->
-<!--     column_spec(2, width = "48%") |>  -->
-<!--     column_spec(3:6, width = "8%") -->
-<!--   cat(tbl) -->
-<!-- } -->
-<!-- ``` -->
-<!-- ```{r show-table, echo=FALSE, results="asis"} -->
-<!-- walk(seq(1, nrow(schedule_nested)), ~show_table(.x)) -->
-<!-- ``` -->
+<section id="data-mastery-in-r" class="level3">
+<h3 class="anchored" data-anchor-id="data-mastery-in-r">Data Mastery in R</h3>
+<table class="schedule-table table" style="margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:right;">
+</th>
+<th style="text-align:left;">
+Title
+</th>
+<th style="text-align:center;">
+Content
+</th>
+<th style="text-align:center;">
+Lesson
+</th>
+<th style="text-align:center;">
+Example
+</th>
+<th style="text-align:center;">
+Assignment
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right;width: 20%; padding-right: 20px;">
+<span class="content-date">August 15–August 15</span><br><span class="content-session">(Session 1)</span>
+</td>
+<td style="text-align:left;width: 48%; ">
+<span class="content-title">Data Wrangling</span>
+</td>
+<td style="text-align:center;width: 8%; ">
+<a href="./content/01-content.html"><i class="fa-solid fa-book-open-reader fa-lg"></i></a>
+</td>
+<td style="text-align:center;width: 8%; ">
+<font color="#e9ecef"><i class="fa-solid fa-chalkboard-teacher fa-lg"></i></font>
+</td>
+<td style="text-align:center;width: 8%; ">
+<font color="#e9ecef"><i class="fa-solid fa-laptop-code fa-lg"></i></font>
+</td>
+<td style="text-align:center;width: 8%; ">
+<font color="#e9ecef"><i class="fa-solid fa-pen-ruler fa-lg"></i></font>
+</td>
+</tr>
+<tr>
+<td style="text-align:right;width: 20%; padding-right: 20px;">
+<span class="content-date">August 16–August 19</span>
+</td>
+<td style="text-align:left;width: 48%; ">
+Hands-On Data Wrangling
+</td>
+<td style="text-align:center;width: 8%; ">
+<font color="#e9ecef"><i class="fa-solid fa-book-open-reader fa-lg"></i></font>
+</td>
+<td style="text-align:center;width: 8%; ">
+<a href="./lesson/01-lesson.html"><i class="fa-solid fa-chalkboard-teacher fa-lg"></i></a>
+</td>
+<td style="text-align:center;width: 8%; ">
+<font color="#e9ecef"><i class="fa-solid fa-laptop-code fa-lg"></i></font>
+</td>
+<td style="text-align:center;width: 8%; ">
+<font color="#e9ecef"><i class="fa-solid fa-pen-ruler fa-lg"></i></font>
+</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="data-visualization-in-r" class="level3">
+<h3 class="anchored" data-anchor-id="data-visualization-in-r">Data Visualization in R</h3>
+<table class="schedule-table table" style="margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:right;">
+</th>
+<th style="text-align:left;">
+Title
+</th>
+<th style="text-align:center;">
+Content
+</th>
+<th style="text-align:center;">
+Lesson
+</th>
+<th style="text-align:center;">
+Example
+</th>
+<th style="text-align:center;">
+Assignment
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right;width: 20%; padding-right: 20px;">
+<span class="content-date">August 20–August 20</span><br><span class="content-session">(Session 2)</span>
+</td>
+<td style="text-align:left;width: 48%; ">
+<span class="content-title">Elegant Data Visualization with ggplot2</span>
+</td>
+<td style="text-align:center;width: 8%; ">
+<a href="./content/02-content.html"><i class="fa-solid fa-book-open-reader fa-lg"></i></a>
+</td>
+<td style="text-align:center;width: 8%; ">
+<font color="#e9ecef"><i class="fa-solid fa-chalkboard-teacher fa-lg"></i></font>
+</td>
+<td style="text-align:center;width: 8%; ">
+<font color="#e9ecef"><i class="fa-solid fa-laptop-code fa-lg"></i></font>
+</td>
+<td style="text-align:center;width: 8%; ">
+<font color="#e9ecef"><i class="fa-solid fa-pen-ruler fa-lg"></i></font>
+</td>
+</tr>
+<tr>
+<td style="text-align:right;width: 20%; padding-right: 20px;">
+<span class="content-date">August 21–February 26</span>
+</td>
+<td style="text-align:left;width: 48%; ">
+Crafting Visual Stories
+</td>
+<td style="text-align:center;width: 8%; ">
+<font color="#e9ecef"><i class="fa-solid fa-book-open-reader fa-lg"></i></font>
+</td>
+<td style="text-align:center;width: 8%; ">
+<a href="./lesson/02-lesson.html"><i class="fa-solid fa-chalkboard-teacher fa-lg"></i></a>
+</td>
+<td style="text-align:center;width: 8%; ">
+<font color="#e9ecef"><i class="fa-solid fa-laptop-code fa-lg"></i></font>
+</td>
+<td style="text-align:center;width: 8%; ">
+<font color="#e9ecef"><i class="fa-solid fa-pen-ruler fa-lg"></i></font>
+</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="modeling-in-r" class="level3">
+<h3 class="anchored" data-anchor-id="modeling-in-r">Modeling in R</h3>
+<table class="schedule-table table" style="margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:right;">
+</th>
+<th style="text-align:left;">
+Title
+</th>
+<th style="text-align:center;">
+Content
+</th>
+<th style="text-align:center;">
+Lesson
+</th>
+<th style="text-align:center;">
+Example
+</th>
+<th style="text-align:center;">
+Assignment
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right;width: 20%; padding-right: 20px;">
+<span class="content-date">August 26–August 26</span><br><span class="content-session">(Session 3)</span>
+</td>
+<td style="text-align:left;width: 48%; ">
+<span class="content-title">Advanced Statistical Modeling in R</span>
+</td>
+<td style="text-align:center;width: 8%; ">
+<a href="./content/03-content.html"><i class="fa-solid fa-book-open-reader fa-lg"></i></a>
+</td>
+<td style="text-align:center;width: 8%; ">
+<font color="#e9ecef"><i class="fa-solid fa-chalkboard-teacher fa-lg"></i></font>
+</td>
+<td style="text-align:center;width: 8%; ">
+<font color="#e9ecef"><i class="fa-solid fa-laptop-code fa-lg"></i></font>
+</td>
+<td style="text-align:center;width: 8%; ">
+<font color="#e9ecef"><i class="fa-solid fa-pen-ruler fa-lg"></i></font>
+</td>
+</tr>
+<tr>
+<td style="text-align:right;width: 20%; padding-right: 20px;">
+<span class="content-date">August 28–September 2</span>
+</td>
+<td style="text-align:left;width: 48%; ">
+Building and Interpreting Models
+</td>
+<td style="text-align:center;width: 8%; ">
+<font color="#e9ecef"><i class="fa-solid fa-book-open-reader fa-lg"></i></font>
+</td>
+<td style="text-align:center;width: 8%; ">
+<a href="./lesson/03-lesson.html"><i class="fa-solid fa-chalkboard-teacher fa-lg"></i></a>
+</td>
+<td style="text-align:center;width: 8%; ">
+<font color="#e9ecef"><i class="fa-solid fa-laptop-code fa-lg"></i></font>
+</td>
+<td style="text-align:center;width: 8%; ">
+<font color="#e9ecef"><i class="fa-solid fa-pen-ruler fa-lg"></i></font>
+</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="streamlining-research-with-r" class="level3">
+<h3 class="anchored" data-anchor-id="streamlining-research-with-r">Streamlining Research with R</h3>
+<table class="schedule-table table" style="margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:right;">
+</th>
+<th style="text-align:left;">
+Title
+</th>
+<th style="text-align:center;">
+Content
+</th>
+<th style="text-align:center;">
+Lesson
+</th>
+<th style="text-align:center;">
+Example
+</th>
+<th style="text-align:center;">
+Assignment
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right;width: 20%; padding-right: 20px;">
+<span class="content-session">(Session 4)</span>
+</td>
+<td style="text-align:left;width: 48%; ">
+<span class="content-title">Reproducible Research and Automation</span>
+</td>
+<td style="text-align:center;width: 8%; ">
+<a href="./content/04-content.html"><i class="fa-solid fa-book-open-reader fa-lg"></i></a>
+</td>
+<td style="text-align:center;width: 8%; ">
+<font color="#e9ecef"><i class="fa-solid fa-chalkboard-teacher fa-lg"></i></font>
+</td>
+<td style="text-align:center;width: 8%; ">
+<font color="#e9ecef"><i class="fa-solid fa-laptop-code fa-lg"></i></font>
+</td>
+<td style="text-align:center;width: 8%; ">
+<font color="#e9ecef"><i class="fa-solid fa-pen-ruler fa-lg"></i></font>
+</td>
+</tr>
+<tr>
+<td style="text-align:right;width: 20%; padding-right: 20px;">
+<span class="content-date">September 4</span>
+</td>
+<td style="text-align:left;width: 48%; ">
+Automating Workflows
+</td>
+<td style="text-align:center;width: 8%; ">
+<font color="#e9ecef"><i class="fa-solid fa-book-open-reader fa-lg"></i></font>
+</td>
+<td style="text-align:center;width: 8%; ">
+<a href="./lesson/04-lesson.html"><i class="fa-solid fa-chalkboard-teacher fa-lg"></i></a>
+</td>
+<td style="text-align:center;width: 8%; ">
+<font color="#e9ecef"><i class="fa-solid fa-laptop-code fa-lg"></i></font>
+</td>
+<td style="text-align:center;width: 8%; ">
+<font color="#e9ecef"><i class="fa-solid fa-pen-ruler fa-lg"></i></font>
+</td>
+</tr>
+</tbody>
+</table>
+</section>
 </div>
 
 

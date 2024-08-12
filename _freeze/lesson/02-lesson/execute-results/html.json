@@ -1,0 +1,15 @@
+{
+  "hash": "bded52184b6d6fe488e0a2655779c12e",
+  "result": {
+    "engine": "knitr",
+    "markdown": "---\ntitle: \"Lab 2: \"\ndate: \"2024-06-03\"\n---\n\n\n\n\n\n## Part 1: \n\nTo complete",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

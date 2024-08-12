@@ -39,16 +39,12 @@ website:
     right:
       - syllabus.qmd
       - schedule.qmd
-      - text: "Content"
-        file: content/index.qmd
       - text: "Lessons"
+        file: content/index.qmd
+      - text: "Labs"
         file: lesson/index.qmd
-      - text: "Assignments"
-        file: assignment/index.qmd
       - text: "Resources"
         file: resource/index.qmd
-      - text: "News"
-        file: news/index.qmd
       - icon: slack
         href: "https://harvard.enterprise.slack.com"
         aria-label: Slack
@@ -65,18 +61,58 @@ website:
         - section: "Overview"
           contents:
             - content/index.qmd
-        - section: "Foundations"
+        - section: "Data Mastery in R"
           contents:
-            - text: "1: Truth, beauty, and data + the tidyverse"
+            - text: "1: Mastering Data Manipulation in R"
               file: content/01-content.qmd
-            - text: "2: Graphic design"
+        - section: "Data Visualization in R"
+          contents:
+            - text: "2: Elegant Data Visualization with ggplot2"
               file: content/02-content.qmd
+        - section: "Modeling in R"
+          contents:
+            - text: "3: Advanced Statistical Modeling in R"
+              file: content/03-content.qmd
+        - section: "Streamlining Research with R"
+          contents:
+            - text: "4: Reproducible Research and Automation"
+              file: content/04-content.qmd
     
-    - title: "Assignments"
+    - title: "Labs"
       contents:
         - section: "Overview"
           contents:
-            - assignment/index.qmd
+            - lesson/index.qmd
+        - section: "Labs"
+          contents:
+            - text: "Lab 1"
+              file: lesson/01-lesson.qmd
+            - text: "Lab 2"
+              file: lesson/01-lesson.qmd
+            - text: "Lab 3"
+              file: lesson/01-lesson.qmd
+            - text: "Lab 4"
+              file: lesson/01-lesson.qmd
+
+    - title: "Resources"
+      contents:
+        - section: "Resources"
+          contents:
+            - resource/index.qmd
+            - resource/colors.qmd
+            - resource/design.qmd
+            - resource/graphics-editors.qmd
+            - resource/visualization.qmd
+            - resource/r.qmd
+            - resource/style.qmd
+            - resource/data.qmd
+            - resource/citations.qmd
+        - section: "Guides"
+          contents:
+            - resource/install.qmd
+            - resource/markdown.qmd
+            - resource/quarto.qmd
+            - resource/pipes.qmd         
   
   page-footer:
     left: |

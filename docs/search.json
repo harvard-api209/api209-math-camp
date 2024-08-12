@@ -4,56 +4,91 @@
     "href": "resource/colors.html",
     "title": "Color palettes",
     "section": "",
-    "text": "When choosing colors, you need to make sure you work with a palette that mathches the nature of your data. There are three broad categories of color-able data: sequential, diverging, and qualitative.\nHere’s are three plots I’ll use throughout this page to illustrate their differences (and show off different colors). The code is hidden to save space—you can show the code and copy/paste it if you want to follow along:\n\n\nCode\nlibrary(tidyverse)\nlibrary(gapminder)\nlibrary(palmerpenguins)\nlibrary(ggokabeito)\nlibrary(scico)\nlibrary(rcartocolor)\nlibrary(MetBrewer)\nlibrary(MoMAColors)\nlibrary(patchwork)\n\nplot_diverging &lt;- tribble(\n  ~category, ~pct,\n  \"Strongly disagree\", 0.12,\n  \"Disagree\", 0.18,\n  \"Neutral\", 0.15,\n  \"Agree\", 0.27,\n  \"Strongly agree\", 0.28\n) |&gt;\n  mutate(category = fct_inorder(category)) |&gt;\n  ggplot(aes(x = pct, y = category, fill = category)) +\n  geom_col() +\n  guides(fill = \"none\") +\n  theme_bw() +\n  theme(plot.title = element_text(face = \"bold\"))\n\nplot_sequential &lt;- penguins |&gt;\n  drop_na(sex) |&gt;\n  ggplot(aes(x = bill_length_mm, y = body_mass_g, color = flipper_length_mm)) +\n  geom_point() +\n  theme_bw() +\n  theme(plot.title = element_text(face = \"bold\"))\n\nplot_qualitative &lt;- gapminder |&gt;\n  filter(year %in% c(1967, 1987, 2007)) |&gt;\n  group_by(year, continent) |&gt;\n  summarize(avg_lifexp = mean(lifeExp)) |&gt;\n  mutate(year = factor(year)) |&gt;\n  ggplot(aes(x = year, y = avg_lifexp, fill = continent)) +\n  geom_col(position = \"dodge\") +\n  theme_bw() +\n  theme(plot.title = element_text(face = \"bold\"))\n\n\n\n\nWith sequential data, colors represent a range from low value to a high value, so the colors either stay within one shade or hue of a color, or use multiple related hues\n\nDefault single blue hueMultiple red-purple hues (RdPu from ColorBrewer)\n\n\n\nplot_sequential\n\n\n\n\n\n\n\nFigure 1\n\n\n\n\n\n\n\n\nplot_sequential +\n  scale_color_distiller(palette = \"RdPu\", direction = 1)\n\n\n\n\n\n\n\nFigure 2\n\n\n\n\n\n\n\n\n\n\n\nWith diverging data, colors represent values above and below some central value, like negative to zero to positive; disagree to neutral to agree; etc. These palettes typically involve three colors: two for the extremes and one for the middle\n\nDefault ggplot colorsDiverging red-yellow-blue palette (RdYlBu from ColorBrewer)\n\n\nBy default, ggplot doesn’t actually do anything with diverging scales. If you have numeric data, it’ll use a blue gradient; if you have categorical data, it’ll use distinct colors. You’re in charge of applying a diverging palette.\n\n# This doesn't show up as diverging\nplot_diverging\n\n\n\n\n\n\n\nFigure 3\n\n\n\n\n\n\n\n\nplot_diverging +\n  scale_fill_brewer(palette = \"RdYlBu\", direction = 1)\n\n\n\n\n\n\n\nFigure 4\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nDon’t use diverging palettes for non-diverging data!\n\n\n\nPeople will often throw diverging palettes onto plots that aren’t actually diverging, like this:\n\nplot_sequential +\n  scale_color_distiller(palette = \"RdBu\", direction = 1)\n\n\n\n\n\n\n\nFigure 5\n\n\n\n\n\nDon’t do this! It looks weird having 200 be a super-faded middle color. Flipper length here ranges from a low number to a high number—the colors should reflect that.\n\n\n\n\n\nWith qualitative data, colors represent distinct categories and don’t have an inherent order. The colors shouldn’t look like they have a natural progression.\n\nDefault ggplot colorsviridis colors\n\n\n\nplot_qualitative\n\n\n\n\n\n\n\nFigure 6\n\n\n\n\n\n\n\n\nplot_qualitative +\n  scale_fill_viridis_d()\n\n\n\n\n\n\n\nFigure 7"
+    "text": "When choosing colors, you need to make sure you work with a palette that mathches the nature of your data. There are three broad categories of color-able data: sequential, diverging, and qualitative.\nHere’s are three plots I’ll use throughout this page to illustrate their differences (and show off different colors). The code is hidden to save space—you can show the code and copy/paste it if you want to follow along:\n\n\nCode\nlibrary(tidyverse)\nlibrary(gapminder)\nlibrary(palmerpenguins)\nlibrary(ggokabeito)\nlibrary(scico)\nlibrary(rcartocolor)\nlibrary(MetBrewer)\nlibrary(MoMAColors)\nlibrary(patchwork)\n\nplot_diverging &lt;- tribble(\n  ~category, ~pct,\n  \"Strongly disagree\", 0.12,\n  \"Disagree\", 0.18,\n  \"Neutral\", 0.15,\n  \"Agree\", 0.27,\n  \"Strongly agree\", 0.28\n) |&gt;\n  mutate(category = fct_inorder(category)) |&gt;\n  ggplot(aes(x = pct, y = category, fill = category)) +\n  geom_col() +\n  guides(fill = \"none\") +\n  theme_bw() +\n  theme(plot.title = element_text(face = \"bold\"))\n\nplot_sequential &lt;- penguins |&gt;\n  drop_na(sex) |&gt;\n  ggplot(aes(x = bill_length_mm, y = body_mass_g, color = flipper_length_mm)) +\n  geom_point() +\n  theme_bw() +\n  theme(plot.title = element_text(face = \"bold\"))\n\nplot_qualitative &lt;- gapminder |&gt;\n  filter(year %in% c(1967, 1987, 2007)) |&gt;\n  group_by(year, continent) |&gt;\n  summarize(avg_lifexp = mean(lifeExp)) |&gt;\n  mutate(year = factor(year)) |&gt;\n  ggplot(aes(x = year, y = avg_lifexp, fill = continent)) +\n  geom_col(position = \"dodge\") +\n  theme_bw() +\n  theme(plot.title = element_text(face = \"bold\"))\n\n\n\n\nWith sequential data, colors represent a range from low value to a high value, so the colors either stay within one shade or hue of a color, or use multiple related hues\n\nDefault single blue hueMultiple red-purple hues (RdPu from ColorBrewer)\n\n\n\nplot_sequential\n\n\n\n\n\n\n\nFigure 1\n\n\n\n\n\n\n\n\nplot_sequential +\n  scale_color_distiller(palette = \"RdPu\", direction = 1)\n\n\n\n\n\n\n\nFigure 2\n\n\n\n\n\n\n\n\n\n\n\nWith diverging data, colors represent values above and below some central value, like negative to zero to positive; disagree to neutral to agree; etc. These palettes typically involve three colors: two for the extremes and one for the middle\n\nDefault ggplot colorsDiverging red-yellow-blue palette (RdYlBu from ColorBrewer)\n\n\nBy default, ggplot doesn’t actually do anything with diverging scales. If you have numeric data, it’ll use a blue gradient; if you have categorical data, it’ll use distinct colors. You’re in charge of applying a diverging palette.\n\n# This doesn't show up as diverging\nplot_diverging\n\n\n\n\n\n\n\nFigure 3\n\n\n\n\n\n\n\n\nplot_diverging +\n  scale_fill_brewer(palette = \"RdYlBu\", direction = 1)\n\n\n\n\n\n\n\nFigure 4\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nDon’t use diverging palettes for non-diverging data!\n\n\n\nPeople will often throw diverging palettes onto plots that aren’t actually diverging, like this:\n\nplot_sequential +\n  scale_color_distiller(palette = \"RdBu\", direction = 1)\n\n\n\n\n\n\n\nFigure 5\n\n\n\n\n\nDon’t do this! It looks weird having 200 be a super-faded middle color. Flipper length here ranges from a low number to a high number—the colors should reflect that.\n\n\n\n\n\nWith qualitative data, colors represent distinct categories and don’t have an inherent order. The colors shouldn’t look like they have a natural progression.\n\nDefault ggplot colorsviridis colors\n\n\n\nplot_qualitative\n\n\n\n\n\n\n\nFigure 6\n\n\n\n\n\n\n\n\nplot_qualitative +\n  scale_fill_viridis_d()\n\n\n\n\n\n\n\nFigure 7",
+    "crumbs": [
+      "Resources",
+      "Color palettes"
+    ]
   },
   {
     "objectID": "resource/colors.html#categories-of-color-palettes",
     "href": "resource/colors.html#categories-of-color-palettes",
     "title": "Color palettes",
     "section": "",
-    "text": "When choosing colors, you need to make sure you work with a palette that mathches the nature of your data. There are three broad categories of color-able data: sequential, diverging, and qualitative.\nHere’s are three plots I’ll use throughout this page to illustrate their differences (and show off different colors). The code is hidden to save space—you can show the code and copy/paste it if you want to follow along:\n\n\nCode\nlibrary(tidyverse)\nlibrary(gapminder)\nlibrary(palmerpenguins)\nlibrary(ggokabeito)\nlibrary(scico)\nlibrary(rcartocolor)\nlibrary(MetBrewer)\nlibrary(MoMAColors)\nlibrary(patchwork)\n\nplot_diverging &lt;- tribble(\n  ~category, ~pct,\n  \"Strongly disagree\", 0.12,\n  \"Disagree\", 0.18,\n  \"Neutral\", 0.15,\n  \"Agree\", 0.27,\n  \"Strongly agree\", 0.28\n) |&gt;\n  mutate(category = fct_inorder(category)) |&gt;\n  ggplot(aes(x = pct, y = category, fill = category)) +\n  geom_col() +\n  guides(fill = \"none\") +\n  theme_bw() +\n  theme(plot.title = element_text(face = \"bold\"))\n\nplot_sequential &lt;- penguins |&gt;\n  drop_na(sex) |&gt;\n  ggplot(aes(x = bill_length_mm, y = body_mass_g, color = flipper_length_mm)) +\n  geom_point() +\n  theme_bw() +\n  theme(plot.title = element_text(face = \"bold\"))\n\nplot_qualitative &lt;- gapminder |&gt;\n  filter(year %in% c(1967, 1987, 2007)) |&gt;\n  group_by(year, continent) |&gt;\n  summarize(avg_lifexp = mean(lifeExp)) |&gt;\n  mutate(year = factor(year)) |&gt;\n  ggplot(aes(x = year, y = avg_lifexp, fill = continent)) +\n  geom_col(position = \"dodge\") +\n  theme_bw() +\n  theme(plot.title = element_text(face = \"bold\"))\n\n\n\n\nWith sequential data, colors represent a range from low value to a high value, so the colors either stay within one shade or hue of a color, or use multiple related hues\n\nDefault single blue hueMultiple red-purple hues (RdPu from ColorBrewer)\n\n\n\nplot_sequential\n\n\n\n\n\n\n\nFigure 1\n\n\n\n\n\n\n\n\nplot_sequential +\n  scale_color_distiller(palette = \"RdPu\", direction = 1)\n\n\n\n\n\n\n\nFigure 2\n\n\n\n\n\n\n\n\n\n\n\nWith diverging data, colors represent values above and below some central value, like negative to zero to positive; disagree to neutral to agree; etc. These palettes typically involve three colors: two for the extremes and one for the middle\n\nDefault ggplot colorsDiverging red-yellow-blue palette (RdYlBu from ColorBrewer)\n\n\nBy default, ggplot doesn’t actually do anything with diverging scales. If you have numeric data, it’ll use a blue gradient; if you have categorical data, it’ll use distinct colors. You’re in charge of applying a diverging palette.\n\n# This doesn't show up as diverging\nplot_diverging\n\n\n\n\n\n\n\nFigure 3\n\n\n\n\n\n\n\n\nplot_diverging +\n  scale_fill_brewer(palette = \"RdYlBu\", direction = 1)\n\n\n\n\n\n\n\nFigure 4\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nDon’t use diverging palettes for non-diverging data!\n\n\n\nPeople will often throw diverging palettes onto plots that aren’t actually diverging, like this:\n\nplot_sequential +\n  scale_color_distiller(palette = \"RdBu\", direction = 1)\n\n\n\n\n\n\n\nFigure 5\n\n\n\n\n\nDon’t do this! It looks weird having 200 be a super-faded middle color. Flipper length here ranges from a low number to a high number—the colors should reflect that.\n\n\n\n\n\nWith qualitative data, colors represent distinct categories and don’t have an inherent order. The colors shouldn’t look like they have a natural progression.\n\nDefault ggplot colorsviridis colors\n\n\n\nplot_qualitative\n\n\n\n\n\n\n\nFigure 6\n\n\n\n\n\n\n\n\nplot_qualitative +\n  scale_fill_viridis_d()\n\n\n\n\n\n\n\nFigure 7"
+    "text": "When choosing colors, you need to make sure you work with a palette that mathches the nature of your data. There are three broad categories of color-able data: sequential, diverging, and qualitative.\nHere’s are three plots I’ll use throughout this page to illustrate their differences (and show off different colors). The code is hidden to save space—you can show the code and copy/paste it if you want to follow along:\n\n\nCode\nlibrary(tidyverse)\nlibrary(gapminder)\nlibrary(palmerpenguins)\nlibrary(ggokabeito)\nlibrary(scico)\nlibrary(rcartocolor)\nlibrary(MetBrewer)\nlibrary(MoMAColors)\nlibrary(patchwork)\n\nplot_diverging &lt;- tribble(\n  ~category, ~pct,\n  \"Strongly disagree\", 0.12,\n  \"Disagree\", 0.18,\n  \"Neutral\", 0.15,\n  \"Agree\", 0.27,\n  \"Strongly agree\", 0.28\n) |&gt;\n  mutate(category = fct_inorder(category)) |&gt;\n  ggplot(aes(x = pct, y = category, fill = category)) +\n  geom_col() +\n  guides(fill = \"none\") +\n  theme_bw() +\n  theme(plot.title = element_text(face = \"bold\"))\n\nplot_sequential &lt;- penguins |&gt;\n  drop_na(sex) |&gt;\n  ggplot(aes(x = bill_length_mm, y = body_mass_g, color = flipper_length_mm)) +\n  geom_point() +\n  theme_bw() +\n  theme(plot.title = element_text(face = \"bold\"))\n\nplot_qualitative &lt;- gapminder |&gt;\n  filter(year %in% c(1967, 1987, 2007)) |&gt;\n  group_by(year, continent) |&gt;\n  summarize(avg_lifexp = mean(lifeExp)) |&gt;\n  mutate(year = factor(year)) |&gt;\n  ggplot(aes(x = year, y = avg_lifexp, fill = continent)) +\n  geom_col(position = \"dodge\") +\n  theme_bw() +\n  theme(plot.title = element_text(face = \"bold\"))\n\n\n\n\nWith sequential data, colors represent a range from low value to a high value, so the colors either stay within one shade or hue of a color, or use multiple related hues\n\nDefault single blue hueMultiple red-purple hues (RdPu from ColorBrewer)\n\n\n\nplot_sequential\n\n\n\n\n\n\n\nFigure 1\n\n\n\n\n\n\n\n\nplot_sequential +\n  scale_color_distiller(palette = \"RdPu\", direction = 1)\n\n\n\n\n\n\n\nFigure 2\n\n\n\n\n\n\n\n\n\n\n\nWith diverging data, colors represent values above and below some central value, like negative to zero to positive; disagree to neutral to agree; etc. These palettes typically involve three colors: two for the extremes and one for the middle\n\nDefault ggplot colorsDiverging red-yellow-blue palette (RdYlBu from ColorBrewer)\n\n\nBy default, ggplot doesn’t actually do anything with diverging scales. If you have numeric data, it’ll use a blue gradient; if you have categorical data, it’ll use distinct colors. You’re in charge of applying a diverging palette.\n\n# This doesn't show up as diverging\nplot_diverging\n\n\n\n\n\n\n\nFigure 3\n\n\n\n\n\n\n\n\nplot_diverging +\n  scale_fill_brewer(palette = \"RdYlBu\", direction = 1)\n\n\n\n\n\n\n\nFigure 4\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nDon’t use diverging palettes for non-diverging data!\n\n\n\nPeople will often throw diverging palettes onto plots that aren’t actually diverging, like this:\n\nplot_sequential +\n  scale_color_distiller(palette = \"RdBu\", direction = 1)\n\n\n\n\n\n\n\nFigure 5\n\n\n\n\n\nDon’t do this! It looks weird having 200 be a super-faded middle color. Flipper length here ranges from a low number to a high number—the colors should reflect that.\n\n\n\n\n\nWith qualitative data, colors represent distinct categories and don’t have an inherent order. The colors shouldn’t look like they have a natural progression.\n\nDefault ggplot colorsviridis colors\n\n\n\nplot_qualitative\n\n\n\n\n\n\n\nFigure 6\n\n\n\n\n\n\n\n\nplot_qualitative +\n  scale_fill_viridis_d()\n\n\n\n\n\n\n\nFigure 7",
+    "crumbs": [
+      "Resources",
+      "Color palettes"
+    ]
   },
   {
     "objectID": "resource/colors.html#using-custom-colors",
     "href": "resource/colors.html#using-custom-colors",
     "title": "Color palettes",
     "section": "Using custom colors",
-    "text": "Using custom colors\nYou can use any custom colors with scale_fill_manual()/scale_color_manual() (for qualitative/categorical colors) or scale_fill_gradident()/scale_color_gradient() (for sequential/continuous colors).\nFeed these functions a vector of colors, either as named colors like ■red, ■goldenrod3, ■midnightblue, and so on (see here for R’s huge list of built-in color names), or as hex codes like ■#FF4136, ■#0074D9, and ■#FF851B.\n\nHex colorsNamed colors in a gradient\n\n\nI copied these colors from clrs.cc.\n\nplot_qualitative +\n  scale_fill_manual(\n    values = c(\"#0074D9\", \"#B10DC9\", \"#85144b\", \"#FF4136\", \"#FF851B\")\n  )\n\n\n\n\n\n\n\n\n\n\n\nplot_sequential +\n  scale_color_gradient(low = \"chocolate1\", high = \"chocolate4\")\n\n\n\n\n\n\n\n\n\n\n\nOften organizations have specific color palettes that you’re supposed to use. For instance, GSU has a special “Georgia State Blue” (■#0039A6) and a red accent (■#CC0000). The Urban Institute has a specific organizational color palette with all sorts of guidelines for comparing two groups, three groups, sequential data, diverging data, and other special situations. They have specific red and blue colors to use for political parties too, like ■#1696d2 for Democrats and ■#db2b27 for Republicans.\nI often find it helpful to make a little object that contains all the custom colors I want to use so I don’t have to remember what the cryptic hex codes mean. Here’s GSU’s full palette:\n\ngsu_colors &lt;- c(\n  \"#0039A6\", \"#CC0000\", \"#374057\", \"#0071CE\",\n  \"#00AEEF\", \"#97CAEB\", \"#EEEEEE\", \"#CCCCCC\", \"#767679\"\n)\n\nYou can access these colors by number:\n\ngsu_colors[1:2]\n## [1] \"#0039A6\" \"#CC0000\"\ngsu_colors[5]\n## [1] \"#00AEEF\"\ngsu_colors[c(3, 5, 9)]\n## [1] \"#374057\" \"#00AEEF\" \"#767679\"\n\nAnd you can use the show_col() function from the {scales} library to show them all:\n\nscales::show_col(gsu_colors)\n\n\n\n\n\n\n\n\nYou can use them in scale_fill_manual()/scale_color_manual() too:\n\nplot_qualitative +\n  scale_fill_manual(\n    values = gsu_colors[1:5]\n  )\n\n\n\n\n\n\n\n\nIf you want to be extra fancy, you can create more official custom color palettes like scale_fill_gsu()."
+    "text": "Using custom colors\nYou can use any custom colors with scale_fill_manual()/scale_color_manual() (for qualitative/categorical colors) or scale_fill_gradident()/scale_color_gradient() (for sequential/continuous colors).\nFeed these functions a vector of colors, either as named colors like ■red, ■goldenrod3, ■midnightblue, and so on (see here for R’s huge list of built-in color names), or as hex codes like ■#FF4136, ■#0074D9, and ■#FF851B.\n\nHex colorsNamed colors in a gradient\n\n\nI copied these colors from clrs.cc.\n\nplot_qualitative +\n  scale_fill_manual(\n    values = c(\"#0074D9\", \"#B10DC9\", \"#85144b\", \"#FF4136\", \"#FF851B\")\n  )\n\n\n\n\n\n\n\n\n\n\n\nplot_sequential +\n  scale_color_gradient(low = \"chocolate1\", high = \"chocolate4\")\n\n\n\n\n\n\n\n\n\n\n\nOften organizations have specific color palettes that you’re supposed to use. For instance, GSU has a special “Georgia State Blue” (■#0039A6) and a red accent (■#CC0000). The Urban Institute has a specific organizational color palette with all sorts of guidelines for comparing two groups, three groups, sequential data, diverging data, and other special situations. They have specific red and blue colors to use for political parties too, like ■#1696d2 for Democrats and ■#db2b27 for Republicans.\nI often find it helpful to make a little object that contains all the custom colors I want to use so I don’t have to remember what the cryptic hex codes mean. Here’s GSU’s full palette:\n\ngsu_colors &lt;- c(\n  \"#0039A6\", \"#CC0000\", \"#374057\", \"#0071CE\",\n  \"#00AEEF\", \"#97CAEB\", \"#EEEEEE\", \"#CCCCCC\", \"#767679\"\n)\n\nYou can access these colors by number:\n\ngsu_colors[1:2]\n## [1] \"#0039A6\" \"#CC0000\"\ngsu_colors[5]\n## [1] \"#00AEEF\"\ngsu_colors[c(3, 5, 9)]\n## [1] \"#374057\" \"#00AEEF\" \"#767679\"\n\nAnd you can use the show_col() function from the {scales} library to show them all:\n\nscales::show_col(gsu_colors)\n\n\n\n\n\n\n\n\nYou can use them in scale_fill_manual()/scale_color_manual() too:\n\nplot_qualitative +\n  scale_fill_manual(\n    values = gsu_colors[1:5]\n  )\n\n\n\n\n\n\n\n\nIf you want to be extra fancy, you can create more official custom color palettes like scale_fill_gsu().",
+    "crumbs": [
+      "Resources",
+      "Color palettes"
+    ]
   },
   {
     "objectID": "resource/colors.html#perceptually-uniform-and-scientifically-calibrated-palettes",
     "href": "resource/colors.html#perceptually-uniform-and-scientifically-calibrated-palettes",
     "title": "Color palettes",
     "section": "Perceptually uniform and scientifically calibrated palettes",
-    "text": "Perceptually uniform and scientifically calibrated palettes\nYou aren’t limited to just the default ggplot color palettes, or even the default viridis palettes. There are lots of other perceptually uniform palettes that use special ranges of color that can either (1) be used as a sequential gradient or (2) be chopped up into equal distances to create recognizable distinct colors.\n\nThe Okabe-Ito palette\nMasataka Okabe and Kei Ito developed a qualitative color palette for all types of color-vision deficiencies in 2008, and Claus Wilke uses it throughout his Fundamentals of Data Visualization book that we use in this class (he explains why here).\n\nYou can use it with the {ggokabeito} package and scale_fill_okabe_ito()/scale_color_okabe_ito():\n\nplot_qualitative +\n  scale_fill_okabe_ito()\n\n\n\n\n\n\n\n\n\n\nviridis\nYou’ve seen the regular green/blue/yellow viridis palette throughout the class, but there are are a bunch of other palettes within viridis like magma, plasma, inferno, mako, rocket, and turbo.\n\n\n\n\n\nNone of the viridis palettes are diverging, but they work great for both sequential and qualitative data.\nThe viridis palettes come with {ggplot2} and you can use them with scale_fill_viridis_d()/scale_color_viridis_d() for discrete data and scale_fill_viridis_c()/scale_color_viridis_c() for continuous data.\n\nplasmainfernomakoturbo\n\n\n\nplot_qualitative +\n  scale_fill_viridis_d(option = \"plasma\")\n\n\n\n\n\n\n\n\n\n\n\nplot_qualitative +\n  scale_fill_viridis_d(option = \"inferno\")\n\n\n\n\n\n\n\n\n\n\n\nplot_qualitative +\n  scale_fill_viridis_d(option = \"mako\")\n\n\n\n\n\n\n\n\n\n\n\nplot_qualitative +\n  scale_fill_viridis_d(option = \"turbo\")\n\n\n\n\n\n\n\n\n\n\n\n\n\nScientific colour maps\nThe {scico} package provides a ton of other similar well-designed palettes from the Scientific Colour Maps project. The project includes sequential, diverging, and qualitative palettes and even has multi-sequential and cyclic palettes.\n\nAfter loading the {scico} package, you can use these palettes with scale_fill_scico_d()/scale_color_scico_d() for discrete data and scale_fill_scico_c()/scale_color_scico_c() for continuous data.\n\nbatlowbamakohawaiiroma (diverging)broc (diverging)\n\n\n\nplot_qualitative +\n  scale_fill_scico_d(palette = \"batlow\")\n\n\n\n\n\n\n\n\n\n\n\nplot_qualitative +\n  scale_fill_scico_d(palette = \"bamako\")\n\n\n\n\n\n\n\n\n\n\n\nplot_qualitative +\n  scale_fill_scico_d(palette = \"hawaii\")\n\n\n\n\n\n\n\n\n\n\n\nplot_diverging +\n  scale_fill_scico_d(palette = \"roma\")\n\n\n\n\n\n\n\n\n\n\n\nplot_diverging +\n  scale_fill_scico_d(palette = \"broc\")\n\n\n\n\n\n\n\n\n\n\n\n\n\nColorBrewer\nGeographer Cynthia Brewer developed a set of color palettes designed specifically for improving the readability of maps, but her palettes work incredibly well for regular plots too. There’s also a fantastic companion website for exploring all the different palettes, categories by sequential/diverging/qualitatitve, with options to filter by colorblind friendliness and print friendliness.\n\nTo use one of the palettes, note what it’s called at the website and use that name as the palette argument. The ColorBrewer palettes come with {ggplot2} and you can use them with scale_fill_brewer()/scale_color_brewer() for discrete data and scale_fill_distiller()/scale_color_distiller() for continuous data.\n\nYlOrRd (sequential)PuOr (diverging)Set1 (qualitative)\n\n\n\nplot_sequential +\n  scale_color_distiller(palette = \"YlOrRd\")\n\n\n\n\n\n\n\n\n\n\n\nplot_diverging +\n  scale_fill_brewer(palette = \"PuOr\")\n\n\n\n\n\n\n\n\n\n\n\nplot_qualitative +\n  scale_fill_brewer(palette = \"Set1\")\n\n\n\n\n\n\n\n\n\n\n\n\n\nCARTOColors\nThe commerical GIS service CARTO created CARTOColors: a set of open source geographic-like colors just like ColorBrewer. Again, these were originally designed for maps, but they work great for regular data visualization too.\n\n\n\n\n\nYou’ll need to install the {rcartocolor} package to use them. After loading {rcartocolor}, you can use any of the palettes with scale_fill_carto_d()/scale_color_carto_d() for discrete data and scale_fill_carto_c()/scale_color_carto_c() for continuous data. Use the name of the palette at the CARTOColors website in the palette argument.\n\nPurpOr (sequential)Temps (diverging)Prism (qualitative)\n\n\n\nplot_sequential +\n  scale_color_carto_c(palette = \"PurpOr\")\n\n\n\n\n\n\n\n\n\n\n\nplot_diverging +\n  scale_fill_carto_d(palette = \"Temps\", direction = -1)\n\n\n\n\n\n\n\n\n\n\n\n# Extract 5 colors from the Prism palette and use them with scale_fill_manual()\nclrs &lt;- carto_pal(12, \"Prism\")\n\nplot_qualitative +\n  scale_fill_manual(values = clrs[c(1, 4, 6, 7, 8)])"
+    "text": "Perceptually uniform and scientifically calibrated palettes\nYou aren’t limited to just the default ggplot color palettes, or even the default viridis palettes. There are lots of other perceptually uniform palettes that use special ranges of color that can either (1) be used as a sequential gradient or (2) be chopped up into equal distances to create recognizable distinct colors.\n\nThe Okabe-Ito palette\nMasataka Okabe and Kei Ito developed a qualitative color palette for all types of color-vision deficiencies in 2008, and Claus Wilke uses it throughout his Fundamentals of Data Visualization book that we use in this class (he explains why here).\n\nYou can use it with the {ggokabeito} package and scale_fill_okabe_ito()/scale_color_okabe_ito():\n\nplot_qualitative +\n  scale_fill_okabe_ito()\n\n\n\n\n\n\n\n\n\n\nviridis\nYou’ve seen the regular green/blue/yellow viridis palette throughout the class, but there are are a bunch of other palettes within viridis like magma, plasma, inferno, mako, rocket, and turbo.\n\n\n\n\n\nNone of the viridis palettes are diverging, but they work great for both sequential and qualitative data.\nThe viridis palettes come with {ggplot2} and you can use them with scale_fill_viridis_d()/scale_color_viridis_d() for discrete data and scale_fill_viridis_c()/scale_color_viridis_c() for continuous data.\n\nplasmainfernomakoturbo\n\n\n\nplot_qualitative +\n  scale_fill_viridis_d(option = \"plasma\")\n\n\n\n\n\n\n\n\n\n\n\nplot_qualitative +\n  scale_fill_viridis_d(option = \"inferno\")\n\n\n\n\n\n\n\n\n\n\n\nplot_qualitative +\n  scale_fill_viridis_d(option = \"mako\")\n\n\n\n\n\n\n\n\n\n\n\nplot_qualitative +\n  scale_fill_viridis_d(option = \"turbo\")\n\n\n\n\n\n\n\n\n\n\n\n\n\nScientific colour maps\nThe {scico} package provides a ton of other similar well-designed palettes from the Scientific Colour Maps project. The project includes sequential, diverging, and qualitative palettes and even has multi-sequential and cyclic palettes.\n\nAfter loading the {scico} package, you can use these palettes with scale_fill_scico_d()/scale_color_scico_d() for discrete data and scale_fill_scico_c()/scale_color_scico_c() for continuous data.\n\nbatlowbamakohawaiiroma (diverging)broc (diverging)\n\n\n\nplot_qualitative +\n  scale_fill_scico_d(palette = \"batlow\")\n\n\n\n\n\n\n\n\n\n\n\nplot_qualitative +\n  scale_fill_scico_d(palette = \"bamako\")\n\n\n\n\n\n\n\n\n\n\n\nplot_qualitative +\n  scale_fill_scico_d(palette = \"hawaii\")\n\n\n\n\n\n\n\n\n\n\n\nplot_diverging +\n  scale_fill_scico_d(palette = \"roma\")\n\n\n\n\n\n\n\n\n\n\n\nplot_diverging +\n  scale_fill_scico_d(palette = \"broc\")\n\n\n\n\n\n\n\n\n\n\n\n\n\nColorBrewer\nGeographer Cynthia Brewer developed a set of color palettes designed specifically for improving the readability of maps, but her palettes work incredibly well for regular plots too. There’s also a fantastic companion website for exploring all the different palettes, categories by sequential/diverging/qualitatitve, with options to filter by colorblind friendliness and print friendliness.\n\nTo use one of the palettes, note what it’s called at the website and use that name as the palette argument. The ColorBrewer palettes come with {ggplot2} and you can use them with scale_fill_brewer()/scale_color_brewer() for discrete data and scale_fill_distiller()/scale_color_distiller() for continuous data.\n\nYlOrRd (sequential)PuOr (diverging)Set1 (qualitative)\n\n\n\nplot_sequential +\n  scale_color_distiller(palette = \"YlOrRd\")\n\n\n\n\n\n\n\n\n\n\n\nplot_diverging +\n  scale_fill_brewer(palette = \"PuOr\")\n\n\n\n\n\n\n\n\n\n\n\nplot_qualitative +\n  scale_fill_brewer(palette = \"Set1\")\n\n\n\n\n\n\n\n\n\n\n\n\n\nCARTOColors\nThe commerical GIS service CARTO created CARTOColors: a set of open source geographic-like colors just like ColorBrewer. Again, these were originally designed for maps, but they work great for regular data visualization too.\n\n\n\n\n\nYou’ll need to install the {rcartocolor} package to use them. After loading {rcartocolor}, you can use any of the palettes with scale_fill_carto_d()/scale_color_carto_d() for discrete data and scale_fill_carto_c()/scale_color_carto_c() for continuous data. Use the name of the palette at the CARTOColors website in the palette argument.\n\nPurpOr (sequential)Temps (diverging)Prism (qualitative)\n\n\n\nplot_sequential +\n  scale_color_carto_c(palette = \"PurpOr\")\n\n\n\n\n\n\n\n\n\n\n\nplot_diverging +\n  scale_fill_carto_d(palette = \"Temps\", direction = -1)\n\n\n\n\n\n\n\n\n\n\n\n# Extract 5 colors from the Prism palette and use them with scale_fill_manual()\nclrs &lt;- carto_pal(12, \"Prism\")\n\nplot_qualitative +\n  scale_fill_manual(values = clrs[c(1, 4, 6, 7, 8)])",
+    "crumbs": [
+      "Resources",
+      "Color palettes"
+    ]
   },
   {
     "objectID": "resource/colors.html#fun-and-artsy-but-still-useful-palettes",
     "href": "resource/colors.html#fun-and-artsy-but-still-useful-palettes",
     "title": "Color palettes",
     "section": "Fun and artsy (but still useful!) palettes",
-    "text": "Fun and artsy (but still useful!) palettes\nThere are also palettes that are hand-picked for beauty and/or fun. Not all of these are perceptually uniform or colorblind friendly, but they’re great for when you want to have pretty graphics that fit a certain vibe.\n\nLiteral art: {MetBrewer} and {MoMAColors}\nUse palettes inspired by works in the Metropolitan Museum of Art and the Museum of Modern Art in New York. There are sequential, diverging, and qualitative palettes, and many are marked as colorblind friendly in {MetBrewer} and {MoMAColors}\nUse them by putting met.brewer() or moma.colors() inside scale_fill_manual()/scale_color_manual() or scale_fill_gradientn()/scale_color_gradientn():\n\n{MetBrewer}\n\nOKeeffe2 (sequential)Hiroshige (diverging)Johnson (qualitative)\n\n\n\nplot_sequential +\n  scale_color_gradientn(colors = met.brewer(\"OKeeffe2\"))\n\n\n\n\n\n\n\n\n\n\n\n\n# Grab 5 of the middle colors from the palette\nclrs &lt;- met.brewer(\"Hiroshige\")\n\nplot_diverging +\n  scale_fill_manual(values = clrs[3:7])\n\n\n\n\n\n\n\n\n\n\n\n\nplot_qualitative +\n  scale_fill_manual(values = met.brewer(\"Johnson\"))\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n{MoMAColors}\n\nVanGogh (sequential)Kippenberger (diverging)ustwo (qualitative)\n\n\n\nplot_sequential +\n  scale_color_gradientn(colors = moma.colors(\"VanGogh\")[2:7])\n\n\n\n\n\n\n\n\n\n\n\n\n# Grab 5 of the middle colors from the palette\nclrs &lt;- moma.colors(\"Kippenberger\")\n\nplot_diverging +\n  scale_fill_manual(values = clrs[c(2, 4, 6, 8, 10)])\n\n\n\n\n\n\n\n\n\n\n\n\nplot_qualitative +\n  scale_fill_manual(values = moma.colors(\"ustwo\", 5))\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nOther fun things\nThere are so many others. The {paletteer} package contains thousands of others—it’s like a central collection of every possible palette.\nYou can also access individual palettes without using {paletteer}, including these:\nMusic\n\n{tayloRswift}: Colors from all albums up through “The Tortured Poets Department”\n{beyonce}: 130 different palettes from beyoncepalettes.tumblr.com\n{rockthemes}: Janelle Monae, Muse, No Doubt, Red Hot Chili Peppers, etc.\n{popthemes}: Spice Girls, Aqua, No Doubt, etc.\n\nNational parks\n\n{nationalparkcolors}: Colors from 25 different US national parks\n{NatParksPalettes}: Colors from 30 different US and international national parks\n\nHistory\n\n{suffrager}: Colors from old suffragette posters\n{inauguration}: Colors from the 2021 presidential inauguration\n{ggpomological}: Colors from old drawings of fruit\n\nTV and movies\n\n{tvthemes}: Colors from a ton of TV shows, including The Simpsons, Parks & Recreation, Spongebob Squarepants, Game of Thrones, etc.\n{wesanderson}: Colors from Wes Anderson movies\n{trekcolors}: Colors from Star Trek\n{severance}: Colors from the Apple TV show Severance\n{ghibli}: Colors from Studio Ghibli movies\n{harrypotter}: Colors from Harry Potter movies\n\nOther things\n\n{nbapalettes}: Colors from NBA teams\n{LaCroixColoR}: Colors from La Croix cans"
+    "text": "Fun and artsy (but still useful!) palettes\nThere are also palettes that are hand-picked for beauty and/or fun. Not all of these are perceptually uniform or colorblind friendly, but they’re great for when you want to have pretty graphics that fit a certain vibe.\n\nLiteral art: {MetBrewer} and {MoMAColors}\nUse palettes inspired by works in the Metropolitan Museum of Art and the Museum of Modern Art in New York. There are sequential, diverging, and qualitative palettes, and many are marked as colorblind friendly in {MetBrewer} and {MoMAColors}\nUse them by putting met.brewer() or moma.colors() inside scale_fill_manual()/scale_color_manual() or scale_fill_gradientn()/scale_color_gradientn():\n\n{MetBrewer}\n\nOKeeffe2 (sequential)Hiroshige (diverging)Johnson (qualitative)\n\n\n\nplot_sequential +\n  scale_color_gradientn(colors = met.brewer(\"OKeeffe2\"))\n\n\n\n\n\n\n\n\n\n\n\n\n# Grab 5 of the middle colors from the palette\nclrs &lt;- met.brewer(\"Hiroshige\")\n\nplot_diverging +\n  scale_fill_manual(values = clrs[3:7])\n\n\n\n\n\n\n\n\n\n\n\n\nplot_qualitative +\n  scale_fill_manual(values = met.brewer(\"Johnson\"))\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n{MoMAColors}\n\nVanGogh (sequential)Kippenberger (diverging)ustwo (qualitative)\n\n\n\nplot_sequential +\n  scale_color_gradientn(colors = moma.colors(\"VanGogh\")[2:7])\n\n\n\n\n\n\n\n\n\n\n\n\n# Grab 5 of the middle colors from the palette\nclrs &lt;- moma.colors(\"Kippenberger\")\n\nplot_diverging +\n  scale_fill_manual(values = clrs[c(2, 4, 6, 8, 10)])\n\n\n\n\n\n\n\n\n\n\n\n\nplot_qualitative +\n  scale_fill_manual(values = moma.colors(\"ustwo\", 5))\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nOther fun things\nThere are so many others. The {paletteer} package contains thousands of others—it’s like a central collection of every possible palette.\nYou can also access individual palettes without using {paletteer}, including these:\nMusic\n\n{tayloRswift}: Colors from all albums up through “The Tortured Poets Department”\n{beyonce}: 130 different palettes from beyoncepalettes.tumblr.com\n{rockthemes}: Janelle Monae, Muse, No Doubt, Red Hot Chili Peppers, etc.\n{popthemes}: Spice Girls, Aqua, No Doubt, etc.\n\nNational parks\n\n{nationalparkcolors}: Colors from 25 different US national parks\n{NatParksPalettes}: Colors from 30 different US and international national parks\n\nHistory\n\n{suffrager}: Colors from old suffragette posters\n{inauguration}: Colors from the 2021 presidential inauguration\n{ggpomological}: Colors from old drawings of fruit\n\nTV and movies\n\n{tvthemes}: Colors from a ton of TV shows, including The Simpsons, Parks & Recreation, Spongebob Squarepants, Game of Thrones, etc.\n{wesanderson}: Colors from Wes Anderson movies\n{trekcolors}: Colors from Star Trek\n{severance}: Colors from the Apple TV show Severance\n{ghibli}: Colors from Studio Ghibli movies\n{harrypotter}: Colors from Harry Potter movies\n\nOther things\n\n{nbapalettes}: Colors from NBA teams\n{LaCroixColoR}: Colors from La Croix cans",
+    "crumbs": [
+      "Resources",
+      "Color palettes"
+    ]
   },
   {
     "objectID": "resource/install.html",
     "href": "resource/install.html",
     "title": "Installing R, RStudio, tidyverse, and tinytex",
     "section": "",
-    "text": "You will do all of your work in this class with the open source (and free!) programming language R. You will use RStudio as the main program to access R. Think of R as an engine and RStudio as a car dashboard—R handles all the calculations and the actual statistics, while RStudio provides a nice interface for running R code."
+    "text": "You will do all of your work in this class with the open source (and free!) programming language R. You will use RStudio as the main program to access R. Think of R as an engine and RStudio as a car dashboard—R handles all the calculations and the actual statistics, while RStudio provides a nice interface for running R code.",
+    "crumbs": [
+      "Resources",
+      "Guides",
+      "Installing R, RStudio, tidyverse, and tinytex"
+    ]
   },
   {
     "objectID": "resource/install.html#posit.cloud",
     "href": "resource/install.html#posit.cloud",
     "title": "Installing R, RStudio, tidyverse, and tinytex",
     "section": "Posit.cloud",
-    "text": "Posit.cloud\nR is free, but it can sometimes be a pain to install and configure. To make life easier, you can (and should!) use the free Posit.cloud service initially, which lets you run a full instance of RStudio in your web browser. This means you won’t have to install anything on your computer to get started with R! We will have a shared class workspace in Posit.cloud that will let you quickly copy templates for assignments.\nGo to https://posit.cloud/ and create an account. You’ll receive a link to join the shared class workspace separately. If you don’t get this link, let me know and I will invite you."
+    "text": "Posit.cloud\nR is free, but it can sometimes be a pain to install and configure. To make life easier, you can (and should!) use the free Posit.cloud service initially, which lets you run a full instance of RStudio in your web browser. This means you won’t have to install anything on your computer to get started with R! We will have a shared class workspace in Posit.cloud that will let you quickly copy templates for assignments.\nGo to https://posit.cloud/ and create an account. You’ll receive a link to join the shared class workspace separately. If you don’t get this link, let me know and I will invite you.",
+    "crumbs": [
+      "Resources",
+      "Guides",
+      "Installing R, RStudio, tidyverse, and tinytex"
+    ]
   },
   {
     "objectID": "resource/install.html#rstudio-on-your-computer",
     "href": "resource/install.html#rstudio-on-your-computer",
     "title": "Installing R, RStudio, tidyverse, and tinytex",
     "section": "RStudio on your computer",
-    "text": "RStudio on your computer\nPosit.cloud is convenient, but it can be slow and it is not designed to be able to handle larger datasets, more complicated analysis, or fancier graphics. Over the course of the semester, you should wean yourself off of Posit.cloud and install all these things locally. This is also important if you want to customize fonts, since Posit.cloud has extremely limited support for fonts other than Helvetica.\nHere’s how you install all these things\n\nInstall R\nFirst you need to install R itself (the engine).\n\nGo to the CRAN (Collective R Archive Network) website: https://cran.r-project.org/\nClick on “Download R for XXX”, where XXX is either Mac or Windows:\n\n\n\n\n\n\n\n\n\n\nIf you use macOS, scroll down to the first .pkg file in the list of files (in this picture, it’s R-4.0.0.pkg; as of right now, the current version is 4.4.0) and download it.\n\n\n\n\n\n\n\n\n\nIf you use Windows, click “base” (or click on the bolded “install R for the first time” link) and download it.\n\n\n\n\n\n\n\n\n\n\nDouble click on the downloaded file (check your Downloads folder). Click yes through all the prompts to install like any other program.\nIf you use macOS, download and install XQuartz. You do not need to do this on Windows.\n\n\n\nInstall RStudio\nNext, you need to install RStudio, the nicer graphical user interface (GUI) for R (the dashboard). Once R and RStudio are both installed, you can ignore R and only use RStudio. RStudio will use R automatically and you won’t ever have to interact with it directly.\n\nGo to the free download location on RStudio’s website: https://www.rstudio.com/products/rstudio/download/#download\nThe website should automatically detect your operating system (macOS or Windows) and show a big download button for it:\n\n\n\n\n\n\n\n\n\nIf not, scroll down a little to the large table and choose the version of RStudio that matches your operating system.\n\n\n\n\n\n\n\n\n\nDouble click on the downloaded file (again, check your Downloads folder). Click yes through all the prompts to install like any other program.\n\nDouble click on RStudio to run it (check your applications folder or start menu).\n\n\nInstall tidyverse\nR packages are easy to install with RStudio. Select the packages panel, click on “Install,” type the name of the package you want to install, and press enter.\n\n\n\n\n\n\n\n\n\nThis can sometimes be tedious when you’re installing lots of packages, though. The tidyverse, for instance, consists of dozens of packages (including {ggplot2}) that all work together. Rather than install each individually, you can install a single magical package and get them all at the same time.\nGo to the packages panel in RStudio, click on “Install,” type “tidyverse”, and press enter. You’ll see a bunch of output in the RStudio console as all the tidyverse packages are installed.\n\n\n\n\n\n\n\n\n\nNotice also that RStudio will generate a line of code for you and run it: install.packages(\"tidyverse\"). You can also just paste and run this instead of using the packages panel.\n\n\nInstall TinyTeX\nWhen you render to PDF, R uses a special scientific typesetting program named LaTeX (pronounced “lay-tek” or “lah-tex”; for goofy nerdy reasons, the x is technically the “ch” sound in “Bach”, but most people just say it as “k”—saying “layteks” is frowned on for whatever reason).\nLaTeX is neat and makes pretty documents, but it’s a huge program—the macOS version, for instance, is nearly 4 GB! To make life easier, there’s a smaller version named TinyTeX that automatically deals with differences between macOS and Windows and automatically installs any missing LaTeX packages as needed.\nHere’s how to install TinyTeX so you can create pretty PDFs:\n\nOpen the Terminal panel in RStudio (down in the bottom left corner where the Console panel is; there’s a tab named “Terminal” there)\nType this:\nquarto install tinytex"
+    "text": "RStudio on your computer\nPosit.cloud is convenient, but it can be slow and it is not designed to be able to handle larger datasets, more complicated analysis, or fancier graphics. Over the course of the semester, you should wean yourself off of Posit.cloud and install all these things locally. This is also important if you want to customize fonts, since Posit.cloud has extremely limited support for fonts other than Helvetica.\nHere’s how you install all these things\n\nInstall R\nFirst you need to install R itself (the engine).\n\nGo to the CRAN (Collective R Archive Network) website: https://cran.r-project.org/\nClick on “Download R for XXX”, where XXX is either Mac or Windows:\n\n\n\n\n\n\n\n\n\n\nIf you use macOS, scroll down to the first .pkg file in the list of files (in this picture, it’s R-4.0.0.pkg; as of right now, the current version is 4.4.0) and download it.\n\n\n\n\n\n\n\n\n\nIf you use Windows, click “base” (or click on the bolded “install R for the first time” link) and download it.\n\n\n\n\n\n\n\n\n\n\nDouble click on the downloaded file (check your Downloads folder). Click yes through all the prompts to install like any other program.\nIf you use macOS, download and install XQuartz. You do not need to do this on Windows.\n\n\n\nInstall RStudio\nNext, you need to install RStudio, the nicer graphical user interface (GUI) for R (the dashboard). Once R and RStudio are both installed, you can ignore R and only use RStudio. RStudio will use R automatically and you won’t ever have to interact with it directly.\n\nGo to the free download location on RStudio’s website: https://www.rstudio.com/products/rstudio/download/#download\nThe website should automatically detect your operating system (macOS or Windows) and show a big download button for it:\n\n\n\n\n\n\n\n\n\nIf not, scroll down a little to the large table and choose the version of RStudio that matches your operating system.\n\n\n\n\n\n\n\n\n\nDouble click on the downloaded file (again, check your Downloads folder). Click yes through all the prompts to install like any other program.\n\nDouble click on RStudio to run it (check your applications folder or start menu).\n\n\nInstall tidyverse\nR packages are easy to install with RStudio. Select the packages panel, click on “Install,” type the name of the package you want to install, and press enter.\n\n\n\n\n\n\n\n\n\nThis can sometimes be tedious when you’re installing lots of packages, though. The tidyverse, for instance, consists of dozens of packages (including {ggplot2}) that all work together. Rather than install each individually, you can install a single magical package and get them all at the same time.\nGo to the packages panel in RStudio, click on “Install,” type “tidyverse”, and press enter. You’ll see a bunch of output in the RStudio console as all the tidyverse packages are installed.\n\n\n\n\n\n\n\n\n\nNotice also that RStudio will generate a line of code for you and run it: install.packages(\"tidyverse\"). You can also just paste and run this instead of using the packages panel.\n\n\nInstall TinyTeX\nWhen you render to PDF, R uses a special scientific typesetting program named LaTeX (pronounced “lay-tek” or “lah-tex”; for goofy nerdy reasons, the x is technically the “ch” sound in “Bach”, but most people just say it as “k”—saying “layteks” is frowned on for whatever reason).\nLaTeX is neat and makes pretty documents, but it’s a huge program—the macOS version, for instance, is nearly 4 GB! To make life easier, there’s a smaller version named TinyTeX that automatically deals with differences between macOS and Windows and automatically installs any missing LaTeX packages as needed.\nHere’s how to install TinyTeX so you can create pretty PDFs:\n\nOpen the Terminal panel in RStudio (down in the bottom left corner where the Console panel is; there’s a tab named “Terminal” there)\nType this:\nquarto install tinytex",
+    "crumbs": [
+      "Resources",
+      "Guides",
+      "Installing R, RStudio, tidyverse, and tinytex"
+    ]
   },
   {
     "objectID": "syllabus.html",
@@ -123,293 +158,508 @@
     "href": "resource/quarto.html",
     "title": "Using Quarto",
     "section": "",
-    "text": "Quarto Markdown is regular Markdown with R code and output sprinkled in. You can do everything you can with regular Markdown, but you can incorporate graphs, tables, and other code output directly in your document. You can create HTML, PDF, and Word documents, PowerPoint and HTML presentations, websites, books, and even interactive dashboards with Quarto. This whole course website is created with Quarto.\nQuarto’s predecessor was called R Markdown and worked exclusively with R (though there are ways to use other languages in document). Quarto is essentially “R Markdown 2.0,” but it is designed to be language agnostic. You can use R, Python, Julia, Observable JS, and even Stata code all in the same document. It is magical.\nHere are the most important things you’ll need to know about Quarto in this class:"
+    "text": "Quarto Markdown is regular Markdown with R code and output sprinkled in. You can do everything you can with regular Markdown, but you can incorporate graphs, tables, and other code output directly in your document. You can create HTML, PDF, and Word documents, PowerPoint and HTML presentations, websites, books, and even interactive dashboards with Quarto. This whole course website is created with Quarto.\nQuarto’s predecessor was called R Markdown and worked exclusively with R (though there are ways to use other languages in document). Quarto is essentially “R Markdown 2.0,” but it is designed to be language agnostic. You can use R, Python, Julia, Observable JS, and even Stata code all in the same document. It is magical.\nHere are the most important things you’ll need to know about Quarto in this class:",
+    "crumbs": [
+      "Resources",
+      "Guides",
+      "Using Quarto"
+    ]
   },
   {
     "objectID": "resource/quarto.html#key-terms",
     "href": "resource/quarto.html#key-terms",
     "title": "Using Quarto",
     "section": "Key terms",
-    "text": "Key terms\n\nDocument: A Markdown file where you type stuff\nChunk: A piece of R code that is included in your document. It looks like this:\n```{r}\n# Code goes here\n1 + 1\n```\nThere must be an empty line before and after the chunk. The final three backticks must be the only thing on the line—if you add more text, or if you forget to add the backticks, or accidentally delete the backticks, your document will not render correctly.\nRender: When you render a document, R runs each of the chunks sequentially and converts the output of each chunk into Markdown. R then runs the document through pandoc to convert it to HTML or PDF or Word (or whatever output you’ve selected).\nYou can render by clicking on the “Render” button at the top of the editor window, or by pressing ⌘⇧K on macOS or control + shift + K on Windows."
+    "text": "Key terms\n\nDocument: A Markdown file where you type stuff\nChunk: A piece of R code that is included in your document. It looks like this:\n```{r}\n# Code goes here\n1 + 1\n```\nThere must be an empty line before and after the chunk. The final three backticks must be the only thing on the line—if you add more text, or if you forget to add the backticks, or accidentally delete the backticks, your document will not render correctly.\nRender: When you render a document, R runs each of the chunks sequentially and converts the output of each chunk into Markdown. R then runs the document through pandoc to convert it to HTML or PDF or Word (or whatever output you’ve selected).\nYou can render by clicking on the “Render” button at the top of the editor window, or by pressing ⌘⇧K on macOS or control + shift + K on Windows.",
+    "crumbs": [
+      "Resources",
+      "Guides",
+      "Using Quarto"
+    ]
   },
   {
     "objectID": "resource/quarto.html#add-chunks",
     "href": "resource/quarto.html#add-chunks",
     "title": "Using Quarto",
     "section": "Add chunks",
-    "text": "Add chunks\nThere are three ways to insert chunks:\n\nPress ⌘⌥I on macOS or control + alt + I on Windows\nClick on the “Insert” button at the top of the editor window\n\n\n\n\n\n\n\n\n\nManually type all the backticks and curly braces (don’t do this)"
+    "text": "Add chunks\nThere are three ways to insert chunks:\n\nPress ⌘⌥I on macOS or control + alt + I on Windows\nClick on the “Insert” button at the top of the editor window\n\n\n\n\n\n\n\n\n\nManually type all the backticks and curly braces (don’t do this)",
+    "crumbs": [
+      "Resources",
+      "Guides",
+      "Using Quarto"
+    ]
   },
   {
     "objectID": "resource/quarto.html#chunk-names",
     "href": "resource/quarto.html#chunk-names",
     "title": "Using Quarto",
     "section": "Chunk names",
-    "text": "Chunk names\nYou can add names to chunks to make it easier to navigate your document. If you click on the little dropdown menu at the bottom of your editor in RStudio, you can see a table of contents that shows all the headings and chunks. If you name chunks, they’ll appear in the list. If you don’t include a name, the chunk will still show up, but you won’t know what it does.\n\n\n\n\n\n\n\n\n\nThere are two ways to add a chunk name:\n\nAs a special comment called label:, following #| at the top of the chunk (this is the preferred way):\n```{r}\n#| label: name-of-this-chunk\n\n1 + 1\n```\nImmediately after the {r in the first line of the chunk (this is the older way):\n```{r name-of-this-chunk}\n1 + 1\n```\n\nNames cannot contain spaces, but they can contain underscores and dashes. All chunk names in your document must be unique."
+    "text": "Chunk names\nYou can add names to chunks to make it easier to navigate your document. If you click on the little dropdown menu at the bottom of your editor in RStudio, you can see a table of contents that shows all the headings and chunks. If you name chunks, they’ll appear in the list. If you don’t include a name, the chunk will still show up, but you won’t know what it does.\n\n\n\n\n\n\n\n\n\nThere are two ways to add a chunk name:\n\nAs a special comment called label:, following #| at the top of the chunk (this is the preferred way):\n```{r}\n#| label: name-of-this-chunk\n\n1 + 1\n```\nImmediately after the {r in the first line of the chunk (this is the older way):\n```{r name-of-this-chunk}\n1 + 1\n```\n\nNames cannot contain spaces, but they can contain underscores and dashes. All chunk names in your document must be unique.",
+    "crumbs": [
+      "Resources",
+      "Guides",
+      "Using Quarto"
+    ]
   },
   {
     "objectID": "resource/quarto.html#chunk-options",
     "href": "resource/quarto.html#chunk-options",
     "title": "Using Quarto",
     "section": "Chunk options",
-    "text": "Chunk options\nThere are a bunch of different options you can set for each chunk. You can see a complete list in the R Markdown Reference Guide or at {knitr}’s website.\nSet chunk options as special comments following #| at the top of the chunk (this is the preferred way):\n```{r}\n#| label: fig-some-plot\n#| fig-cap: \"Here's a caption for this plot\"\n#| fig-width: 6\n#| fig-height: 4\n#| echo: false\n\nggplot(mpg, aes(x = displ, y = hwy, color = drv)) +\n  geom_point() +\n  geom_smooth(method = \"lm\")\n```\nTechnically you can also set these options inside the {r} section of the chunk—this is the old way to do it, but it gets really gross and long when you have lots of settings:\n{r fig-some-plot, fig.width=6, fig.height=4, echo=FALSE, fig.cap = \"Here's a caption for this plot\"}\nHere are some of the most common chunk options you’ll use in this class:\n\nlabel: fig-whatever: Try to always use chunk labels. If you want things to be cross-referenceable, use a fig- prefix on chunks that make figures and a tbl- prefix on chunks that make tables\ntbl-cap: \"Blah\": Add a caption to your table\nfig-cap: \"Blah\": Add a caption to your figure\nfig-width: 5 and fig-height: 3 (or whatever number you want): Set the dimensions for figures\necho: false: The code is not shown in the final document, but the results are\nmessage: false: Any messages that R generates (like all the notes that appear after you load a package) are omitted\nwarning: false: Any warnings that R generates are omitted\ninclude: false: The chunk still runs, but the code and results are not included in the final document"
+    "text": "Chunk options\nThere are a bunch of different options you can set for each chunk. You can see a complete list in the R Markdown Reference Guide or at {knitr}’s website.\nSet chunk options as special comments following #| at the top of the chunk (this is the preferred way):\n```{r}\n#| label: fig-some-plot\n#| fig-cap: \"Here's a caption for this plot\"\n#| fig-width: 6\n#| fig-height: 4\n#| echo: false\n\nggplot(mpg, aes(x = displ, y = hwy, color = drv)) +\n  geom_point() +\n  geom_smooth(method = \"lm\")\n```\nTechnically you can also set these options inside the {r} section of the chunk—this is the old way to do it, but it gets really gross and long when you have lots of settings:\n{r fig-some-plot, fig.width=6, fig.height=4, echo=FALSE, fig.cap = \"Here's a caption for this plot\"}\nHere are some of the most common chunk options you’ll use in this class:\n\nlabel: fig-whatever: Try to always use chunk labels. If you want things to be cross-referenceable, use a fig- prefix on chunks that make figures and a tbl- prefix on chunks that make tables\ntbl-cap: \"Blah\": Add a caption to your table\nfig-cap: \"Blah\": Add a caption to your figure\nfig-width: 5 and fig-height: 3 (or whatever number you want): Set the dimensions for figures\necho: false: The code is not shown in the final document, but the results are\nmessage: false: Any messages that R generates (like all the notes that appear after you load a package) are omitted\nwarning: false: Any warnings that R generates are omitted\ninclude: false: The chunk still runs, but the code and results are not included in the final document",
+    "crumbs": [
+      "Resources",
+      "Guides",
+      "Using Quarto"
+    ]
   },
   {
     "objectID": "resource/quarto.html#inline-chunks",
     "href": "resource/quarto.html#inline-chunks",
     "title": "Using Quarto",
     "section": "Inline chunks",
-    "text": "Inline chunks\nYou can also include R output directly in your text, which is really helpful if you want to report numbers from your analysis. To do this, use `r r_code_here`.\nIt’s generally easiest to calculate numbers in a regular chunk beforehand and then use an inline chunk to display the value in your text. For instance, this document…\n```{r}\n#| label: find-avg-mpg\n#| echo: false\n\navg_mpg &lt;- mean(mtcars$mpg)\n```\n\nThe average fuel efficiency for cars from 1974 was `r round(avg_mpg, 1)` miles per gallon.\n… would render to this:\n\nThe average fuel efficiency for cars from 1974 was 20.1 miles per gallon."
+    "text": "Inline chunks\nYou can also include R output directly in your text, which is really helpful if you want to report numbers from your analysis. To do this, use `r r_code_here`.\nIt’s generally easiest to calculate numbers in a regular chunk beforehand and then use an inline chunk to display the value in your text. For instance, this document…\n```{r}\n#| label: find-avg-mpg\n#| echo: false\n\navg_mpg &lt;- mean(mtcars$mpg)\n```\n\nThe average fuel efficiency for cars from 1974 was `r round(avg_mpg, 1)` miles per gallon.\n… would render to this:\n\nThe average fuel efficiency for cars from 1974 was 20.1 miles per gallon.",
+    "crumbs": [
+      "Resources",
+      "Guides",
+      "Using Quarto"
+    ]
   },
   {
     "objectID": "resource/quarto.html#output-formats",
     "href": "resource/quarto.html#output-formats",
     "title": "Using Quarto",
     "section": "Output formats",
-    "text": "Output formats\nYou can specify what kind of document you create when you render in the YAML front matter.\ntitle: \"My document\"\nformat:\n  html: default\n  pdf: default\n  docx: default\nThe indentation of the YAML section matters, especially when you have settings nested under each output type. Here’s what a typical format section might look like:\n---\ntitle: \"My document\"\nauthor: \"My name\"\ndate: \"June 4, 2024\"\nformat: \n  html_document: \n    toc: yes\n  pdf_document: \n    toc: yes\n  word_document: \n    toc: yes\n---"
+    "text": "Output formats\nYou can specify what kind of document you create when you render in the YAML front matter.\ntitle: \"My document\"\nformat:\n  html: default\n  pdf: default\n  docx: default\nThe indentation of the YAML section matters, especially when you have settings nested under each output type. Here’s what a typical format section might look like:\n---\ntitle: \"My document\"\nauthor: \"My name\"\ndate: \"June 4, 2024\"\nformat: \n  html_document: \n    toc: yes\n  pdf_document: \n    toc: yes\n  word_document: \n    toc: yes\n---",
+    "crumbs": [
+      "Resources",
+      "Guides",
+      "Using Quarto"
+    ]
   },
   {
     "objectID": "resource/markdown.html",
     "href": "resource/markdown.html",
     "title": "Using Markdown",
     "section": "",
-    "text": "Markdown is a special kind of markup language that lets you format text with simple syntax. You can then use a converter program like pandoc to convert Markdown into whatever format you want: HTML, PDF, Word, PowerPoint, etc. (see the full list of output types here)"
+    "text": "Markdown is a special kind of markup language that lets you format text with simple syntax. You can then use a converter program like pandoc to convert Markdown into whatever format you want: HTML, PDF, Word, PowerPoint, etc. (see the full list of output types here)",
+    "crumbs": [
+      "Resources",
+      "Guides",
+      "Using Markdown"
+    ]
   },
   {
     "objectID": "resource/markdown.html#basic-markdown-formatting",
     "href": "resource/markdown.html#basic-markdown-formatting",
     "title": "Using Markdown",
     "section": "Basic Markdown formatting",
-    "text": "Basic Markdown formatting\n\n\n\n\n\n\n\nType…\n…to get\n\n\n\n\nSome text in a paragraph.\n\nMore text in the next paragraph. Always\nuse empty lines between paragraphs.\nSome text in a paragraph.\nMore text in the next paragraph. Always use empty lines between paragraphs.\n\n\n*Italic* or _Italic_\nItalic\n\n\n**Bold** or __Bold__\nBold\n\n\n# Heading 1\nHeading 1\n\n\n## Heading 2\nHeading 2\n\n\n### Heading 3\nHeading 3\n\n\n(Go up to heading level 6 with ######)\n\n\n\n[Link text](https://www.example.com)\nLink text\n\n\n![Image caption](path/to/image.png)\n\n\n\nImage caption\n\n\n\n\n`Inline code` with backticks\nInline code with backticks\n\n\nBlock of code with triple backticks:\n\n\n\n```\nBlock of code in between\ntriple backticks\n```\nBlock of code in between\ntriple backticks\n\n\nOptionally specify a language:\n\n\n\n``` r\nx &lt;- c(1, 3, 5, 7)\nplot(x)\n```\nx &lt;- c(1, 3, 5, 7)\nplot(x)\n\n\n&gt; Blockquote\n\nBlockquote\n\n\n\n- Things in\n- an unordered\n- list\n\nThings in\nan unordered\nlist\n\n\n\n1. Things in\n1. an ordered\n2. list\n3. Notice that the\n8. numbers don't\n18. matter\n\nThings in\nan ordered\nlist\nNotice that the\nnumbers don’t\nmatter\n\n\n\nHorizontal line\n---\nHorizontal line"
+    "text": "Basic Markdown formatting\n\n\n\n\n\n\n\nType…\n…to get\n\n\n\n\nSome text in a paragraph.\n\nMore text in the next paragraph. Always\nuse empty lines between paragraphs.\nSome text in a paragraph.\nMore text in the next paragraph. Always use empty lines between paragraphs.\n\n\n*Italic* or _Italic_\nItalic\n\n\n**Bold** or __Bold__\nBold\n\n\n# Heading 1\nHeading 1\n\n\n## Heading 2\nHeading 2\n\n\n### Heading 3\nHeading 3\n\n\n(Go up to heading level 6 with ######)\n\n\n\n[Link text](https://www.example.com)\nLink text\n\n\n![Image caption](path/to/image.png)\n\n\n\nImage caption\n\n\n\n\n`Inline code` with backticks\nInline code with backticks\n\n\nBlock of code with triple backticks:\n\n\n\n```\nBlock of code in between\ntriple backticks\n```\nBlock of code in between\ntriple backticks\n\n\nOptionally specify a language:\n\n\n\n``` r\nx &lt;- c(1, 3, 5, 7)\nplot(x)\n```\nx &lt;- c(1, 3, 5, 7)\nplot(x)\n\n\n&gt; Blockquote\n\nBlockquote\n\n\n\n- Things in\n- an unordered\n- list\n\nThings in\nan unordered\nlist\n\n\n\n1. Things in\n1. an ordered\n2. list\n3. Notice that the\n8. numbers don't\n18. matter\n\nThings in\nan ordered\nlist\nNotice that the\nnumbers don’t\nmatter\n\n\n\nHorizontal line\n---\nHorizontal line",
+    "crumbs": [
+      "Resources",
+      "Guides",
+      "Using Markdown"
+    ]
   },
   {
     "objectID": "resource/markdown.html#math",
     "href": "resource/markdown.html#math",
     "title": "Using Markdown",
     "section": "Math",
-    "text": "Math\n\nBasic math commands\nMarkdown uses LaTeX to create fancy mathematical equations. There are like a billion little options and features available for math equations—you can find helpful examples of the the most common basic commands here. In this class, these will be the most common things you’ll use:\n\n\n\n\n\n  \n    \n    \n    \n  \n  \n    \n      Description\n      Command\n      Output\n    \n  \n  \n    \n      Letters\n    \n    Roman letters\n\na b c d e f\n\n\\(a\\ b\\ c\\ d\\ e\\ f\\)\n\n    Greek letters (see this for all possible letters)\n\n\\alpha \\beta \\Gamma \\gamma \\Delta \\delta \\epsilon\n\n\\(\\alpha\\ \\beta\\ \\Gamma\\ \\gamma\\ \\Delta\\ \\delta\\ \\epsilon\\)\n\n    Letters will automatically be italicized and treated as math variables;\nif you want actual text in the math, use \\text{}\n\nEw: Treatment = \\beta\nGood: \\text{Treatment} = \\beta\n\nEw: \\(Treatment = \\beta\\)\nGood: \\(\\text{Treatment} = \\beta\\)\n\n    Extra spaces will automatically be removed; if you want a space, use \\ \n\nNo space: x y\nSpace: x\\ y\n\nNo space: \\(x y\\)\nSpace: \\(x\\ y\\)\n\n    \n      Superscripts and subscripts\n    \n    Use ^ to make one character superscripted.\n\nx^2\n\n\\(x^2\\)\n\n    Wrap the superscripted part in {} if there’s more than one character\n\nx^{2+y}\n\n\\(x^{2+y}\\)\n\n    Use _ to make one character subscripted\n\n\\beta_1\n\n\\(\\beta_1\\)\n\n    Wrap the subscripted part in {} if there’s more than one character\n\n\\beta_{i, t}\n\n\\(\\beta_{i, t}\\)\n\n    Use superscripts and subscripts simultaneously\n\n\\beta_1^{\\text{Treatment}}\n\n\\(\\beta_1^{\\text{Treatment}}\\)\n\n    You can even nest them\n\nx^{2^{2^2}}\n\n\\(x^{2^{2^2}}\\)\n\n    \n      Math operations\n    \n    Addition\n\n2 + 5 = 7\n\n\\(2 + 5 = 7\\)\n\n    Subtraction\n\n2 - 5 = -3\n\n\\(2 - 5 = -3\\)\n\n    Multiplication\n\nx \\times y\nx \\cdot y\n\n\\(x \\times y\\)\n\\(x \\cdot y\\)\n\n    Division\n\n8 \\div 2\n\n\\(8 \\div 2\\)\n\n    Fractions\n\n\\frac{8}{2}\n\n\\(\\frac{8}{2}\\)\n\n    Square roots; use [3] for other roots\n\n\\sqrt{81} = 9\n\\sqrt[3]{27} = 3\n\n\\(\\sqrt{81} = 9\\)\n\\(\\sqrt[3]{27} = 3\\)\n\n    Summation; use sub/superscripts for extra details\n\n\\sum x\n\\sum_{n=1}^{\\infty} \\frac{1}{n}\n\n\\(\\sum x\\)\n\\(\\sum_{n=1}^{\\infty} \\frac{1}{n}\\)\n\n    Products; use sub/superscripts for extra details\n\n\\prod x\n\\prod_{n=1}^{5} n^2\n\n\\(\\prod x\\)\n\\(\\prod_{n=1}^{5} n^2\\)\n\n    Integrals; use sub/superscripts for extra details\n\n\\int x^2 \\ dx\n\\int_{1}^{100} x^2 \\ dx\n\n\\(\\int x^2 \\ dx\\)\n\\(\\int_{1}^{100} x^2 \\ dx\\)\n\n    \n      Extra symbols\n    \n    Add a bar for things like averages\n\n\\bar{x}\n\n\\(\\bar{x}\\)\n\n    Use an overline for longer things\n\nEw: \\bar{abcdef}\nGood: \\overline{abcdef}\n\nEw: \\(\\bar{abcdef}\\)\nGood: \\(\\overline{abcdef}\\)\n\n    Add a hat for things like estimates\n\n\\hat{y}\n\n\\(\\hat{y}\\)\n\n    Use a wide hat for longer things\n\nEw: \\hat{abcdef}\nGood: \\widehat{abcdef}\n\nEw: \\(\\hat{abcdef}\\)\nGood: \\(\\widehat{abcdef}\\)\n\n    Use arrows for DAG-like things\n\nZ \\rightarrow Y \\leftarrow X\n\n\\(Z \\rightarrow Y \\leftarrow X\\)\n\n    \n      Bonus fun\n    \n    Use colors!; see here for more details and here for a list of color names\n\n{\\color{red} y} = {\\color{blue} \\beta_1 x_1}\n\n\\({\\color{red} y} = {\\color{blue} \\beta_1 x_1}\\)\n\n  \n  \n  \n\n\n\n\n\n\nUsing math inline\nYou can use math in two different ways: inline or in a display block. To use math inline, wrap it in single dollar signs, like $y = mx + b$:\n\n\n\n\n\n\nInline math\n\n\n\nType…\nBased on the DAG, the regression model for estimating the effect of education on wages\nis $\\hat{y} = \\beta_0 + \\beta_1 x_1 + \\epsilon$, or $\\text{Wages} = \\beta_0 + \\beta_1 \\text{Education} + \\epsilon$.\n…to get…\n\nBased on the DAG, the regression model for estimating the effect of education on wages is \\(\\hat{y} = \\beta_0 + \\beta_1 x_1 + \\epsilon\\), or \\(\\text{Wages} = \\beta_0 + \\beta_1 \\text{Education} + \\epsilon\\)\n\n\n\n\n\nUsing math in a block\nTo put an equation on its own line in a display block, wrap it in double dollar signs, like this:\n\n\n\n\n\n\nBlock math\n\n\n\nType…\nThe quadratic equation was an important part of high school math:\n\n$$\nx = \\frac{-b \\pm \\sqrt{b^2 - 4ac}}{2a}\n$$\n\nBut now we just use computers to solve for $x$.\n…to get…\n\nThe quadratic equation was an important part of high school math:\n\\[\nx = \\frac{-b \\pm \\sqrt{b^2 - 4ac}}{2a}\n\\]\nBut now we just use computers to solve for \\(x\\).\n\n\n\n\n\nDollar signs and math\nBecause dollar signs are used to indicate math equations, you can’t just use dollar signs like normal if you’re writing about actual dollars. For instance, if you write This book costs $5.75 and this other costs $40, Markdown will treat everything that comes between the dollar signs as math, like so: “This book costs \\(5.75 and this other costs \\)40”.\nTo get around that, put a backslash (\\) in front of the dollar signs, so that This book costs \\$5.75 and this other costs \\$40 becomes “This book costs $5.75 and this other costs $40”."
+    "text": "Math\n\nBasic math commands\nMarkdown uses LaTeX to create fancy mathematical equations. There are like a billion little options and features available for math equations—you can find helpful examples of the the most common basic commands here. In this class, these will be the most common things you’ll use:\n\n\n\n\n\n  \n    \n    \n    \n  \n  \n    \n      Description\n      Command\n      Output\n    \n  \n  \n    \n      Letters\n    \n    Roman letters\n\na b c d e f\n\n\\(a\\ b\\ c\\ d\\ e\\ f\\)\n\n    Greek letters (see this for all possible letters)\n\n\\alpha \\beta \\Gamma \\gamma \\Delta \\delta \\epsilon\n\n\\(\\alpha\\ \\beta\\ \\Gamma\\ \\gamma\\ \\Delta\\ \\delta\\ \\epsilon\\)\n\n    Letters will automatically be italicized and treated as math variables;\nif you want actual text in the math, use \\text{}\n\nEw: Treatment = \\beta\nGood: \\text{Treatment} = \\beta\n\nEw: \\(Treatment = \\beta\\)\nGood: \\(\\text{Treatment} = \\beta\\)\n\n    Extra spaces will automatically be removed; if you want a space, use \\ \n\nNo space: x y\nSpace: x\\ y\n\nNo space: \\(x y\\)\nSpace: \\(x\\ y\\)\n\n    \n      Superscripts and subscripts\n    \n    Use ^ to make one character superscripted.\n\nx^2\n\n\\(x^2\\)\n\n    Wrap the superscripted part in {} if there’s more than one character\n\nx^{2+y}\n\n\\(x^{2+y}\\)\n\n    Use _ to make one character subscripted\n\n\\beta_1\n\n\\(\\beta_1\\)\n\n    Wrap the subscripted part in {} if there’s more than one character\n\n\\beta_{i, t}\n\n\\(\\beta_{i, t}\\)\n\n    Use superscripts and subscripts simultaneously\n\n\\beta_1^{\\text{Treatment}}\n\n\\(\\beta_1^{\\text{Treatment}}\\)\n\n    You can even nest them\n\nx^{2^{2^2}}\n\n\\(x^{2^{2^2}}\\)\n\n    \n      Math operations\n    \n    Addition\n\n2 + 5 = 7\n\n\\(2 + 5 = 7\\)\n\n    Subtraction\n\n2 - 5 = -3\n\n\\(2 - 5 = -3\\)\n\n    Multiplication\n\nx \\times y\nx \\cdot y\n\n\\(x \\times y\\)\n\\(x \\cdot y\\)\n\n    Division\n\n8 \\div 2\n\n\\(8 \\div 2\\)\n\n    Fractions\n\n\\frac{8}{2}\n\n\\(\\frac{8}{2}\\)\n\n    Square roots; use [3] for other roots\n\n\\sqrt{81} = 9\n\\sqrt[3]{27} = 3\n\n\\(\\sqrt{81} = 9\\)\n\\(\\sqrt[3]{27} = 3\\)\n\n    Summation; use sub/superscripts for extra details\n\n\\sum x\n\\sum_{n=1}^{\\infty} \\frac{1}{n}\n\n\\(\\sum x\\)\n\\(\\sum_{n=1}^{\\infty} \\frac{1}{n}\\)\n\n    Products; use sub/superscripts for extra details\n\n\\prod x\n\\prod_{n=1}^{5} n^2\n\n\\(\\prod x\\)\n\\(\\prod_{n=1}^{5} n^2\\)\n\n    Integrals; use sub/superscripts for extra details\n\n\\int x^2 \\ dx\n\\int_{1}^{100} x^2 \\ dx\n\n\\(\\int x^2 \\ dx\\)\n\\(\\int_{1}^{100} x^2 \\ dx\\)\n\n    \n      Extra symbols\n    \n    Add a bar for things like averages\n\n\\bar{x}\n\n\\(\\bar{x}\\)\n\n    Use an overline for longer things\n\nEw: \\bar{abcdef}\nGood: \\overline{abcdef}\n\nEw: \\(\\bar{abcdef}\\)\nGood: \\(\\overline{abcdef}\\)\n\n    Add a hat for things like estimates\n\n\\hat{y}\n\n\\(\\hat{y}\\)\n\n    Use a wide hat for longer things\n\nEw: \\hat{abcdef}\nGood: \\widehat{abcdef}\n\nEw: \\(\\hat{abcdef}\\)\nGood: \\(\\widehat{abcdef}\\)\n\n    Use arrows for DAG-like things\n\nZ \\rightarrow Y \\leftarrow X\n\n\\(Z \\rightarrow Y \\leftarrow X\\)\n\n    \n      Bonus fun\n    \n    Use colors!; see here for more details and here for a list of color names\n\n{\\color{red} y} = {\\color{blue} \\beta_1 x_1}\n\n\\({\\color{red} y} = {\\color{blue} \\beta_1 x_1}\\)\n\n  \n  \n  \n\n\n\n\n\n\nUsing math inline\nYou can use math in two different ways: inline or in a display block. To use math inline, wrap it in single dollar signs, like $y = mx + b$:\n\n\n\n\n\n\nInline math\n\n\n\nType…\nBased on the DAG, the regression model for estimating the effect of education on wages\nis $\\hat{y} = \\beta_0 + \\beta_1 x_1 + \\epsilon$, or $\\text{Wages} = \\beta_0 + \\beta_1 \\text{Education} + \\epsilon$.\n…to get…\n\nBased on the DAG, the regression model for estimating the effect of education on wages is \\(\\hat{y} = \\beta_0 + \\beta_1 x_1 + \\epsilon\\), or \\(\\text{Wages} = \\beta_0 + \\beta_1 \\text{Education} + \\epsilon\\)\n\n\n\n\n\nUsing math in a block\nTo put an equation on its own line in a display block, wrap it in double dollar signs, like this:\n\n\n\n\n\n\nBlock math\n\n\n\nType…\nThe quadratic equation was an important part of high school math:\n\n$$\nx = \\frac{-b \\pm \\sqrt{b^2 - 4ac}}{2a}\n$$\n\nBut now we just use computers to solve for $x$.\n…to get…\n\nThe quadratic equation was an important part of high school math:\n\\[\nx = \\frac{-b \\pm \\sqrt{b^2 - 4ac}}{2a}\n\\]\nBut now we just use computers to solve for \\(x\\).\n\n\n\n\n\nDollar signs and math\nBecause dollar signs are used to indicate math equations, you can’t just use dollar signs like normal if you’re writing about actual dollars. For instance, if you write This book costs $5.75 and this other costs $40, Markdown will treat everything that comes between the dollar signs as math, like so: “This book costs \\(5.75 and this other costs \\)40”.\nTo get around that, put a backslash (\\) in front of the dollar signs, so that This book costs \\$5.75 and this other costs \\$40 becomes “This book costs $5.75 and this other costs $40”.",
+    "crumbs": [
+      "Resources",
+      "Guides",
+      "Using Markdown"
+    ]
   },
   {
     "objectID": "resource/markdown.html#tables",
     "href": "resource/markdown.html#tables",
     "title": "Using Markdown",
     "section": "Tables",
-    "text": "Tables\nThere are a few different ways to hand-create tables in Markdown—I say “hand-create” because it’s normally way easier to use R to generate these things with packages like {gt} or {knitr} or {kableExtra}. The two most common are simple tables and pipe tables. You should look at the full documentation here.\n\n\n\n\n\n\nSimple tables\n\n\n\nFor simple tables, type…\n  Right     Left     Center     Default\n-------     ------ ----------   -------\n     12     12        12            12\n    123     123       123          123\n      1     1          1             1\n\nTable: Caption goes here\n…to get…\n\nCaption goes here\n\n\nRight\nLeft\nCenter\nDefault\n\n\n\n\n12\n12\n12\n12\n\n\n123\n123\n123\n123\n\n\n1\n1\n1\n1\n\n\n\n\n\n\n\n\n\n\n\nPipe tables\n\n\n\nFor pipe tables, type…\n| Right | Left | Default | Center |\n|------:|:-----|---------|:------:|\n|   12  |  12  |    12   |    12  |\n|  123  |  123 |   123   |   123  |\n|    1  |    1 |     1   |     1  |\n\nTable: Caption goes here\n…to get…\n\nCaption goes here\n\n\nRight\nLeft\nDefault\nCenter\n\n\n\n\n12\n12\n12\n12\n\n\n123\n123\n123\n123\n\n\n1\n1\n1\n1"
+    "text": "Tables\nThere are a few different ways to hand-create tables in Markdown—I say “hand-create” because it’s normally way easier to use R to generate these things with packages like {gt} or {knitr} or {kableExtra}. The two most common are simple tables and pipe tables. You should look at the full documentation here.\n\n\n\n\n\n\nSimple tables\n\n\n\nFor simple tables, type…\n  Right     Left     Center     Default\n-------     ------ ----------   -------\n     12     12        12            12\n    123     123       123          123\n      1     1          1             1\n\nTable: Caption goes here\n…to get…\n\nCaption goes here\n\n\nRight\nLeft\nCenter\nDefault\n\n\n\n\n12\n12\n12\n12\n\n\n123\n123\n123\n123\n\n\n1\n1\n1\n1\n\n\n\n\n\n\n\n\n\n\n\nPipe tables\n\n\n\nFor pipe tables, type…\n| Right | Left | Default | Center |\n|------:|:-----|---------|:------:|\n|   12  |  12  |    12   |    12  |\n|  123  |  123 |   123   |   123  |\n|    1  |    1 |     1   |     1  |\n\nTable: Caption goes here\n…to get…\n\nCaption goes here\n\n\nRight\nLeft\nDefault\nCenter\n\n\n\n\n12\n12\n12\n12\n\n\n123\n123\n123\n123\n\n\n1\n1\n1\n1",
+    "crumbs": [
+      "Resources",
+      "Guides",
+      "Using Markdown"
+    ]
   },
   {
     "objectID": "resource/markdown.html#footnotes",
     "href": "resource/markdown.html#footnotes",
     "title": "Using Markdown",
     "section": "Footnotes",
-    "text": "Footnotes\nThere are two different ways to add footnotes (see here for complete documentation): regular and inline.\nRegular notes need (1) an identifier and (2) the actual note. The identifier can be whatever you want. Some people like to use numbers like [^1], but if you ever rearrange paragraphs or add notes before #1, the numbering will be wrong (in your Markdown file, not in the output; everything will be correct in the output). Because of that, I prefer to use some sort of text label:\n\n\n\n\n\n\nFootnotes\n\n\n\nType…\nHere is a footnote reference[^1] and here is another [^note-on-dags].\n\n[^1]: This is a note.\n\n[^note-on-dags]: DAGs are neat. \n\nAnd here's more of the document.\n…to get…\n\nHere is a footnote reference1 and here is another.2\nAnd here’s more of the document.\n\n\n\n\n\nThis is a note.↩︎\n\n\n\n\nDAGs are neat.↩︎\n\n\n\n\n\n\n\nYou can also use inline footnotes with ^[Text of the note goes here], which are often easier because you don’t need to worry about identifiers:\n\n\n\n\n\n\nInline footnotes\n\n\n\nType…\nCausal inference is neat.^[But it can be hard too!]\n…to get…\n\nCausal inference is neat.1\n\n\n\n\n\nBut it can be hard too!↩︎"
+    "text": "Footnotes\nThere are two different ways to add footnotes (see here for complete documentation): regular and inline.\nRegular notes need (1) an identifier and (2) the actual note. The identifier can be whatever you want. Some people like to use numbers like [^1], but if you ever rearrange paragraphs or add notes before #1, the numbering will be wrong (in your Markdown file, not in the output; everything will be correct in the output). Because of that, I prefer to use some sort of text label:\n\n\n\n\n\n\nFootnotes\n\n\n\nType…\nHere is a footnote reference[^1] and here is another [^note-on-dags].\n\n[^1]: This is a note.\n\n[^note-on-dags]: DAGs are neat. \n\nAnd here's more of the document.\n…to get…\n\nHere is a footnote reference1 and here is another.2\nAnd here’s more of the document.\n\n\n\n\n\nThis is a note.↩︎\n\n\n\n\nDAGs are neat.↩︎\n\n\n\n\n\n\n\nYou can also use inline footnotes with ^[Text of the note goes here], which are often easier because you don’t need to worry about identifiers:\n\n\n\n\n\n\nInline footnotes\n\n\n\nType…\nCausal inference is neat.^[But it can be hard too!]\n…to get…\n\nCausal inference is neat.1\n\n\n\n\n\nBut it can be hard too!↩︎",
+    "crumbs": [
+      "Resources",
+      "Guides",
+      "Using Markdown"
+    ]
   },
   {
     "objectID": "resource/markdown.html#front-matter",
     "href": "resource/markdown.html#front-matter",
     "title": "Using Markdown",
     "section": "Front matter",
-    "text": "Front matter\nYou can include a special section at the top of a Markdown document that contains metadata (or data about your document) like the title, date, author, etc. This section uses a special simple syntax named YAML (or “YAML Ain’t Markup Language”) that follows this basic outline: setting: value for setting. Here’s an example YAML metadata section. Note that it must start and end with three dashes (---).\n---\ntitle: Title of your document\ndate: \"June 4, 2024\"\nauthor: \"Your name\"\n---\nYou can put the values inside quotes (like the date and name in the example above), or you can leave them outside of quotes (like the title in the example above). I typically use quotes just to be safe—if the value you’re using has a colon (:) in it, it’ll confuse Markdown since it’ll be something like title: My cool title: a subtitle, which has two colons. It’s better to do this:\n---\ntitle: \"My cool title: a subtitle\"\n---\nIf you want to use quotes inside one of the values (e.g. your document is An evaluation of \"scare quotes\"), you can use single quotes instead:\n---\ntitle: 'An evaluation of \"scare quotes\"'\n---"
+    "text": "Front matter\nYou can include a special section at the top of a Markdown document that contains metadata (or data about your document) like the title, date, author, etc. This section uses a special simple syntax named YAML (or “YAML Ain’t Markup Language”) that follows this basic outline: setting: value for setting. Here’s an example YAML metadata section. Note that it must start and end with three dashes (---).\n---\ntitle: Title of your document\ndate: \"June 4, 2024\"\nauthor: \"Your name\"\n---\nYou can put the values inside quotes (like the date and name in the example above), or you can leave them outside of quotes (like the title in the example above). I typically use quotes just to be safe—if the value you’re using has a colon (:) in it, it’ll confuse Markdown since it’ll be something like title: My cool title: a subtitle, which has two colons. It’s better to do this:\n---\ntitle: \"My cool title: a subtitle\"\n---\nIf you want to use quotes inside one of the values (e.g. your document is An evaluation of \"scare quotes\"), you can use single quotes instead:\n---\ntitle: 'An evaluation of \"scare quotes\"'\n---",
+    "crumbs": [
+      "Resources",
+      "Guides",
+      "Using Markdown"
+    ]
   },
   {
     "objectID": "resource/markdown.html#citations",
     "href": "resource/markdown.html#citations",
     "title": "Using Markdown",
     "section": "Citations",
-    "text": "Citations\nOne of the most powerful features of Markdown + pandoc is the ability to automatically cite things and generate bibliographies. to use citations, you need to create a BibTeX file (ends in .bib) that contains a database of the things you want to cite. You can do this with bibliography managers designed to work with BibTeX directly (like BibDesk on macOS), or you can use Zotero (macOS and Windows) to export a .bib file. You can download an example .bib file of all the readings from this class here.\nComplete details for using citations can be found here. In brief, you need to do three things:\n\nAdd a bibliography: entry to the YAML metadata:\n---\ntitle: Title of your document\ndate: \"June 4, 2024\"\nauthor: \"Your name\"\nbibliography: name_of_file.bib\n---\nChoose a citation style based on a CSL file. The default is Chicago author-date, but you can choose from 2,000+ at this repository. Download the CSL file, put it in your project folder, and add an entry to the YAML metadata (or provide a URL to the online version):\n---\ntitle: Title of your document\ndate: \"June 4, 2024\"\nauthor: \"Your name\"\nbibliography: name_of_file.bib\ncsl: \"https://raw.githubusercontent.com/citation-style-language/styles/master/apa.csl\"\n---\nSome of the most common CSLs are:\n\nChicago author-date\nChicago note-bibliography\nChicago full note-bibliography (no shortened notes or ibids)\nAPA 7th edition\nMLA 8th edition\n\nCite things in your document. Check the documentation for full details of how to do this. Essentially, you use @citationkey inside square brackets ([]):\n\n\n\n\n\n\n\nType…\n…to get…\n\n\n\n\nCausal inference is neat [@Rohrer:2018;\n@AngristPischke:2015].\nCausal inference is neat (Rohrer 2018; Angrist and Pischke 2015).\n\n\nCausal inference is neat [see @Rohrer:2018, p. 34;\nalso @AngristPischke:2015, chapter 1].\nCausal inference is neat (see Rohrer 2018, 34; also Angrist and Pischke 2015, chap. 1).\n\n\nAngrist and Pischke say causal inference is neat\n[-@AngristPischke:2015; see also @Rohrer:2018].\nAngrist and Pischke say causal inference is neat (2015; see also Rohrer 2018).\n\n\n@AngristPischke:2015 [chapter 1] say causal\ninference is neat, and @Rohrer:2018 agrees.\nAngrist and Pischke (2015, chap. 1) say causal inference is neat, and Rohrer (2018) agrees.\n\n\n\nAfter compiling, you should have a perfectly formatted bibliography added to the end of your document too:\n\nAngrist, Joshua D., and Jörn-Steffen Pischke. 2015. Mastering ’Metrics: The Path from Cause to Effect. Princeton, NJ: Princeton University Press.\nRohrer, Julia M. 2018. “Thinking Clearly About Correlations and Causation: Graphical Causal Models for Observational Data.” Advances in Methods and Practices in Psychological Science 1 (1): 27–42. https://doi.org/10.1177/2515245917745629."
+    "text": "Citations\nOne of the most powerful features of Markdown + pandoc is the ability to automatically cite things and generate bibliographies. to use citations, you need to create a BibTeX file (ends in .bib) that contains a database of the things you want to cite. You can do this with bibliography managers designed to work with BibTeX directly (like BibDesk on macOS), or you can use Zotero (macOS and Windows) to export a .bib file. You can download an example .bib file of all the readings from this class here.\nComplete details for using citations can be found here. In brief, you need to do three things:\n\nAdd a bibliography: entry to the YAML metadata:\n---\ntitle: Title of your document\ndate: \"June 4, 2024\"\nauthor: \"Your name\"\nbibliography: name_of_file.bib\n---\nChoose a citation style based on a CSL file. The default is Chicago author-date, but you can choose from 2,000+ at this repository. Download the CSL file, put it in your project folder, and add an entry to the YAML metadata (or provide a URL to the online version):\n---\ntitle: Title of your document\ndate: \"June 4, 2024\"\nauthor: \"Your name\"\nbibliography: name_of_file.bib\ncsl: \"https://raw.githubusercontent.com/citation-style-language/styles/master/apa.csl\"\n---\nSome of the most common CSLs are:\n\nChicago author-date\nChicago note-bibliography\nChicago full note-bibliography (no shortened notes or ibids)\nAPA 7th edition\nMLA 8th edition\n\nCite things in your document. Check the documentation for full details of how to do this. Essentially, you use @citationkey inside square brackets ([]):\n\n\n\n\n\n\n\nType…\n…to get…\n\n\n\n\nCausal inference is neat [@Rohrer:2018;\n@AngristPischke:2015].\nCausal inference is neat (Rohrer 2018; Angrist and Pischke 2015).\n\n\nCausal inference is neat [see @Rohrer:2018, p. 34;\nalso @AngristPischke:2015, chapter 1].\nCausal inference is neat (see Rohrer 2018, 34; also Angrist and Pischke 2015, chap. 1).\n\n\nAngrist and Pischke say causal inference is neat\n[-@AngristPischke:2015; see also @Rohrer:2018].\nAngrist and Pischke say causal inference is neat (2015; see also Rohrer 2018).\n\n\n@AngristPischke:2015 [chapter 1] say causal\ninference is neat, and @Rohrer:2018 agrees.\nAngrist and Pischke (2015, chap. 1) say causal inference is neat, and Rohrer (2018) agrees.\n\n\n\nAfter compiling, you should have a perfectly formatted bibliography added to the end of your document too:\n\nAngrist, Joshua D., and Jörn-Steffen Pischke. 2015. Mastering ’Metrics: The Path from Cause to Effect. Princeton, NJ: Princeton University Press.\nRohrer, Julia M. 2018. “Thinking Clearly About Correlations and Causation: Graphical Causal Models for Observational Data.” Advances in Methods and Practices in Psychological Science 1 (1): 27–42. https://doi.org/10.1177/2515245917745629.",
+    "crumbs": [
+      "Resources",
+      "Guides",
+      "Using Markdown"
+    ]
   },
   {
     "objectID": "resource/markdown.html#other-references",
     "href": "resource/markdown.html#other-references",
     "title": "Using Markdown",
     "section": "Other references",
-    "text": "Other references\nThese websites have additional details and examples and practice tools:\n\nCommonMark’s Markdown tutorial: A quick interactive Markdown tutorial.\nMarkdown tutorial: Another interactive tutorial to practice using Markdown.\nMarkdown cheatsheet: Useful one-page reminder of Markdown syntax.\nThe Plain Person’s Guide to Plain Text Social Science: A comprehensive explanation and tutorial about why you should write data-based reports in Markdown."
-  },
-  {
-    "objectID": "content/01-content.html",
-    "href": "content/01-content.html",
-    "title": "Truth, beauty, and data + R and tidyverse",
-    "section": "",
-    "text": "The syllabus, content, lessons, examples, and assignments pages for this class\n Tim Harford, “Florence Nightingale: Data Viz Pioneer,” 99% Invisible, episode 433, March 2, 2021 (this is a podcast; listen to it in your browser or use an app like Overcast or Spotify)\n Chapter 1 in Data Visualization [@Healy:2018]\n Chapters 2 and 3 in The Truthful Art [@Cairo:2016] (skim the introduction and chapter 1)\n Study: Charts change hearts and minds better than words do\n\n\n\n\n\n\n\n\n\nThis is not a required list!\n\n\n\nRemember, you don’t need to answer all of these—or even any of them! These are just here to help guide your thinking. Write about whatever you want.\n\n\n\nHow do we know what is true?\nAre facts truth?\nWhy do we visualize data?\nWhat makes a great visualization?\nHow do you choose which kind of visualization to use?",
+    "text": "Other references\nThese websites have additional details and examples and practice tools:\n\nCommonMark’s Markdown tutorial: A quick interactive Markdown tutorial.\nMarkdown tutorial: Another interactive tutorial to practice using Markdown.\nMarkdown cheatsheet: Useful one-page reminder of Markdown syntax.\nThe Plain Person’s Guide to Plain Text Social Science: A comprehensive explanation and tutorial about why you should write data-based reports in Markdown.",
     "crumbs": [
-      "Content",
-      "Foundations",
-      "1: Truth, beauty, and data + the tidyverse"
-    ]
-  },
-  {
-    "objectID": "content/01-content.html#readings",
-    "href": "content/01-content.html#readings",
-    "title": "Truth, beauty, and data + R and tidyverse",
-    "section": "",
-    "text": "The syllabus, content, lessons, examples, and assignments pages for this class\n Tim Harford, “Florence Nightingale: Data Viz Pioneer,” 99% Invisible, episode 433, March 2, 2021 (this is a podcast; listen to it in your browser or use an app like Overcast or Spotify)\n Chapter 1 in Data Visualization [@Healy:2018]\n Chapters 2 and 3 in The Truthful Art [@Cairo:2016] (skim the introduction and chapter 1)\n Study: Charts change hearts and minds better than words do\n\n\n\n\n\n\n\n\n\nThis is not a required list!\n\n\n\nRemember, you don’t need to answer all of these—or even any of them! These are just here to help guide your thinking. Write about whatever you want.\n\n\n\nHow do we know what is true?\nAre facts truth?\nWhy do we visualize data?\nWhat makes a great visualization?\nHow do you choose which kind of visualization to use?",
-    "crumbs": [
-      "Content",
-      "Foundations",
-      "1: Truth, beauty, and data + the tidyverse"
-    ]
-  },
-  {
-    "objectID": "content/01-content.html#slides",
-    "href": "content/01-content.html#slides",
-    "title": "Truth, beauty, and data + R and tidyverse",
-    "section": "Slides",
-    "text": "Slides\nThe slides for this week’s lesson are available online as an HTML file. Use the buttons below to open the slides either as an interactive website or as a static PDF (for printing or storing for later). You can also click in the slides below and navigate through them with your left and right arrow keys.\n\n View all slides in new window  Download PDF of all slides\n\n\n\n\n\n\n\n\n\n\n\nTip\n\n\n\nFun fact: If you type ? (or shift + /) while going through the slides, you can see a list of special slide-specific commands.",
-    "crumbs": [
-      "Content",
-      "Foundations",
-      "1: Truth, beauty, and data + the tidyverse"
-    ]
-  },
-  {
-    "objectID": "content/01-content.html#videos",
-    "href": "content/01-content.html#videos",
-    "title": "Truth, beauty, and data + R and tidyverse",
-    "section": "Videos",
-    "text": "Videos\nVideos for each section of the lecture are available at this YouTube playlist.\n\nIntroduction\nFacts, truth, and beauty\nData, truth, and beauty\nBeautiful visualizations\nClass details\n\nYou can also watch the playlist (and skip around to different sections) here:",
-    "crumbs": [
-      "Content",
-      "Foundations",
-      "1: Truth, beauty, and data + the tidyverse"
+      "Resources",
+      "Guides",
+      "Using Markdown"
     ]
   },
   {
     "objectID": "lesson/01-lesson.html",
     "href": "lesson/01-lesson.html",
-    "title": "Introduction to R and the tidyverse",
+    "title": "Lab 1:",
     "section": "",
-    "text": "For the first part of this week’s lesson, you need to work through a few of Posit’s introductory primers. You’ll do these in your browser and type code and see results there.\nYou’ll learn some of the basics of R, as well as some powerful methods for manipulating data with the {dplyr} package.\nComplete these primers. It seems like there are a lot, but they’re short and go fairly quickly (especially as you get the hang of the syntax). Also, I have no way of seeing what you do or what you get wrong or right, and that’s totally fine! If you get stuck and want to skip some (or if it gets too easy), go right ahead and skip them!\n\nThe Basics\n\nVisualization basics\nProgramming basics\n\nWork with Data\n\nWorking with tibbles\nIsolating data with {dplyr}\nDeriving information with {dplyr}\n\n\nThe content from these primers comes from the (free and online!) book R for Data Science by Garrett Grolemund and Hadley Wickham. I highly recommend the book as a reference and for continuing to learn and use R in the future (like running regression models and other types of statistical analysis)"
+    "text": "For the first part of this week’s lesson, you need to work through a few of Posit’s introductory primers. You’ll do these in your browser and type code and see results there.\nYou’ll learn some of the basics of R, as well as some powerful methods for manipulating data with the {dplyr} package.\nComplete these primers. It seems like there are a lot, but they’re short and go fairly quickly (especially as you get the hang of the syntax). Also, I have no way of seeing what you do or what you get wrong or right, and that’s totally fine! If you get stuck and want to skip some (or if it gets too easy), go right ahead and skip them!\n\nThe Basics\n\nVisualization basics\nProgramming basics\n\nWork with Data\n\nWorking with tibbles\nIsolating data with {dplyr}\nDeriving information with {dplyr}\n\n\nThe content from these primers comes from the (free and online!) book R for Data Science by Garrett Grolemund and Hadley Wickham. I highly recommend the book as a reference and for continuing to learn and use R in the future (like running regression models and other types of statistical analysis)",
+    "crumbs": [
+      "Labs",
+      "Lab 1"
+    ]
   },
   {
     "objectID": "lesson/01-lesson.html#part-1-the-basics-of-r-and-dplyr",
     "href": "lesson/01-lesson.html#part-1-the-basics-of-r-and-dplyr",
-    "title": "Introduction to R and the tidyverse",
+    "title": "Lab 1:",
     "section": "",
-    "text": "For the first part of this week’s lesson, you need to work through a few of Posit’s introductory primers. You’ll do these in your browser and type code and see results there.\nYou’ll learn some of the basics of R, as well as some powerful methods for manipulating data with the {dplyr} package.\nComplete these primers. It seems like there are a lot, but they’re short and go fairly quickly (especially as you get the hang of the syntax). Also, I have no way of seeing what you do or what you get wrong or right, and that’s totally fine! If you get stuck and want to skip some (or if it gets too easy), go right ahead and skip them!\n\nThe Basics\n\nVisualization basics\nProgramming basics\n\nWork with Data\n\nWorking with tibbles\nIsolating data with {dplyr}\nDeriving information with {dplyr}\n\n\nThe content from these primers comes from the (free and online!) book R for Data Science by Garrett Grolemund and Hadley Wickham. I highly recommend the book as a reference and for continuing to learn and use R in the future (like running regression models and other types of statistical analysis)"
+    "text": "For the first part of this week’s lesson, you need to work through a few of Posit’s introductory primers. You’ll do these in your browser and type code and see results there.\nYou’ll learn some of the basics of R, as well as some powerful methods for manipulating data with the {dplyr} package.\nComplete these primers. It seems like there are a lot, but they’re short and go fairly quickly (especially as you get the hang of the syntax). Also, I have no way of seeing what you do or what you get wrong or right, and that’s totally fine! If you get stuck and want to skip some (or if it gets too easy), go right ahead and skip them!\n\nThe Basics\n\nVisualization basics\nProgramming basics\n\nWork with Data\n\nWorking with tibbles\nIsolating data with {dplyr}\nDeriving information with {dplyr}\n\n\nThe content from these primers comes from the (free and online!) book R for Data Science by Garrett Grolemund and Hadley Wickham. I highly recommend the book as a reference and for continuing to learn and use R in the future (like running regression models and other types of statistical analysis)",
+    "crumbs": [
+      "Labs",
+      "Lab 1"
+    ]
   },
   {
     "objectID": "lesson/01-lesson.html#part-2-getting-familiar-with-rstudio",
     "href": "lesson/01-lesson.html#part-2-getting-familiar-with-rstudio",
-    "title": "Introduction to R and the tidyverse",
+    "title": "Lab 1:",
     "section": "Part 2: Getting familiar with RStudio",
-    "text": "Part 2: Getting familiar with RStudio\nThe RStudio primers you just worked through are a great introduction to writing and running R code, but you typically won’t type code in a browser when you work with R. Instead, you’ll use a nicer programming environment like RStudio, which lets you type and save code in scripts, run code from those scripts, and see the output of that code, all in the same program.\nTo get familiar with RStudio, watch this video:"
+    "text": "Part 2: Getting familiar with RStudio\nThe RStudio primers you just worked through are a great introduction to writing and running R code, but you typically won’t type code in a browser when you work with R. Instead, you’ll use a nicer programming environment like RStudio, which lets you type and save code in scripts, run code from those scripts, and see the output of that code, all in the same program.\nTo get familiar with RStudio, watch this video:",
+    "crumbs": [
+      "Labs",
+      "Lab 1"
+    ]
   },
   {
     "objectID": "lesson/01-lesson.html#part-3-rstudio-projects",
     "href": "lesson/01-lesson.html#part-3-rstudio-projects",
-    "title": "Introduction to R and the tidyverse",
+    "title": "Lab 1:",
     "section": "Part 3: RStudio Projects",
-    "text": "Part 3: RStudio Projects\nOne of the most powerful and useful aspects of RStudio is its ability to manage projects.\nWhen you first open R, it is “pointed” at some folder on your computer, and anything you do will be relative to that folder. The technical term for this is a “working directory.”\nWhen you first open RStudio, look in the area right at the top of the Console pane to see your current working directory. Most likely you’ll see something cryptic: ~/\n\n\n\n\n\n\n\n\n\nThat tilde sign (~) is a shortcut that stands for your user directory. On Windows this is C:\\Users\\your_user_name\\; on macOS this is /Users/your_user_name/. With the working directory set to ~/, R is “pointed” at that folder, and anything you save will end up in that folder, and R will expect any data that you load to be there too.\nIt’s always best to point R at some other directory. If you don’t use RStudio, you need to manually set the working directory to where you want it with setwd(), and many R scripts in the wild include something like setwd(\"C:\\\\Users\\\\bill\\\\Desktop\\\\Important research project\") at the beginning to change the directory. THIS IS BAD THOUGH (see here for an explanation). If you ever move that directory somewhere else, or run the script on a different computer, or share the project with someone, the path will be wrong and nothing will run and you will be sad.\nThe best way to deal with working directories with RStudio is to use RStudio Projects. These are special files that RStudio creates for you that end in a .Rproj extension. When you open one of these special files, a new RStudio instance will open up and be pointed at the correct directory automatically. If you move the folder later or open it on a different computer, it will work just fine and you will not be sad.\nRead this super short chapter on RStudio projects.\nIn general, you can create a new project by going to File &gt; New Project &gt; New Directory &gt; Empty Project, which will create a new folder on your computer that is empty except for a single .Rproj file. Double click on that file to open an RStudio instance that is pointed at the correct folder."
+    "text": "Part 3: RStudio Projects\nOne of the most powerful and useful aspects of RStudio is its ability to manage projects.\nWhen you first open R, it is “pointed” at some folder on your computer, and anything you do will be relative to that folder. The technical term for this is a “working directory.”\nWhen you first open RStudio, look in the area right at the top of the Console pane to see your current working directory. Most likely you’ll see something cryptic: ~/\n\n\n\n\n\n\n\n\n\nThat tilde sign (~) is a shortcut that stands for your user directory. On Windows this is C:\\Users\\your_user_name\\; on macOS this is /Users/your_user_name/. With the working directory set to ~/, R is “pointed” at that folder, and anything you save will end up in that folder, and R will expect any data that you load to be there too.\nIt’s always best to point R at some other directory. If you don’t use RStudio, you need to manually set the working directory to where you want it with setwd(), and many R scripts in the wild include something like setwd(\"C:\\\\Users\\\\bill\\\\Desktop\\\\Important research project\") at the beginning to change the directory. THIS IS BAD THOUGH (see here for an explanation). If you ever move that directory somewhere else, or run the script on a different computer, or share the project with someone, the path will be wrong and nothing will run and you will be sad.\nThe best way to deal with working directories with RStudio is to use RStudio Projects. These are special files that RStudio creates for you that end in a .Rproj extension. When you open one of these special files, a new RStudio instance will open up and be pointed at the correct directory automatically. If you move the folder later or open it on a different computer, it will work just fine and you will not be sad.\nRead this super short chapter on RStudio projects.\nIn general, you can create a new project by going to File &gt; New Project &gt; New Directory &gt; Empty Project, which will create a new folder on your computer that is empty except for a single .Rproj file. Double click on that file to open an RStudio instance that is pointed at the correct folder.",
+    "crumbs": [
+      "Labs",
+      "Lab 1"
+    ]
   },
   {
     "objectID": "lesson/01-lesson.html#part-4-getting-familiar-with-quarto",
     "href": "lesson/01-lesson.html#part-4-getting-familiar-with-quarto",
-    "title": "Introduction to R and the tidyverse",
+    "title": "Lab 1:",
     "section": "Part 4: Getting familiar with Quarto",
-    "text": "Part 4: Getting familiar with Quarto\nTo ensure that the analysis and graphics you make are reproducible, you’ll do the majority of your work in this class using Quarto files.\nDo the following things:\n\nWatch this video. It’s all about R Markdown, which is Quarto’s predecessor. The same general principles apply.\n\n\n\n\n\n \n\nSkim through the content at these pages. Again, lots of these resources mention R Markdown, which is Quarto’s predecessor, but the same principles apply to Quarto\n\nUsing Markdown\nUsing Quarto\nHow it Works\nCode Chunks\nInline Code\nPublish and Share with Quarto\nPublish and Share with Quarto cheatsheet\n\nWatch this video:"
+    "text": "Part 4: Getting familiar with Quarto\nTo ensure that the analysis and graphics you make are reproducible, you’ll do the majority of your work in this class using Quarto files.\nDo the following things:\n\nWatch this video. It’s all about R Markdown, which is Quarto’s predecessor. The same general principles apply.\n\n\n\n\n\n \n\nSkim through the content at these pages. Again, lots of these resources mention R Markdown, which is Quarto’s predecessor, but the same principles apply to Quarto\n\nUsing Markdown\nUsing Quarto\nHow it Works\nCode Chunks\nInline Code\nPublish and Share with Quarto\nPublish and Share with Quarto cheatsheet\n\nWatch this video:",
+    "crumbs": [
+      "Labs",
+      "Lab 1"
+    ]
   },
   {
-    "objectID": "news/index.html",
-    "href": "news/index.html",
-    "title": "News",
+    "objectID": "content/03-content.html",
+    "href": "content/03-content.html",
+    "title": "Advanced Statistical Modeling in R",
     "section": "",
-    "text": "Subscribe!\n\n\n\nYou can use a feed reader like Feedly or use an RSS-to-email service like Blogtrottr to subscribe to these updates and messages. I’ll also e-mail out links to them when there are new updates.\n\n\n\n RSS\n\n\n\n\n\n\n\n\n\n\n\n\n    \n      \n      \n    \n\n\n\n\n\nDate\n\n\nTitle\n\n\nCategories\n\n\n\n\n\n\n\nNo matching items"
+    "text": "IN CONSTRUCTION!",
+    "crumbs": [
+      "Lessons",
+      "Modeling in R",
+      "3: Advanced Statistical Modeling in R"
+    ]
+  },
+  {
+    "objectID": "content/03-content.html#overview",
+    "href": "content/03-content.html#overview",
+    "title": "Advanced Statistical Modeling in R",
+    "section": "",
+    "text": "IN CONSTRUCTION!",
+    "crumbs": [
+      "Lessons",
+      "Modeling in R",
+      "3: Advanced Statistical Modeling in R"
+    ]
+  },
+  {
+    "objectID": "content/03-content.html#guiding-questions",
+    "href": "content/03-content.html#guiding-questions",
+    "title": "Advanced Statistical Modeling in R",
+    "section": "Guiding Questions",
+    "text": "Guiding Questions\n\n\n\n\n\n\nThese are optional!\n\n\n\nYou don’t need to answer all of these—or even any of them! They are here to help guide your thinking and reflection on the content. Feel free to explore whatever aspects you find most interesting.\n\n\n\nQuestion 1",
+    "crumbs": [
+      "Lessons",
+      "Modeling in R",
+      "3: Advanced Statistical Modeling in R"
+    ]
+  },
+  {
+    "objectID": "content/03-content.html#readings",
+    "href": "content/03-content.html#readings",
+    "title": "Advanced Statistical Modeling in R",
+    "section": "Readings",
+    "text": "Readings\n\nNo readings for this session.",
+    "crumbs": [
+      "Lessons",
+      "Modeling in R",
+      "3: Advanced Statistical Modeling in R"
+    ]
+  },
+  {
+    "objectID": "content/03-content.html#slides",
+    "href": "content/03-content.html#slides",
+    "title": "Advanced Statistical Modeling in R",
+    "section": "Slides",
+    "text": "Slides\nThe slides for this session are available online as an HTML file. Use the buttons below to open the slides either as an interactive website or as a static PDF (for printing or storing for later). You can also navigate through the embedded slides directly on this page using your left and right arrow keys.\n\n View all slides in new window  Download PDF of all slides\n\n\n\n\n\n\n\n\n\n\n\nTip\n\n\n\nPro tip: If you type ? (or shift + /) while viewing the slides, you can access a list of special commands to enhance your experience.",
+    "crumbs": [
+      "Lessons",
+      "Modeling in R",
+      "3: Advanced Statistical Modeling in R"
+    ]
+  },
+  {
+    "objectID": "content/01-content.html",
+    "href": "content/01-content.html",
+    "title": "Mastering Data Manipulation in R",
+    "section": "",
+    "text": "This session will focus on advanced data manipulation techniques using R and the tidyverse. While the primary resource for this session will be the slides, consider reflecting on the following questions as you engage with the material.",
+    "crumbs": [
+      "Lessons",
+      "Data Mastery in R",
+      "1: Mastering Data Manipulation in R"
+    ]
+  },
+  {
+    "objectID": "content/01-content.html#overview",
+    "href": "content/01-content.html#overview",
+    "title": "Mastering Data Manipulation in R",
+    "section": "",
+    "text": "This session will focus on advanced data manipulation techniques using R and the tidyverse. While the primary resource for this session will be the slides, consider reflecting on the following questions as you engage with the material.",
+    "crumbs": [
+      "Lessons",
+      "Data Mastery in R",
+      "1: Mastering Data Manipulation in R"
+    ]
+  },
+  {
+    "objectID": "content/01-content.html#guiding-questions",
+    "href": "content/01-content.html#guiding-questions",
+    "title": "Mastering Data Manipulation in R",
+    "section": "Guiding Questions",
+    "text": "Guiding Questions\n\n\n\n\n\n\nThese are optional!\n\n\n\nYou don’t need to answer all of these—or even any of them! They are here to help guide your thinking and reflection on the content. Feel free to explore whatever aspects you find most interesting.\n\n\n\nHow do complex filtering and selection operations enhance data analysis?\nWhat are the benefits of using the tidyverse for data manipulation?\nHow do different data reshaping techniques (e.g., pivoting) impact the way data is analyzed and interpreted?\nWhat challenges do you encounter when working with large datasets, and how can they be overcome with efficient R techniques?\nHow does the native pipe (|&gt;) improve code readability and workflow in R?",
+    "crumbs": [
+      "Lessons",
+      "Data Mastery in R",
+      "1: Mastering Data Manipulation in R"
+    ]
+  },
+  {
+    "objectID": "content/01-content.html#readings",
+    "href": "content/01-content.html#readings",
+    "title": "Mastering Data Manipulation in R",
+    "section": "Readings",
+    "text": "Readings\n\nNo readings for this session.",
+    "crumbs": [
+      "Lessons",
+      "Data Mastery in R",
+      "1: Mastering Data Manipulation in R"
+    ]
+  },
+  {
+    "objectID": "content/01-content.html#slides",
+    "href": "content/01-content.html#slides",
+    "title": "Mastering Data Manipulation in R",
+    "section": "Slides",
+    "text": "Slides\nThe slides for this session are available online as an HTML file. Use the buttons below to open the slides either as an interactive website or as a static PDF (for printing or storing for later). You can also navigate through the embedded slides directly on this page using your left and right arrow keys.\n\n View all slides in new window  Download PDF of all slides\n\n\n\n\n\n\n\n\n\n\n\nTip\n\n\n\nPro tip: If you type ? (or shift + /) while viewing the slides, you can access a list of special commands to enhance your experience.",
+    "crumbs": [
+      "Lessons",
+      "Data Mastery in R",
+      "1: Mastering Data Manipulation in R"
+    ]
+  },
+  {
+    "objectID": "lesson/04-lesson.html",
+    "href": "lesson/04-lesson.html",
+    "title": "Lab 4:",
+    "section": "",
+    "text": "To complete"
+  },
+  {
+    "objectID": "lesson/04-lesson.html#part-1",
+    "href": "lesson/04-lesson.html#part-1",
+    "title": "Lab 4:",
+    "section": "",
+    "text": "To complete"
+  },
+  {
+    "objectID": "lesson/02-lesson.html",
+    "href": "lesson/02-lesson.html",
+    "title": "Lab 2:",
+    "section": "",
+    "text": "To complete"
+  },
+  {
+    "objectID": "lesson/02-lesson.html#part-1",
+    "href": "lesson/02-lesson.html#part-1",
+    "title": "Lab 2:",
+    "section": "",
+    "text": "To complete"
   },
   {
     "objectID": "resource/visualization.html",
     "href": "resource/visualization.html",
     "title": "Visualization",
     "section": "",
-    "text": "The Stories Behind a Line\nAustralia as 100 people: You can make something like this with d3 and the potato project.\nMarrying Later, Staying Single Longer"
+    "text": "The Stories Behind a Line\nAustralia as 100 people: You can make something like this with d3 and the potato project.\nMarrying Later, Staying Single Longer",
+    "crumbs": [
+      "Resources",
+      "Visualization"
+    ]
   },
   {
     "objectID": "resource/visualization.html#interesting-and-excellent-real-world-examples",
     "href": "resource/visualization.html#interesting-and-excellent-real-world-examples",
     "title": "Visualization",
     "section": "",
-    "text": "The Stories Behind a Line\nAustralia as 100 people: You can make something like this with d3 and the potato project.\nMarrying Later, Staying Single Longer"
+    "text": "The Stories Behind a Line\nAustralia as 100 people: You can make something like this with d3 and the potato project.\nMarrying Later, Staying Single Longer",
+    "crumbs": [
+      "Resources",
+      "Visualization"
+    ]
   },
   {
     "objectID": "resource/visualization.html#how-to-select-the-appropriate-chart-type",
     "href": "resource/visualization.html#how-to-select-the-appropriate-chart-type",
     "title": "Visualization",
     "section": "How to select the appropriate chart type",
-    "text": "How to select the appropriate chart type\nMany people have created many useful tools for selecting the correct chart type for a given dataset or question. The Financial Times has an excellent diagram that shows what kind of charts are appropriate for which kinds of data you have:\n\nThe Financial Times’s “Visual Vocabulary” (PDF poster and interactive website)\n\nHere are some other fantastic resources too:\n\nThe Data Visualisation Catalogue: Descriptions, explanations, examples, and tools for creating 60 different types of visualizations.\nThe Data Viz Project: Descriptions and examples for 150 different types of visualizations. Also allows you to search by data shape and chart function (comparison, correlation, distribution, geographical, part to whole, trend over time, etc.).\nFrom Data to Viz: A decision tree for dozens of chart types with links to R and Python code.\nThe Chartmaker Directory: Examples of how to create 51 different types of visualizations in 31 different software packages, including Excel, Tableau, and R.\nR Graph Catalog: R code for 124 ggplot graphs.\nEmery’s Essentials: Descriptions and examples of 26 different chart types."
+    "text": "How to select the appropriate chart type\nMany people have created many useful tools for selecting the correct chart type for a given dataset or question. The Financial Times has an excellent diagram that shows what kind of charts are appropriate for which kinds of data you have:\n\nThe Financial Times’s “Visual Vocabulary” (PDF poster and interactive website)\n\nHere are some other fantastic resources too:\n\nThe Data Visualisation Catalogue: Descriptions, explanations, examples, and tools for creating 60 different types of visualizations.\nThe Data Viz Project: Descriptions and examples for 150 different types of visualizations. Also allows you to search by data shape and chart function (comparison, correlation, distribution, geographical, part to whole, trend over time, etc.).\nFrom Data to Viz: A decision tree for dozens of chart types with links to R and Python code.\nThe Chartmaker Directory: Examples of how to create 51 different types of visualizations in 31 different software packages, including Excel, Tableau, and R.\nR Graph Catalog: R code for 124 ggplot graphs.\nEmery’s Essentials: Descriptions and examples of 26 different chart types.",
+    "crumbs": [
+      "Resources",
+      "Visualization"
+    ]
   },
   {
     "objectID": "resource/visualization.html#general-resources",
     "href": "resource/visualization.html#general-resources",
     "title": "Visualization",
     "section": "General resources",
-    "text": "General resources\n\nStorytelling with Data: Blog and site full of resources by Cole Nussbaumer Knaflic.\nAnn K. Emery’s blog: Blog and tutorials by Ann Emery.\nEvergreen Data: Helful resources by Stephanie Evergreen.\nPolicyViz: Regular podcast and site full of helpful resources by Jon Schwabisch.\nVisualising Data: Fantastic collection of visualization resources, articles, and tutorials by Andy Kirk.\nInfo We Trust: Detailed explorations of visualizations by RJ Andrews, including a beautiful visual history of the field.\nFlowingData: Blog by Nathan Yau.\nInformation is Beautiful: Blog by David McCandless.\nJunk Charts: Blog by Kaiser Fung.\nWTF Visualizations: Visualizations that make you ask “wtf?”\nThe Data Visualization Checklist: A helpful set of criteria for grading the effectiveness of a graphic.\nData Literacy Starter Kit: Compilation of resources to become data literate by Laura Calloway.\nSeeing Data: A series of research projects about perceptions and visualizations."
+    "text": "General resources\n\nStorytelling with Data: Blog and site full of resources by Cole Nussbaumer Knaflic.\nAnn K. Emery’s blog: Blog and tutorials by Ann Emery.\nEvergreen Data: Helful resources by Stephanie Evergreen.\nPolicyViz: Regular podcast and site full of helpful resources by Jon Schwabisch.\nVisualising Data: Fantastic collection of visualization resources, articles, and tutorials by Andy Kirk.\nInfo We Trust: Detailed explorations of visualizations by RJ Andrews, including a beautiful visual history of the field.\nFlowingData: Blog by Nathan Yau.\nInformation is Beautiful: Blog by David McCandless.\nJunk Charts: Blog by Kaiser Fung.\nWTF Visualizations: Visualizations that make you ask “wtf?”\nThe Data Visualization Checklist: A helpful set of criteria for grading the effectiveness of a graphic.\nData Literacy Starter Kit: Compilation of resources to become data literate by Laura Calloway.\nSeeing Data: A series of research projects about perceptions and visualizations.",
+    "crumbs": [
+      "Resources",
+      "Visualization"
+    ]
   },
   {
     "objectID": "resource/visualization.html#visualization-in-excel",
     "href": "resource/visualization.html#visualization-in-excel",
     "title": "Visualization",
     "section": "Visualization in Excel",
-    "text": "Visualization in Excel\n\nHow to Build Data Visualizations in Excel: Detailed tutorials for creating 14 different visualizations in Excel.\nAnn Emery’s tutorials: Fantastic series of tutorials for creating charts in Excel."
+    "text": "Visualization in Excel\n\nHow to Build Data Visualizations in Excel: Detailed tutorials for creating 14 different visualizations in Excel.\nAnn Emery’s tutorials: Fantastic series of tutorials for creating charts in Excel.",
+    "crumbs": [
+      "Resources",
+      "Visualization"
+    ]
   },
   {
     "objectID": "resource/visualization.html#visualization-in-tableau",
     "href": "resource/visualization.html#visualization-in-tableau",
     "title": "Visualization",
     "section": "Visualization in Tableau",
-    "text": "Visualization in Tableau\nBecause it is focused entirely on visualization (and because it’s a well-supported commercial product), Tableau has a phenomenal library of tutorials and training videos. There’s a helpful collections of videos here, as well."
+    "text": "Visualization in Tableau\nBecause it is focused entirely on visualization (and because it’s a well-supported commercial product), Tableau has a phenomenal library of tutorials and training videos. There’s a helpful collections of videos here, as well.",
+    "crumbs": [
+      "Resources",
+      "Visualization"
+    ]
   },
   {
     "objectID": "resource/index.html",
     "href": "resource/index.html",
     "title": "Helpful resources",
     "section": "",
-    "text": "I have included a bunch of extra resources and guides related to graphic design, visualization, R, data, and other relevant topics. Enjoy!"
+    "text": "I have included a bunch of extra resources and guides related to graphic design, visualization, R, data, and other relevant topics. Enjoy!",
+    "crumbs": [
+      "Resources",
+      "Helpful resources"
+    ]
   },
   {
     "objectID": "resource/data.html",
     "href": "resource/data.html",
     "title": "Data",
     "section": "",
-    "text": "There are a ton of places to find data related to public policy and administration (as well as data on pretty much any topic you want) online:\n\nData is Plural newsletter: Jeremy Singer-Vine sends a weekly newsletter of the most interesting public datasets he’s found. You should subscribe to it. He also has an archive of all the datasets he’s highlighted.\nGoogle Dataset Search: Google indexes thousands of public datasets; search for them here.\nKaggle: Kaggle hosts machine learning competitions where people compete to create the fastest, most efficient, most predictive algorithms. A byproduct of these competitions is a host of fascinating datasets that are generally free and open to the public. See, for example, the European Soccer Database, the Salem Witchcraft Dataset or results from an Oreo flavors taste test.\n360Giving: Dozens of British foundations follow a standard file format for sharing grant data and have made that data available online.\nUS City Open Data Census: More than 100 US cities have committed to sharing dozens of types of data, including data about crime, budgets, campaign finance, lobbying, transit, and zoning. This site from the Sunlight Foundation and Code for America collects this data and rates cities by how well they’re doing.\nPolitical science and economics datasets: There’s a wealth of data available for political science- and economics-related topics:\n\nFrançois Briatte’s extensive curated lists: Includes data from/about intergovernmental organizations (IGOs), nongovernmental organizations (NGOs), public opinion surveys, parliaments and legislatures, wars, human rights, elections, and municipalities.\nThomas Leeper’s list of political science datasets: Good short list of useful datasets, divided by type of data (country-level data, survey data, social media data, event data, text data, etc.).\nErik Gahner’s list of political science datasets: Huge list of useful datasets, divided by topic (governance, elections, policy, political elites, etc.)"
+    "text": "There are a ton of places to find data related to public policy and administration (as well as data on pretty much any topic you want) online:\n\nData is Plural newsletter: Jeremy Singer-Vine sends a weekly newsletter of the most interesting public datasets he’s found. You should subscribe to it. He also has an archive of all the datasets he’s highlighted.\nGoogle Dataset Search: Google indexes thousands of public datasets; search for them here.\nKaggle: Kaggle hosts machine learning competitions where people compete to create the fastest, most efficient, most predictive algorithms. A byproduct of these competitions is a host of fascinating datasets that are generally free and open to the public. See, for example, the European Soccer Database, the Salem Witchcraft Dataset or results from an Oreo flavors taste test.\n360Giving: Dozens of British foundations follow a standard file format for sharing grant data and have made that data available online.\nUS City Open Data Census: More than 100 US cities have committed to sharing dozens of types of data, including data about crime, budgets, campaign finance, lobbying, transit, and zoning. This site from the Sunlight Foundation and Code for America collects this data and rates cities by how well they’re doing.\nPolitical science and economics datasets: There’s a wealth of data available for political science- and economics-related topics:\n\nFrançois Briatte’s extensive curated lists: Includes data from/about intergovernmental organizations (IGOs), nongovernmental organizations (NGOs), public opinion surveys, parliaments and legislatures, wars, human rights, elections, and municipalities.\nThomas Leeper’s list of political science datasets: Good short list of useful datasets, divided by type of data (country-level data, survey data, social media data, event data, text data, etc.).\nErik Gahner’s list of political science datasets: Huge list of useful datasets, divided by topic (governance, elections, policy, political elites, etc.)",
+    "crumbs": [
+      "Resources",
+      "Data"
+    ]
   },
   {
     "objectID": "lesson/index.html",
     "href": "lesson/index.html",
     "title": "Interactive lessons",
     "section": "",
-    "text": "Each class session has an interactive lesson that you will work through after doing the readings and watching the lecture. These lessons are a central part of the class—they will teach you how to use {ggplot2} and other packages in the tidyverse to create beautiful and truthful visualizations with R.\nInteractive code sections look like this. Make changes in the text box and click on the green “Run Code” button to see the results. Sometimes there will be a tab with a hint or solution.\n\n\n\n\n\n\nYour turn\n\n\n\nModify the code here to show the relationship between health and wealth for 2002 instead of 2007.\n\n Interactive editor Hint\n\n\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\nHint: You’ll want to change something in the code that creates gapminder_filtered. The text in the subtitle won’t change automatically, so you’ll want to edit that too.\n\n\n\n\n\nIf you’re curious how this works, each interactive code section uses the amazing {quarto-webr} package to run R directly in your browser."
+    "text": "Each class session has an interactive lesson that you will work through after doing the readings and watching the lecture. These lessons are a central part of the class—they will teach you how to use {ggplot2} and other packages in the tidyverse to create beautiful and truthful visualizations with R.\nInteractive code sections look like this. Make changes in the text box and click on the green “Run Code” button to see the results. Sometimes there will be a tab with a hint or solution.\n\n\n\n\n\n\nYour turn\n\n\n\nModify the code here to show the relationship between health and wealth for 2002 instead of 2007.\n\n Interactive editor Hint\n\n\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\nHint: You’ll want to change something in the code that creates gapminder_filtered. The text in the subtitle won’t change automatically, so you’ll want to edit that too.\n\n\n\n\n\nIf you’re curious how this works, each interactive code section uses the amazing {quarto-webr} package to run R directly in your browser.",
+    "crumbs": [
+      "Labs",
+      "Overview",
+      "Interactive lessons"
+    ]
   },
   {
     "objectID": "assignment/index.html",
     "href": "assignment/index.html",
     "title": "Assignment overview",
     "section": "",
-    "text": "You will get the most of out this class if you:\nEach type of assignment in this class helps with one of these strategies.",
-    "crumbs": [
-      "Assignments",
-      "Overview",
-      "Assignment overview"
-    ]
+    "text": "You will get the most of out this class if you:\nEach type of assignment in this class helps with one of these strategies."
   },
   {
     "objectID": "assignment/index.html#reflections",
     "href": "assignment/index.html#reflections",
     "title": "Assignment overview",
     "section": "Reflections",
-    "text": "Reflections\nTo encourage engagement with the course content, you’ll need to write a ≈150 word reflection about the readings and lectures for the session That’s fairly short: there are ≈250 words on a typical double-spaced page in Microsoft Word (500 when single-spaced).",
-    "crumbs": [
-      "Assignments",
-      "Overview",
-      "Assignment overview"
-    ]
+    "text": "Reflections\nTo encourage engagement with the course content, you’ll need to write a ≈150 word reflection about the readings and lectures for the session That’s fairly short: there are ≈250 words on a typical double-spaced page in Microsoft Word (500 when single-spaced)."
   },
   {
     "objectID": "content/index.html",
     "href": "content/index.html",
-    "title": "Readings, lectures, and videos",
+    "title": "Slides, and Additional Materials",
     "section": "",
-    "text": "Each class session has a set of required readings that you should complete before watching the lecture or working through the lesson.\nI’ve included a set of questions that might guide your reflection response. You should not try to respond to all of these (or any of them if you don’t want to)—they’ll just help you know what to look for and think about as you read.\nEvery class session also has a YouTube playlist of short recorded videos for each of the lecture sections. The lecture slides are special HTML files made with the R package {xaringan} (R can do so much!). On each class session page you’ll buttons for opening the presentation in a new tab or for downloading a PDF of the slides in case you want to print them or store them on your computer:\n\n View all slides in new window  Download PDF of all slides\n\nThe slides are also embedded on each page. You can click in the slides and navigate through them with ← and →. If you type ? (or shift + /) while viewing the slides you can see a list of slide-specific commands (like f for fullscreen or p for presenter mode if you want to see my notes).",
+    "text": "Each class session is accompanied by a set of slides that will guide the lecture portion of the lesson. These slides are essential to follow along during the session and will be the primary resource used for instruction. You should review the slides before participating in the session to get the most out of the lecture.\nWhile the slides are the central resource for each session, I might also share additional materials or resources that could be relevant to the specific topics covered. These may include readings, articles, or supplementary videos, which will be made available as needed.\nFor each session throughout the math camp, you’ll find the lecture slides embedded directly on the session page. You can view them in your browser or download them as a PDF for offline use:\n\n View all slides in new window  Download PDF of all slides\n\nThe slides can be navigated using your keyboard with ← and → for moving through the presentation. If you press ? (or shift + /), you’ll see a list of commands for interacting with the slides, including options for fullscreen mode (f) or presenter mode (p), which displays additional notes.",
     "crumbs": [
-      "Content",
+      "Lessons",
       "Overview",
-      "Readings, lectures, and videos"
+      "Slides, and Additional Materials"
     ]
   },
   {
@@ -417,63 +667,99 @@
     "href": "resource/citations.html",
     "title": "Citations and bibliography",
     "section": "",
-    "text": "You can access a shared group Zotero library of all the non-web-based class reading references and link it to your Zotero account to easily cite the course materials.\nAlternatively, you can download a BibTeX file of all the references. You can open it in BibDesk on macOS, JabRef on Windows, or Zotero on macOS, Windows, and online.\n\n Zotero group library    BibTeX file"
+    "text": "You can access a shared group Zotero library of all the non-web-based class reading references and link it to your Zotero account to easily cite the course materials.\nAlternatively, you can download a BibTeX file of all the references. You can open it in BibDesk on macOS, JabRef on Windows, or Zotero on macOS, Windows, and online.\n\n Zotero group library    BibTeX file",
+    "crumbs": [
+      "Resources",
+      "Citations and bibliography"
+    ]
   },
   {
     "objectID": "resource/design.html",
     "href": "resource/design.html",
     "title": "Design",
     "section": "",
-    "text": "Vischeck: Simulate how your images look for people with different forms of colorblindness (web-based)\nColor Oracle: Simulate how your images look for people with different forms of colorblindness (desktop-based, more types of colorblindness)"
+    "text": "Vischeck: Simulate how your images look for people with different forms of colorblindness (web-based)\nColor Oracle: Simulate how your images look for people with different forms of colorblindness (desktop-based, more types of colorblindness)",
+    "crumbs": [
+      "Resources",
+      "Design"
+    ]
   },
   {
     "objectID": "resource/design.html#accessibility",
     "href": "resource/design.html#accessibility",
     "title": "Design",
     "section": "",
-    "text": "Vischeck: Simulate how your images look for people with different forms of colorblindness (web-based)\nColor Oracle: Simulate how your images look for people with different forms of colorblindness (desktop-based, more types of colorblindness)"
+    "text": "Vischeck: Simulate how your images look for people with different forms of colorblindness (web-based)\nColor Oracle: Simulate how your images look for people with different forms of colorblindness (desktop-based, more types of colorblindness)",
+    "crumbs": [
+      "Resources",
+      "Design"
+    ]
   },
   {
     "objectID": "resource/design.html#colors",
     "href": "resource/design.html#colors",
     "title": "Design",
     "section": "Colors",
-    "text": "Colors\n\nAdobe Color: Create, share, and explore rule-based and custom color palettes.\nColourLovers: Like Facebook for color palettes.\nCoolors: Generate random palettes that look great.\nviridis: Perceptually uniform color scales.\nScientific Colour-Maps: Perceptually uniform color scales like viridis. Use them in R with {scico}.\nColorBrewer: Sequential, diverging, and qualitative color palettes that take accessibility into account.\nCARTOColors: More sequential, diverging, and qualitative color palettes that take accessibility into account. Use them with {rcartocolor}.\nPaletteer: The {paletteer} package for R includes hundreds of different palettes.\nHCL palettes: The {colorspace} package for R includes a ton of qualitative, sequential, and diverging HCL (hue-chroma-luminance) palettes that use fancy mathematical rules that maintain perceptual distance\nColorgorical: Create color palettes based on fancy mathematical rules for perceptual distance.\nColorpicker for data: More fancy mathematical rules for color palettes (explanation).\niWantHue: Yet another perceptual distance-based color palette builder.\nPhotochrome: Word-based color palettes.\nPolicyViz Design Color Tools: Large collection of useful color resources"
+    "text": "Colors\n\nAdobe Color: Create, share, and explore rule-based and custom color palettes.\nColourLovers: Like Facebook for color palettes.\nCoolors: Generate random palettes that look great.\nviridis: Perceptually uniform color scales.\nScientific Colour-Maps: Perceptually uniform color scales like viridis. Use them in R with {scico}.\nColorBrewer: Sequential, diverging, and qualitative color palettes that take accessibility into account.\nCARTOColors: More sequential, diverging, and qualitative color palettes that take accessibility into account. Use them with {rcartocolor}.\nPaletteer: The {paletteer} package for R includes hundreds of different palettes.\nHCL palettes: The {colorspace} package for R includes a ton of qualitative, sequential, and diverging HCL (hue-chroma-luminance) palettes that use fancy mathematical rules that maintain perceptual distance\nColorgorical: Create color palettes based on fancy mathematical rules for perceptual distance.\nColorpicker for data: More fancy mathematical rules for color palettes (explanation).\niWantHue: Yet another perceptual distance-based color palette builder.\nPhotochrome: Word-based color palettes.\nPolicyViz Design Color Tools: Large collection of useful color resources",
+    "crumbs": [
+      "Resources",
+      "Design"
+    ]
   },
   {
     "objectID": "resource/design.html#fonts",
     "href": "resource/design.html#fonts",
     "title": "Design",
     "section": "Fonts",
-    "text": "Fonts\n\nGoogle Fonts: Huge collection of free, well-made fonts.\nThe Ultimate Collection of Google Font Pairings: A list of great, well-designed font pairings from all those fonts hosted by Google (for when you’re looking for good contrasting or complementary fonts)."
+    "text": "Fonts\n\nGoogle Fonts: Huge collection of free, well-made fonts.\nThe Ultimate Collection of Google Font Pairings: A list of great, well-designed font pairings from all those fonts hosted by Google (for when you’re looking for good contrasting or complementary fonts).",
+    "crumbs": [
+      "Resources",
+      "Design"
+    ]
   },
   {
     "objectID": "resource/design.html#graphic-assets",
     "href": "resource/design.html#graphic-assets",
     "title": "Design",
     "section": "Graphic assets",
-    "text": "Graphic assets\n\nImages\n\nUse the Creative Commons filters on Google Images or Flickr\nUnsplash\nPexels\nPixabay\nStockSnap.io\nBurst\nfreephotos.cc\n\n\n\nVectors\n\nNoun Project: Thousands of free simple vector images\naiconica: 1,000+ vector icons\nVecteezy: Thousands of free vector images\n\n\n\nVectors, photos, videos, and other assets\n\nStockio"
+    "text": "Graphic assets\n\nImages\n\nUse the Creative Commons filters on Google Images or Flickr\nUnsplash\nPexels\nPixabay\nStockSnap.io\nBurst\nfreephotos.cc\n\n\n\nVectors\n\nNoun Project: Thousands of free simple vector images\naiconica: 1,000+ vector icons\nVecteezy: Thousands of free vector images\n\n\n\nVectors, photos, videos, and other assets\n\nStockio",
+    "crumbs": [
+      "Resources",
+      "Design"
+    ]
   },
   {
     "objectID": "resource/r.html",
     "href": "resource/r.html",
     "title": "R",
     "section": "",
-    "text": "I highly recommend subscribing to the R Weekly newsletter. This e-mail is sent every Monday and is full of helpful tutorials about how to do stuff with R.\nSearching for help with R on Google can sometimes be tricky because the program name is a single letter. Google is generally smart enough to figure out what you mean when you search for “r scatterplot”, but if it does struggle, try searching for “rstats” instead (e.g. “rstats scatterplot”). Also, since most of your R work in this class will deal with {ggplot2}, it’s often easier to just search for that instead of the letter “r” (e.g. “ggplot scatterplot”).\nIf you use Twitter, post R-related questions and content with #rstats. The community there is exceptionally generous and helpful. Also check out StackOverflow (a Q&A site with hundreds of thousands of answers to all sorts of programming questions) and RStudio Community (a forum specifically designed for people using RStudio and the tidyverse (i.e. you)).\nThese resources are also really really helpful:\n\nR for Data Science: A free online book for learning the basics of R and the tidyverse.\nR and RStudio cheat sheets: A large collection of simple cheat sheets for RStudio, {ggplot2}, and other R-related things.\nStat 545: Dr. Jenny Bryan at RStudio has an entire introductory course in R, visualization, and data analysis online.\nSTA 112FS: Data Science: Dr. Mine Çetinkaya-Rundel at the University of Edinburgh / Duke University has an entire introductory course in R, visualization, and data science online.\nCSE 631: Principles & Practice of Data Visualization: Yet another introductory course for R and ggplot2 by Dr. Alison Presmanes Hill at RStudio."
+    "text": "I highly recommend subscribing to the R Weekly newsletter. This e-mail is sent every Monday and is full of helpful tutorials about how to do stuff with R.\nSearching for help with R on Google can sometimes be tricky because the program name is a single letter. Google is generally smart enough to figure out what you mean when you search for “r scatterplot”, but if it does struggle, try searching for “rstats” instead (e.g. “rstats scatterplot”). Also, since most of your R work in this class will deal with {ggplot2}, it’s often easier to just search for that instead of the letter “r” (e.g. “ggplot scatterplot”).\nIf you use Twitter, post R-related questions and content with #rstats. The community there is exceptionally generous and helpful. Also check out StackOverflow (a Q&A site with hundreds of thousands of answers to all sorts of programming questions) and RStudio Community (a forum specifically designed for people using RStudio and the tidyverse (i.e. you)).\nThese resources are also really really helpful:\n\nR for Data Science: A free online book for learning the basics of R and the tidyverse.\nR and RStudio cheat sheets: A large collection of simple cheat sheets for RStudio, {ggplot2}, and other R-related things.\nStat 545: Dr. Jenny Bryan at RStudio has an entire introductory course in R, visualization, and data analysis online.\nSTA 112FS: Data Science: Dr. Mine Çetinkaya-Rundel at the University of Edinburgh / Duke University has an entire introductory course in R, visualization, and data science online.\nCSE 631: Principles & Practice of Data Visualization: Yet another introductory course for R and ggplot2 by Dr. Alison Presmanes Hill at RStudio.",
+    "crumbs": [
+      "Resources",
+      "R"
+    ]
   },
   {
     "objectID": "resource/r.html#learning-r",
     "href": "resource/r.html#learning-r",
     "title": "R",
     "section": "",
-    "text": "I highly recommend subscribing to the R Weekly newsletter. This e-mail is sent every Monday and is full of helpful tutorials about how to do stuff with R.\nSearching for help with R on Google can sometimes be tricky because the program name is a single letter. Google is generally smart enough to figure out what you mean when you search for “r scatterplot”, but if it does struggle, try searching for “rstats” instead (e.g. “rstats scatterplot”). Also, since most of your R work in this class will deal with {ggplot2}, it’s often easier to just search for that instead of the letter “r” (e.g. “ggplot scatterplot”).\nIf you use Twitter, post R-related questions and content with #rstats. The community there is exceptionally generous and helpful. Also check out StackOverflow (a Q&A site with hundreds of thousands of answers to all sorts of programming questions) and RStudio Community (a forum specifically designed for people using RStudio and the tidyverse (i.e. you)).\nThese resources are also really really helpful:\n\nR for Data Science: A free online book for learning the basics of R and the tidyverse.\nR and RStudio cheat sheets: A large collection of simple cheat sheets for RStudio, {ggplot2}, and other R-related things.\nStat 545: Dr. Jenny Bryan at RStudio has an entire introductory course in R, visualization, and data analysis online.\nSTA 112FS: Data Science: Dr. Mine Çetinkaya-Rundel at the University of Edinburgh / Duke University has an entire introductory course in R, visualization, and data science online.\nCSE 631: Principles & Practice of Data Visualization: Yet another introductory course for R and ggplot2 by Dr. Alison Presmanes Hill at RStudio."
+    "text": "I highly recommend subscribing to the R Weekly newsletter. This e-mail is sent every Monday and is full of helpful tutorials about how to do stuff with R.\nSearching for help with R on Google can sometimes be tricky because the program name is a single letter. Google is generally smart enough to figure out what you mean when you search for “r scatterplot”, but if it does struggle, try searching for “rstats” instead (e.g. “rstats scatterplot”). Also, since most of your R work in this class will deal with {ggplot2}, it’s often easier to just search for that instead of the letter “r” (e.g. “ggplot scatterplot”).\nIf you use Twitter, post R-related questions and content with #rstats. The community there is exceptionally generous and helpful. Also check out StackOverflow (a Q&A site with hundreds of thousands of answers to all sorts of programming questions) and RStudio Community (a forum specifically designed for people using RStudio and the tidyverse (i.e. you)).\nThese resources are also really really helpful:\n\nR for Data Science: A free online book for learning the basics of R and the tidyverse.\nR and RStudio cheat sheets: A large collection of simple cheat sheets for RStudio, {ggplot2}, and other R-related things.\nStat 545: Dr. Jenny Bryan at RStudio has an entire introductory course in R, visualization, and data analysis online.\nSTA 112FS: Data Science: Dr. Mine Çetinkaya-Rundel at the University of Edinburgh / Duke University has an entire introductory course in R, visualization, and data science online.\nCSE 631: Principles & Practice of Data Visualization: Yet another introductory course for R and ggplot2 by Dr. Alison Presmanes Hill at RStudio.",
+    "crumbs": [
+      "Resources",
+      "R"
+    ]
   },
   {
     "objectID": "resource/r.html#r-in-the-wild",
     "href": "resource/r.html#r-in-the-wild",
     "title": "R",
     "section": "R in the wild",
-    "text": "R in the wild\nA popular (and increasingly standard) way for sharing your analyses and visualizations is to post an annotated explanation of your process somewhere online. RStudio allows you to publish rendered HTML files directly to RPubs, but you can also post your output to a blog or other type of website. Reading these kinds of posts is one of the best ways to learn R, since they walk you through each step of the process and show the code and output.\nHere are some of the best examples I’ve come across:\n\nText analysis of Trump’s tweets confirms he writes only the (angrier) Android half (with a follow-up)\nBob Ross - Joy of Painting\nBechdel analysis using the tidyverse: There are also a bunch of other examples using data from FiveThirtyEight.\nSexism on the Silver Screen: Exploring film’s gender divide\nComparison of Quentin Tarantino Movies by Box Office and the Bechdel Test\nWho came to vote in Utah’s caucuses?\nHealth care indicators in Utah counties\nSong lyrics across the United States\nA decade (ish) of listening to Sigur Rós\nWhen is Tom peeping these days?: There are a also bunch of final projects from other R and data visualization classes here and here.\nMapping Fall Foliage\nGeneral (Attys) Distributions\nDisproving Approval"
+    "text": "R in the wild\nA popular (and increasingly standard) way for sharing your analyses and visualizations is to post an annotated explanation of your process somewhere online. RStudio allows you to publish rendered HTML files directly to RPubs, but you can also post your output to a blog or other type of website. Reading these kinds of posts is one of the best ways to learn R, since they walk you through each step of the process and show the code and output.\nHere are some of the best examples I’ve come across:\n\nText analysis of Trump’s tweets confirms he writes only the (angrier) Android half (with a follow-up)\nBob Ross - Joy of Painting\nBechdel analysis using the tidyverse: There are also a bunch of other examples using data from FiveThirtyEight.\nSexism on the Silver Screen: Exploring film’s gender divide\nComparison of Quentin Tarantino Movies by Box Office and the Bechdel Test\nWho came to vote in Utah’s caucuses?\nHealth care indicators in Utah counties\nSong lyrics across the United States\nA decade (ish) of listening to Sigur Rós\nWhen is Tom peeping these days?: There are a also bunch of final projects from other R and data visualization classes here and here.\nMapping Fall Foliage\nGeneral (Attys) Distributions\nDisproving Approval",
+    "crumbs": [
+      "Resources",
+      "R"
+    ]
   },
   {
     "objectID": "about.html",
@@ -483,11 +769,145 @@
     "text": "About this site\n\n1 + 1\n\n[1] 2"
   },
   {
+    "objectID": "lesson/03-lesson.html",
+    "href": "lesson/03-lesson.html",
+    "title": "Lab 3:",
+    "section": "",
+    "text": "To complete"
+  },
+  {
+    "objectID": "lesson/03-lesson.html#part-1",
+    "href": "lesson/03-lesson.html#part-1",
+    "title": "Lab 3:",
+    "section": "",
+    "text": "To complete"
+  },
+  {
     "objectID": "index.html",
     "href": "index.html",
     "title": "\n            Advanced Quantitative Methods: Description and Prediction  Summer Math Camp\n        ",
     "section": "",
     "text": "Advanced Quantitative Methods: Description and Prediction  Summer Math Camp\n        \n        \n            Conceptual mastery of statistical methods for public policy, focusing on application rather than mechanics\n        \n        \n            API 209 • Summer 2024Prof: Dan Levy | Summer TF: Rony RodriguezHarvard University\n        \n    \n    \n      \n        \n        \n        \n      \n    \n\n\n\n\n\n\nSummer TF\n\n Rony Rodriguez-Ramirez\n 55 Park Place SE, Room 464\n rrodriguezramirez@g.harvard.edu\n Bluesky\n\n\n\nCourse details\n\n Any day\n August 15–August 28, 2024\n Asynchronous\n Anywhere\n\n\n\nContacting me\n\n Schedule an appointment\n Slack\n\nE-mail and Slack are the best ways to get in contact with me. Sometimes, life happens so bear with me if I don’t respond quickly!"
+  },
+  {
+    "objectID": "content/02-content.html",
+    "href": "content/02-content.html",
+    "title": "Elegant Data Visualization with ggplot2",
+    "section": "",
+    "text": "IN CONSTRUCTION!",
+    "crumbs": [
+      "Lessons",
+      "Data Visualization in R",
+      "2: Elegant Data Visualization with ggplot2"
+    ]
+  },
+  {
+    "objectID": "content/02-content.html#overview",
+    "href": "content/02-content.html#overview",
+    "title": "Elegant Data Visualization with ggplot2",
+    "section": "",
+    "text": "IN CONSTRUCTION!",
+    "crumbs": [
+      "Lessons",
+      "Data Visualization in R",
+      "2: Elegant Data Visualization with ggplot2"
+    ]
+  },
+  {
+    "objectID": "content/02-content.html#guiding-questions",
+    "href": "content/02-content.html#guiding-questions",
+    "title": "Elegant Data Visualization with ggplot2",
+    "section": "Guiding Questions",
+    "text": "Guiding Questions\n\n\n\n\n\n\nThese are optional!\n\n\n\nYou don’t need to answer all of these—or even any of them! They are here to help guide your thinking and reflection on the content. Feel free to explore whatever aspects you find most interesting.\n\n\n\nQuestion 1",
+    "crumbs": [
+      "Lessons",
+      "Data Visualization in R",
+      "2: Elegant Data Visualization with ggplot2"
+    ]
+  },
+  {
+    "objectID": "content/02-content.html#readings",
+    "href": "content/02-content.html#readings",
+    "title": "Elegant Data Visualization with ggplot2",
+    "section": "Readings",
+    "text": "Readings\n\nNo readings for this session.",
+    "crumbs": [
+      "Lessons",
+      "Data Visualization in R",
+      "2: Elegant Data Visualization with ggplot2"
+    ]
+  },
+  {
+    "objectID": "content/02-content.html#slides",
+    "href": "content/02-content.html#slides",
+    "title": "Elegant Data Visualization with ggplot2",
+    "section": "Slides",
+    "text": "Slides\nThe slides for this session are available online as an HTML file. Use the buttons below to open the slides either as an interactive website or as a static PDF (for printing or storing for later). You can also navigate through the embedded slides directly on this page using your left and right arrow keys.\n\n View all slides in new window  Download PDF of all slides\n\n\n\n\n\n\n\n\n\n\n\nTip\n\n\n\nPro tip: If you type ? (or shift + /) while viewing the slides, you can access a list of special commands to enhance your experience.",
+    "crumbs": [
+      "Lessons",
+      "Data Visualization in R",
+      "2: Elegant Data Visualization with ggplot2"
+    ]
+  },
+  {
+    "objectID": "content/04-content.html",
+    "href": "content/04-content.html",
+    "title": "Streamlining Research with R",
+    "section": "",
+    "text": "IN CONSTRUCTION!",
+    "crumbs": [
+      "Lessons",
+      "Streamlining Research with R",
+      "4: Reproducible Research and Automation"
+    ]
+  },
+  {
+    "objectID": "content/04-content.html#overview",
+    "href": "content/04-content.html#overview",
+    "title": "Streamlining Research with R",
+    "section": "",
+    "text": "IN CONSTRUCTION!",
+    "crumbs": [
+      "Lessons",
+      "Streamlining Research with R",
+      "4: Reproducible Research and Automation"
+    ]
+  },
+  {
+    "objectID": "content/04-content.html#guiding-questions",
+    "href": "content/04-content.html#guiding-questions",
+    "title": "Streamlining Research with R",
+    "section": "Guiding Questions",
+    "text": "Guiding Questions\n\n\n\n\n\n\nThese are optional!\n\n\n\nYou don’t need to answer all of these—or even any of them! They are here to help guide your thinking and reflection on the content. Feel free to explore whatever aspects you find most interesting.\n\n\n\nQuestion 1",
+    "crumbs": [
+      "Lessons",
+      "Streamlining Research with R",
+      "4: Reproducible Research and Automation"
+    ]
+  },
+  {
+    "objectID": "content/04-content.html#readings",
+    "href": "content/04-content.html#readings",
+    "title": "Streamlining Research with R",
+    "section": "Readings",
+    "text": "Readings\n\nNo readings for this session.",
+    "crumbs": [
+      "Lessons",
+      "Streamlining Research with R",
+      "4: Reproducible Research and Automation"
+    ]
+  },
+  {
+    "objectID": "content/04-content.html#slides",
+    "href": "content/04-content.html#slides",
+    "title": "Streamlining Research with R",
+    "section": "Slides",
+    "text": "Slides\nThe slides for this session are available online as an HTML file. Use the buttons below to open the slides either as an interactive website or as a static PDF (for printing or storing for later). You can also navigate through the embedded slides directly on this page using your left and right arrow keys.\n\n View all slides in new window  Download PDF of all slides\n\n\n\n\n\n\n\n\n\n\n\nTip\n\n\n\nPro tip: If you type ? (or shift + /) while viewing the slides, you can access a list of special commands to enhance your experience.",
+    "crumbs": [
+      "Lessons",
+      "Streamlining Research with R",
+      "4: Reproducible Research and Automation"
+    ]
   },
   {
     "objectID": "assignment/01-exercise.html",
@@ -511,87 +931,59 @@
     "text": "Task 2: Work with R\n\nAdd your reading reflection to the appropriate place in the Quarto file. You can type directly in RStudio if you want (though there’s no spell checker), or you can type it in Word or Google Docs and then paste it into RStudio.\nRemove the text that says “PUT CHUNK HERE” and insert a new R code chunk. Either type ctrl + alt + i on Windows, or ⌘ + ⌥ + i on macOS, or use the “Insert Chunk” menu:\n\n\n\n\n\n\n\n\n\nFollow the instructions for the three chunks of code.\nRender your document as a Word file (or PDF if you’re brave and installed LaTeX). Use the “Render” menu:\n\n\n\n\n\n\n\n\n\nUpload the rendered document to iCollege.\n🎉 Party! 🎉\n\n\n\n\n\n\n\nFile organization\n\n\n\nYou’ll be doing this same process for all your future exercises. Each exercise will involve an Quarto file. Or you can create individual projects for each assignment and mini-project (recommended!):\n\n\n\n\n\n\n\n\n\nIndividual folders for each project on macOS\n\n\n\n\n \n\n\n\n\n\nIndividual folders for each project on Windows\n\n\n\n\n\nOr you can create a new RStudio Project directory for all your work (not recommended!):\n\n\n\n\n\n\n\n\n\nOne folder for everything on macOS\n\n\n\n\n \n\n\n\n\n\nOne folder for everything on Windows"
   },
   {
-    "objectID": "content/02-content.html",
-    "href": "content/02-content.html",
-    "title": "Graphic design",
-    "section": "",
-    "text": "Chapter 5 in The Truthful Art [@Cairo:2016]\n Chapter 4 and Chapter 27 in Fundamentals of Data Visualization [@Wilke:2018]\n Cédric Scherer, “Colors and emotions in data visualization”\n Lisa Charlotte Muth, “Emphasize what you want readers to see with colors”\n Lisa Charlotte Muth, “A detailed guide to colors in data vis style guides”. You can skim this—this is a good resource for future you.\n Summary of CRAP graphic design principles from Presentation Zen [@Reynolds:2008]. These principles are from Robin Williams’ The Non-Designer’s Design & Type Books [@Williams:2008], which you should really get if you’re interested in doing anything design-related ever. Her stuff is life-changing.\n Typography in ten minutes. The rest of the Practical Typography book is phenomenal and you’d be remiss if you didn’t read the whole thing and bookmark it for life, but for now just read this quick summary.\n Font Matrix – See & Pair Typefaces Like Never Before. In the videos, I mention that you should use contrasting font families, like choosing a sans serif and a serif font. But in reality, mixing fonts well is more complicated than that. The designer here presents something called the Font Matrix that will help you find good font combinations.\n “What’s the Difference Between JPG, PNG, and GIF?”\n “File formats explained”\n\n\n\n\n\n\n\n\n\nThis is not a required list!\n\n\n\nRemember, you don’t need to answer all of these—or even any of them! These are just here to help guide your thinking. Write about whatever you want.\n\n\n\nWhy does graphic design matter when conveying truth?\nWhat makes something well designed (vs. poorly designed)?",
-    "crumbs": [
-      "Content",
-      "Foundations",
-      "2: Graphic design"
-    ]
-  },
-  {
-    "objectID": "content/02-content.html#readings",
-    "href": "content/02-content.html#readings",
-    "title": "Graphic design",
-    "section": "",
-    "text": "Chapter 5 in The Truthful Art [@Cairo:2016]\n Chapter 4 and Chapter 27 in Fundamentals of Data Visualization [@Wilke:2018]\n Cédric Scherer, “Colors and emotions in data visualization”\n Lisa Charlotte Muth, “Emphasize what you want readers to see with colors”\n Lisa Charlotte Muth, “A detailed guide to colors in data vis style guides”. You can skim this—this is a good resource for future you.\n Summary of CRAP graphic design principles from Presentation Zen [@Reynolds:2008]. These principles are from Robin Williams’ The Non-Designer’s Design & Type Books [@Williams:2008], which you should really get if you’re interested in doing anything design-related ever. Her stuff is life-changing.\n Typography in ten minutes. The rest of the Practical Typography book is phenomenal and you’d be remiss if you didn’t read the whole thing and bookmark it for life, but for now just read this quick summary.\n Font Matrix – See & Pair Typefaces Like Never Before. In the videos, I mention that you should use contrasting font families, like choosing a sans serif and a serif font. But in reality, mixing fonts well is more complicated than that. The designer here presents something called the Font Matrix that will help you find good font combinations.\n “What’s the Difference Between JPG, PNG, and GIF?”\n “File formats explained”\n\n\n\n\n\n\n\n\n\nThis is not a required list!\n\n\n\nRemember, you don’t need to answer all of these—or even any of them! These are just here to help guide your thinking. Write about whatever you want.\n\n\n\nWhy does graphic design matter when conveying truth?\nWhat makes something well designed (vs. poorly designed)?",
-    "crumbs": [
-      "Content",
-      "Foundations",
-      "2: Graphic design"
-    ]
-  },
-  {
-    "objectID": "content/02-content.html#slides",
-    "href": "content/02-content.html#slides",
-    "title": "Graphic design",
-    "section": "Slides",
-    "text": "Slides\nThe slides for this week’s lesson are available online as an HTML file. Use the buttons below to open the slides either as an interactive website or as a static PDF (for printing or storing for later). You can also click in the slides below and navigate through them with your left and right arrow keys.\n\n View all slides in new window  Download PDF of all slides\n\n\n\n\n\n\n\n\n\n\n\nTip\n\n\n\nFun fact: If you type ? (or shift + /) while going through the slides, you can see a list of special slide-specific commands.",
-    "crumbs": [
-      "Content",
-      "Foundations",
-      "2: Graphic design"
-    ]
-  },
-  {
-    "objectID": "content/02-content.html#videos",
-    "href": "content/02-content.html#videos",
-    "title": "Graphic design",
-    "section": "Videos",
-    "text": "Videos\nVideos for each section of the lecture are available at this YouTube playlist.\n\nIntroduction\nTruth, beauty, stories, design\nGraphic design and CRAP\nImage types\n\nYou can also watch the playlist (and skip around to different sections) here:",
-    "crumbs": [
-      "Content",
-      "Foundations",
-      "2: Graphic design"
-    ]
-  },
-  {
     "objectID": "schedule.html",
     "href": "schedule.html",
     "title": "Schedule",
     "section": "",
-    "text": "Here’s your roadmap for the summar camp!\n\nContent (): This page contains the readings, slides, and recorded lectures for the topic. Read and watch these first.\nLesson (): This page contains an interactive lesson that teaches you the principles and code you need to know. Go through these after doing the content.\nExample (): This page contains fully annotated R code that you can use as a reference for creating your own visualizations. This is only a reference page—you don’t have to necessarily do anything here. Each section also contains videos of me live coding the examples so you can see what it looks like to work with R in real time. This page will be very helpful as you work on your assignments.\nAssignment (): This page contains the instructions for either the session exercise (1–3 brief tasks), or for the two mini projects and final project. Assignments are due by 11:59 PM on the Monday after their corresponding sessions. That’s confusing in sentence form—see the schedule table below to see how it works.\n\n\n\n\n\ntl;dr: You should follow this general process for each session:\n\nDo everything on the content page ()\nWork through the lesson page ()\nComplete the assignment () while referencing the example ()\n\n\n\n\n\n\n\n\n\n\n\n\nSubscribe!\n\n\n\nYou can subscribe to this calendar URL in Outlook, Google Calendar, or Apple Calendar:"
+    "text": "Here’s your roadmap for the summer camp!\n\nContent (): This page contains the readings, slides, and recorded lectures for the topic. Read and watch these first.\nLesson (): This page contains an interactive lesson that teaches you the principles and code you need to know. Go through these after doing the content.\nAssignment (): This page contains the instructions for either the session exercise or the labs. Assignments are due by 11:59 PM on the Monday.\n\n\n\n\n\ntl;dr: You should follow this general process for each session:\n\nDo everything on the content page ()\nWork through the lesson page ()\nComplete the assignment () while referencing the example ()\n\n\n\n\n\n\n\n\n\n\n\n\nSubscribe!\n\n\n\nYou can subscribe to this calendar URL in Outlook, Google Calendar, or Apple Calendar:\n\n\n\n Download\n\n\n\n\n\n\n\n\n\n\n\nData Mastery in R\n\n\n\n\n\n\nTitle\n\n\nContent\n\n\nLesson\n\n\nExample\n\n\nAssignment\n\n\n\n\n\n\nAugust 15–August 15(Session 1)\n\n\nData Wrangling\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nAugust 16–August 19\n\n\nHands-On Data Wrangling\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nData Visualization in R\n\n\n\n\n\n\nTitle\n\n\nContent\n\n\nLesson\n\n\nExample\n\n\nAssignment\n\n\n\n\n\n\nAugust 20–August 20(Session 2)\n\n\nElegant Data Visualization with ggplot2\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nAugust 21–February 26\n\n\nCrafting Visual Stories\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nModeling in R\n\n\n\n\n\n\nTitle\n\n\nContent\n\n\nLesson\n\n\nExample\n\n\nAssignment\n\n\n\n\n\n\nAugust 26–August 26(Session 3)\n\n\nAdvanced Statistical Modeling in R\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nAugust 28–September 2\n\n\nBuilding and Interpreting Models\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nStreamlining Research with R\n\n\n\n\n\n\nTitle\n\n\nContent\n\n\nLesson\n\n\nExample\n\n\nAssignment\n\n\n\n\n\n\n(Session 4)\n\n\nReproducible Research and Automation\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nSeptember 4\n\n\nAutomating Workflows"
   },
   {
     "objectID": "resource/pipes.html",
     "href": "resource/pipes.html",
     "title": "Pipes",
     "section": "",
-    "text": "In the primers (and in Lesson 4) you were introduced to the pipe operator |&gt;, which takes the object on the left of the pipe and passes it as the first argument to the function on the right.\nLike, you can find the average of the numbers 1, 2, 3, 4, and 5 like this:\nmean(c(1, 2, 3, 4, 5))\n## [1] 3\nOr like this:\nc(1, 2, 3, 4, 5) |&gt; mean()\n## [1] 3"
+    "text": "In the primers (and in Lesson 4) you were introduced to the pipe operator |&gt;, which takes the object on the left of the pipe and passes it as the first argument to the function on the right.\nLike, you can find the average of the numbers 1, 2, 3, 4, and 5 like this:\nmean(c(1, 2, 3, 4, 5))\n## [1] 3\nOr like this:\nc(1, 2, 3, 4, 5) |&gt; mean()\n## [1] 3",
+    "crumbs": [
+      "Resources",
+      "Guides",
+      "Pipes"
+    ]
   },
   {
     "objectID": "resource/pipes.html#pipe-styles",
     "href": "resource/pipes.html#pipe-styles",
     "title": "Pipes",
     "section": "Pipe styles",
-    "text": "Pipe styles\nThere are actually two pipe operators in R, and you’ll see both in the wild.\n\n\n\n\n\nRené Magritte, “The Treachery of Images”\n\n\n\nThe %&gt;% operator was invented first in 2014 in an R package named {magrittr}, a pun on René Magritte’s famous painting of a pipe, “The Treachery of Images”.\nThe |&gt; operator was added as a native part of R itself with version 4.1.0 in May 2021. It doesn’t require any extra packages to use.\n\nIn 99% of cases, the two pipes are the same (see here for details about their differences; or see this too). The magrittr %&gt;% is still wildly popular and you’ll see code online that uses it. The main downside to the magrittr pipe is that it requires that you load a package to use it. If you run library(tidyverse), you’ll have access to it, and in this class you’ll load tidyverse 100% of the time, so you can use %&gt;% without any problems.\nI switched my R classes away from %&gt;% to |&gt; starting in January 2024, mostly following the example of Hadley Wickham (inventor of ggplot, dplyr, and pretty much all the tidyverse). The first edition of R for Data Science by Hadley Wickham and Garrett Grolemund used the magrittr pipe (%&gt;%) extensively, which is partially why it became so popular. In the second edition of R for Data Science, though, published in June 2023, they switched to the native pipe (|&gt;). I took that as a cue to do the same in my own R work.\nSo I’m teaching you the native pipe (|&gt;). But don’t panic if you see the magrittr pipe (%&gt;%) out there. And feel free to use it too. Again, 99% of the time, it works the same:\n\n# {magrittr} pipe\nc(1, 2, 3, 4, 5) %&gt;% mean()\n## [1] 3\n\n\n# Native pipe\nc(1, 2, 3, 4, 5) |&gt; mean()\n## [1] 3\n\nJust don’t mix the two pipes in the same chain of functions. This is bad:\nmpg |&gt; \n  group_by(...) %&gt;%\n  summarize(...) |&gt;\n  filter(...) %&gt;%\n  select(...)"
+    "text": "Pipe styles\nThere are actually two pipe operators in R, and you’ll see both in the wild.\n\n\n\n\n\nRené Magritte, “The Treachery of Images”\n\n\n\nThe %&gt;% operator was invented first in 2014 in an R package named {magrittr}, a pun on René Magritte’s famous painting of a pipe, “The Treachery of Images”.\nThe |&gt; operator was added as a native part of R itself with version 4.1.0 in May 2021. It doesn’t require any extra packages to use.\n\nIn 99% of cases, the two pipes are the same (see here for details about their differences; or see this too). The magrittr %&gt;% is still wildly popular and you’ll see code online that uses it. The main downside to the magrittr pipe is that it requires that you load a package to use it. If you run library(tidyverse), you’ll have access to it, and in this class you’ll load tidyverse 100% of the time, so you can use %&gt;% without any problems.\nI switched my R classes away from %&gt;% to |&gt; starting in January 2024, mostly following the example of Hadley Wickham (inventor of ggplot, dplyr, and pretty much all the tidyverse). The first edition of R for Data Science by Hadley Wickham and Garrett Grolemund used the magrittr pipe (%&gt;%) extensively, which is partially why it became so popular. In the second edition of R for Data Science, though, published in June 2023, they switched to the native pipe (|&gt;). I took that as a cue to do the same in my own R work.\nSo I’m teaching you the native pipe (|&gt;). But don’t panic if you see the magrittr pipe (%&gt;%) out there. And feel free to use it too. Again, 99% of the time, it works the same:\n\n# {magrittr} pipe\nc(1, 2, 3, 4, 5) %&gt;% mean()\n## [1] 3\n\n\n# Native pipe\nc(1, 2, 3, 4, 5) |&gt; mean()\n## [1] 3\n\nJust don’t mix the two pipes in the same chain of functions. This is bad:\nmpg |&gt; \n  group_by(...) %&gt;%\n  summarize(...) |&gt;\n  filter(...) %&gt;%\n  select(...)",
+    "crumbs": [
+      "Resources",
+      "Guides",
+      "Pipes"
+    ]
   },
   {
     "objectID": "resource/pipes.html#pipes-and-fancy-fonts",
     "href": "resource/pipes.html#pipes-and-fancy-fonts",
     "title": "Pipes",
     "section": "Pipes and fancy fonts",
-    "text": "Pipes and fancy fonts\nThe |&gt; is actually designed to look like a triangle pointing to the left: ▷\nBut in pretty much all fonts, the | character is too tall and doesn’t align with the top and bottom of the left side of the &gt; character, so it doesn’t quite look right.\nIf you want to be fancy and cool, you can download and install a special programming font named Fira Code that uses some typographic magic to make certain combinations of characters appear differently in RStudio.\nLike, check out the == and != and &lt;= and |&gt; characters normally:\n\n\n\nSample code with a normal font\n\n\nAnd now look at them with Fira Code, where they’re magically transformed into fancier combinations:\n\n\n\nSample code with Fira Code\n\n\nThe underlying code is the same—the != combination isn’t actually converted to a ≠ character. It just looks that way.\nInstall the font, then go to Tools &gt; Global Options… &gt; Appearance and change the editor font if you want to use Fira Code in RStudio."
+    "text": "Pipes and fancy fonts\nThe |&gt; is actually designed to look like a triangle pointing to the left: ▷\nBut in pretty much all fonts, the | character is too tall and doesn’t align with the top and bottom of the left side of the &gt; character, so it doesn’t quite look right.\nIf you want to be fancy and cool, you can download and install a special programming font named Fira Code that uses some typographic magic to make certain combinations of characters appear differently in RStudio.\nLike, check out the == and != and &lt;= and |&gt; characters normally:\n\n\n\nSample code with a normal font\n\n\nAnd now look at them with Fira Code, where they’re magically transformed into fancier combinations:\n\n\n\nSample code with Fira Code\n\n\nThe underlying code is the same—the != combination isn’t actually converted to a ≠ character. It just looks that way.\nInstall the font, then go to Tools &gt; Global Options… &gt; Appearance and change the editor font if you want to use Fira Code in RStudio.",
+    "crumbs": [
+      "Resources",
+      "Guides",
+      "Pipes"
+    ]
   },
   {
     "objectID": "resource/pipes.html#pipe-keyboard-shortcut",
     "href": "resource/pipes.html#pipe-keyboard-shortcut",
     "title": "Pipes",
     "section": "Pipe keyboard shortcut",
-    "text": "Pipe keyboard shortcut\nIn RStudio, you can insert a pipe operator with a keyboard shortcut:\n\nOn macOS: ⌘ + ⇧ + M1\nOn Windows: ctrl + shift + M\n\n1 The “M” here refers to the magrittr pipeYou can control which kind of pipe is inserted by going to Tools &gt; Global options… &gt; Code &gt; Editing and toggling the “Use native pipe operator” option:\n\n\n\nRStudio pipe options"
+    "text": "Pipe keyboard shortcut\nIn RStudio, you can insert a pipe operator with a keyboard shortcut:\n\nOn macOS: ⌘ + ⇧ + M1\nOn Windows: ctrl + shift + M\n\n1 The “M” here refers to the magrittr pipeYou can control which kind of pipe is inserted by going to Tools &gt; Global options… &gt; Code &gt; Editing and toggling the “Use native pipe operator” option:\n\n\n\nRStudio pipe options",
+    "crumbs": [
+      "Resources",
+      "Guides",
+      "Pipes"
+    ]
   },
   {
     "objectID": "resource/unzipping.html",
@@ -619,20 +1011,32 @@
     "href": "resource/style.html",
     "title": "R style suggestions",
     "section": "",
-    "text": "R is fairly forgiving about how you type code (unlike other languages like Python, where miscounting spaces can ruin your code!). All of these things will do exactly the same thing:\n\nmpg |&gt; \n  filter(cty &gt; 10, class == \"compact\")\n\nmpg |&gt; filter(cty &gt; 10, class == \"compact\")\n\nmpg |&gt; \n  filter(cty &gt; 10, \n         class == \"compact\")\n\nmpg |&gt; filter(cty&gt;10, class==\"compact\")\n\nfilter(mpg,cty&gt;10,class==\"compact\")\n\nmpg |&gt; \nfilter(cty &gt; 10, \n                        class == \"compact\")\n\nfilter ( mpg,cty&gt;10,     class==\"compact\" )\n\nBut you’ll notice that only a few of those iterations (the first three) are easily readable.\nTo help improve readability and make it easier to share code with others, there’s an unofficial style guide for writing R code. It’s fairly short and just has lots of examples of good and bad ways of writing code (naming variables, dealing with long lines, using proper indentation levels, etc.)—you should glance through it some time.\nRStudio has a built-in way of cleaning up your code. Select some code, press ctrl + i (on Windows) or ⌘ + i (on macOS), and R will reformat the code for you. It’s not always perfect, but it’s really helpful for getting indentation right without having to manually hit space a billion times."
+    "text": "R is fairly forgiving about how you type code (unlike other languages like Python, where miscounting spaces can ruin your code!). All of these things will do exactly the same thing:\n\nmpg |&gt; \n  filter(cty &gt; 10, class == \"compact\")\n\nmpg |&gt; filter(cty &gt; 10, class == \"compact\")\n\nmpg |&gt; \n  filter(cty &gt; 10, \n         class == \"compact\")\n\nmpg |&gt; filter(cty&gt;10, class==\"compact\")\n\nfilter(mpg,cty&gt;10,class==\"compact\")\n\nmpg |&gt; \nfilter(cty &gt; 10, \n                        class == \"compact\")\n\nfilter ( mpg,cty&gt;10,     class==\"compact\" )\n\nBut you’ll notice that only a few of those iterations (the first three) are easily readable.\nTo help improve readability and make it easier to share code with others, there’s an unofficial style guide for writing R code. It’s fairly short and just has lots of examples of good and bad ways of writing code (naming variables, dealing with long lines, using proper indentation levels, etc.)—you should glance through it some time.\nRStudio has a built-in way of cleaning up your code. Select some code, press ctrl + i (on Windows) or ⌘ + i (on macOS), and R will reformat the code for you. It’s not always perfect, but it’s really helpful for getting indentation right without having to manually hit space a billion times.",
+    "crumbs": [
+      "Resources",
+      "R style suggestions"
+    ]
   },
   {
     "objectID": "resource/style.html#r-style-conventions",
     "href": "resource/style.html#r-style-conventions",
     "title": "R style suggestions",
     "section": "",
-    "text": "R is fairly forgiving about how you type code (unlike other languages like Python, where miscounting spaces can ruin your code!). All of these things will do exactly the same thing:\n\nmpg |&gt; \n  filter(cty &gt; 10, class == \"compact\")\n\nmpg |&gt; filter(cty &gt; 10, class == \"compact\")\n\nmpg |&gt; \n  filter(cty &gt; 10, \n         class == \"compact\")\n\nmpg |&gt; filter(cty&gt;10, class==\"compact\")\n\nfilter(mpg,cty&gt;10,class==\"compact\")\n\nmpg |&gt; \nfilter(cty &gt; 10, \n                        class == \"compact\")\n\nfilter ( mpg,cty&gt;10,     class==\"compact\" )\n\nBut you’ll notice that only a few of those iterations (the first three) are easily readable.\nTo help improve readability and make it easier to share code with others, there’s an unofficial style guide for writing R code. It’s fairly short and just has lots of examples of good and bad ways of writing code (naming variables, dealing with long lines, using proper indentation levels, etc.)—you should glance through it some time.\nRStudio has a built-in way of cleaning up your code. Select some code, press ctrl + i (on Windows) or ⌘ + i (on macOS), and R will reformat the code for you. It’s not always perfect, but it’s really helpful for getting indentation right without having to manually hit space a billion times."
+    "text": "R is fairly forgiving about how you type code (unlike other languages like Python, where miscounting spaces can ruin your code!). All of these things will do exactly the same thing:\n\nmpg |&gt; \n  filter(cty &gt; 10, class == \"compact\")\n\nmpg |&gt; filter(cty &gt; 10, class == \"compact\")\n\nmpg |&gt; \n  filter(cty &gt; 10, \n         class == \"compact\")\n\nmpg |&gt; filter(cty&gt;10, class==\"compact\")\n\nfilter(mpg,cty&gt;10,class==\"compact\")\n\nmpg |&gt; \nfilter(cty &gt; 10, \n                        class == \"compact\")\n\nfilter ( mpg,cty&gt;10,     class==\"compact\" )\n\nBut you’ll notice that only a few of those iterations (the first three) are easily readable.\nTo help improve readability and make it easier to share code with others, there’s an unofficial style guide for writing R code. It’s fairly short and just has lots of examples of good and bad ways of writing code (naming variables, dealing with long lines, using proper indentation levels, etc.)—you should glance through it some time.\nRStudio has a built-in way of cleaning up your code. Select some code, press ctrl + i (on Windows) or ⌘ + i (on macOS), and R will reformat the code for you. It’s not always perfect, but it’s really helpful for getting indentation right without having to manually hit space a billion times.",
+    "crumbs": [
+      "Resources",
+      "R style suggestions"
+    ]
   },
   {
     "objectID": "resource/style.html#main-style-things-to-pay-attention-to-for-this-class",
     "href": "resource/style.html#main-style-things-to-pay-attention-to-for-this-class",
     "title": "R style suggestions",
     "section": "Main style things to pay attention to for this class",
-    "text": "Main style things to pay attention to for this class\n\nImportant note: I won’t ever grade you on any of this! If you submit something like filter(mpg,cty&gt;10,class==\"compact\"), I might recommend adding spaces, but it won’t affect your grade or points or anything.\n\n\nSpacing\n\nSee the “Spacing” section in the tidyverse style guide.\n\nPut spaces after commas (like in regular English):\n\n# Good\nfilter(mpg, cty &gt; 10)\n\n# Bad\nfilter(mpg , cty &gt; 10)\nfilter(mpg ,cty &gt; 10)\nfilter(mpg,cty &gt; 10)\n\nPut spaces around operators like +, -, &gt;, =, etc.:\n\n# Good\nfilter(mpg, cty &gt; 10)\n\n# Bad\nfilter(mpg, cty&gt;10)\nfilter(mpg, cty&gt; 10)\nfilter(mpg, cty &gt;10)\n\nDon’t put spaces around parentheses that are parts of functions:\n\n# Good\nfilter(mpg, cty &gt; 10)\n\n# Bad\nfilter (mpg, cty &gt; 10)\nfilter ( mpg, cty &gt; 10)\nfilter( mpg, cty &gt; 10 )\n\n\n\nLong lines\n\nSee the “Long lines” section in the tidyverse style guide.\n\nIt’s generally good practice to not have really long lines of code. A good suggestion is to keep lines at a maximum of 80 characters. Instead of counting characters by hand (ew), in RStudio go to “Tools” &gt; “Global Options” &gt; “Code” &gt; “Display” and check the box for “Show margin”. You should now see a really thin line indicating 80 characters. Again, you can go beyond this—that’s fine. It’s just good practice to avoid going too far past it.\nYou can add line breaks inside longer lines of code. Line breaks should come after commas, and things like function arguments should align within the function:\n\n# Good\nfilter(mpg, cty &gt; 10, class == \"compact\")\n\n# Good\nfilter(mpg, cty &gt; 10, \n       class == \"compact\")\n\n# Good\nfilter(mpg,\n       cty &gt; 10,\n       class == \"compact\")\n\n# Bad\nfilter(mpg, cty &gt; 10, class %in% c(\"compact\", \"pickup\", \"midsize\", \"subcompact\", \"suv\", \"2seater\", \"minivan\"))\n\n# Good\nfilter(mpg, \n       cty &gt; 10, \n       class %in% c(\"compact\", \"pickup\", \"midsize\", \"subcompact\", \n                    \"suv\", \"2seater\", \"minivan\"))\n\n\n\nPipes (|&gt;) and ggplot layers (+)\nPut each layer of a ggplot plot on separate lines, with the + at the end of the line, indented with two spaces:\n\n# Good\nggplot(mpg, aes(x = cty, y = hwy, color = class)) +\n  geom_point() +\n  geom_smooth() +\n  theme_bw()\n\n# Bad\nggplot(mpg, aes(x = cty, y = hwy, color = class)) +\n  geom_point() + geom_smooth() +\n  theme_bw()\n\n# Super bad\nggplot(mpg, aes(x = cty, y = hwy, color = class)) + geom_point() + geom_smooth() + theme_bw()\n\n# Super bad and won't even work\nggplot(mpg, aes(x = cty, y = hwy, color = class))\n  + geom_point()\n  + geom_smooth() \n  + theme_bw()\n\nPut each step in a dplyr pipeline on separate lines, with the |&gt; at the end of the line, indented with two spaces:\n\n# Good\nmpg |&gt; \n  filter(cty &gt; 10) |&gt; \n  group_by(class) |&gt; \n  summarize(avg_hwy = mean(hwy))\n\n# Bad\nmpg |&gt; filter(cty &gt; 10) |&gt; group_by(class) |&gt; \n  summarize(avg_hwy = mean(hwy))\n\n# Super bad\nmpg |&gt; filter(cty &gt; 10) |&gt; group_by(class) |&gt; summarize(avg_hwy = mean(hwy))\n\n# Super bad and won't even work\nmpg |&gt; \n  filter(cty &gt; 10)\n  |&gt; group_by(class)\n  |&gt; summarize(avg_hwy = mean(hwy))\n\n\n\nComments\n\nSee the “Comments” section in the tidyverse style guide.\n\nComments should start with a comment symbol and a single space: #\n\n# Good\n\n#Bad\n\n    #Bad\n\nIf the comment is really short (and won’t cause you to go over 80 characters in the line), you can include it in the same line as the code, separated by at least two spaces (it works with one space, but using a couple can enhance readability):\n\nmpg |&gt; \n  filter(cty &gt; 10) |&gt;  # Only rows where cty is 10 +\n  group_by(class) |&gt;  # Divide into class groups\n  summarize(avg_hwy = mean(hwy))  # Find the average hwy in each group\n\nYou can add extra spaces to get inline comments to align, if you want:\n\nmpg |&gt; \n  filter(cty &gt; 10) |&gt;            # Only rows where cty is 10 +\n  group_by(class) |&gt;             # Divide into class groups\n  summarize(avg_hwy = mean(hwy))  # Find the average hwy in each group\n\nIf the comment is really long, you can break it into multiple lines. RStudio can do this for you if you go to “Code” &gt; “Reflow comment”\n\n# Good\n# Happy families are all alike; every unhappy family is unhappy in its own way.\n# Everything was in confusion in the Oblonskys’ house. The wife had discovered\n# that the husband was carrying on an intrigue with a French girl, who had been\n# a governess in their family, and she had announced to her husband that she\n# could not go on living in the same house with him. This position of affairs\n# had now lasted three days, and not only the husband and wife themselves, but\n# all the members of their family and household, were painfully conscious of it.\n\n# Bad\n# Happy families are all alike; every unhappy family is unhappy in its own way. Everything was in confusion in the Oblonskys’ house. The wife had discovered that the husband was carrying on an intrigue with a French girl, who had been a governess in their family, and she had announced to her husband that she could not go on living in the same house with him. This position of affairs had now lasted three days, and not only the husband and wife themselves, but all the members of their family and household, were painfully conscious of it.\n\nThough, if you’re dealing with comments that are that long, consider putting the text in Quarto instead and having it be actual prose."
+    "text": "Main style things to pay attention to for this class\n\nImportant note: I won’t ever grade you on any of this! If you submit something like filter(mpg,cty&gt;10,class==\"compact\"), I might recommend adding spaces, but it won’t affect your grade or points or anything.\n\n\nSpacing\n\nSee the “Spacing” section in the tidyverse style guide.\n\nPut spaces after commas (like in regular English):\n\n# Good\nfilter(mpg, cty &gt; 10)\n\n# Bad\nfilter(mpg , cty &gt; 10)\nfilter(mpg ,cty &gt; 10)\nfilter(mpg,cty &gt; 10)\n\nPut spaces around operators like +, -, &gt;, =, etc.:\n\n# Good\nfilter(mpg, cty &gt; 10)\n\n# Bad\nfilter(mpg, cty&gt;10)\nfilter(mpg, cty&gt; 10)\nfilter(mpg, cty &gt;10)\n\nDon’t put spaces around parentheses that are parts of functions:\n\n# Good\nfilter(mpg, cty &gt; 10)\n\n# Bad\nfilter (mpg, cty &gt; 10)\nfilter ( mpg, cty &gt; 10)\nfilter( mpg, cty &gt; 10 )\n\n\n\nLong lines\n\nSee the “Long lines” section in the tidyverse style guide.\n\nIt’s generally good practice to not have really long lines of code. A good suggestion is to keep lines at a maximum of 80 characters. Instead of counting characters by hand (ew), in RStudio go to “Tools” &gt; “Global Options” &gt; “Code” &gt; “Display” and check the box for “Show margin”. You should now see a really thin line indicating 80 characters. Again, you can go beyond this—that’s fine. It’s just good practice to avoid going too far past it.\nYou can add line breaks inside longer lines of code. Line breaks should come after commas, and things like function arguments should align within the function:\n\n# Good\nfilter(mpg, cty &gt; 10, class == \"compact\")\n\n# Good\nfilter(mpg, cty &gt; 10, \n       class == \"compact\")\n\n# Good\nfilter(mpg,\n       cty &gt; 10,\n       class == \"compact\")\n\n# Bad\nfilter(mpg, cty &gt; 10, class %in% c(\"compact\", \"pickup\", \"midsize\", \"subcompact\", \"suv\", \"2seater\", \"minivan\"))\n\n# Good\nfilter(mpg, \n       cty &gt; 10, \n       class %in% c(\"compact\", \"pickup\", \"midsize\", \"subcompact\", \n                    \"suv\", \"2seater\", \"minivan\"))\n\n\n\nPipes (|&gt;) and ggplot layers (+)\nPut each layer of a ggplot plot on separate lines, with the + at the end of the line, indented with two spaces:\n\n# Good\nggplot(mpg, aes(x = cty, y = hwy, color = class)) +\n  geom_point() +\n  geom_smooth() +\n  theme_bw()\n\n# Bad\nggplot(mpg, aes(x = cty, y = hwy, color = class)) +\n  geom_point() + geom_smooth() +\n  theme_bw()\n\n# Super bad\nggplot(mpg, aes(x = cty, y = hwy, color = class)) + geom_point() + geom_smooth() + theme_bw()\n\n# Super bad and won't even work\nggplot(mpg, aes(x = cty, y = hwy, color = class))\n  + geom_point()\n  + geom_smooth() \n  + theme_bw()\n\nPut each step in a dplyr pipeline on separate lines, with the |&gt; at the end of the line, indented with two spaces:\n\n# Good\nmpg |&gt; \n  filter(cty &gt; 10) |&gt; \n  group_by(class) |&gt; \n  summarize(avg_hwy = mean(hwy))\n\n# Bad\nmpg |&gt; filter(cty &gt; 10) |&gt; group_by(class) |&gt; \n  summarize(avg_hwy = mean(hwy))\n\n# Super bad\nmpg |&gt; filter(cty &gt; 10) |&gt; group_by(class) |&gt; summarize(avg_hwy = mean(hwy))\n\n# Super bad and won't even work\nmpg |&gt; \n  filter(cty &gt; 10)\n  |&gt; group_by(class)\n  |&gt; summarize(avg_hwy = mean(hwy))\n\n\n\nComments\n\nSee the “Comments” section in the tidyverse style guide.\n\nComments should start with a comment symbol and a single space: #\n\n# Good\n\n#Bad\n\n    #Bad\n\nIf the comment is really short (and won’t cause you to go over 80 characters in the line), you can include it in the same line as the code, separated by at least two spaces (it works with one space, but using a couple can enhance readability):\n\nmpg |&gt; \n  filter(cty &gt; 10) |&gt;  # Only rows where cty is 10 +\n  group_by(class) |&gt;  # Divide into class groups\n  summarize(avg_hwy = mean(hwy))  # Find the average hwy in each group\n\nYou can add extra spaces to get inline comments to align, if you want:\n\nmpg |&gt; \n  filter(cty &gt; 10) |&gt;            # Only rows where cty is 10 +\n  group_by(class) |&gt;             # Divide into class groups\n  summarize(avg_hwy = mean(hwy))  # Find the average hwy in each group\n\nIf the comment is really long, you can break it into multiple lines. RStudio can do this for you if you go to “Code” &gt; “Reflow comment”\n\n# Good\n# Happy families are all alike; every unhappy family is unhappy in its own way.\n# Everything was in confusion in the Oblonskys’ house. The wife had discovered\n# that the husband was carrying on an intrigue with a French girl, who had been\n# a governess in their family, and she had announced to her husband that she\n# could not go on living in the same house with him. This position of affairs\n# had now lasted three days, and not only the husband and wife themselves, but\n# all the members of their family and household, were painfully conscious of it.\n\n# Bad\n# Happy families are all alike; every unhappy family is unhappy in its own way. Everything was in confusion in the Oblonskys’ house. The wife had discovered that the husband was carrying on an intrigue with a French girl, who had been a governess in their family, and she had announced to her husband that she could not go on living in the same house with him. This position of affairs had now lasted three days, and not only the husband and wife themselves, but all the members of their family and household, were painfully conscious of it.\n\nThough, if you’re dealing with comments that are that long, consider putting the text in Quarto instead and having it be actual prose.",
+    "crumbs": [
+      "Resources",
+      "R style suggestions"
+    ]
   }
 ]

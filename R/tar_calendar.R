@@ -18,8 +18,9 @@ build_schedule_for_page <- function(schedule_file) {
     # with strptime, but it doesn't---format.hms() just coerces the whole thing
     # to character. So here I add the deadline time to the deadline date with
     # update() and then format it with format.Date()
-    mutate(deadline_actual = update(date, hour = hour(deadline), minute = minute(deadline)),
-      deadline_nice = format(deadline_actual, "%I:%M %p")) |>
+    # I am not using any deadline, so I will delete
+    # mutate(deadline_actual = update(date, hour = hour(deadline), minute = minute(deadline)),
+    #   deadline_nice = format(deadline_actual, "%I:%M %p")) |>
     mutate(group = fct_inorder(group)) |>
     mutate(var_note = ifelse(!is.na(note),
       glue('<br><span class="content-note">{note}</span>'),
@@ -29,9 +30,9 @@ build_schedule_for_page <- function(schedule_file) {
     mutate(var_title = ifelse(!is.na(content),
       glue('<span class="content-title">{var_flag_start}{title}{var_flag_end}</span>'),
       glue('{var_flag_start}{title}{var_flag_end}'))) |>
-    mutate(var_deadline = ifelse(!is.na(deadline),
-      glue('&emsp;&emsp;<small>(submit by {deadline_nice})</small>'),
-      glue(""))) |>
+    # mutate(var_deadline = ifelse(!is.na(deadline),
+    #   glue('&emsp;&emsp;<small>(submit by {deadline_nice})</small>'),
+    #   glue(""))) |>
     mutate(var_content = ifelse(!is.na(content),
       glue('<a href="{content}.qmd"><i class="fa-solid fa-book-open-reader fa-lg"></i></a>'),
       glue('<font color="#e9ecef"><i class="fa-solid fa-book-open-reader fa-lg"></i></font>'))) |>
@@ -44,6 +45,7 @@ build_schedule_for_page <- function(schedule_file) {
     mutate(var_assignment = ifelse(!is.na(assignment),
       glue('<a href="{assignment}.qmd"><i class="fa-solid fa-pen-ruler fa-lg"></i></a>'),
       glue('<font color="#e9ecef"><i class="fa-solid fa-pen-ruler fa-lg"></i></font>'))) |>
+    mutate(date = mdy(date), end_date = mdy(end_date)) |> 
     mutate(date_range = ifelse(!is.na(end_date),
       glue('{format(date, "%B %e")}–{format(end_date, "%B %e")}'), NA)) |> 
     mutate(col_date = case_when(
@@ -53,7 +55,7 @@ build_schedule_for_page <- function(schedule_file) {
       is.na(content) & !is.na(date_range) ~ glue('<span class="content-date">{date_range}</span>'),
       TRUE ~ glue('<span class="content-date">{format(date, "%B %e")}</span>')
     )) |> 
-    mutate(col_title = glue('{var_title}{var_deadline}{var_note}')) |>
+    mutate(col_title = glue('{var_title}{var_note}')) |>
     mutate(
       col_content = var_content,
       col_lesson = var_lesson,

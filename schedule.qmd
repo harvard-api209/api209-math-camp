@@ -27,9 +27,7 @@ Here's your roadmap for the summer camp!
 
 - [**Lesson**](/lesson/index.qmd) ({{< fa chalkboard-teacher >}}): This page contains an interactive lesson that teaches you the principles and code you need to know. Go through these after doing the content.
 
-- [**Example**](/example/index.qmd) ({{< fa laptop-code >}}): This page contains fully annotated R code that you can use as a reference for creating your own visualizations. This is only a reference page—you don’t have to necessarily do anything here. Each section also contains videos of me live coding the examples so you can see what it looks like to work with R in real time. This page will be *very* helpful as you work on your assignments.
-
-- [**Assignment**](/assignment/index.qmd) ({{< fa pen-ruler >}}): This page contains the instructions for either the session exercise (1–3 brief tasks), or for the two mini projects and final project. **Assignments are due by 11:59 PM on the Monday after their corresponding sessions.** That’s confusing in sentence form—see the schedule table below to see how it works.
+- [**Assignment**](/assignment/index.qmd) ({{< fa pen-ruler >}}): This page contains the instructions for either the session exercise or the labs. **Assignments are <del>due</del> by 11:59 PM on the Monday**.
 
 :::::: {.row .d-flex .justify-content-center}
 ::::: {.col-12 .col-sm-10 .col-md-6}
@@ -58,17 +56,16 @@ You can subscribe to this calendar URL in Outlook, Google Calendar, or Apple Cal
 ::: {.grid}
 
 ::: {.g-col-12 .g-col-md-2}
-
+<p class="download-btn"><a class="btn btn-danger btn-sm" href="/`r schedule_ical_file`" role="button">{{< fa calendar-alt >}} Download</a></p>
 :::
 
 ::: {.g-col-12 .g-col-md-10}
-
+<p><input class="form-control" type="text" value="`r ical_url_absolute`" onclick="this.select()" readonly></p>
 :::
 
 :::
 
 :::
-
 
 ```{r build-table, include=FALSE}
 show_table <- function(group_id) {

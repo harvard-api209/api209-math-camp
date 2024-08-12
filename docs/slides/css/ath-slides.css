@@ -273,6 +273,10 @@ Slides with title bars at the top
   border-top-color: #FCCE25;
 }
 
+.title-crimson {
+  border-top-color: #A51C30;
+}
+
 .title-inv-1 {
   border-top-color: #B2B1F9;
 }
@@ -380,7 +384,7 @@ Coloring and inverse coloring in title bars and content boxes
 
 .box-4,
 .section-title-4 {
-  background-color: #BF3984;
+  background-color: #A51C30;
 }
 
 .box-5,
@@ -396,6 +400,16 @@ Coloring and inverse coloring in title bars and content boxes
 .box-7,
 .section-title-7 {
   background-color: #FCCE25;
+}
+
+.box-crimson,
+.section-title-crimson {
+  background-color: #A51C30;
+}
+
+.box-inv-crimson,
+.section-title-inv-crimson {
+  background-color: #FFC0DC;
 }
 
 .box-inv-1,
@@ -475,11 +489,18 @@ Coloring and inverse coloring in title bars and content boxes
   color: #FCCE25;
 }
 
-.box-7, .box-6, .box-5, .box-4, .box-3, .box-2, .box-1, .title-7 h1, .title-6 h1, .title-5 h1, .title-4 h1, .title-3 h1, .title-2 h1, .title-1 h1, .section-title h1 {
+.box-inv-crimson,
+.title-inv-crimson h1,
+.section-title-crimson h1 {
+  color: #A51C30;
+}
+
+
+.box-7, .box-6, .box-5, .box-4, .box-3, .box-2, .box-1, .title-7 h1, .title-6 h1, .title-5 h1, .title-4 h1, .title-3 h1, .title-2 h1, .title-1 h1, .section-title h1, .title-crimson h1 {
   color: #FFFFFF;
 }
 
-.box-7, .box-inv-7, .box-6, .box-inv-6, .box-5, .box-inv-5, .box-4, .box-inv-4, .box-3, .box-inv-3, .box-2, .box-inv-2, .box-1, .box-inv-1 {
+.box-7, .box-inv-7, .box-6, .box-inv-6, .box-5, .box-inv-5, .box-4, .box-inv-4, .box-3, .box-inv-3, .box-2, .box-inv-2, .box-1, .box-inv-1, .box-crimson, .box-inv-crimson {
   margin: 0em auto;
   overflow: hidden;
   padding: 0.1em 0.4em;
@@ -547,4 +568,25 @@ Coloring and inverse coloring in title bars and content boxes
   padding: 0.25em 0;
   background: #BF3984;
   color: #FFFFFF;
+}
+
+/* Highlight Last List Item */
+.highlight-last-item > ul > li,
+.highlight-last-item > ol > li {
+  opacity: 0.5;
+}
+
+.highlight-last-item > ul > li:last-of-type,
+.highlight-last-item > ol > li:last-of-type {
+  opacity: 1;
+}
+
+.bold-last-item > ul > li:last-of-type,
+.bold-last-item > ol > li:last-of-type {
+  font-weight: bold;
+}
+
+/* Shou only last code output*/
+.show-only-last-code-result pre + pre:not(:last-of-type) code[class="remark-code"] {
+    display: none;
 }

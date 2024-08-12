@@ -29,6 +29,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
+<link href="../lesson/01-lesson.html" rel="next">
 <link href="..//files/favicon-512.png" rel="icon" type="image/png">
 <script src="../site_libs/quarto-html/quarto.js"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
@@ -273,7 +274,7 @@ globalThis.qwebrCustomizedWebROptions = {
 };
 
 // Store cell data
-globalThis.qwebrCellDetails = [{"code":"gapminder_filtered <- gapminder |>\n  filter(year == 2007)\n\nggplot(data = gapminder_filtered,\n       mapping = aes(x = gdpPercap, y = lifeExp, \n                     size = pop, color = continent)) +\n  geom_point() + \n  scale_x_log10(labels = scales::dollar_format(accuracy = 1)) +\n  scale_size_continuous(labels = scales::label_comma()) +\n  scale_color_viridis_d(option = \"plasma\") +\n  labs(x = \"GDP per capita\", y = \"Life expectancy\",\n       title = \"Health and wealth are strongly related\",\n       subtitle = \"142 countries; 2007 only\", caption = \"Source: The Gapminder Project\",\n       color = \"Continent\", size = \"Population\") +\n  theme_bw()","id":1,"options":{"out-width":"100%","autorun":"false","read-only":"false","label":"unnamed-chunk-1","output":"true","editor-quick-suggestions":"false","fig-width":"7","fig-cap":"","out-height":"","warning":"true","comment":"","fig-height":"4.3","results":"markup","message":"true","editor-font-scale":"0.8","context":"interactive","classes":"","dpi":72,"editor-max-height":""}}];
+globalThis.qwebrCellDetails = [{"options":{"label":"unnamed-chunk-1","fig-height":"4.3","editor-quick-suggestions":"false","classes":"","fig-width":"7","editor-max-height":"","context":"interactive","read-only":"false","editor-font-scale":"0.8","warning":"true","message":"true","comment":"","out-height":"","autorun":"false","fig-cap":"","results":"markup","out-width":"100%","output":"true","dpi":72},"code":"gapminder_filtered <- gapminder |>\n  filter(year == 2007)\n\nggplot(data = gapminder_filtered,\n       mapping = aes(x = gdpPercap, y = lifeExp, \n                     size = pop, color = continent)) +\n  geom_point() + \n  scale_x_log10(labels = scales::dollar_format(accuracy = 1)) +\n  scale_size_continuous(labels = scales::label_comma()) +\n  scale_color_viridis_d(option = \"plasma\") +\n  labs(x = \"GDP per capita\", y = \"Life expectancy\",\n       title = \"Health and wealth are strongly related\",\n       subtitle = \"142 countries; 2007 only\", caption = \"Source: The Gapminder Project\",\n       color = \"Continent\", size = \"Population\") +\n  theme_bw()","id":1}];
 
 </script>
 <script type="module">
@@ -1113,7 +1114,7 @@ globalThis.qwebrExecuteCode = async function (
 
 </head>
 
-<body class="nav-fixed">
+<body class="nav-sidebar docked nav-fixed">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -1140,23 +1141,15 @@ globalThis.qwebrExecuteCode = async function (
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="../content/index.html"> 
-<span class="menu-text">Content</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link active" href="../lesson/index.html" aria-current="page"> 
 <span class="menu-text">Lessons</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../assignment/index.html"> 
-<span class="menu-text">Assignments</span></a>
+    <a class="nav-link active" href="../lesson/index.html" aria-current="page"> 
+<span class="menu-text">Labs</span></a>
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="../resource/index.html"> 
 <span class="menu-text">Resources</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../news/index.html"> 
-<span class="menu-text">News</span></a>
   </li>  
   <li class="nav-item compact">
     <a class="nav-link" href="https://harvard.enterprise.slack.com"> <i class="bi bi-slack" role="img" aria-label="Slack">
@@ -1174,10 +1167,79 @@ globalThis.qwebrExecuteCode = async function (
 </div>
       </div> <!-- /container-fluid -->
     </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../lesson/index.html">Overview</a></li><li class="breadcrumb-item"><a href="../lesson/index.html">Interactive lessons</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+    </div>
+  </nav>
 </header>
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Overview</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lesson/index.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Interactive lessons</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">Labs</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lesson/01-lesson.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lab 1</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lesson/01-lesson.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lab 2</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lesson/01-lesson.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lab 3</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lesson/01-lesson.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lab 4</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
         
@@ -1870,6 +1932,15 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
 });
 </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../lesson/01-lesson.html" class="pagination-link" aria-label="Lab 1">
+        <span class="nav-page-text">Lab 1</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
 </div> <!-- /content -->
 <footer class="footer">
   <div class="nav-footer">

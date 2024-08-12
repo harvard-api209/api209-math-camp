@@ -1,7 +1,6 @@
 ---
-title: "Introduction to R and the tidyverse"
+title: "Lab 1: "
 date: "2024-06-03"
-date_end: "2024-06-07"
 ---
 
 ```{r setup, include=FALSE}
