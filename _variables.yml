@@ -5,9 +5,10 @@ instructor:
   name_no_title: Rony Rodriguez-Ramirez
   email: rrodriguezramirez@g.harvard.edu
   url: "https://www.rrmaximiliano.github.io"
-  bluesky: "https://bsky.app/profile/rrmaximiliano"
+  bluesky: "https://bsky.app/profile/rrmaximiliano.bsky.social"
   github: rrmaximiliano
-  office: "55 Park Place SE, Room 464"
+  twitter: rrmaximiliano
+  office: "Wexner 436. HKS"
   contact_policy: >-
     E-mail and Slack are the best ways to get in contact with me. Sometimes, life happens so bear with me if I don't respond quickly!
   appointment_url: https://calendly.com/rrmaximiliano/
@@ -23,10 +24,10 @@ attribution:
 course:
   number: "API 209"
   semester: "Summer 2024"
-  days: "Any day"
-  time: "Asynchronous"
+  days: "Check schedule page"
+  time: "Check schedule page"
   location: "Anywhere"
-  dates: "August 15–August 28, 2024"
+  dates: "August 15-August 28, 2024"
   github: "https://github.com/harvard-api209/api209-math-camp"
   url: "https://harvard-api209.github.io/api209-math-camp/"
   copyright_year: "2024"

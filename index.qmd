@@ -33,6 +33,7 @@ course-logo: /files/course-icon.png
 - [{{< fa university >}}]{.fa-li} {{< var instructor.office >}}
 - [{{< fa envelope >}}]{.fa-li} <a href='mailto:{{< var instructor.email >}}'>{{< var instructor.email >}}</a>
 - [{{< iconify ph butterfly-bold size=1.2em title='Bluesky' >}}]{.fa-li} [Bluesky]({{< var instructor.bluesky >}})
+- [{{< fa twitter >}}]{.fa-li} [Twitter]({{< var instructor.twitter >}})
 :::
 
 ::: {.g-col-12 .g-col-sm-6 .g-col-md-4}
