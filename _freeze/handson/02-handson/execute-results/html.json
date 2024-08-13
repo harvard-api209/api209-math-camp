@@ -1,0 +1,15 @@
+{
+  "hash": "eabdf8c3e3cad712e067f894c236b438",
+  "result": {
+    "engine": "knitr",
+    "markdown": "---\ntitle: \"Elegant Data Visualization with ggplot2 (Hands-on Session)\"\ndate: \"2024-08-14\"\n---\n\n\n\n\n\n## Overview\n\nIn Construction!",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

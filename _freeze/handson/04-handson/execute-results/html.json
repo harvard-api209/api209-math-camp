@@ -1,0 +1,15 @@
+{
+  "hash": "da67f74c2b01f2bb6e00ba00bd271bea",
+  "result": {
+    "engine": "knitr",
+    "markdown": "---\ntitle: \"Reproducible Research and Automation\"\ndate: \"2024-08-14\"\n---\n\n\n\n\n\n## Overview\n\nIn Construction!",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

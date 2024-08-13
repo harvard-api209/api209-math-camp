@@ -1,0 +1,15 @@
+{
+  "hash": "51e8c9e917832c9a11bbad2893e21395",
+  "result": {
+    "engine": "knitr",
+    "markdown": "---\ntitle: \"Mastering Data Manipulation in R (Hands-on Session)\"\ndate: \"2024-08-14\"\n---\n\n\n\n\n\n\n## Overview\n\nThis session will focus on advanced data manipulation techniques using R and the tidyverse. While the primary resource for this session will be the slides, consider reflecting on the following questions as you engage with the material.\n\n",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

@@ -318,7 +318,6 @@ class: title title-crimson
 </figure>
 ]
 
-
 ---
 
 layout: false
@@ -349,6 +348,115 @@ class: title title-crimson
 
 ---
 
+# Recap: The Tidyverse
+
+**The tidyverse is a collection of R packages designed for data science.**  
+They share an underlying design philosophy, grammar, and data structures.
+
+.small[
+**Core Packages:**
+- `ggplot2` - Data visualization
+- `dplyr` - Data manipulation
+- `tidyr` - Data tidying
+- `readr` - Data import
+- `purrr` - Functional programming
+- `tibble` - Modern data frames
+- `stringr` - String manipulation
+- `forcats` - Categorical data
+]
+
+---
+
+# dplyr: Key Functions
+
+**Commonly Used Functions:**
+- `filter()` - Subset rows based on conditions
+- `select()` - Choose columns by names
+- `mutate()` - Create new columns or modify existing ones
+- `arrange()` - Reorder rows
+- `summarize()` - Aggregate data
+- `group_by()` - Group data for summary operations
+
+---
+
+# dplyr: Example
+
+.left-code[
+```{r filtered-data, eval = FALSE}
+# Example of dplyr in action
+library(dplyr)
+
+# Filter and select
+filtered_data <- starwars |> 
+  filter(height > 180) |> 
+  select(name, height, hair_color)
+
+filtered_data
+```
+]
+
+.pull-right[
+```{r filtered-data, echo=FALSE}
+```
+]
+
+---
+
+# dplyr: Example
+
+.left-code[
+```{r mutated-data, eval = FALSE}
+# Mutate
+starwars |>
+  mutate(
+    tatooine = ifelse(  #<<
+      homeworld == "Tatooine",  #<<
+      "Tatooine",  #<<
+      "Others"  #<<
+    ) #<<
+  ) |> 
+  group_by(tatooine) |> 
+  summarize(
+    mean = mean(height)
+  )
+```
+]
+
+.pull-right[
+```{r mutated-data, echo=FALSE}
+```
+]
+
+---
+
+# Are we good here?
+
+.small[
+  As of now, you should have the tools to understand the last code. More resources are available in our website. Now, it's time to make some mistakes! 
+]
+
+.center[
+<figure>
+  <img src="img/01/r-learners.png" title="R Learners, we believe in you!" width="60%">
+  <figcaption>Artwork by @allison_horst</figcaption>
+</figure>
+]
+
+
+---
+layout: false
+name: takeaways
+class: center middle section-title section-title-crimson
+
+# Takeaways
+
+---
+
+layout: true
+class: title title-crimson 
+
+---
+
 # Sucking (Slide from Prof. Andrew Heiss)
 
 .center[
@@ -372,5 +480,18 @@ class: title title-crimson
 .center[
 <figure>
   <img src="img/01/sucking-first-step.jpg" alt="Sucking at something is the first step towards being sort of good at something" title="Sucking at something is the first step towards being sort of good at something" width="70%">
+</figure>
+]
+
+---
+
+# Sucking
+
+&nbsp;
+
+.center[
+<figure>
+  <img src="img/01/r-know.png" width="60%">
+  <figcaption>Artwork by @allison_horst</figcaption>  
 </figure>
 ]

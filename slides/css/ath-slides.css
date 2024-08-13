@@ -116,7 +116,7 @@ figcaption {
 
 .remark-code,
 .remark-inline-code {
-  font-size: 0.75em;
+  font-size: 0.5em;
 }
 
 /* Side-by-side code/plot stuff https://www.garrickadenbuie.com/blog/decouple-code-and-output-in-xaringan-slides/ */

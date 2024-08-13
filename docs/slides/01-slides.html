@@ -272,7 +272,6 @@ class: title title-crimson
 &lt;/figure&gt;
 ]
 
-
 ---
 
 layout: false
@@ -303,6 +302,139 @@ class: title title-crimson
 
 ---
 
+# Recap: The Tidyverse
+
+**The tidyverse is a collection of R packages designed for data science.**  
+They share an underlying design philosophy, grammar, and data structures.
+
+.small[
+**Core Packages:**
+- `ggplot2` - Data visualization
+- `dplyr` - Data manipulation
+- `tidyr` - Data tidying
+- `readr` - Data import
+- `purrr` - Functional programming
+- `tibble` - Modern data frames
+- `stringr` - String manipulation
+- `forcats` - Categorical data
+]
+
+---
+
+# dplyr: Key Functions
+
+**Commonly Used Functions:**
+- `filter()` - Subset rows based on conditions
+- `select()` - Choose columns by names
+- `mutate()` - Create new columns or modify existing ones
+- `arrange()` - Reorder rows
+- `summarize()` - Aggregate data
+- `group_by()` - Group data for summary operations
+
+---
+
+# dplyr: Example
+
+.left-code[
+
+``` r
+# Example of dplyr in action
+library(dplyr)
+
+# Filter and select
+filtered_data &lt;- starwars |&gt; 
+  filter(height &gt; 180) |&gt; 
+  select(name, height, hair_color)
+
+filtered_data
+```
+]
+
+.pull-right[
+
+```
+## # A tibble: 39 × 3
+##    name              height hair_color   
+##    &lt;chr&gt;              &lt;int&gt; &lt;chr&gt;        
+##  1 Darth Vader          202 none         
+##  2 Biggs Darklighter    183 black        
+##  3 Obi-Wan Kenobi       182 auburn, white
+##  4 Anakin Skywalker     188 blond        
+##  5 Chewbacca            228 brown        
+##  6 Boba Fett            183 black        
+##  7 IG-88                200 none         
+##  8 Bossk                190 none         
+##  9 Qui-Gon Jinn         193 brown        
+## 10 Nute Gunray          191 none         
+## # ℹ 29 more rows
+```
+]
+
+---
+
+# dplyr: Example
+
+.left-code[
+
+``` r
+# Mutate
+starwars |&gt;
+  mutate(
+*   tatooine = ifelse(
+*     homeworld == "Tatooine",
+*     "Tatooine",
+*     "Others"
+*   )
+  ) |&gt; 
+  group_by(tatooine) |&gt; 
+  summarize(
+    mean = mean(height)
+  )
+```
+]
+
+.pull-right[
+
+```
+## # A tibble: 3 × 2
+##   tatooine  mean
+##   &lt;chr&gt;    &lt;dbl&gt;
+## 1 Others    177.
+## 2 Tatooine  170.
+## 3 &lt;NA&gt;       NA
+```
+]
+
+---
+
+# Are we good here?
+
+.small[
+  As of now, you should have the tools to understand the last code. More resources are available in our website. Now, it's time to make some mistakes! 
+]
+
+.center[
+&lt;figure&gt;
+  &lt;img src="img/01/r-learners.png" title="R Learners, we believe in you!" width="60%"&gt;
+  &lt;figcaption&gt;Artwork by @allison_horst&lt;/figcaption&gt;
+&lt;/figure&gt;
+]
+
+
+---
+layout: false
+name: takeaways
+class: center middle section-title section-title-crimson
+
+# Takeaways
+
+---
+
+layout: true
+class: title title-crimson 
+
+---
+
 # Sucking (Slide from Prof. Andrew Heiss)
 
 .center[
@@ -326,6 +458,19 @@ class: title title-crimson
 .center[
 &lt;figure&gt;
   &lt;img src="img/01/sucking-first-step.jpg" alt="Sucking at something is the first step towards being sort of good at something" title="Sucking at something is the first step towards being sort of good at something" width="70%"&gt;
+&lt;/figure&gt;
+]
+
+---
+
+# Sucking
+
+&amp;nbsp;
+
+.center[
+&lt;figure&gt;
+  &lt;img src="img/01/r-know.png" width="60%"&gt;
+  &lt;figcaption&gt;Artwork by @allison_horst&lt;/figcaption&gt;  
 &lt;/figure&gt;
 ]
     </textarea>

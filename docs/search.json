@@ -143,7 +143,7 @@
     "href": "schedule.html",
     "title": "Schedule",
     "section": "",
-    "text": "Here’s your roadmap for the summer camp!\n\nLessons (): This page contains the slides for the topic. Read and watch these first.\nLabs (): This page contains, when needed, interactive sessions, and also the contents for each lab. Go through these after doing the lessons.\n\n\n\n\n\ntl;dr: You should follow this general process for each session:\n\nDo everything on the lewsson page ()\nWork through the labs page ()\n\n\n\n\n\n\n\n\n\n\n\n\nSubscribe!\n\n\n\nYou can subscribe to this calendar URL in Outlook, Google Calendar, or Apple Calendar:\n\n\n\n Download\n\n\n\n\n\n\n\n\n\n\n\nData Mastery in R\n\n\n\n\n\n\nTitle\n\n\nContent\n\n\nLesson\n\n\nExample\n\n\nAssignment\n\n\n\n\n\n\nAugust 15–August 15(Session 1)\n\n\nData Wrangling\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nAugust 16–August 19\n\n\nLab: Hands-On Data Wrangling\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nData Visualization in R\n\n\n\n\n\n\nTitle\n\n\nContent\n\n\nLesson\n\n\nExample\n\n\nAssignment\n\n\n\n\n\n\nAugust 20–August 20(Session 2)\n\n\nElegant Data Visualization with ggplot2\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nAugust 21–February 26\n\n\nLab: Crafting Visual Stories\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nModeling in R\n\n\n\n\n\n\nTitle\n\n\nContent\n\n\nLesson\n\n\nExample\n\n\nAssignment\n\n\n\n\n\n\nAugust 26–August 26(Session 3)\n\n\nAdvanced Statistical Modeling in R\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nAugust 28–September 2\n\n\nLab: Building and Interpreting Models\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nStreamlining Research with R\n\n\n\n\n\n\nTitle\n\n\nContent\n\n\nLesson\n\n\nExample\n\n\nAssignment\n\n\n\n\n\n\n(Session 4)\n\n\nReproducible Research and Automation\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nSeptember 4\n\n\nLab: Automating Workflows"
+    "text": "Here’s your roadmap for the summer camp!\n\nLessons (): This page contains the slides for the topic. Read and go through these first.\nHands-on Sessions (): This page provides the interactive, practical exercises that correspond with each lesson. Engage with these sessions after reviewing the slides to solidify your understanding. We will go through these during each odd numbered session.\nLabs (): This page contains, when needed, interactive sessions, and also the contents for each lab. Go through these after doing the lessons and hands-on sessions. This is more on your own, so we will go through these during each even numbered session.\n\n\n\n\n\ntl;dr: You should follow this general process for each session:\n\nRead the slides in the lesson page ()\nWork through the hands-on page ()\nDo the labs page ()\n\n\n\n\n\n\n\n\n\n\n\n\nSubscribe!\n\n\n\nYou can subscribe to this calendar URL in Outlook, Google Calendar, or Apple Calendar:\n\n\n\n Download\n\n\n\n\n\n\n\n\n\n\n\nMath Camp (R Programming)\n\n\n\n\n\n\nTitle\n\n\nContent\n\n\nHands-on\n\n\nLabs\n\n\n\n\n\n\nAugust 15–August 19(Session 1-2)\n\n\nData Wrangling\n\n\n\n\n\n\n\n\n\n\n\n\n\nAugust 20–February 26(Session 3-4)\n\n\nElegant Data Visualization with ggplot2\n\n\n\n\n\n\n\n\n\n\n\n\n\nAugust 26–August 28(Session 5-6)\n\n\nAdvanced Statistical Modeling in R\n\n\n\n\n\n\n\n\n\n\n\n\n\nSeptember 2–September 4(Session 7-8)\n\n\nReproducible Research and Automation"
   },
   {
     "objectID": "assignment/01-exercise.html",
@@ -173,8 +173,8 @@
     "section": "",
     "text": "IN CONSTRUCTION!",
     "crumbs": [
-      "Lessons",
-      "Streamlining Research with R",
+      "Content",
+      "Streamlining Research",
       "4: Reproducible Research and Automation"
     ]
   },
@@ -185,8 +185,8 @@
     "section": "",
     "text": "IN CONSTRUCTION!",
     "crumbs": [
-      "Lessons",
-      "Streamlining Research with R",
+      "Content",
+      "Streamlining Research",
       "4: Reproducible Research and Automation"
     ]
   },
@@ -197,8 +197,8 @@
     "section": "Guiding Questions",
     "text": "Guiding Questions\n\n\n\n\n\n\nThese are optional!\n\n\n\nYou don’t need to answer all of these—or even any of them! They are here to help guide your thinking and reflection on the content. Feel free to explore whatever aspects you find most interesting.\n\n\n\nQuestion 1",
     "crumbs": [
-      "Lessons",
-      "Streamlining Research with R",
+      "Content",
+      "Streamlining Research",
       "4: Reproducible Research and Automation"
     ]
   },
@@ -209,8 +209,8 @@
     "section": "Readings",
     "text": "Readings\n\nNo readings for this session.",
     "crumbs": [
-      "Lessons",
-      "Streamlining Research with R",
+      "Content",
+      "Streamlining Research",
       "4: Reproducible Research and Automation"
     ]
   },
@@ -221,8 +221,8 @@
     "section": "Slides",
     "text": "Slides\nThe slides for this session are available online as an HTML file. Use the buttons below to open the slides either as an interactive website or as a static PDF (for printing or storing for later). You can also navigate through the embedded slides directly on this page using your left and right arrow keys.\n\n View all slides in new window  Download PDF of all slides\n\n\n\n\n\n\n\n\n\n\n\nTip\n\n\n\nPro tip: If you type ? (or shift + /) while viewing the slides, you can access a list of special commands to enhance your experience.",
     "crumbs": [
-      "Lessons",
-      "Streamlining Research with R",
+      "Content",
+      "Streamlining Research",
       "4: Reproducible Research and Automation"
     ]
   },
@@ -233,8 +233,8 @@
     "section": "",
     "text": "IN CONSTRUCTION!",
     "crumbs": [
-      "Lessons",
-      "Data Visualization in R",
+      "Content",
+      "Data Visualization",
       "2: Elegant Data Visualization with ggplot2"
     ]
   },
@@ -245,8 +245,8 @@
     "section": "",
     "text": "IN CONSTRUCTION!",
     "crumbs": [
-      "Lessons",
-      "Data Visualization in R",
+      "Content",
+      "Data Visualization",
       "2: Elegant Data Visualization with ggplot2"
     ]
   },
@@ -257,8 +257,8 @@
     "section": "Guiding Questions",
     "text": "Guiding Questions\n\n\n\n\n\n\nThese are optional!\n\n\n\nYou don’t need to answer all of these—or even any of them! They are here to help guide your thinking and reflection on the content. Feel free to explore whatever aspects you find most interesting.\n\n\n\nQuestion 1",
     "crumbs": [
-      "Lessons",
-      "Data Visualization in R",
+      "Content",
+      "Data Visualization",
       "2: Elegant Data Visualization with ggplot2"
     ]
   },
@@ -269,8 +269,8 @@
     "section": "Readings",
     "text": "Readings\n\nNo readings for this session.",
     "crumbs": [
-      "Lessons",
-      "Data Visualization in R",
+      "Content",
+      "Data Visualization",
       "2: Elegant Data Visualization with ggplot2"
     ]
   },
@@ -281,8 +281,8 @@
     "section": "Slides",
     "text": "Slides\nThe slides for this session are available online as an HTML file. Use the buttons below to open the slides either as an interactive website or as a static PDF (for printing or storing for later). You can also navigate through the embedded slides directly on this page using your left and right arrow keys.\n\n View all slides in new window  Download PDF of all slides\n\n\n\n\n\n\n\n\n\n\n\nTip\n\n\n\nPro tip: If you type ? (or shift + /) while viewing the slides, you can access a list of special commands to enhance your experience.",
     "crumbs": [
-      "Lessons",
-      "Data Visualization in R",
+      "Content",
+      "Data Visualization",
       "2: Elegant Data Visualization with ggplot2"
     ]
   },
@@ -294,32 +294,86 @@
     "text": "Advanced Quantitative Methods: Description and Prediction  Summer Math Camp\n        \n        \n            Conceptual mastery of statistical methods for public policy, focusing on application rather than mechanics\n        \n        \n            API 209 • Summer 2024Prof: Dan Levy | Summer TF: Rony RodriguezHarvard University\n        \n    \n    \n      \n        \n        \n        \n      \n    \n\n\n\n\n\n\nSummer TF\n\n Rony Rodriguez-Ramirez\n Wexner 436. HKS\n rrodriguezramirez@g.harvard.edu\n Bluesky\n Twitter\n\n\n\nCourse details\n\n Check schedule page\n August 15-August 28, 2024\n Check schedule page\n Anywhere\n\n\n\nContacting me\n\n Schedule an appointment\n Slack\n\nE-mail and Slack are the best ways to get in contact with me. Sometimes, life happens so bear with me if I don’t respond quickly!"
   },
   {
-    "objectID": "lesson/04-lesson.html",
-    "href": "lesson/04-lesson.html",
+    "objectID": "labs/04-labs.html",
+    "href": "labs/04-labs.html",
     "title": "Lab 4:",
     "section": "",
-    "text": "To complete"
+    "text": "To complete",
+    "crumbs": [
+      "Labs",
+      "4: Reproducible Research and Automation"
+    ]
   },
   {
-    "objectID": "lesson/04-lesson.html#part-1",
-    "href": "lesson/04-lesson.html#part-1",
+    "objectID": "labs/04-labs.html#part-1",
+    "href": "labs/04-labs.html#part-1",
     "title": "Lab 4:",
     "section": "",
-    "text": "To complete"
+    "text": "To complete",
+    "crumbs": [
+      "Labs",
+      "4: Reproducible Research and Automation"
+    ]
   },
   {
-    "objectID": "lesson/02-lesson.html",
-    "href": "lesson/02-lesson.html",
+    "objectID": "labs/02-labs.html",
+    "href": "labs/02-labs.html",
     "title": "Lab 2:",
     "section": "",
-    "text": "To complete"
+    "text": "To complete",
+    "crumbs": [
+      "Labs",
+      "2: Elegant Data Visualization with ggplot2"
+    ]
   },
   {
-    "objectID": "lesson/02-lesson.html#part-1",
-    "href": "lesson/02-lesson.html#part-1",
+    "objectID": "labs/02-labs.html#part-1",
+    "href": "labs/02-labs.html#part-1",
     "title": "Lab 2:",
     "section": "",
-    "text": "To complete"
+    "text": "To complete",
+    "crumbs": [
+      "Labs",
+      "2: Elegant Data Visualization with ggplot2"
+    ]
+  },
+  {
+    "objectID": "handson/03-handson.html",
+    "href": "handson/03-handson.html",
+    "title": "Advanced Statistical Modeling in R",
+    "section": "",
+    "text": "In Construction!"
+  },
+  {
+    "objectID": "handson/03-handson.html#overview",
+    "href": "handson/03-handson.html#overview",
+    "title": "Advanced Statistical Modeling in R",
+    "section": "",
+    "text": "In Construction!"
+  },
+  {
+    "objectID": "handson/01-handson.html",
+    "href": "handson/01-handson.html",
+    "title": "Mastering Data Manipulation in R (Hands-on Session)",
+    "section": "",
+    "text": "This session will focus on advanced data manipulation techniques using R and the tidyverse. While the primary resource for this session will be the slides, consider reflecting on the following questions as you engage with the material.",
+    "crumbs": [
+      "Hands-on",
+      "Hands-on Sessions",
+      "1: Mastering Data Manipulation"
+    ]
+  },
+  {
+    "objectID": "handson/01-handson.html#overview",
+    "href": "handson/01-handson.html#overview",
+    "title": "Mastering Data Manipulation in R (Hands-on Session)",
+    "section": "",
+    "text": "This session will focus on advanced data manipulation techniques using R and the tidyverse. While the primary resource for this session will be the slides, consider reflecting on the following questions as you engage with the material.",
+    "crumbs": [
+      "Hands-on",
+      "Hands-on Sessions",
+      "1: Mastering Data Manipulation"
+    ]
   },
   {
     "objectID": "resource/visualization.html",
@@ -410,15 +464,22 @@
     ]
   },
   {
-    "objectID": "lesson/index.html",
-    "href": "lesson/index.html",
+    "objectID": "labs/index.html",
+    "href": "labs/index.html",
     "title": "Interactive lessons",
     "section": "",
-    "text": "Each class session has an interactive lesson that you will work through after doing the readings and watching the lecture. These lessons are a central part of the class—they will teach you how to use {ggplot2} and other packages in the tidyverse to create beautiful and truthful visualizations with R.\nInteractive code sections look like this. Make changes in the text box and click on the green “Run Code” button to see the results. Sometimes there will be a tab with a hint or solution.\n\n\n\n\n\n\nYour turn\n\n\n\nModify the code here to show the relationship between health and wealth for 2002 instead of 2007.\n\n Interactive editor Hint\n\n\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\nHint: You’ll want to change something in the code that creates gapminder_filtered. The text in the subtitle won’t change automatically, so you’ll want to edit that too.\n\n\n\n\n\nIf you’re curious how this works, each interactive code section uses the amazing {quarto-webr} package to run R directly in your browser.",
+    "text": "Each class session has an interactive lesson that you will work through after doing the readings and watching the lecture. These lessons are a central part of the class—they will teach you how to use {ggplot2} and other packages in the tidyverse to create beautiful and truthful visualizations with R.\nInteractive code sections look like this. Make changes in the text box and click on the green “Run Code” button to see the results. Sometimes there will be a tab with a hint or solution.\n\n\n\n\n\n\nYour turn\n\n\n\nModify the code here to show the relationship between health and wealth for 2002 instead of 2007.\n\n Interactive editor Hint\n\n\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\nHint: You’ll want to change something in the code that creates gapminder_filtered. The text in the subtitle won’t change automatically, so you’ll want to edit that too.\n\n\n\n\n\nIf you’re curious how this works, each interactive code section uses the amazing {quarto-webr} package to run R directly in your browser."
+  },
+  {
+    "objectID": "content/index.html",
+    "href": "content/index.html",
+    "title": "Slides, and Additional Materials",
+    "section": "",
+    "text": "Each class session is accompanied by a set of slides that will guide the lecture portion of the lesson. These slides are essential to follow along during the session and will be the primary resource used for instruction. You should review the slides before participating in the session to get the most out of the lecture.\nWhile the slides are the central resource for each session, I might also share additional materials or resources that could be relevant to the specific topics covered. These may include readings, articles, or supplementary videos, which will be made available as needed.\nFor each session throughout the math camp, you’ll find the lecture slides embedded directly on the session page. You can view them in your browser or download them as a PDF for offline use:\n\n View all slides in new window  Download PDF of all slides\n\nThe slides can be navigated using your keyboard with ← and → for moving through the presentation. If you press ? (or shift + /), you’ll see a list of commands for interacting with the slides, including options for fullscreen mode (f) or presenter mode (p), which displays additional notes.",
     "crumbs": [
-      "Labs",
+      "Content",
       "Overview",
-      "Interactive lessons"
+      "Slides, and Additional Materials"
     ]
   },
   {
@@ -436,15 +497,39 @@
     "text": "Reflections\nTo encourage engagement with the course content, you’ll need to write a ≈150 word reflection about the readings and lectures for the session That’s fairly short: there are ≈250 words on a typical double-spaced page in Microsoft Word (500 when single-spaced)."
   },
   {
-    "objectID": "content/index.html",
-    "href": "content/index.html",
-    "title": "Slides, and Additional Materials",
+    "objectID": "handson/index.html",
+    "href": "handson/index.html",
+    "title": "Hands-on Sessions",
     "section": "",
-    "text": "Each class session is accompanied by a set of slides that will guide the lecture portion of the lesson. These slides are essential to follow along during the session and will be the primary resource used for instruction. You should review the slides before participating in the session to get the most out of the lecture.\nWhile the slides are the central resource for each session, I might also share additional materials or resources that could be relevant to the specific topics covered. These may include readings, articles, or supplementary videos, which will be made available as needed.\nFor each session throughout the math camp, you’ll find the lecture slides embedded directly on the session page. You can view them in your browser or download them as a PDF for offline use:\n\n View all slides in new window  Download PDF of all slides\n\nThe slides can be navigated using your keyboard with ← and → for moving through the presentation. If you press ? (or shift + /), you’ll see a list of commands for interacting with the slides, including options for fullscreen mode (f) or presenter mode (p), which displays additional notes.",
+    "text": "Hands-on sessions are designed to provide you with practical, interactive experiences that reinforce the concepts covered in the lecture slides. These sessions are an opportunity to apply what you’ve learned, experiment with code, and deepen your understanding through direct practice.\nWhat to Expect:",
     "crumbs": [
-      "Lessons",
+      "Hands-on",
       "Overview",
-      "Slides, and Additional Materials"
+      "Hands-on Sessions"
+    ]
+  },
+  {
+    "objectID": "handson/index.html#preparing-for-hands-on-sessions",
+    "href": "handson/index.html#preparing-for-hands-on-sessions",
+    "title": "Hands-on Sessions",
+    "section": "Preparing for Hands-on Sessions",
+    "text": "Preparing for Hands-on Sessions\nBefore participating in a hands-on session, it’s important to:\n\nReview the Lecture Slides: Ensure you’ve gone through the slides for the session, as they provide the foundational knowledge you’ll need.\nComplete Any Pre-Session Readings: If there are any additional readings or resources provided, make sure to review them beforehand.\nCome Ready to Code: These sessions are about active participation. Have your coding environment ready (whether on your local machine or via Posit Cloud) and be prepared to dive into the exercises.",
+    "crumbs": [
+      "Hands-on",
+      "Overview",
+      "Hands-on Sessions"
+    ]
+  },
+  {
+    "objectID": "handson/index.html#resources-and-support",
+    "href": "handson/index.html#resources-and-support",
+    "title": "Hands-on Sessions",
+    "section": "Resources and Support",
+    "text": "Resources and Support\nDuring the hands-on sessions, you may encounter challenges or have questions. Don’t hesitate to:\n\nAsk for Help: Whether it’s a small syntax error or a conceptual question, feel free to ask. The goal is to learn, and sometimes that means needing a little help.\nUtilize Provided Resources: In addition to the slides, there may be supplementary materials such as example scripts, datasets, or reference guides available for each session.\nCollaborate with Peers: Use this time to work with your peers. Discussing problems and solutions with others can often lead to a deeper understanding.",
+    "crumbs": [
+      "Hands-on",
+      "Overview",
+      "Hands-on Sessions"
     ]
   },
   {
@@ -554,18 +639,54 @@
     "text": "About this site\n\n1 + 1\n\n[1] 2"
   },
   {
-    "objectID": "lesson/03-lesson.html",
-    "href": "lesson/03-lesson.html",
-    "title": "Lab 3:",
+    "objectID": "handson/02-handson.html",
+    "href": "handson/02-handson.html",
+    "title": "Elegant Data Visualization with ggplot2 (Hands-on Session)",
     "section": "",
-    "text": "To complete"
+    "text": "In Construction!"
   },
   {
-    "objectID": "lesson/03-lesson.html#part-1",
-    "href": "lesson/03-lesson.html#part-1",
+    "objectID": "handson/02-handson.html#overview",
+    "href": "handson/02-handson.html#overview",
+    "title": "Elegant Data Visualization with ggplot2 (Hands-on Session)",
+    "section": "",
+    "text": "In Construction!"
+  },
+  {
+    "objectID": "handson/04-handson.html",
+    "href": "handson/04-handson.html",
+    "title": "Reproducible Research and Automation",
+    "section": "",
+    "text": "In Construction!"
+  },
+  {
+    "objectID": "handson/04-handson.html#overview",
+    "href": "handson/04-handson.html#overview",
+    "title": "Reproducible Research and Automation",
+    "section": "",
+    "text": "In Construction!"
+  },
+  {
+    "objectID": "labs/03-labs.html",
+    "href": "labs/03-labs.html",
     "title": "Lab 3:",
     "section": "",
-    "text": "To complete"
+    "text": "To complete",
+    "crumbs": [
+      "Labs",
+      "3: Advanced Statistical Modeling"
+    ]
+  },
+  {
+    "objectID": "labs/03-labs.html#part-1",
+    "href": "labs/03-labs.html#part-1",
+    "title": "Lab 3:",
+    "section": "",
+    "text": "To complete",
+    "crumbs": [
+      "Labs",
+      "3: Advanced Statistical Modeling"
+    ]
   },
   {
     "objectID": "syllabus.html",
@@ -595,9 +716,9 @@
     "section": "",
     "text": "This session will focus on advanced data manipulation techniques using R and the tidyverse. While the primary resource for this session will be the slides, consider reflecting on the following questions as you engage with the material.",
     "crumbs": [
-      "Lessons",
-      "Data Mastery in R",
-      "1: Mastering Data Manipulation in R"
+      "Content",
+      "Data Mastery",
+      "1: Mastering Data Manipulation"
     ]
   },
   {
@@ -607,9 +728,9 @@
     "section": "",
     "text": "This session will focus on advanced data manipulation techniques using R and the tidyverse. While the primary resource for this session will be the slides, consider reflecting on the following questions as you engage with the material.",
     "crumbs": [
-      "Lessons",
-      "Data Mastery in R",
-      "1: Mastering Data Manipulation in R"
+      "Content",
+      "Data Mastery",
+      "1: Mastering Data Manipulation"
     ]
   },
   {
@@ -619,9 +740,9 @@
     "section": "Guiding Questions",
     "text": "Guiding Questions\n\n\n\n\n\n\nThese are optional!\n\n\n\nYou don’t need to answer all of these—or even any of them! They are here to help guide your thinking and reflection on the content. Feel free to explore whatever aspects you find most interesting.\n\n\n\nHow do complex filtering and selection operations enhance data analysis?\nWhat are the benefits of using the tidyverse for data manipulation?\nHow do different data reshaping techniques (e.g., pivoting) impact the way data is analyzed and interpreted?\nWhat challenges do you encounter when working with large datasets, and how can they be overcome with efficient R techniques?\nHow does the native pipe (|&gt;) improve code readability and workflow in R?",
     "crumbs": [
-      "Lessons",
-      "Data Mastery in R",
-      "1: Mastering Data Manipulation in R"
+      "Content",
+      "Data Mastery",
+      "1: Mastering Data Manipulation"
     ]
   },
   {
@@ -631,9 +752,9 @@
     "section": "Readings",
     "text": "Readings\n\nNo readings for this session.",
     "crumbs": [
-      "Lessons",
-      "Data Mastery in R",
-      "1: Mastering Data Manipulation in R"
+      "Content",
+      "Data Mastery",
+      "1: Mastering Data Manipulation"
     ]
   },
   {
@@ -643,9 +764,9 @@
     "section": "Slides",
     "text": "Slides\nThe slides for this session are available online as an HTML file. Use the buttons below to open the slides either as an interactive website or as a static PDF (for printing or storing for later). You can also navigate through the embedded slides directly on this page using your left and right arrow keys.\n\n View all slides in new window  Download PDF of all slides\n\n\n\n\n\n\n\n\n\n\n\nTip\n\n\n\nPro tip: If you type ? (or shift + /) while viewing the slides, you can access a list of special commands to enhance your experience.",
     "crumbs": [
-      "Lessons",
-      "Data Mastery in R",
-      "1: Mastering Data Manipulation in R"
+      "Content",
+      "Data Mastery",
+      "1: Mastering Data Manipulation"
     ]
   },
   {
@@ -655,9 +776,9 @@
     "section": "",
     "text": "IN CONSTRUCTION!",
     "crumbs": [
-      "Lessons",
-      "Modeling in R",
-      "3: Advanced Statistical Modeling in R"
+      "Content",
+      "Modeling",
+      "3: Advanced Statistical Modeling"
     ]
   },
   {
@@ -667,9 +788,9 @@
     "section": "",
     "text": "IN CONSTRUCTION!",
     "crumbs": [
-      "Lessons",
-      "Modeling in R",
-      "3: Advanced Statistical Modeling in R"
+      "Content",
+      "Modeling",
+      "3: Advanced Statistical Modeling"
     ]
   },
   {
@@ -679,9 +800,9 @@
     "section": "Guiding Questions",
     "text": "Guiding Questions\n\n\n\n\n\n\nThese are optional!\n\n\n\nYou don’t need to answer all of these—or even any of them! They are here to help guide your thinking and reflection on the content. Feel free to explore whatever aspects you find most interesting.\n\n\n\nQuestion 1",
     "crumbs": [
-      "Lessons",
-      "Modeling in R",
-      "3: Advanced Statistical Modeling in R"
+      "Content",
+      "Modeling",
+      "3: Advanced Statistical Modeling"
     ]
   },
   {
@@ -691,9 +812,9 @@
     "section": "Readings",
     "text": "Readings\n\nNo readings for this session.",
     "crumbs": [
-      "Lessons",
-      "Modeling in R",
-      "3: Advanced Statistical Modeling in R"
+      "Content",
+      "Modeling",
+      "3: Advanced Statistical Modeling"
     ]
   },
   {
@@ -703,64 +824,64 @@
     "section": "Slides",
     "text": "Slides\nThe slides for this session are available online as an HTML file. Use the buttons below to open the slides either as an interactive website or as a static PDF (for printing or storing for later). You can also navigate through the embedded slides directly on this page using your left and right arrow keys.\n\n View all slides in new window  Download PDF of all slides\n\n\n\n\n\n\n\n\n\n\n\nTip\n\n\n\nPro tip: If you type ? (or shift + /) while viewing the slides, you can access a list of special commands to enhance your experience.",
     "crumbs": [
-      "Lessons",
-      "Modeling in R",
-      "3: Advanced Statistical Modeling in R"
+      "Content",
+      "Modeling",
+      "3: Advanced Statistical Modeling"
     ]
   },
   {
-    "objectID": "lesson/01-lesson.html",
-    "href": "lesson/01-lesson.html",
+    "objectID": "labs/01-labs.html",
+    "href": "labs/01-labs.html",
     "title": "Lab 1:",
     "section": "",
     "text": "For the first part of this week’s lesson, you need to work through a few of Posit’s introductory primers. You’ll do these in your browser and type code and see results there.\nYou’ll learn some of the basics of R, as well as some powerful methods for manipulating data with the {dplyr} package.\nComplete these primers. It seems like there are a lot, but they’re short and go fairly quickly (especially as you get the hang of the syntax). Also, I have no way of seeing what you do or what you get wrong or right, and that’s totally fine! If you get stuck and want to skip some (or if it gets too easy), go right ahead and skip them!\n\nThe Basics\n\nVisualization basics\nProgramming basics\n\nWork with Data\n\nWorking with tibbles\nIsolating data with {dplyr}\nDeriving information with {dplyr}\n\n\nThe content from these primers comes from the (free and online!) book R for Data Science by Garrett Grolemund and Hadley Wickham. I highly recommend the book as a reference and for continuing to learn and use R in the future (like running regression models and other types of statistical analysis)",
     "crumbs": [
       "Labs",
-      "Lab 1"
+      "1: Mastering Data Manipulation"
     ]
   },
   {
-    "objectID": "lesson/01-lesson.html#part-1-the-basics-of-r-and-dplyr",
-    "href": "lesson/01-lesson.html#part-1-the-basics-of-r-and-dplyr",
+    "objectID": "labs/01-labs.html#part-1-the-basics-of-r-and-dplyr",
+    "href": "labs/01-labs.html#part-1-the-basics-of-r-and-dplyr",
     "title": "Lab 1:",
     "section": "",
     "text": "For the first part of this week’s lesson, you need to work through a few of Posit’s introductory primers. You’ll do these in your browser and type code and see results there.\nYou’ll learn some of the basics of R, as well as some powerful methods for manipulating data with the {dplyr} package.\nComplete these primers. It seems like there are a lot, but they’re short and go fairly quickly (especially as you get the hang of the syntax). Also, I have no way of seeing what you do or what you get wrong or right, and that’s totally fine! If you get stuck and want to skip some (or if it gets too easy), go right ahead and skip them!\n\nThe Basics\n\nVisualization basics\nProgramming basics\n\nWork with Data\n\nWorking with tibbles\nIsolating data with {dplyr}\nDeriving information with {dplyr}\n\n\nThe content from these primers comes from the (free and online!) book R for Data Science by Garrett Grolemund and Hadley Wickham. I highly recommend the book as a reference and for continuing to learn and use R in the future (like running regression models and other types of statistical analysis)",
     "crumbs": [
       "Labs",
-      "Lab 1"
+      "1: Mastering Data Manipulation"
     ]
   },
   {
-    "objectID": "lesson/01-lesson.html#part-2-getting-familiar-with-rstudio",
-    "href": "lesson/01-lesson.html#part-2-getting-familiar-with-rstudio",
+    "objectID": "labs/01-labs.html#part-2-getting-familiar-with-rstudio",
+    "href": "labs/01-labs.html#part-2-getting-familiar-with-rstudio",
     "title": "Lab 1:",
     "section": "Part 2: Getting familiar with RStudio",
     "text": "Part 2: Getting familiar with RStudio\nThe RStudio primers you just worked through are a great introduction to writing and running R code, but you typically won’t type code in a browser when you work with R. Instead, you’ll use a nicer programming environment like RStudio, which lets you type and save code in scripts, run code from those scripts, and see the output of that code, all in the same program.\nTo get familiar with RStudio, watch this video:",
     "crumbs": [
       "Labs",
-      "Lab 1"
+      "1: Mastering Data Manipulation"
     ]
   },
   {
-    "objectID": "lesson/01-lesson.html#part-3-rstudio-projects",
-    "href": "lesson/01-lesson.html#part-3-rstudio-projects",
+    "objectID": "labs/01-labs.html#part-3-rstudio-projects",
+    "href": "labs/01-labs.html#part-3-rstudio-projects",
     "title": "Lab 1:",
     "section": "Part 3: RStudio Projects",
     "text": "Part 3: RStudio Projects\nOne of the most powerful and useful aspects of RStudio is its ability to manage projects.\nWhen you first open R, it is “pointed” at some folder on your computer, and anything you do will be relative to that folder. The technical term for this is a “working directory.”\nWhen you first open RStudio, look in the area right at the top of the Console pane to see your current working directory. Most likely you’ll see something cryptic: ~/\n\n\n\n\n\n\n\n\n\nThat tilde sign (~) is a shortcut that stands for your user directory. On Windows this is C:\\Users\\your_user_name\\; on macOS this is /Users/your_user_name/. With the working directory set to ~/, R is “pointed” at that folder, and anything you save will end up in that folder, and R will expect any data that you load to be there too.\nIt’s always best to point R at some other directory. If you don’t use RStudio, you need to manually set the working directory to where you want it with setwd(), and many R scripts in the wild include something like setwd(\"C:\\\\Users\\\\bill\\\\Desktop\\\\Important research project\") at the beginning to change the directory. THIS IS BAD THOUGH (see here for an explanation). If you ever move that directory somewhere else, or run the script on a different computer, or share the project with someone, the path will be wrong and nothing will run and you will be sad.\nThe best way to deal with working directories with RStudio is to use RStudio Projects. These are special files that RStudio creates for you that end in a .Rproj extension. When you open one of these special files, a new RStudio instance will open up and be pointed at the correct directory automatically. If you move the folder later or open it on a different computer, it will work just fine and you will not be sad.\nRead this super short chapter on RStudio projects.\nIn general, you can create a new project by going to File &gt; New Project &gt; New Directory &gt; Empty Project, which will create a new folder on your computer that is empty except for a single .Rproj file. Double click on that file to open an RStudio instance that is pointed at the correct folder.",
     "crumbs": [
       "Labs",
-      "Lab 1"
+      "1: Mastering Data Manipulation"
     ]
   },
   {
-    "objectID": "lesson/01-lesson.html#part-4-getting-familiar-with-quarto",
-    "href": "lesson/01-lesson.html#part-4-getting-familiar-with-quarto",
+    "objectID": "labs/01-labs.html#part-4-getting-familiar-with-quarto",
+    "href": "labs/01-labs.html#part-4-getting-familiar-with-quarto",
     "title": "Lab 1:",
     "section": "Part 4: Getting familiar with Quarto",
     "text": "Part 4: Getting familiar with Quarto\nTo ensure that the analysis and graphics you make are reproducible, you’ll do the majority of your work in this class using Quarto files.\nDo the following things:\n\nWatch this video. It’s all about R Markdown, which is Quarto’s predecessor. The same general principles apply.\n\n\n\n\n\n \n\nSkim through the content at these pages. Again, lots of these resources mention R Markdown, which is Quarto’s predecessor, but the same principles apply to Quarto\n\nUsing Markdown\nUsing Quarto\nHow it Works\nCode Chunks\nInline Code\nPublish and Share with Quarto\nPublish and Share with Quarto cheatsheet\n\nWatch this video:",
     "crumbs": [
       "Labs",
-      "Lab 1"
+      "1: Mastering Data Manipulation"
     ]
   },
   {

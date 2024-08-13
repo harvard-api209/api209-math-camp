@@ -1,0 +1,13 @@
+---
+title: "Mastering Data Manipulation in R (Hands-on Session)"
+date: "2024-08-14"
+---
+
+```{r slides-videos, echo=FALSE, include=FALSE}
+source(here::here("R", "slide-things.R"))
+```
+
+## Overview
+
+This session will focus on advanced data manipulation techniques using R and the tidyverse. While the primary resource for this session will be the slides, consider reflecting on the following questions as you engage with the material.
+

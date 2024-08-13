@@ -1,0 +1,12 @@
+---
+title: "Advanced Statistical Modeling in R"
+date: "2024-08-14"
+---
+
+```{r slides-videos, echo=FALSE, include=FALSE}
+source(here::here("R", "slide-things.R"))
+```
+
+## Overview
+
+In Construction!

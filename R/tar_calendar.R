@@ -36,15 +36,15 @@ build_schedule_for_page <- function(schedule_file) {
     mutate(var_content = ifelse(!is.na(content),
       glue('<a href="{content}.qmd"><i class="fa-solid fa-book-open-reader fa-lg"></i></a>'),
       glue('<font color="#e9ecef"><i class="fa-solid fa-book-open-reader fa-lg"></i></font>'))) |>
-    mutate(var_lesson = ifelse(!is.na(lesson),
-      glue('<a href="{lesson}.qmd"><i class="fa-solid fa-chalkboard-teacher fa-lg"></i></a>'),
+    mutate(var_handson = ifelse(!is.na(handson),
+      glue('<a href="{handson}.qmd"><i class="fa-solid fa-chalkboard-teacher fa-lg"></i></a>'),
       glue('<font color="#e9ecef"><i class="fa-solid fa-chalkboard-teacher fa-lg"></i></font>'))) |>
-    mutate(var_example = ifelse(!is.na(example),
-      glue('<a href="{example}.qmd"><i class="fa-solid fa-laptop-code fa-lg"></i></a>'),
+    mutate(var_labs = ifelse(!is.na(labs),
+      glue('<a href="{labs}.qmd"><i class="fa-solid fa-laptop-code fa-lg"></i></a>'),
       glue('<font color="#e9ecef"><i class="fa-solid fa-laptop-code fa-lg"></i></font>'))) |>
-    mutate(var_assignment = ifelse(!is.na(assignment),
-      glue('<a href="{assignment}.qmd"><i class="fa-solid fa-pen-ruler fa-lg"></i></a>'),
-      glue('<font color="#e9ecef"><i class="fa-solid fa-pen-ruler fa-lg"></i></font>'))) |>
+    # mutate(var_assignment = ifelse(!is.na(assignment),
+    #   glue('<a href="{assignment}.qmd"><i class="fa-solid fa-pen-ruler fa-lg"></i></a>'),
+    #   glue('<font color="#e9ecef"><i class="fa-solid fa-pen-ruler fa-lg"></i></font>'))) |>
     mutate(date = mdy(date), end_date = mdy(end_date)) |> 
     mutate(date_range = ifelse(!is.na(end_date),
       glue('{format(date, "%B %e")}–{format(end_date, "%B %e")}'), NA)) |> 
@@ -58,16 +58,21 @@ build_schedule_for_page <- function(schedule_file) {
     mutate(col_title = glue('{var_title}{var_note}')) |>
     mutate(
       col_content = var_content,
-      col_lesson = var_lesson,
-      col_example = var_example,
-      col_assignment = var_assignment
+      col_handson = var_handson,
+      col_labs = var_labs
+      # col_assignment = var_assignment
     )
   
   schedule_nested <- schedule |>
-    select(group, 
-      ` ` = col_date, Title = col_title,
-      Content = col_content, Lesson = col_lesson,
-      Example = col_example, Assignment = col_assignment) |>
+    select(
+      group, 
+      ` ` = col_date, 
+      Title = col_title,
+      Content = col_content, 
+      `Hands-on` = col_handson,
+      Labs = col_labs
+      # Assignment = col_assignment
+    ) |>
     group_by(group) |>
     nest()
   

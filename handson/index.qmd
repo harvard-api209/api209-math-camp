@@ -1,0 +1,33 @@
+---
+title: Hands-on Sessions
+---
+
+Hands-on sessions are designed to provide you with practical, interactive experiences that reinforce the concepts covered in the lecture slides. These sessions are an opportunity to apply what you've learned, experiment with code, and deepen your understanding through direct practice.
+
+**What to Expect:**
+
+- **Interactive Exercises:** You'll work on a series of exercises that challenge you to implement the techniques discussed in the lectures.
+
+- **Guided Examples:** Each session includes guided examples that walk you through complex tasks step-by-step, helping you build confidence in your coding skills.
+
+- **Collaborative Learning:** Engage with your peers, share insights, and troubleshoot problems together. These sessions are meant to be collaborative, allowing you to learn from each other.
+
+## Preparing for Hands-on Sessions
+
+Before participating in a hands-on session, it’s important to:
+
+1. **Review the Lecture Slides:** Ensure you’ve gone through the slides for the session, as they provide the foundational knowledge you'll need.
+
+2. **Complete Any Pre-Session Readings:** If there are any additional readings or resources provided, make sure to review them beforehand.
+
+3. **Come Ready to Code:** These sessions are about active participation. Have your coding environment ready (whether on your local machine or via Posit Cloud) and be prepared to dive into the exercises.
+
+## Resources and Support
+
+During the hands-on sessions, you may encounter challenges or have questions. Don’t hesitate to:
+
+- **Ask for Help:** Whether it’s a small syntax error or a conceptual question, feel free to ask. The goal is to learn, and sometimes that means needing a little help.
+
+- **Utilize Provided Resources:** In addition to the slides, there may be supplementary materials such as example scripts, datasets, or reference guides available for each session.
+
+- **Collaborate with Peers:** Use this time to work with your peers. Discussing problems and solutions with others can often lead to a deeper understanding.

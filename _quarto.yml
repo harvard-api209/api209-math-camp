@@ -39,10 +39,12 @@ website:
     right:
       - syllabus.qmd
       - schedule.qmd
-      - text: "Lessons"
+      - text: "Content"
         file: content/index.qmd
+      - text: "Hands-on"
+        file: handson/index.qmd
       - text: "Labs"
-        file: lesson/index.qmd
+        file: labs/index.qmd
       - text: "Resources"
         file: resource/index.qmd
       - icon: slack
@@ -61,23 +63,39 @@ website:
         - section: "Overview"
           contents:
             - content/index.qmd
-        - section: "Data Mastery in R"
+        - section: "Data Mastery"
           contents:
-            - text: "1: Mastering Data Manipulation in R"
+            - text: "1: Mastering Data Manipulation"
               file: content/01-content.qmd
-        - section: "Data Visualization in R"
+        - section: "Data Visualization"
           contents:
             - text: "2: Elegant Data Visualization with ggplot2"
               file: content/02-content.qmd
-        - section: "Modeling in R"
+        - section: "Modeling"
           contents:
-            - text: "3: Advanced Statistical Modeling in R"
+            - text: "3: Advanced Statistical Modeling"
               file: content/03-content.qmd
-        - section: "Streamlining Research with R"
+        - section: "Streamlining Research"
           contents:
             - text: "4: Reproducible Research and Automation"
               file: content/04-content.qmd
-    
+
+    - title: "Hands-on"
+      contents:
+        - section: "Overview"
+          contents:
+            - handson/index.qmd
+        - section: "Hands-on Sessions"
+          contents:
+            - text: "1: Mastering Data Manipulation"
+              file: handson/01-handson.qmd
+            - text: "2: Elegant Data Visualization with ggplot2"
+              file: handson/01-handson.qmd
+            - text: "3: Advanced Statistical Modeling"
+              file: handson/01-handson.qmd
+            - text: "4: Reproducible Research and Automation"
+              file: handson/01-handson.qmd    
+
     - title: "Labs"
       contents:
         - section: "Overview"
@@ -85,14 +103,14 @@ website:
             - lesson/index.qmd
         - section: "Labs"
           contents:
-            - text: "Lab 1"
-              file: lesson/01-lesson.qmd
-            - text: "Lab 2"
-              file: lesson/01-lesson.qmd
-            - text: "Lab 3"
-              file: lesson/01-lesson.qmd
-            - text: "Lab 4"
-              file: lesson/01-lesson.qmd
+            - text: "1: Mastering Data Manipulation"
+              file: labs/01-labs.qmd
+            - text: "2: Elegant Data Visualization with ggplot2"
+              file: labs/02-labs.qmd
+            - text: "3: Advanced Statistical Modeling"
+              file: labs/03-labs.qmd
+            - text: "4: Reproducible Research and Automation"
+              file: labs/04-labs.qmd
 
     - title: "Resources"
       contents:

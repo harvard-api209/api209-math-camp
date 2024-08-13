@@ -23,9 +23,11 @@ ical_url_absolute <- paste0(base_url, "/", schedule_ical_file)
 
 Here's your roadmap for the summer camp!
 
-- [**Lessons**](/content/index.qmd) ({{< fa book-open-reader >}}): This page contains the slides for the topic. Read and watch these first.
+- [**Lessons**](/content/index.qmd) ({{< fa book-open-reader >}}): This page contains the slides for the topic. Read and go through these first.
 
-- [**Labs**](/lesson/index.qmd) ({{< fa chalkboard-teacher >}}): This page contains, when needed, interactive sessions, and also the contents for each lab. Go through these after doing the lessons.
+- [**Hands-on Sessions**](/hands-on/index.qmd) ({{< fa laptop-code >}}): This page provides the interactive, practical exercises that correspond with each lesson. Engage with these sessions after reviewing the slides to solidify your understanding. We will go through these during each odd numbered session.
+
+- [**Labs**](/labs/index.qmd) ({{< fa chalkboard-teacher >}}): This page contains, when needed, interactive sessions, and also the contents for each lab. Go through these after doing the lessons and hands-on sessions. This is more on your own, so we will go through these during each even numbered session.
 
 :::::: {.row .d-flex .justify-content-center}
 ::::: {.col-12 .col-sm-10 .col-md-6}
@@ -34,8 +36,9 @@ Here's your roadmap for the summer camp!
 
 **tl;dr**: You should follow this general process for each session:
 
-- Do everything on the lewsson page ({{< fa book-open-reader >}})
-- Work through the labs page ({{< fa chalkboard-teacher >}})
+- Read the slides in the lesson page ({{< fa book-open-reader >}})
+- Work through the hands-on page ({{< fa laptop-code >}})
+- Do the labs page ({{< fa chalkboard-teacher >}})
 
 :::
 ::::
@@ -71,11 +74,11 @@ show_table <- function(group_id) {
 
   # Make the table
   tbl <- schedule_nested$data[[group_id]] |>
-    kbl(escape = FALSE, align = "rlcccc", table.attr = 'class="schedule-table"') |>
+    kbl(escape = FALSE, align = "rlccc", table.attr = 'class="schedule-table"') |>
     kable_styling() |>
     column_spec(1, width = "20%", extra_css = "padding-right: 20px;") |>
     column_spec(2, width = "48%") |>
-    column_spec(3:6, width = "8%")
+    column_spec(3:5, width = "8%")
 
   cat(tbl)
 }
