@@ -118,16 +118,26 @@ class: title title-crimson
 # Course assistants for Math Camp
 
 .pull-left-3[
-**Hussaini Shan-e-Abbas**
+.center[
+**Shan**
+  <figure>
+  <img src="img/01/Shan.jpeg" style="border-radius: 50%; width: 350px; border: 5px solid black;"/>
+  </figure>
+]  
 ]
 
 .pull-middle-3[
-**Ayush Shukla**
+.center[
+**Ayush**
+  <figure>
+  <img src="img/01/Ayush.jpg" style="border-radius: 50%; width: 350px; border: 5px solid black;"/>
+  </figure>
+]  
 ]
 
 .pull-right-3[
-**Sara Wong Becerra**
 .center[
+**Sara**
   <figure>
   <img src="img/01/sara.jpeg" style="border-radius: 50%; width: 350px; border: 5px solid black;"/>
   </figure>

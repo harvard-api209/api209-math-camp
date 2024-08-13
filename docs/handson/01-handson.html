@@ -274,7 +274,7 @@ globalThis.qwebrCustomizedWebROptions = {
 };
 
 // Store cell data
-globalThis.qwebrCellDetails = [{"options":{"dpi":72,"comment":"","warning":"true","out-width":"100%","fig-width":"7","output":"true","editor-font-scale":"0.8","message":"true","editor-quick-suggestions":"false","fig-cap":"","context":"interactive","classes":"","label":"load-data","out-height":"","read-only":"false","fig-height":"4.3","editor-max-height":"","autorun":"false","results":"markup"},"id":1,"code":"migration <- read.csv(\"https://raw.githubusercontent.com/harvard-api209/api209-math-camp/main/files/data/external_data/migration.csv\") |> \n    as_tibble()"},{"options":{"dpi":72,"comment":"","warning":"true","out-width":"100%","fig-width":"7","output":"true","editor-font-scale":"0.8","message":"true","editor-quick-suggestions":"false","fig-cap":"","context":"interactive","classes":"","label":"glimpse","out-height":"","read-only":"false","fig-height":"4.3","editor-max-height":"","autorun":"false","results":"markup"},"id":2,"code":"migration |> \n    glimpse()"},{"options":{"dpi":72,"comment":"","warning":"true","out-width":"100%","fig-width":"7","output":"true","editor-font-scale":"0.8","message":"true","editor-quick-suggestions":"false","fig-cap":"","context":"interactive","classes":"","label":"unnamed-chunk-3","out-height":"","read-only":"false","fig-height":"4.3","editor-max-height":"","autorun":"false","results":"markup"},"id":3,"code":"migration <- migration |> \n    clean_names()\n\n# and check again the names\nmigration |> \n    glimpse()"},{"options":{"dpi":72,"comment":"","warning":"true","out-width":"100%","fig-width":"7","output":"true","editor-font-scale":"0.8","message":"true","editor-quick-suggestions":"false","fig-cap":"","context":"interactive","classes":"","label":"unnamed-chunk-4","out-height":"","read-only":"false","fig-height":"4.3","editor-max-height":"","autorun":"false","results":"markup"},"id":4,"code":"migration_filtered <- migration |>\n  filter(year >= 1990 & year <= 2020) |> \n  filter(country %in% c(\"\"))"},{"options":{"dpi":72,"comment":"","warning":"true","out-width":"100%","fig-width":"7","output":"true","editor-font-scale":"0.8","message":"true","editor-quick-suggestions":"false","fig-cap":"","context":"interactive","classes":"","label":"unnamed-chunk-5","out-height":"","read-only":"false","fig-height":"4.3","editor-max-height":"","autorun":"false","results":"markup"},"id":5,"code":"migration_filtered |>\n    group_by()\n    summarize()"}];
+globalThis.qwebrCellDetails = [{"id":1,"options":{"results":"markup","fig-width":"7","out-width":"100%","out-height":"","context":"interactive","comment":"","fig-height":"4.3","editor-font-scale":"0.8","warning":"true","dpi":72,"classes":"","autorun":"false","editor-max-height":"","label":"load-data","output":"true","editor-quick-suggestions":"false","message":"true","read-only":"false","fig-cap":""},"code":"migration <- read.csv(\"https://raw.githubusercontent.com/harvard-api209/api209-math-camp/main/files/data/external_data/migration.csv\") |> \n    as_tibble()\n\nmigration  "},{"id":2,"options":{"results":"markup","fig-width":"7","out-width":"100%","out-height":"","context":"interactive","comment":"","fig-height":"4.3","editor-font-scale":"0.8","warning":"true","dpi":72,"classes":"","autorun":"false","editor-max-height":"","label":"glimpse","output":"true","editor-quick-suggestions":"false","message":"true","read-only":"false","fig-cap":""},"code":"migration |> \n    glimpse()"},{"id":3,"options":{"results":"markup","fig-width":"7","out-width":"100%","out-height":"","context":"interactive","comment":"","fig-height":"4.3","editor-font-scale":"0.8","warning":"true","dpi":72,"classes":"","autorun":"false","editor-max-height":"","label":"unnamed-chunk-3","output":"true","editor-quick-suggestions":"false","message":"true","read-only":"false","fig-cap":""},"code":"migration <- migration |> \n    clean_names()\n\n# and check again the names\nmigration |> \n    glimpse()"},{"id":4,"options":{"results":"markup","fig-width":"7","out-width":"100%","out-height":"","context":"interactive","comment":"","fig-height":"4.3","editor-font-scale":"0.8","warning":"true","dpi":72,"classes":"","autorun":"false","editor-max-height":"","label":"unnamed-chunk-4","output":"true","editor-quick-suggestions":"false","message":"true","read-only":"false","fig-cap":""},"code":"migration_filtered <- migration |>\n  filter(year >= 1990 & year <= 2020) |> \n  filter(country %in% c(\"\"))\n\nmigration_filtered"},{"id":5,"options":{"results":"markup","fig-width":"7","out-width":"100%","out-height":"","context":"interactive","comment":"","fig-height":"4.3","editor-font-scale":"0.8","warning":"true","dpi":72,"classes":"","autorun":"false","editor-max-height":"","label":"unnamed-chunk-5","output":"true","editor-quick-suggestions":"false","message":"true","read-only":"false","fig-cap":""},"code":"migration_filtered |>\n    group_by()\n    summarize(name = mean())"},{"id":6,"options":{"results":"markup","fig-width":"7","out-width":"100%","out-height":"","context":"interactive","comment":"","fig-height":"4.3","editor-font-scale":"0.8","warning":"true","dpi":72,"classes":"","autorun":"false","editor-max-height":"","label":"unnamed-chunk-6","output":"true","editor-quick-suggestions":"false","message":"true","read-only":"false","fig-cap":""},"code":"migration_filtered |>\n    group_by()\n    summarize(name = mean(, another argument here))"},{"id":7,"options":{"results":"markup","fig-width":"7","out-width":"100%","out-height":"","context":"interactive","comment":"","fig-height":"4.3","editor-font-scale":"0.8","warning":"true","dpi":72,"classes":"","autorun":"false","editor-max-height":"","label":"unnamed-chunk-7","output":"true","editor-quick-suggestions":"false","message":"true","read-only":"false","fig-cap":""},"code":"migration_filtered |> \n  group_by(country) |> \n  summarize(\n    mean_emigrants = mean(emigrants, na.rm = TRUE),\n    n_observations = n(),\n    min_year = min(year),\n    max_year = max(year)\n  )"},{"id":8,"options":{"results":"markup","fig-width":"7","out-width":"100%","out-height":"","context":"interactive","comment":"","fig-height":"4.3","editor-font-scale":"0.8","warning":"true","dpi":72,"classes":"","autorun":"false","editor-max-height":"","label":"unnamed-chunk-8","output":"true","editor-quick-suggestions":"false","message":"true","read-only":"false","fig-cap":""},"code":"migration_filtered |> \n  group_by(country) |> \n  summarize(\n    n_missing = sum(is.na(emigrants)),\n    n_observations = n(),\n    missing_rate = n_missing / n_observations\n  )"},{"id":9,"options":{"results":"markup","fig-width":"7","out-width":"100%","out-height":"","context":"interactive","comment":"","fig-height":"4.3","editor-font-scale":"0.8","warning":"true","dpi":72,"classes":"","autorun":"false","editor-max-height":"","label":"unnamed-chunk-9","output":"true","editor-quick-suggestions":"false","message":"true","read-only":"false","fig-cap":""},"code":"migration_filtered |> \n  group_by(country) |> \n  summarize(\n    mean_emigrants = mean(emigrants, na.rm = TRUE),\n    n_observations = sum(!is.na(emigrants)),  # Counts only non-missing values\n    min_year = min(year[!is.na(emigrants)]),  # Finds the earliest year with data\n    max_year = max(year[!is.na(emigrants)])   # Finds the latest year with data\n  )"},{"id":10,"options":{"results":"markup","fig-width":"7","out-width":"100%","out-height":"","context":"interactive","comment":"","fig-height":"4.3","editor-font-scale":"0.8","warning":"true","dpi":72,"classes":"","autorun":"false","editor-max-height":"","label":"unnamed-chunk-10","output":"true","editor-quick-suggestions":"false","message":"true","read-only":"false","fig-cap":""},"code":"migration_filtered |> \n  filter() |>        \n  group_by(country) |> \n  summarize(\n    mean_emigrants = mean(),  \n    n_observations = n(),     \n    min_year = min(),         \n    max_year = max()          \n  )"},{"id":11,"options":{"results":"markup","fig-width":"7","out-width":"100%","out-height":"","context":"interactive","comment":"","fig-height":"4.3","editor-font-scale":"0.8","warning":"true","dpi":72,"classes":"","autorun":"false","editor-max-height":"","label":"unnamed-chunk-11","output":"true","editor-quick-suggestions":"false","message":"true","read-only":"false","fig-cap":""},"code":"migration_filtered |> \n  select(year, country, VAR1, VAR2)"},{"id":12,"options":{"results":"markup","fig-width":"7","out-width":"100%","out-height":"","context":"interactive","comment":"","fig-height":"4.3","editor-font-scale":"0.8","warning":"true","dpi":72,"classes":"","autorun":"false","editor-max-height":"","label":"unnamed-chunk-12","output":"true","editor-quick-suggestions":"false","message":"true","read-only":"false","fig-cap":""},"code":"migration_filtered |> \n  group_by(country) |> \n  select(year, country, emigrants, international_migrants) |> \n  summarize(\n    across(\n      c(emigrants, international_migrants), \n      mean,\n      .names = \"mean_{.col}\"\n    )\n  )"},{"id":13,"options":{"results":"markup","fig-width":"7","out-width":"100%","out-height":"","context":"interactive","comment":"","fig-height":"4.3","editor-font-scale":"0.8","warning":"true","dpi":72,"classes":"","autorun":"false","editor-max-height":"","label":"unnamed-chunk-13","output":"true","editor-quick-suggestions":"false","message":"true","read-only":"false","fig-cap":""},"code":"migration_filtered |> \n  group_by(country) |> \n  select(year, country, emigrants, international_migrants) |> \n  summarize(\n    across(\n      c(emigrants, international_migrants), \n      ~mean(.x, na.rm = TRUE), \n      .names = \"mean_{.col}\"\n    )\n  )"},{"id":14,"options":{"results":"markup","fig-width":"7","out-width":"100%","out-height":"","context":"interactive","comment":"","fig-height":"4.3","editor-font-scale":"0.8","warning":"true","dpi":72,"classes":"","autorun":"false","editor-max-height":"","label":"unnamed-chunk-14","output":"true","editor-quick-suggestions":"false","message":"true","read-only":"false","fig-cap":""},"code":"migration_filtered |> \n  group_by(country) |> \n  select(year, country, emigrants, international_migrants) |> \n  summarize(\n    across(\n      c(emigrants, international_migrants), \n      list(\n        mean = ~mean(.x, na.rm = TRUE), \n        sd = ~sd(.x, na.rm = TRUE)\n      ), \n    .names = \"{.fn}_{.col}\")\n  )"},{"id":15,"options":{"results":"markup","fig-width":"7","out-width":"100%","out-height":"","context":"interactive","comment":"","fig-height":"4.3","editor-font-scale":"0.8","warning":"true","dpi":72,"classes":"","autorun":"false","editor-max-height":"","label":"unnamed-chunk-15","output":"true","editor-quick-suggestions":"false","message":"true","read-only":"false","fig-cap":""},"code":"summarize_migration_data <- function(data, group_var, summary_vars) {\n  data |> \n    group_by(across(all_of(group_var))) |> \n    summarize(\n      across(\n      )\n    ) |> \n    pivot_longer() |> \n    pivot_wider()\n}"},{"id":16,"options":{"results":"markup","fig-width":"7","out-width":"100%","out-height":"","context":"interactive","comment":"","fig-height":"4.3","editor-font-scale":"0.8","warning":"true","dpi":72,"classes":"","autorun":"false","editor-max-height":"","label":"unnamed-chunk-16","output":"true","editor-quick-suggestions":"false","message":"true","read-only":"false","fig-cap":""},"code":"migration_filtered |>\n  rename(immigrants = international_migrants) |> \n  summarize_migration_data(\n    group_var = \"country\",\n    summary_vars = c(\"emigrants\", \"immigrants\")\n  )"}];
 
 </script>
 <script type="module">
@@ -1250,7 +1250,8 @@ globalThis.qwebrExecuteCode = async function (
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#migration-data" id="toc-migration-data" class="nav-link active" data-scroll-target="#migration-data">Migration Data</a>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">Introduction</a></li>
+  <li><a href="#migration-data" id="toc-migration-data" class="nav-link" data-scroll-target="#migration-data">Migration Data</a>
   <ul class="collapse">
   <li><a href="#how-does-the-un-define-a-migrant" id="toc-how-does-the-un-define-a-migrant" class="nav-link" data-scroll-target="#how-does-the-un-define-a-migrant">How does the UN define a migrant?</a></li>
   </ul></li>
@@ -1259,8 +1260,6 @@ globalThis.qwebrExecuteCode = async function (
   <li><a href="#exercise-1" id="toc-exercise-1" class="nav-link" data-scroll-target="#exercise-1">Exercise 1</a></li>
   <li><a href="#exercise-2" id="toc-exercise-2" class="nav-link" data-scroll-target="#exercise-2">Exercise 2</a></li>
   </ul></li>
-  <li><a href="#overview" id="toc-overview" class="nav-link" data-scroll-target="#overview">Overview</a></li>
-  <li><a href="#data-wrangling" id="toc-data-wrangling" class="nav-link" data-scroll-target="#data-wrangling">Data wrangling</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/harvard-api209/api209-math-camp/edit/main/handson/01-handson.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/harvard-api209/api209-math-camp/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
@@ -1503,6 +1502,10 @@ globalThis.qwebrCreateMonacoEditorInstance = function (cellData) {
 </header>
 
 
+<section id="introduction" class="level2">
+<h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
+<p>Welcome to the interactive hands-on session on migration data. This session is designed to be an interactive part of our website, allowing you to engage directly with the R code and data manipulation techniques discussed. For your convenience, the same script used here is available in R format within our Posit Cloud project, which you can access <a href="https://posit.cloud/content/8531422">here</a>. You are also welcome to use RStudio or Positron on your local machine to follow along.</p>
+</section>
 <section id="migration-data" class="level2">
 <h2 class="anchored" data-anchor-id="migration-data">Migration Data</h2>
 <p>The data on immigrant and emigrant stocks used in this session is sourced from the United Nations Department of Economic and Social Affairs (UN DESA).</p>
@@ -1514,18 +1517,45 @@ globalThis.qwebrCreateMonacoEditorInstance = function (cellData) {
 </section>
 <section id="loading-and-cleaning-the-data" class="level2">
 <h2 class="anchored" data-anchor-id="loading-and-cleaning-the-data">Loading and Cleaning the Data</h2>
-<p>Let’s begin by loading our data using the read_csv function:</p>
+<p>Let’s begin by loading our data using the <code>read.csv</code> function:</p>
 <div id="qwebr-insertion-location-1"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
-<p>We can use the <code>glimpse()</code> fucntion to check our columns (variables):</p>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note for Web-R Application Users
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>If you’re working on your local computer or in Posit Cloud, you can use the <code>read_csv()</code> function instead. The <code>read.csv()</code> function is used here due to bugs related to the Web-R application.</p>
+</div>
+</div>
+<p>We can use the <code>glimpse()</code> function to check our columns (variables). Now, you realize that probably this dataset contains really nasty names. This is what we will usually called as “raw” data.</p>
 <div id="qwebr-insertion-location-2"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
-<p>And, then, we are going to use the <code>janitor</code> package to clean the name of the variables using the <code>clean_names()</code> function:</p>
+<p>We’ll use the clean_names() function from janitor to standardize column names by converting them to snake_case, which makes them easier to work with.</p>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+This web-r application
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>This web-r application already loaded the required package. See at the top of this page. Therefore, remember to load the required packages when you test yourself or use the posit cloud project.</p>
+</div>
+</div>
 <div id="qwebr-insertion-location-3"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+<p>This should be sufficient for the type of names we have.</p>
 <section id="exercise-1" class="level3">
 <h3 class="anchored" data-anchor-id="exercise-1">Exercise 1</h3>
-<p>Let’s ignore specifics regarding whether we have countries, regions, etc. We will filter our dataset that contain only data from 1990 to 2020 and let’s look into 3 countries:</p>
+<p><strong>Part 1:</strong>. Let’s focus on a subset of countries in Central America. We want to analyze data from Nicaragua, El Salvador, Costa Rica, Panama, Guatemala, and Belize, and only consider the years from 1990 to 2020. Test below and select any countries you would like</p>
 <div class="tabset-margin-container"></div><div class="panel-tabset">
 <ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true"><i class="fa-solid fa-code" aria-label="code"></i> Interactive editor</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false"><i class="fa-solid fa-lightbulb" aria-label="lightbulb"></i> Hint</a></li></ul>
 <div class="tab-content">
@@ -1538,32 +1568,114 @@ globalThis.qwebrCreateMonacoEditorInstance = function (cellData) {
 </div>
 </div>
 </div>
+<p><strong>Part 2</strong>: Summarizing the Data. Now that we have our filtered dataset, let’s summarize the data to calculate the mean number of emigrants by country.</p>
+<div id="qwebr-insertion-location-5"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+What’s the issue with the above code?
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>HINT: Think about what happens if there are missing values (NA) in the ‘emigrants’ column.</p>
+<p>The <code>mean()</code> function by default includes NA values, which will return NA as the result if any NA values are present. We need to handle missing values properly.</p>
+</div>
+</div>
+<p>Try below and correct the code:</p>
+<div id="qwebr-insertion-location-6"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+<p><strong>Part 3</strong>: Add the summarize function more stats: such as observations, min year, and max year.</p>
+<div id="qwebr-insertion-location-7"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Exercise: What could be wrong with this approach?
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>HINT: Are all the observations being used in the calculation? What about years with missing data?</p>
+</div>
+</div>
+<p><strong>Part 4</strong>: Identifying Missing Data</p>
+<p>Let’s investigate how many missing values exist for each country in the ‘emigrants’ variable. This will help us understand how missing data might affect our summary statistics.</p>
+<div id="qwebr-insertion-location-8"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+<p>Here, we’re counting the number of missing values (n_missing) for each country, and calculating the proportion of missing data (missing_rate).</p>
+<p><strong>Part 5</strong>: Re-doing the Summary with Improved Understanding</p>
+<p>Now, let’s improve our summary by accounting for missing values. We’ll calculate the mean only where data is available, and ensure that our count of observations reflects only those used in the mean calculation.</p>
+<div id="qwebr-insertion-location-9"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+<p><strong>Part 6</strong>: Simplifying the Process</p>
+<p>To avoid handling missing data in multiple steps, we can filter out the missing values before grouping and summarizing. This ensures our calculations are straightforward and accurate. Test it in the chunk below</p>
+<div id="qwebr-insertion-location-10"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
 </section>
 <section id="exercise-2" class="level3">
 <h3 class="anchored" data-anchor-id="exercise-2">Exercise 2</h3>
-<p>With your filtered data, use the <code>summarize</code> function to calculate the total number of migrants for each country from 1990 to 2020.</p>
+<p>In this exercise, we will explore how to summarize multiple variables at once using the <code>across()</code> function. We will start with a simple example and gradually build up to more complex summaries, including calculating multiple statistics (mean, standard deviation, etc.). Finally, we’ll create a function to automate this process for any set of variables.</p>
+<p><strong>Part 1</strong>: Selecting Relevant Variables</p>
+<p>Suppose we want to analyze multiple columns: <code>emigrants</code>, and <code>international_migrants</code>. Let’s start by selecting these variables.</p>
+<div id="qwebr-insertion-location-11"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+<p><strong>Part 2:</strong> Summarizing Multiple Variables</p>
+<p>We want to calculate the mean of both <code>emigrants</code> and <code>international_migrants</code> for each country. Let’s use the <code>across()</code> function to do this.</p>
+<div id="qwebr-insertion-location-12"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Warning
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>What issue might arise with the above code? HINT: Think about how missing values (<code>NA</code>) are handled in the <code>mean()</code> function.</p>
+<p>Explanation: As in the previous exercise, the mean calculation will return <code>NA</code> if there are any missing values. We need to handle these missing values properly.</p>
+</div>
+</div>
+<p><strong>Part 3</strong>: Handling Missing Values</p>
+<p>Let’s modify the code to remove the missing values before calculating the mean.</p>
+<div id="qwebr-insertion-location-13"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+<p><strong>Part 4</strong>: Calculating Multiple Statistics</p>
+<p>What if we want to calculate additional statistics, such as the standard deviation? We can use the <code>list()</code> function within <code>across()</code> to calculate both the mean and standard deviation.</p>
+<div id="qwebr-insertion-location-14"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+<p><strong>Part 5 (HARD)</strong>: Creating a Function</p>
+<p>Let’s create a more advanced exercise. What if we want to automate this process so that we can apply it to any set of variables? We’ll create a function that takes two arguments: the dataset we want to analyze and the set of variables we want to summarize.</p>
 <div class="tabset-margin-container"></div><div class="panel-tabset">
 <ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-2-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-1" role="tab" aria-controls="tabset-2-1" aria-selected="true"><i class="fa-solid fa-code" aria-label="code"></i> Interactive editor</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-2" role="tab" aria-controls="tabset-2-2" aria-selected="false"><i class="fa-solid fa-lightbulb" aria-label="lightbulb"></i> Hint</a></li></ul>
 <div class="tab-content">
 <div id="tabset-2-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-2-1-tab">
-<div id="qwebr-insertion-location-5"></div>
+<div id="qwebr-insertion-location-15"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
 </div>
 <div id="tabset-2-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-2-tab">
-<p><strong>Hint:</strong> Be careful! There could be missing values!</p>
+<p><strong>Hint:</strong> When creating the <code>summarize_migration_data</code> function, start by understanding that the purpose is to summarize several variables based on a grouping variable, such as a country. You’ll need to define parameters for the dataset (<code>data</code>), the grouping variable (<code>group_var</code>), and the variables you want to summarize (<code>summary_vars</code>).</p>
+<p>To group the data by the specified variable, use <code>group_by()</code>. This should be done with <code>across(all_of(group_var))</code> to ensure the grouping works dynamically with the variable(s) passed to the function.</p>
+<p>Next, you’ll summarize the data using <code>summarize()</code> and <code>across()</code>. Within <code>across()</code>, apply a list of functions to calculate the number of observations (<code>n</code>), mean, standard deviation (<code>sd</code>), minimum (<code>min</code>), and maximum (<code>max</code>). It’s important to handle missing values using <code>na.rm = TRUE</code> for the mean, standard deviation, minimum, and maximum calculations to avoid issues with missing data.</p>
+<p>After calculating the summaries, you’ll need to reshape the data for better readability. Use <code>pivot_longer()</code> to transform the summarized data into a long format, where each row represents a combination of a statistic and a variable. Then, use <code>pivot_wider()</code> to pivot the data back into a wide format, with each statistic as a column. This step helps in organizing the results in a structured manner.</p>
+<p>Throughout this process, pay attention to how you name the output columns in the <code>summarize()</code> step. The <code>.names</code> argument in <code>across()</code> should be set up to clearly label each statistic with both the function and the variable names, ensuring clarity in the final output.</p>
+<p>Finally, ensure that your function is flexible enough to be applied to different datasets and variables by testing it with various inputs. This will confirm that it performs as expected across different scenarios.</p>
 </div>
 </div>
 </div>
-</section>
-</section>
-<section id="overview" class="level2">
-<h2 class="anchored" data-anchor-id="overview">Overview</h2>
-<p>This session will focus on advanced data manipulation techniques using R and the tidyverse.</p>
-</section>
-<section id="data-wrangling" class="level2">
-<h2 class="anchored" data-anchor-id="data-wrangling">Data wrangling</h2>
+<p>Let’s test the function:</p>
+<div id="qwebr-insertion-location-16"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->
