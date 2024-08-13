@@ -42,10 +42,10 @@ Let's begin by loading our data using the read_csv function:
 
 ```{webr-r}
 #| label: load-data
-migration <- read_csv("files/data/external_data/migration.csv")
+migration <- read_csv("https://raw.githubusercontent.com/harvard-api209/api209-math-camp/main/files/data/external_data/migration.csv")
 ```
 
-We can use the `glimpse` to check our columns (variables):
+We can use the `glimpse()` fucntion to check our columns (variables):
 
 ```{webr-r}
 #| label: glimpse
@@ -53,7 +53,7 @@ migration |>
     glimpse()
 ```
 
-And, then, we are going to use the janitor package to clean the name of the variables:
+And, then, we are going to use the `janitor` package to clean the name of the variables using the `clean_names()` function:
 
 ```{webr-r}
 migration <- migration |> 
@@ -74,7 +74,7 @@ Let's ignore specifics regarding whether we have countries, regions, etc. We wil
 ```{webr-r}
 migration_filtered <- migration |>
   filter(year >= 1990 & year <= 2020) |> 
-  filter(country %in% c("United States", "Canada", "Mexico"))
+  filter(country %in% c(""))
 ```
 
 ## {{< fa lightbulb >}}&ensp;Hint
@@ -82,7 +82,24 @@ migration_filtered <- migration |>
 **Hint:** You'll want to change something in the code that creates `migration_filtered`. 
 :::
 
-::::
+### Exercise 2
+
+With your filtered data, use the `summarize` function to calculate the total number of migrants for each country from 1990 to 2020.
+
+::: {.panel-tabset}
+## {{< fa code >}}&ensp;Interactive editor
+
+```{webr-r}
+migration_filtered |>
+    group_by()
+    summarize()
+```
+
+## {{< fa lightbulb >}}&ensp;Hint
+
+**Hint:** Be careful! There could be missing values!
+:::
+
 
 ## Overview
 

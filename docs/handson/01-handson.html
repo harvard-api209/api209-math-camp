@@ -274,7 +274,7 @@ globalThis.qwebrCustomizedWebROptions = {
 };
 
 // Store cell data
-globalThis.qwebrCellDetails = [{"id":1,"code":"migration <- read_csv(\"files/data/external_data/migration.csv\")","options":{"out-height":"","out-width":"100%","fig-width":"7","comment":"","fig-height":"4.3","editor-max-height":"","autorun":"false","output":"true","results":"markup","context":"interactive","dpi":72,"message":"true","label":"load-data","editor-font-scale":"0.8","read-only":"false","fig-cap":"","editor-quick-suggestions":"false","classes":"","warning":"true"}},{"id":2,"code":"migration |> \n    glimpse()","options":{"out-height":"","out-width":"100%","fig-width":"7","comment":"","fig-height":"4.3","editor-max-height":"","autorun":"false","output":"true","results":"markup","context":"interactive","dpi":72,"message":"true","label":"glimpse","editor-font-scale":"0.8","read-only":"false","fig-cap":"","editor-quick-suggestions":"false","classes":"","warning":"true"}},{"id":3,"code":"migration <- migration |> \n    clean_names()\n\n# and check again the names\nmigration |> \n    glimpse()","options":{"out-height":"","out-width":"100%","fig-width":"7","comment":"","fig-height":"4.3","editor-max-height":"","autorun":"false","output":"true","results":"markup","context":"interactive","dpi":72,"message":"true","label":"unnamed-chunk-3","editor-font-scale":"0.8","read-only":"false","fig-cap":"","editor-quick-suggestions":"false","classes":"","warning":"true"}},{"id":4,"code":"migration_filtered <- migration |>\n  filter(year >= 1990 & year <= 2020) |> \n  filter(country %in% c(\"United States\", \"Canada\", \"Mexico\"))","options":{"out-height":"","out-width":"100%","fig-width":"7","comment":"","fig-height":"4.3","editor-max-height":"","autorun":"false","output":"true","results":"markup","context":"interactive","dpi":72,"message":"true","label":"unnamed-chunk-4","editor-font-scale":"0.8","read-only":"false","fig-cap":"","editor-quick-suggestions":"false","classes":"","warning":"true"}}];
+globalThis.qwebrCellDetails = [{"options":{"editor-quick-suggestions":"false","autorun":"false","comment":"","editor-font-scale":"0.8","fig-width":"7","read-only":"false","output":"true","fig-height":"4.3","dpi":72,"message":"true","out-height":"","label":"load-data","context":"interactive","warning":"true","results":"markup","classes":"","editor-max-height":"","fig-cap":"","out-width":"100%"},"id":1,"code":"migration <- read_csv(\"https://raw.githubusercontent.com/harvard-api209/api209-math-camp/main/files/data/external_data/migration.csv\")"},{"options":{"editor-quick-suggestions":"false","autorun":"false","comment":"","editor-font-scale":"0.8","fig-width":"7","read-only":"false","output":"true","fig-height":"4.3","dpi":72,"message":"true","out-height":"","label":"glimpse","context":"interactive","warning":"true","results":"markup","classes":"","editor-max-height":"","fig-cap":"","out-width":"100%"},"id":2,"code":"migration |> \n    glimpse()"},{"options":{"editor-quick-suggestions":"false","autorun":"false","comment":"","editor-font-scale":"0.8","fig-width":"7","read-only":"false","output":"true","fig-height":"4.3","dpi":72,"message":"true","out-height":"","label":"unnamed-chunk-3","context":"interactive","warning":"true","results":"markup","classes":"","editor-max-height":"","fig-cap":"","out-width":"100%"},"id":3,"code":"migration <- migration |> \n    clean_names()\n\n# and check again the names\nmigration |> \n    glimpse()"},{"options":{"editor-quick-suggestions":"false","autorun":"false","comment":"","editor-font-scale":"0.8","fig-width":"7","read-only":"false","output":"true","fig-height":"4.3","dpi":72,"message":"true","out-height":"","label":"unnamed-chunk-4","context":"interactive","warning":"true","results":"markup","classes":"","editor-max-height":"","fig-cap":"","out-width":"100%"},"id":4,"code":"migration_filtered <- migration |>\n  filter(year >= 1990 & year <= 2020) |> \n  filter(country %in% c(\"\"))"},{"options":{"editor-quick-suggestions":"false","autorun":"false","comment":"","editor-font-scale":"0.8","fig-width":"7","read-only":"false","output":"true","fig-height":"4.3","dpi":72,"message":"true","out-height":"","label":"unnamed-chunk-5","context":"interactive","warning":"true","results":"markup","classes":"","editor-max-height":"","fig-cap":"","out-width":"100%"},"id":5,"code":"migration_filtered |>\n    group_by()\n    summarize()"}];
 
 </script>
 <script type="module">
@@ -1257,6 +1257,7 @@ globalThis.qwebrExecuteCode = async function (
   <li><a href="#loading-and-cleaning-the-data" id="toc-loading-and-cleaning-the-data" class="nav-link" data-scroll-target="#loading-and-cleaning-the-data">Loading and Cleaning the Data</a>
   <ul class="collapse">
   <li><a href="#exercise-1" id="toc-exercise-1" class="nav-link" data-scroll-target="#exercise-1">Exercise 1</a></li>
+  <li><a href="#exercise-2" id="toc-exercise-2" class="nav-link" data-scroll-target="#exercise-2">Exercise 2</a></li>
   </ul></li>
   <li><a href="#overview" id="toc-overview" class="nav-link" data-scroll-target="#overview">Overview</a></li>
   <li><a href="#data-wrangling" id="toc-data-wrangling" class="nav-link" data-scroll-target="#data-wrangling">Data wrangling</a></li>
@@ -1516,10 +1517,10 @@ globalThis.qwebrCreateMonacoEditorInstance = function (cellData) {
 <p>Let’s begin by loading our data using the read_csv function:</p>
 <div id="qwebr-insertion-location-1"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
-<p>We can use the <code>glimpse</code> to check our columns (variables):</p>
+<p>We can use the <code>glimpse()</code> fucntion to check our columns (variables):</p>
 <div id="qwebr-insertion-location-2"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
-<p>And, then, we are going to use the janitor package to clean the name of the variables:</p>
+<p>And, then, we are going to use the <code>janitor</code> package to clean the name of the variables using the <code>clean_names()</code> function:</p>
 <div id="qwebr-insertion-location-3"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
 <section id="exercise-1" class="level3">
@@ -1537,7 +1538,22 @@ globalThis.qwebrCreateMonacoEditorInstance = function (cellData) {
 </div>
 </div>
 </div>
-<p>::::</p>
+</section>
+<section id="exercise-2" class="level3">
+<h3 class="anchored" data-anchor-id="exercise-2">Exercise 2</h3>
+<p>With your filtered data, use the <code>summarize</code> function to calculate the total number of migrants for each country from 1990 to 2020.</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-2-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-1" role="tab" aria-controls="tabset-2-1" aria-selected="true"><i class="fa-solid fa-code" aria-label="code"></i> Interactive editor</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-2" role="tab" aria-controls="tabset-2-2" aria-selected="false"><i class="fa-solid fa-lightbulb" aria-label="lightbulb"></i> Hint</a></li></ul>
+<div class="tab-content">
+<div id="tabset-2-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-2-1-tab">
+<div id="qwebr-insertion-location-5"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+</div>
+<div id="tabset-2-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-2-tab">
+<p><strong>Hint:</strong> Be careful! There could be missing values!</p>
+</div>
+</div>
+</div>
 </section>
 </section>
 <section id="overview" class="level2">
