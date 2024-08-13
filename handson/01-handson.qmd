@@ -8,7 +8,6 @@ filters:
 webr:
   packages:
     - ggplot2
-    - tidyverse
     - dplyr
     - scales
     - gapminder
@@ -39,10 +38,10 @@ Tourists, foreign-aid workers, temporary workers employed abroad for less than a
 
 Let's begin by loading our data using the read_csv function:
 
-
 ```{webr-r}
 #| label: load-data
-migration <- read_csv("https://raw.githubusercontent.com/harvard-api209/api209-math-camp/main/files/data/external_data/migration.csv")
+migration <- read.csv("https://raw.githubusercontent.com/harvard-api209/api209-math-camp/main/files/data/external_data/migration.csv") |> 
+    as_tibble()
 ```
 
 We can use the `glimpse()` fucntion to check our columns (variables):

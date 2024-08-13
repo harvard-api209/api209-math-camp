@@ -364,11 +364,47 @@
     ]
   },
   {
+    "objectID": "handson/01-handson.html#migration-data",
+    "href": "handson/01-handson.html#migration-data",
+    "title": "Mastering Data Manipulation in R",
+    "section": "",
+    "text": "The data on immigrant and emigrant stocks used in this session is sourced from the United Nations Department of Economic and Social Affairs (UN DESA).\n\n\nAccording to the United Nations Population Division, an international migrant is someone who has been living for one year or longer in a country other than the one in which they were born. This definition includes many foreign workers and international students, as well as refugees and, in some cases, their descendants (such as Palestinians born in refugee camps outside of the Palestinian territories). Estimates of unauthorized immigrants living in various countries are also included in these totals.\nTourists, foreign-aid workers, temporary workers employed abroad for less than a year, and overseas military personnel are typically not counted as migrants.",
+    "crumbs": [
+      "Hands-on",
+      "Hands-on Sessions",
+      "1: Mastering Data Manipulation"
+    ]
+  },
+  {
+    "objectID": "handson/01-handson.html#loading-and-cleaning-the-data",
+    "href": "handson/01-handson.html#loading-and-cleaning-the-data",
+    "title": "Mastering Data Manipulation in R",
+    "section": "Loading and Cleaning the Data",
+    "text": "Loading and Cleaning the Data\nLet’s begin by loading our data using the read_csv function:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nWe can use the glimpse() fucntion to check our columns (variables):\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nAnd, then, we are going to use the janitor package to clean the name of the variables using the clean_names() function:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\nExercise 1\nLet’s ignore specifics regarding whether we have countries, regions, etc. We will filter our dataset that contain only data from 1990 to 2020 and let’s look into 3 countries:\n\n Interactive editor Hint\n\n\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\nHint: You’ll want to change something in the code that creates migration_filtered.\n\n\n\n\n\nExercise 2\nWith your filtered data, use the summarize function to calculate the total number of migrants for each country from 1990 to 2020.\n\n Interactive editor Hint\n\n\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\nHint: Be careful! There could be missing values!",
+    "crumbs": [
+      "Hands-on",
+      "Hands-on Sessions",
+      "1: Mastering Data Manipulation"
+    ]
+  },
+  {
     "objectID": "handson/01-handson.html#overview",
     "href": "handson/01-handson.html#overview",
     "title": "Mastering Data Manipulation in R",
     "section": "Overview",
     "text": "Overview\nThis session will focus on advanced data manipulation techniques using R and the tidyverse.",
+    "crumbs": [
+      "Hands-on",
+      "Hands-on Sessions",
+      "1: Mastering Data Manipulation"
+    ]
+  },
+  {
+    "objectID": "handson/01-handson.html#data-wrangling",
+    "href": "handson/01-handson.html#data-wrangling",
+    "title": "Mastering Data Manipulation in R",
+    "section": "Data wrangling",
+    "text": "Data wrangling",
     "crumbs": [
       "Hands-on",
       "Hands-on Sessions",
@@ -1116,78 +1152,6 @@
     "crumbs": [
       "Resources",
       "R style suggestions"
-    ]
-  },
-  {
-    "objectID": "handson/01-handson.html#guiding-questions",
-    "href": "handson/01-handson.html#guiding-questions",
-    "title": "Mastering Data Manipulation in R (Hands-on Session)",
-    "section": "Guiding Questions",
-    "text": "Guiding Questions\n\n\n\n\n\n\nThese are optional!\n\n\n\nYou don’t need to answer all of these—or even any of them! They are here to help guide your thinking and reflection on the content. Feel free to explore whatever aspects you find most interesting.\n\n\n\nHow do complex filtering and selection operations enhance data analysis?\nWhat are the benefits of using the tidyverse for data manipulation?\nHow do different data reshaping techniques (e.g., pivoting) impact the way data is analyzed and interpreted?\nWhat challenges do you encounter when working with large datasets, and how can they be overcome with efficient R techniques?\nHow does the native pipe (|&gt;) improve code readability and workflow in R?",
-    "crumbs": [
-      "Hands-on",
-      "Hands-on Sessions",
-      "1: Mastering Data Manipulation"
-    ]
-  },
-  {
-    "objectID": "handson/01-handson.html#readings",
-    "href": "handson/01-handson.html#readings",
-    "title": "Mastering Data Manipulation in R (Hands-on Session)",
-    "section": "Readings",
-    "text": "Readings\n\nNo readings for this session.",
-    "crumbs": [
-      "Hands-on",
-      "Hands-on Sessions",
-      "1: Mastering Data Manipulation"
-    ]
-  },
-  {
-    "objectID": "handson/01-handson.html#slides",
-    "href": "handson/01-handson.html#slides",
-    "title": "Mastering Data Manipulation in R (Hands-on Session)",
-    "section": "Slides",
-    "text": "Slides\nThe slides for this session are available online as an HTML file. Use the buttons below to open the slides either as an interactive website or as a static PDF (for printing or storing for later). You can also navigate through the embedded slides directly on this page using your left and right arrow keys.\n\n View all slides in new window  Download PDF of all slides\n\n\n\n\n\n\n\n\n\n\n\nTip\n\n\n\nPro tip: If you type ? (or shift + /) while viewing the slides, you can access a list of special commands to enhance your experience.",
-    "crumbs": [
-      "Hands-on",
-      "Hands-on Sessions",
-      "1: Mastering Data Manipulation"
-    ]
-  },
-  {
-    "objectID": "handson/01-handson.html#migration-data",
-    "href": "handson/01-handson.html#migration-data",
-    "title": "Mastering Data Manipulation in R",
-    "section": "",
-    "text": "The data on immigrant and emigrant stocks used in this session is sourced from the United Nations Department of Economic and Social Affairs (UN DESA).\n\n\nAccording to the United Nations Population Division, an international migrant is someone who has been living for one year or longer in a country other than the one in which they were born. This definition includes many foreign workers and international students, as well as refugees and, in some cases, their descendants (such as Palestinians born in refugee camps outside of the Palestinian territories). Estimates of unauthorized immigrants living in various countries are also included in these totals.\nTourists, foreign-aid workers, temporary workers employed abroad for less than a year, and overseas military personnel are typically not counted as migrants.",
-    "crumbs": [
-      "Hands-on",
-      "Hands-on Sessions",
-      "1: Mastering Data Manipulation"
-    ]
-  },
-  {
-    "objectID": "handson/01-handson.html#loading-and-cleaning-the-data",
-    "href": "handson/01-handson.html#loading-and-cleaning-the-data",
-    "title": "Mastering Data Manipulation in R",
-    "section": "Loading and Cleaning the Data",
-    "text": "Loading and Cleaning the Data\nLet’s begin by loading our data using the read_csv function:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nWe can use the glimpse() fucntion to check our columns (variables):\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nAnd, then, we are going to use the janitor package to clean the name of the variables using the clean_names() function:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\nExercise 1\nLet’s ignore specifics regarding whether we have countries, regions, etc. We will filter our dataset that contain only data from 1990 to 2020 and let’s look into 3 countries:\n\n Interactive editor Hint\n\n\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\nHint: You’ll want to change something in the code that creates migration_filtered.\n\n\n\n\n\nExercise 2\nWith your filtered data, use the summarize function to calculate the total number of migrants for each country from 1990 to 2020.\n\n Interactive editor Hint\n\n\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\nHint: Be careful! There could be missing values!",
-    "crumbs": [
-      "Hands-on",
-      "Hands-on Sessions",
-      "1: Mastering Data Manipulation"
-    ]
-  },
-  {
-    "objectID": "handson/01-handson.html#data-wrangling",
-    "href": "handson/01-handson.html#data-wrangling",
-    "title": "Mastering Data Manipulation in R",
-    "section": "Data wrangling",
-    "text": "Data wrangling",
-    "crumbs": [
-      "Hands-on",
-      "Hands-on Sessions",
-      "1: Mastering Data Manipulation"
     ]
   }
 ]
