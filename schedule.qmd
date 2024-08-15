@@ -25,7 +25,7 @@ Here's your roadmap for the summer camp!
 
 - [**Lessons**](/content/index.qmd) ({{< fa book-open-reader >}}): This page contains the slides for the topic. Read and go through these first.
 
-- [**Hands-on Sessions**](/hands-on/index.qmd) ({{< fa laptop-code >}}): This page provides the interactive, practical exercises that correspond with each lesson. Engage with these sessions after reviewing the slides to solidify your understanding. We will go through these during each odd numbered session.
+- [**Hands-on Sessions**](/handson/index.qmd) ({{< fa laptop-code >}}): This page provides the interactive, practical exercises that correspond with each lesson. Engage with these sessions after reviewing the slides to solidify your understanding. We will go through these during each odd numbered session.
 
 - [**Labs**](/labs/index.qmd) ({{< fa chalkboard-teacher >}}): This page contains, when needed, interactive sessions, and also the contents for each lab. Go through these after doing the lessons and hands-on sessions. This is more on your own, so we will go through these during each even numbered session.
 
