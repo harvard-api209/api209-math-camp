@@ -46,5 +46,481 @@
       "Hands-on Sessions",
       "1: Mastering Data Manipulation"
     ]
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "\n            Advanced Quantitative Methods: Description and Prediction  Summer Math Camp\n        ",
+    "section": "",
+    "text": "Advanced Quantitative Methods: Description and Prediction  Summer Math Camp\n        \n        \n            Conceptual mastery of statistical methods for public policy, focusing on application rather than mechanics\n        \n        \n            API 209 • Summer 2024Prof: Dan Levy | Summer TF: Rony RodriguezHarvard University\n        \n    \n    \n      \n        \n        \n        \n      \n    \n\n\n\n\n\n\nSummer TF\n\n Rony Rodriguez-Ramirez\n Wexner 436. HKS\n rrodriguezramirez@g.harvard.edu\n Bluesky\n Twitter\n\n\n\nCourse details\n\n Check schedule page\n August 15-August 28, 2024\n Check schedule page\n Anywhere\n\n\n\nContacting me\n\n Schedule an appointment\n Slack\n\nE-mail and Slack are the best ways to get in contact with me. Sometimes, life happens so bear with me if I don’t respond quickly!"
+  },
+  {
+    "objectID": "resource/style.html",
+    "href": "resource/style.html",
+    "title": "R style suggestions",
+    "section": "",
+    "text": "R is fairly forgiving about how you type code (unlike other languages like Python, where miscounting spaces can ruin your code!). All of these things will do exactly the same thing:\n\nmpg |&gt; \n  filter(cty &gt; 10, class == \"compact\")\n\nmpg |&gt; filter(cty &gt; 10, class == \"compact\")\n\nmpg |&gt; \n  filter(cty &gt; 10, \n         class == \"compact\")\n\nmpg |&gt; filter(cty&gt;10, class==\"compact\")\n\nfilter(mpg,cty&gt;10,class==\"compact\")\n\nmpg |&gt; \nfilter(cty &gt; 10, \n                        class == \"compact\")\n\nfilter ( mpg,cty&gt;10,     class==\"compact\" )\n\nBut you’ll notice that only a few of those iterations (the first three) are easily readable.\nTo help improve readability and make it easier to share code with others, there’s an unofficial style guide for writing R code. It’s fairly short and just has lots of examples of good and bad ways of writing code (naming variables, dealing with long lines, using proper indentation levels, etc.)—you should glance through it some time.\nRStudio has a built-in way of cleaning up your code. Select some code, press ctrl + i (on Windows) or ⌘ + i (on macOS), and R will reformat the code for you. It’s not always perfect, but it’s really helpful for getting indentation right without having to manually hit space a billion times.",
+    "crumbs": [
+      "Resources",
+      "R style suggestions"
+    ]
+  },
+  {
+    "objectID": "resource/style.html#r-style-conventions",
+    "href": "resource/style.html#r-style-conventions",
+    "title": "R style suggestions",
+    "section": "",
+    "text": "R is fairly forgiving about how you type code (unlike other languages like Python, where miscounting spaces can ruin your code!). All of these things will do exactly the same thing:\n\nmpg |&gt; \n  filter(cty &gt; 10, class == \"compact\")\n\nmpg |&gt; filter(cty &gt; 10, class == \"compact\")\n\nmpg |&gt; \n  filter(cty &gt; 10, \n         class == \"compact\")\n\nmpg |&gt; filter(cty&gt;10, class==\"compact\")\n\nfilter(mpg,cty&gt;10,class==\"compact\")\n\nmpg |&gt; \nfilter(cty &gt; 10, \n                        class == \"compact\")\n\nfilter ( mpg,cty&gt;10,     class==\"compact\" )\n\nBut you’ll notice that only a few of those iterations (the first three) are easily readable.\nTo help improve readability and make it easier to share code with others, there’s an unofficial style guide for writing R code. It’s fairly short and just has lots of examples of good and bad ways of writing code (naming variables, dealing with long lines, using proper indentation levels, etc.)—you should glance through it some time.\nRStudio has a built-in way of cleaning up your code. Select some code, press ctrl + i (on Windows) or ⌘ + i (on macOS), and R will reformat the code for you. It’s not always perfect, but it’s really helpful for getting indentation right without having to manually hit space a billion times.",
+    "crumbs": [
+      "Resources",
+      "R style suggestions"
+    ]
+  },
+  {
+    "objectID": "resource/style.html#main-style-things-to-pay-attention-to-for-this-class",
+    "href": "resource/style.html#main-style-things-to-pay-attention-to-for-this-class",
+    "title": "R style suggestions",
+    "section": "Main style things to pay attention to for this class",
+    "text": "Main style things to pay attention to for this class\n\nImportant note: I won’t ever grade you on any of this! If you submit something like filter(mpg,cty&gt;10,class==\"compact\"), I might recommend adding spaces, but it won’t affect your grade or points or anything.\n\n\nSpacing\n\nSee the “Spacing” section in the tidyverse style guide.\n\nPut spaces after commas (like in regular English):\n\n# Good\nfilter(mpg, cty &gt; 10)\n\n# Bad\nfilter(mpg , cty &gt; 10)\nfilter(mpg ,cty &gt; 10)\nfilter(mpg,cty &gt; 10)\n\nPut spaces around operators like +, -, &gt;, =, etc.:\n\n# Good\nfilter(mpg, cty &gt; 10)\n\n# Bad\nfilter(mpg, cty&gt;10)\nfilter(mpg, cty&gt; 10)\nfilter(mpg, cty &gt;10)\n\nDon’t put spaces around parentheses that are parts of functions:\n\n# Good\nfilter(mpg, cty &gt; 10)\n\n# Bad\nfilter (mpg, cty &gt; 10)\nfilter ( mpg, cty &gt; 10)\nfilter( mpg, cty &gt; 10 )\n\n\n\nLong lines\n\nSee the “Long lines” section in the tidyverse style guide.\n\nIt’s generally good practice to not have really long lines of code. A good suggestion is to keep lines at a maximum of 80 characters. Instead of counting characters by hand (ew), in RStudio go to “Tools” &gt; “Global Options” &gt; “Code” &gt; “Display” and check the box for “Show margin”. You should now see a really thin line indicating 80 characters. Again, you can go beyond this—that’s fine. It’s just good practice to avoid going too far past it.\nYou can add line breaks inside longer lines of code. Line breaks should come after commas, and things like function arguments should align within the function:\n\n# Good\nfilter(mpg, cty &gt; 10, class == \"compact\")\n\n# Good\nfilter(mpg, cty &gt; 10, \n       class == \"compact\")\n\n# Good\nfilter(mpg,\n       cty &gt; 10,\n       class == \"compact\")\n\n# Bad\nfilter(mpg, cty &gt; 10, class %in% c(\"compact\", \"pickup\", \"midsize\", \"subcompact\", \"suv\", \"2seater\", \"minivan\"))\n\n# Good\nfilter(mpg, \n       cty &gt; 10, \n       class %in% c(\"compact\", \"pickup\", \"midsize\", \"subcompact\", \n                    \"suv\", \"2seater\", \"minivan\"))\n\n\n\nPipes (|&gt;) and ggplot layers (+)\nPut each layer of a ggplot plot on separate lines, with the + at the end of the line, indented with two spaces:\n\n# Good\nggplot(mpg, aes(x = cty, y = hwy, color = class)) +\n  geom_point() +\n  geom_smooth() +\n  theme_bw()\n\n# Bad\nggplot(mpg, aes(x = cty, y = hwy, color = class)) +\n  geom_point() + geom_smooth() +\n  theme_bw()\n\n# Super bad\nggplot(mpg, aes(x = cty, y = hwy, color = class)) + geom_point() + geom_smooth() + theme_bw()\n\n# Super bad and won't even work\nggplot(mpg, aes(x = cty, y = hwy, color = class))\n  + geom_point()\n  + geom_smooth() \n  + theme_bw()\n\nPut each step in a dplyr pipeline on separate lines, with the |&gt; at the end of the line, indented with two spaces:\n\n# Good\nmpg |&gt; \n  filter(cty &gt; 10) |&gt; \n  group_by(class) |&gt; \n  summarize(avg_hwy = mean(hwy))\n\n# Bad\nmpg |&gt; filter(cty &gt; 10) |&gt; group_by(class) |&gt; \n  summarize(avg_hwy = mean(hwy))\n\n# Super bad\nmpg |&gt; filter(cty &gt; 10) |&gt; group_by(class) |&gt; summarize(avg_hwy = mean(hwy))\n\n# Super bad and won't even work\nmpg |&gt; \n  filter(cty &gt; 10)\n  |&gt; group_by(class)\n  |&gt; summarize(avg_hwy = mean(hwy))\n\n\n\nComments\n\nSee the “Comments” section in the tidyverse style guide.\n\nComments should start with a comment symbol and a single space: #\n\n# Good\n\n#Bad\n\n    #Bad\n\nIf the comment is really short (and won’t cause you to go over 80 characters in the line), you can include it in the same line as the code, separated by at least two spaces (it works with one space, but using a couple can enhance readability):\n\nmpg |&gt; \n  filter(cty &gt; 10) |&gt;  # Only rows where cty is 10 +\n  group_by(class) |&gt;  # Divide into class groups\n  summarize(avg_hwy = mean(hwy))  # Find the average hwy in each group\n\nYou can add extra spaces to get inline comments to align, if you want:\n\nmpg |&gt; \n  filter(cty &gt; 10) |&gt;            # Only rows where cty is 10 +\n  group_by(class) |&gt;             # Divide into class groups\n  summarize(avg_hwy = mean(hwy))  # Find the average hwy in each group\n\nIf the comment is really long, you can break it into multiple lines. RStudio can do this for you if you go to “Code” &gt; “Reflow comment”\n\n# Good\n# Happy families are all alike; every unhappy family is unhappy in its own way.\n# Everything was in confusion in the Oblonskys’ house. The wife had discovered\n# that the husband was carrying on an intrigue with a French girl, who had been\n# a governess in their family, and she had announced to her husband that she\n# could not go on living in the same house with him. This position of affairs\n# had now lasted three days, and not only the husband and wife themselves, but\n# all the members of their family and household, were painfully conscious of it.\n\n# Bad\n# Happy families are all alike; every unhappy family is unhappy in its own way. Everything was in confusion in the Oblonskys’ house. The wife had discovered that the husband was carrying on an intrigue with a French girl, who had been a governess in their family, and she had announced to her husband that she could not go on living in the same house with him. This position of affairs had now lasted three days, and not only the husband and wife themselves, but all the members of their family and household, were painfully conscious of it.\n\nThough, if you’re dealing with comments that are that long, consider putting the text in Quarto instead and having it be actual prose.",
+    "crumbs": [
+      "Resources",
+      "R style suggestions"
+    ]
+  },
+  {
+    "objectID": "example/01-lab-sol.html",
+    "href": "example/01-lab-sol.html",
+    "title": "Lab 1: Analyzing Olympic Data with R (Solutions)",
+    "section": "",
+    "text": "In this lab session, you’ll work with a dataset containing information about the Olympics. The dataset includes various variables, such as the edition of the games, country codes, sports, events, athletes, and the results. Your goal is to explore this data, identify patterns, handle missing values, and generate insights using R.\nThe dataset contains the following variables:\n\nedition: The edition of the Olympic Games.\nedition_id: A unique identifier for the edition.\ncountry_noc: The National Olympic Committee (NOC) code representing the country.\nsport: The sport in which the event took place.\nevent: The specific event within the sport.\nresult_id: A unique identifier for the result.\nathlete: The name of the athlete.\nathlete_id: A unique identifier for the athlete.\npos: The position or rank the athlete achieved in the event.\nmedal: The type of medal won (if any).\nisTeamSport: Indicates whether the event is a team sport."
+  },
+  {
+    "objectID": "example/01-lab-sol.html#exercise-1-data-exploration",
+    "href": "example/01-lab-sol.html#exercise-1-data-exploration",
+    "title": "Lab 1: Analyzing Olympic Data with R (Solutions)",
+    "section": "Exercise 1: Data Exploration",
+    "text": "Exercise 1: Data Exploration\n\nLoad the dataset into R.\nGet an overview of the dataset.\nYou should display the first few rows and summarize each variable to understand the dataset’s structure. This step is crucial for familiarizing yourself with the data you’ll be working with.\nDetermine the number of unique editions, sports, and events in the dataset.\nYour goal here is to identify the diversity within the dataset. Use R functions to calculate how many unique Olympic editions, sports, and events are represented in the data.\n\n\nExpected Outcome:\n\nAn understanding of the dataset’s structure.\nInsights into the diversity of the data, such as the number of unique Olympic editions and sports.\n\n\n# Load necessary packages\nlibrary(tidyverse)\n\n── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──\n✔ dplyr     1.1.4     ✔ readr     2.1.5\n✔ forcats   1.0.0     ✔ stringr   1.5.1\n✔ ggplot2   3.5.1     ✔ tibble    3.2.1\n✔ lubridate 1.9.3     ✔ tidyr     1.3.1\n✔ purrr     1.0.2     \n── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──\n✖ dplyr::filter() masks stats::filter()\n✖ dplyr::lag()    masks stats::lag()\nℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors\n\n# Load the dataset\nolympics_data &lt;- read_csv(\"https://raw.githubusercontent.com/josephwccheng/olympedia_web_scraping/main/data/Olympic_Athlete_Event_Results.csv\")\n\nRows: 314907 Columns: 11\n── Column specification ────────────────────────────────────────────────────────\nDelimiter: \",\"\nchr (7): edition, country_noc, sport, event, athlete, pos, medal\ndbl (3): edition_id, result_id, athlete_id\nlgl (1): isTeamSport\n\nℹ Use `spec()` to retrieve the full column specification for this data.\nℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.\n\n# Display the first few rows\nhead(olympics_data)\n\n# A tibble: 6 × 11\n  edition  edition_id country_noc sport event result_id athlete athlete_id pos  \n  &lt;chr&gt;         &lt;dbl&gt; &lt;chr&gt;       &lt;chr&gt; &lt;chr&gt;     &lt;dbl&gt; &lt;chr&gt;        &lt;dbl&gt; &lt;chr&gt;\n1 1908 Su…          5 ANZ         Athl… 100 …     56265 Ernest…      64710 DNS  \n2 1908 Su…          5 ANZ         Athl… 400 …     56313 Henry …      64756 DNS  \n3 1908 Su…          5 ANZ         Athl… 800 …     56338 Harvey…      64808 3 h8…\n4 1908 Su…          5 ANZ         Athl… 800 …     56338 Guy Ha…     922519 DNS  \n5 1908 Su…          5 ANZ         Athl… 800 …     56338 Joseph…      64735 DNS  \n6 1908 Su…          5 ANZ         Athl… 800 …     56338 Henry …      64756 DNS  \n# ℹ 2 more variables: medal &lt;chr&gt;, isTeamSport &lt;lgl&gt;\n\n# Summary of the dataset\nsummary(olympics_data)\n\n   edition            edition_id    country_noc           sport          \n Length:314907      Min.   : 1.00   Length:314907      Length:314907     \n Class :character   1st Qu.:16.00   Class :character   Class :character  \n Mode  :character   Median :24.00   Mode  :character   Mode  :character  \n                    Mean   :30.16                                        \n                    3rd Qu.:49.00                                        \n                    Max.   :62.00                                        \n    event             result_id          athlete            athlete_id      \n Length:314907      Min.   :       1   Length:314907      Min.   :       1  \n Class :character   1st Qu.:   31505   Class :character   1st Qu.:   36020  \n Mode  :character   Median :   65810   Mode  :character   Median :   76333  \n                    Mean   : 1502015                      Mean   :  123781  \n                    3rd Qu.:  260000                      3rd Qu.:  111028  \n                    Max.   :90016770                      Max.   :22000000  \n     pos               medal           isTeamSport    \n Length:314907      Length:314907      Mode :logical  \n Class :character   Class :character   FALSE:194095   \n Mode  :character   Mode  :character   TRUE :120812   \n                                                      \n                                                      \n                                                      \n\n# Number of unique editions, sports, and events\nn_editions &lt;- n_distinct(olympics_data$edition)\nn_sports   &lt;- n_distinct(olympics_data$sport)\nn_events   &lt;- n_distinct(olympics_data$event)\n\nn_editions\n\n[1] 55\n\nn_sports\n\n[1] 108\n\nn_events\n\n[1] 916"
+  },
+  {
+    "objectID": "example/01-lab-sol.html#exercise-2-handling-missing-values",
+    "href": "example/01-lab-sol.html#exercise-2-handling-missing-values",
+    "title": "Lab 1: Analyzing Olympic Data with R (Solutions)",
+    "section": "Exercise 2: Handling Missing Values",
+    "text": "Exercise 2: Handling Missing Values\n\nIdentify missing values.\nDetermine which variables have missing values and how many missing values are present in each. This will help you understand the completeness of the data.\nCreate a subset of the data where all missing values are removed.\nYou should generate a clean dataset without missing values. Consider how this might impact your analysis.\nDiscuss the impact of removing rows with missing values.\nReflect on how the removal of rows could influence the results and representativeness of the data.\n\n\nExpected Outcome:\n\nA list of variables with missing values.\nA cleaned version of the dataset.\nA thoughtful consideration of the implications of removing missing data."
+  },
+  {
+    "objectID": "example/01-lab-sol.html#exercise-3-analyzing-medals-distribution",
+    "href": "example/01-lab-sol.html#exercise-3-analyzing-medals-distribution",
+    "title": "Lab 1: Analyzing Olympic Data with R (Solutions)",
+    "section": "Exercise 3: Analyzing Medals Distribution",
+    "text": "Exercise 3: Analyzing Medals Distribution\n\nCalculate the total number of medals won by each country.\nYou’ll need to group the data by country and count the total number of medals won.\nIdentify the country with the most gold medals.\nFocus on identifying which country has excelled the most in terms of winning gold medals.\n\n\n# Identify missing values\nmissing_values &lt;- colSums(is.na(olympics_data))\n\nmissing_values\n\n    edition  edition_id country_noc       sport       event   result_id \n          0           0           0           0           0           0 \n    athlete  athlete_id         pos       medal isTeamSport \n          0           0           0      270336           0 \n\n# Subset data with no missing values\nclean_data &lt;- na.omit(olympics_data)\n\n# Display the cleaned data\nhead(clean_data)\n\n# A tibble: 6 × 11\n  edition  edition_id country_noc sport event result_id athlete athlete_id pos  \n  &lt;chr&gt;         &lt;dbl&gt; &lt;chr&gt;       &lt;chr&gt; &lt;chr&gt;     &lt;dbl&gt; &lt;chr&gt;        &lt;dbl&gt; &lt;chr&gt;\n1 1908 Su…          5 ANZ         Athl… 3,50…     56421 Harry …      64719 3    \n2 1908 Su…          5 ANZ         Boxi… Midd…     21263 Snowy …      45153 2    \n3 1908 Su…          5 ANZ         Rugby Rugb…     31505 John B…      11237 1    \n4 1908 Su…          5 ANZ         Rugby Rugb…     31505 Phil C…      11239 1    \n5 1908 Su…          5 ANZ         Rugby Rugb…     31505 Dan Ca…      11240 1    \n6 1908 Su…          5 ANZ         Rugby Rugb…     31505 Bob Cr…      11241 1    \n# ℹ 2 more variables: medal &lt;chr&gt;, isTeamSport &lt;lgl&gt;\n\n\n\nExpected Outcome:\n\nA summary table showing the total medals won by each country.\nIdentification of the top-performing country in terms of gold medals.\n\n\n# Total number of medals by country\nmedals_by_country &lt;- olympics_data |&gt;\n  filter(!is.na(medal)) |&gt;\n  group_by(country_noc) |&gt;\n  summarize(total_medals = n(), \n            gold_medals = sum(medal == \"Gold\")) |&gt;\n  arrange(desc(total_medals))\n\n# Display the top 10 countries\ntop_10_countries &lt;- head(medals_by_country, 10)\ntop_10_countries\n\n# A tibble: 10 × 3\n   country_noc total_medals gold_medals\n   &lt;chr&gt;              &lt;int&gt;       &lt;int&gt;\n 1 USA                 6273        2931\n 2 URS                 2543        1099\n 3 GER                 2437         816\n 4 GBR                 2367         810\n 5 FRA                 1968         564\n 6 ITA                 1746         593\n 7 CAN                 1668         578\n 8 SWE                 1654         522\n 9 AUS                 1490         409\n10 NED                 1239         348"
+  },
+  {
+    "objectID": "example/01-lab-sol.html#exercise-4-analyzing-performance-by-athlete",
+    "href": "example/01-lab-sol.html#exercise-4-analyzing-performance-by-athlete",
+    "title": "Lab 1: Analyzing Olympic Data with R (Solutions)",
+    "section": "Exercise 4: Analyzing Performance by Athlete",
+    "text": "Exercise 4: Analyzing Performance by Athlete\n\nIdentify the athlete with the most medals overall.\nYour task is to find the athlete who has won the most medals in the Olympics.\nDetermine the number of unique events the athlete has participated in.\nInvestigate the range of events this top athlete has competed in.\n\n\nExpected Outcome:\n\nThe name of the athlete with the most medals.\nThe number of unique events this athlete has participated in, offering insight into their versatility.\n\n\n# Athlete with the most medals\ntop_athlete &lt;- olympics_data |&gt;\n  filter(!is.na(medal)) |&gt;\n  group_by(athlete) |&gt;\n  summarize(total_medals = n()) |&gt;\n  arrange(desc(total_medals)) |&gt;\n  slice(1) |&gt; \n  pull(athlete)\n\ntop_athlete\n\n[1] \"Michael Phelps\"\n\n# Number of unique events for the top athlete\nunique_events_top_athlete &lt;- olympics_data |&gt;\n  filter(athlete == top_athlete) |&gt; \n  distinct(event) |&gt; \n  count()\n\nunique_events_top_athlete\n\n# A tibble: 1 × 1\n      n\n  &lt;int&gt;\n1     8\n\n# Distribution of medals for the top athlete\nmedals_top_athlete &lt;- olympics_data |&gt;\n  filter(athlete == top_athlete, !is.na(medal)) |&gt;\n  count(medal)\n\nmedals_top_athlete\n\n# A tibble: 3 × 2\n  medal      n\n  &lt;chr&gt;  &lt;int&gt;\n1 Bronze     2\n2 Gold      23\n3 Silver     3"
+  },
+  {
+    "objectID": "example/01-lab-sol.html#exercise-5-team-sports-vs.-individual-sports",
+    "href": "example/01-lab-sol.html#exercise-5-team-sports-vs.-individual-sports",
+    "title": "Lab 1: Analyzing Olympic Data with R (Solutions)",
+    "section": "Exercise 5: Team Sports vs. Individual Sports",
+    "text": "Exercise 5: Team Sports vs. Individual Sports\n\nCompare the number of medals won in team sports versus individual sports.\nAnalyze how successful athletes have been in team sports compared to individual sports.\nIdentify the most successful team sport.\nDetermine which team sport has yielded the most medals.\n\n\nExpected Outcome:\n\nA comparison of medals won in team versus individual sports.\nIdentification of the most successful team sport, providing insights into which team events dominate in terms of medals.\n\n\n# Medals in team vs. individual sports\nteam_vs_individual &lt;- olympics_data |&gt;\n  filter(!is.na(medal)) |&gt;\n  group_by(isTeamSport) |&gt;\n  summarize(total_medals = n())\n\nteam_vs_individual\n\n# A tibble: 2 × 2\n  isTeamSport total_medals\n  &lt;lgl&gt;              &lt;int&gt;\n1 FALSE              15279\n2 TRUE               29292\n\n# Most successful team sport\ntop_team_sport &lt;- olympics_data |&gt;\n  filter(!is.na(medal), isTeamSport == TRUE) |&gt;\n  group_by(sport) |&gt;\n  summarize(total_medals = n()) |&gt;\n  arrange(desc(total_medals)) |&gt;\n  slice(1)\n\ntop_team_sport\n\n# A tibble: 1 × 2\n  sport  total_medals\n  &lt;chr&gt;         &lt;int&gt;\n1 Rowing         2951"
+  },
+  {
+    "objectID": "content/03-content.html",
+    "href": "content/03-content.html",
+    "title": "Advanced Statistical Modeling in R",
+    "section": "",
+    "text": "IN CONSTRUCTION!",
+    "crumbs": [
+      "Lessons",
+      "Modeling",
+      "3: Advanced Statistical Modeling"
+    ]
+  },
+  {
+    "objectID": "content/03-content.html#overview",
+    "href": "content/03-content.html#overview",
+    "title": "Advanced Statistical Modeling in R",
+    "section": "",
+    "text": "IN CONSTRUCTION!",
+    "crumbs": [
+      "Lessons",
+      "Modeling",
+      "3: Advanced Statistical Modeling"
+    ]
+  },
+  {
+    "objectID": "content/03-content.html#guiding-questions",
+    "href": "content/03-content.html#guiding-questions",
+    "title": "Advanced Statistical Modeling in R",
+    "section": "Guiding Questions",
+    "text": "Guiding Questions\n\n\n\n\n\n\nThese are optional!\n\n\n\nYou don’t need to answer all of these—or even any of them! They are here to help guide your thinking and reflection on the content. Feel free to explore whatever aspects you find most interesting.\n\n\n\nQuestion 1",
+    "crumbs": [
+      "Lessons",
+      "Modeling",
+      "3: Advanced Statistical Modeling"
+    ]
+  },
+  {
+    "objectID": "content/03-content.html#readings",
+    "href": "content/03-content.html#readings",
+    "title": "Advanced Statistical Modeling in R",
+    "section": "Readings",
+    "text": "Readings\n\nNo readings for this session.",
+    "crumbs": [
+      "Lessons",
+      "Modeling",
+      "3: Advanced Statistical Modeling"
+    ]
+  },
+  {
+    "objectID": "content/03-content.html#slides",
+    "href": "content/03-content.html#slides",
+    "title": "Advanced Statistical Modeling in R",
+    "section": "Slides",
+    "text": "Slides\nThe slides for this session are available online as an HTML file. Use the buttons below to open the slides either as an interactive website or as a static PDF (for printing or storing for later). You can also navigate through the embedded slides directly on this page using your left and right arrow keys.\n\n View all slides in new window  Download PDF of all slides\n\n\n\n\n\n\n\n\n\n\n\nTip\n\n\n\nPro tip: If you type ? (or shift + /) while viewing the slides, you can access a list of special commands to enhance your experience.",
+    "crumbs": [
+      "Lessons",
+      "Modeling",
+      "3: Advanced Statistical Modeling"
+    ]
+  },
+  {
+    "objectID": "labs/03-labs.html",
+    "href": "labs/03-labs.html",
+    "title": "Lab 3:",
+    "section": "",
+    "text": "To complete",
+    "crumbs": [
+      "Labs",
+      "3: Advanced Statistical Modeling"
+    ]
+  },
+  {
+    "objectID": "labs/03-labs.html#part-1",
+    "href": "labs/03-labs.html#part-1",
+    "title": "Lab 3:",
+    "section": "",
+    "text": "To complete",
+    "crumbs": [
+      "Labs",
+      "3: Advanced Statistical Modeling"
+    ]
+  },
+  {
+    "objectID": "labs/01-labs.html",
+    "href": "labs/01-labs.html",
+    "title": "Lab 1: Analyzing Olympic Data with R",
+    "section": "",
+    "text": "Note\n\n\n\nPosit Cloud project\n\n\nIn this lab session, you’ll work with a dataset containing information about the Olympics. The dataset includes various variables, such as the edition of the games, country codes, sports, events, athletes, and the results. Your goal is to explore this data, identify patterns, handle missing values, and generate insights using R.\nThe dataset contains the following variables:\n\nedition: The edition of the Olympic Games.\nedition_id: A unique identifier for the edition.\ncountry_noc: The National Olympic Committee (NOC) code representing the country.\nsport: The sport in which the event took place.\nevent: The specific event within the sport.\nresult_id: A unique identifier for the result.\nathlete: The name of the athlete.\nathlete_id: A unique identifier for the athlete.\npos: The position or rank the athlete achieved in the event.\nmedal: The type of medal won (if any).\nisTeamSport: Indicates whether the event is a team sport.",
+    "crumbs": [
+      "Labs",
+      "1: Mastering Data Manipulation"
+    ]
+  },
+  {
+    "objectID": "labs/01-labs.html#exercise-1-data-exploration",
+    "href": "labs/01-labs.html#exercise-1-data-exploration",
+    "title": "Lab 1: Analyzing Olympic Data with R",
+    "section": "Exercise 1: Data Exploration",
+    "text": "Exercise 1: Data Exploration\n\nLoad the dataset into R.\nUse the code provided above to load the dataset.\nGet an overview of the dataset.\nYou should display the first few rows and summarize each variable to understand the dataset’s structure. This step is crucial for familiarizing yourself with the data you’ll be working with.\nDetermine the number of unique editions, sports, and events in the dataset.\nYour goal here is to identify the diversity within the dataset. Use R functions to calculate how many unique Olympic editions, sports, and events are represented in the data.\n\n\nExpected Outcome:\n\nAn understanding of the dataset’s structure.\nInsights into the diversity of the data, such as the number of unique Olympic editions and sports.",
+    "crumbs": [
+      "Labs",
+      "1: Mastering Data Manipulation"
+    ]
+  },
+  {
+    "objectID": "labs/01-labs.html#exercise-2-handling-missing-values",
+    "href": "labs/01-labs.html#exercise-2-handling-missing-values",
+    "title": "Lab 1: Analyzing Olympic Data with R",
+    "section": "Exercise 2: Handling Missing Values",
+    "text": "Exercise 2: Handling Missing Values\n\nIdentify missing values.\nDetermine which variables have missing values and how many missing values are present in each. This will help you understand the completeness of the data.\nCreate a subset of the data where all missing values are removed.\nYou should generate a clean dataset without missing values. Consider how this might impact your analysis.\nDiscuss the impact of removing rows with missing values.\nReflect on how the removal of rows could influence the results and representativeness of the data.\n\n\nExpected Outcome:\n\nA list of variables with missing values.\nA cleaned version of the dataset.\nA thoughtful consideration of the implications of removing missing data.",
+    "crumbs": [
+      "Labs",
+      "1: Mastering Data Manipulation"
+    ]
+  },
+  {
+    "objectID": "labs/01-labs.html#exercise-3-analyzing-medals-distribution",
+    "href": "labs/01-labs.html#exercise-3-analyzing-medals-distribution",
+    "title": "Lab 1: Analyzing Olympic Data with R",
+    "section": "Exercise 3: Analyzing Medals Distribution",
+    "text": "Exercise 3: Analyzing Medals Distribution\n\nCalculate the total number of medals won by each country.\nYou’ll need to group the data by country and count the total number of medals won.\nIdentify the country with the most gold medals.\nFocus on identifying which country has excelled the most in terms of winning gold medals.\n\n\nExpected Outcome:\n\nA summary table showing the total medals won by each country.\nIdentification of the top-performing country in terms of gold medals.",
+    "crumbs": [
+      "Labs",
+      "1: Mastering Data Manipulation"
+    ]
+  },
+  {
+    "objectID": "labs/01-labs.html#exercise-4-analyzing-performance-by-athlete",
+    "href": "labs/01-labs.html#exercise-4-analyzing-performance-by-athlete",
+    "title": "Lab 1: Analyzing Olympic Data with R",
+    "section": "Exercise 4: Analyzing Performance by Athlete",
+    "text": "Exercise 4: Analyzing Performance by Athlete\n\nIdentify the athlete with the most medals overall.\nYour task is to find the athlete who has won the most medals in the Olympics.\nDetermine the number of unique events the athlete has participated in.\nInvestigate the range of events this top athlete has competed in.\n\n\nExpected Outcome:\n\nThe name of the athlete with the most medals.\nThe number of unique events this athlete has participated in, offering insight into their versatility.",
+    "crumbs": [
+      "Labs",
+      "1: Mastering Data Manipulation"
+    ]
+  },
+  {
+    "objectID": "labs/01-labs.html#exercise-5-team-sports-vs.-individual-sports",
+    "href": "labs/01-labs.html#exercise-5-team-sports-vs.-individual-sports",
+    "title": "Lab 1: Analyzing Olympic Data with R",
+    "section": "Exercise 5: Team Sports vs. Individual Sports",
+    "text": "Exercise 5: Team Sports vs. Individual Sports\n\nCompare the number of medals won in team sports versus individual sports.\nAnalyze how successful athletes have been in team sports compared to individual sports.\nIdentify the most successful team sport.\nDetermine which team sport has yielded the most medals.\n\n\nExpected Outcome:\n\nA comparison of medals won in team versus individual sports.\nIdentification of the most successful team sport, providing insights into which team events dominate in terms of medals.",
+    "crumbs": [
+      "Labs",
+      "1: Mastering Data Manipulation"
+    ]
+  },
+  {
+    "objectID": "content/01-content.html",
+    "href": "content/01-content.html",
+    "title": "Mastering Data Manipulation in R",
+    "section": "",
+    "text": "This session will focus on advanced data manipulation techniques using R and the tidyverse. While the primary resource for this session will be the slides, consider reflecting on the following questions as you engage with the material.",
+    "crumbs": [
+      "Lessons",
+      "Data Mastery",
+      "1: Mastering Data Manipulation"
+    ]
+  },
+  {
+    "objectID": "content/01-content.html#overview",
+    "href": "content/01-content.html#overview",
+    "title": "Mastering Data Manipulation in R",
+    "section": "",
+    "text": "This session will focus on advanced data manipulation techniques using R and the tidyverse. While the primary resource for this session will be the slides, consider reflecting on the following questions as you engage with the material.",
+    "crumbs": [
+      "Lessons",
+      "Data Mastery",
+      "1: Mastering Data Manipulation"
+    ]
+  },
+  {
+    "objectID": "content/01-content.html#guiding-questions",
+    "href": "content/01-content.html#guiding-questions",
+    "title": "Mastering Data Manipulation in R",
+    "section": "Guiding Questions",
+    "text": "Guiding Questions\n\n\n\n\n\n\nThese are optional!\n\n\n\nYou don’t need to answer all of these—or even any of them! They are here to help guide your thinking and reflection on the content. Feel free to explore whatever aspects you find most interesting.\n\n\n\nHow do complex filtering and selection operations enhance data analysis?\nWhat are the benefits of using the tidyverse for data manipulation?\nHow do different data reshaping techniques (e.g., pivoting) impact the way data is analyzed and interpreted?\nWhat challenges do you encounter when working with large datasets, and how can they be overcome with efficient R techniques?\nHow does the native pipe (|&gt;) improve code readability and workflow in R?",
+    "crumbs": [
+      "Lessons",
+      "Data Mastery",
+      "1: Mastering Data Manipulation"
+    ]
+  },
+  {
+    "objectID": "content/01-content.html#readings",
+    "href": "content/01-content.html#readings",
+    "title": "Mastering Data Manipulation in R",
+    "section": "Readings",
+    "text": "Readings\n\nNo readings for this session.",
+    "crumbs": [
+      "Lessons",
+      "Data Mastery",
+      "1: Mastering Data Manipulation"
+    ]
+  },
+  {
+    "objectID": "content/01-content.html#slides",
+    "href": "content/01-content.html#slides",
+    "title": "Mastering Data Manipulation in R",
+    "section": "Slides",
+    "text": "Slides\nThe slides for this session are available online as an HTML file. Use the buttons below to open the slides either as an interactive website or as a static PDF (for printing or storing for later). You can also navigate through the embedded slides directly on this page using your left and right arrow keys.\n\n View all slides in new window  Download PDF of all slides\n\n\n\n\n\n\n\n\n\n\n\nTip\n\n\n\nPro tip: If you type ? (or shift + /) while viewing the slides, you can access a list of special commands to enhance your experience.",
+    "crumbs": [
+      "Lessons",
+      "Data Mastery",
+      "1: Mastering Data Manipulation"
+    ]
+  },
+  {
+    "objectID": "assignment/01-exercise.html",
+    "href": "assignment/01-exercise.html",
+    "title": "Introduction to R and the tidyverse",
+    "section": "",
+    "text": "Important\n\n\n\nBefore starting this exercise, make sure you complete everything at the lesson for this week, especially the Posit Primers."
+  },
+  {
+    "objectID": "assignment/01-exercise.html#task-1-make-an-rstudio-project",
+    "href": "assignment/01-exercise.html#task-1-make-an-rstudio-project",
+    "title": "Introduction to R and the tidyverse",
+    "section": "Task 1: Make an RStudio Project",
+    "text": "Task 1: Make an RStudio Project\n\nUse either Posit.cloud or RStudio on your computer (preferably RStudio on your computer! Follow these instructions to get started!) to create a new RStudio Project.\nCreate a folder named “data” in the project folder you just made.\nDownload this CSV file and place it in that folder:\n\n cars.csv\n\nIn RStudio, go to “File” &gt; “New File…” &gt; “Quarto Document…” and click “OK” in the dialog without changing anything.\nDelete all the placeholder text in that new file and replace it with this:\n---\ntitle: \"Introduction to R and the tidyverse\"\nsubtitle: \"Exercise 1 --- PMAP 8551, Summer 2024\"\nformat: \n  html:\n    toc: true\n  pdf:\n    toc: true\n  docx:\n    toc: true\n---\n\n```{r}\n#| label: load-libraries-data\n#| warning: false\n#| message: false\n\nlibrary(tidyverse)\n\ncars &lt;- read_csv(\"data/cars.csv\")\n```\n\n# Reflection\n\nReplace this text with your reflection\n\n\n# My first plots\n\nInsert a chunk below and use it to create a scatterplot (hint: `geom_point()`) with diplacement (`displ`) on the x-axis, city MPG (`cty`) on the y-axis, and with the points colored by drive (`drv`).\n\nPUT CHUNK HERE\n\nInsert a chunk below and use it to create a histogram (hint: `geom_histogram()`) with highway MPG (`hwy`) on the x-axis. Do not include anything on the y-axis (`geom_histogram()` will do that automatically for you). Choose an appropriate bin width. If you're brave, facet by drive (`drv`).\n\nPUT CHUNK HERE\n\n\n# My first data manipulation\n\nInsert a chunk below and use it to calculate the average city MPG (`cty`) by class of car (`class`). This won't be a plot---it'll be a table. Hint: use a combination of `group_by()` and `summarize()`.\n\nPUT CHUNK HERE\nSave the Quarto file with some sort of name (without any spaces!)\nYour project folder should look something like this:\n\n\n\n\n\n\n\n\n\nExample project folder on macOS\n\n\n\n\n \n\n\n\n\n\nExample project folder on Windows"
+  },
+  {
+    "objectID": "assignment/01-exercise.html#task-2-work-with-r",
+    "href": "assignment/01-exercise.html#task-2-work-with-r",
+    "title": "Introduction to R and the tidyverse",
+    "section": "Task 2: Work with R",
+    "text": "Task 2: Work with R\n\nAdd your reading reflection to the appropriate place in the Quarto file. You can type directly in RStudio if you want (though there’s no spell checker), or you can type it in Word or Google Docs and then paste it into RStudio.\nRemove the text that says “PUT CHUNK HERE” and insert a new R code chunk. Either type ctrl + alt + i on Windows, or ⌘ + ⌥ + i on macOS, or use the “Insert Chunk” menu:\n\n\n\n\n\n\n\n\n\nFollow the instructions for the three chunks of code.\nRender your document as a Word file (or PDF if you’re brave and installed LaTeX). Use the “Render” menu:\n\n\n\n\n\n\n\n\n\nUpload the rendered document to iCollege.\n🎉 Party! 🎉\n\n\n\n\n\n\n\nFile organization\n\n\n\nYou’ll be doing this same process for all your future exercises. Each exercise will involve an Quarto file. Or you can create individual projects for each assignment and mini-project (recommended!):\n\n\n\n\n\n\n\n\n\nIndividual folders for each project on macOS\n\n\n\n\n \n\n\n\n\n\nIndividual folders for each project on Windows\n\n\n\n\n\nOr you can create a new RStudio Project directory for all your work (not recommended!):\n\n\n\n\n\n\n\n\n\nOne folder for everything on macOS\n\n\n\n\n \n\n\n\n\n\nOne folder for everything on Windows"
+  },
+  {
+    "objectID": "resource/unzipping.html",
+    "href": "resource/unzipping.html",
+    "title": "Unzipping files",
+    "section": "",
+    "text": "Because RStudio projects typically consist of multiple files (R scripts, datasets, graphical output, etc.) the easiest way to distribute them to you for examples, assignments, and projects is to combine all the different files in to a single compressed collection called a zip file. When you unzip a zipped file, your operating system extracts all the files that are contained inside into a new folder on your computer.\nUnzipping files on macOS is trivial, but unzipping files on Windows can mess you up if you don’t pay careful attention. Here’s a helpful guide to unzipping files on both macOS and Windows."
+  },
+  {
+    "objectID": "resource/unzipping.html#unzipping-files-on-macos",
+    "href": "resource/unzipping.html#unzipping-files-on-macos",
+    "title": "Unzipping files",
+    "section": "Unzipping files on macOS",
+    "text": "Unzipping files on macOS\nDouble click on the downloaded .zip file. macOS will automatically create a new folder with the same name as the .zip file, and all the file’s contents will be inside. Double click on the RStudio Project file (.Rproj) to get started."
+  },
+  {
+    "objectID": "resource/unzipping.html#unzipping-files-on-windows",
+    "href": "resource/unzipping.html#unzipping-files-on-windows",
+    "title": "Unzipping files",
+    "section": "Unzipping files on Windows",
+    "text": "Unzipping files on Windows\ntl;dr: Right click on the .zip file, select “Extract All…”, and work with the resulting unzipped folder.\nUnlike macOS, Windows does not automatically unzip things for you. If you double click on the .zip file, Windows will show you what’s inside, but it will do so without actually extracting anything. This can be is incredibly confusing! Here’s what it looks like—the only clues that this folder is really a .zip file are that there’s a “Compressed Folder Tools” tab at the top, and there’s a “Ratio” column that shows how much each file is compressed.\n\n\n\n\n\n\n\n\n\nIt is very tempting to try to open files from this view. However, if you do, things will break and you won’t be able to correctly work with any of the files in the zipped folder. If you open the R Project file, for instance, RStudio will point to a bizarre working directory buried deep in some temporary folder:\n\n\n\n\n\n\n\n\n\nYou most likely won’t be able to open any data files or save anything, which will be frustrating.\nInstead, you need to right click on the .zip file and select “Extract All…”:\n\n\n\n\n\n\n\n\n\nThen choose where you want to unzip all the files and click on “Extract”\n\n\n\n\n\n\n\n\n\nYou should then finally have a real folder with all the contents of the zipped file. Open the R Project file and RStudio will point to the correct working directory and everything will work."
+  },
+  {
+    "objectID": "content/index.html",
+    "href": "content/index.html",
+    "title": "Slides nd Additional Materials",
+    "section": "",
+    "text": "Each class session is accompanied by a set of slides that will guide the lecture portion of the lesson. These slides are essential to follow along during the session and will be the primary resource used for instruction. You should review the slides before participating in the session to get the most out of the lecture.\nWhile the slides are the central resource for each session, I might also share additional materials or resources that could be relevant to the specific topics covered. These may include readings, articles, or supplementary videos, which will be made available as needed.\nFor each session throughout the math camp, you’ll find the lecture slides embedded directly on the session page. You can view them in your browser or download them as a PDF for offline use:\n\n View all slides in new window  Download PDF of all slides\n\nThe slides can be navigated using your keyboard with ← and → for moving through the presentation. If you press ? (or shift + /), you’ll see a list of commands for interacting with the slides, including options for fullscreen mode (f) or presenter mode (p), which displays additional notes.",
+    "crumbs": [
+      "Lessons",
+      "Overview",
+      "Slides nd Additional Materials"
+    ]
+  },
+  {
+    "objectID": "handson/index.html",
+    "href": "handson/index.html",
+    "title": "Hands-on Sessions",
+    "section": "",
+    "text": "Hands-on sessions are designed to provide you with practical, interactive experiences that reinforce the concepts covered in the lecture slides. These sessions are an opportunity to apply what you’ve learned, experiment with code, and deepen your understanding through direct practice.",
+    "crumbs": [
+      "Hands-on",
+      "Overview",
+      "Hands-on Sessions"
+    ]
+  },
+  {
+    "objectID": "handson/index.html#preparing-for-hands-on-sessions",
+    "href": "handson/index.html#preparing-for-hands-on-sessions",
+    "title": "Hands-on Sessions",
+    "section": "Preparing for Hands-on Sessions",
+    "text": "Preparing for Hands-on Sessions\nBefore participating in a hands-on session, it’s important to:\n\nReview the Lecture Slides: Ensure you’ve gone through the slides for the session, as they provide the foundational knowledge you’ll need.\nComplete Any Pre-Session Readings: If there are any additional readings or resources provided, make sure to review them beforehand.\nCome Ready to Code: These sessions are about active participation. Have your coding environment ready (whether on your local machine or via Posit Cloud) and be prepared to dive into the exercises.\nPosit Cloud Project: We have set up a Posit Cloud project where you can find the hands-on and lab scripts (without solutions). This allows you to work directly in the cloud environment without needing to install anything locally.\nSoftware Installation Resources: If you prefer to work on your local machine, you can find instructions for installing R, RStudio, and other necessary software in the Resources (Install) section of the course website. This document provides detailed guidance on setting up your coding environment.\n\nWhat to Expect:\n\nInteractive Exercises: You’ll work on a series of exercises that challenge you to implement the techniques discussed in the lectures.\nGuided Examples: Each session includes guided examples that walk you through complex tasks step-by-step, helping you build confidence in your coding skills.\nCollaborative Learning: Engage with your peers, share insights, and troubleshoot problems together. These sessions are meant to be collaborative, allowing you to learn from each other.",
+    "crumbs": [
+      "Hands-on",
+      "Overview",
+      "Hands-on Sessions"
+    ]
+  },
+  {
+    "objectID": "handson/index.html#resources-and-support",
+    "href": "handson/index.html#resources-and-support",
+    "title": "Hands-on Sessions",
+    "section": "Resources and Support",
+    "text": "Resources and Support\nDuring the hands-on sessions, you may encounter challenges or have questions. Don’t hesitate to:\n\nAsk for Help: Whether it’s a small syntax error or a conceptual question, feel free to ask. The goal is to learn, and sometimes that means needing a little help.\nUtilize Provided Resources: In addition to the slides, there may be supplementary materials such as example scripts, datasets, or reference guides available for each session.\nCollaborate with Peers: Use this time to work with your peers. Discussing problems and solutions with others can often lead to a deeper understanding.",
+    "crumbs": [
+      "Hands-on",
+      "Overview",
+      "Hands-on Sessions"
+    ]
+  },
+  {
+    "objectID": "labs/index.html",
+    "href": "labs/index.html",
+    "title": "Lab Sessions",
+    "section": "",
+    "text": "Lab sessions are designed to provide you with an immersive, hands-on experience focused on applying the concepts and techniques you have learned during lectures. These sessions emphasize active learning through exercises and real-world data analysis, offering an opportunity to enhance your understanding and skills in a practical setting.\nWhat to Expect:",
+    "crumbs": [
+      "Labs",
+      "Overview",
+      "Lab Sessions"
+    ]
+  },
+  {
+    "objectID": "labs/index.html#preparing-for-lab-sessions",
+    "href": "labs/index.html#preparing-for-lab-sessions",
+    "title": "Lab Sessions",
+    "section": "Preparing for Lab Sessions",
+    "text": "Preparing for Lab Sessions\nTo get the most out of your lab sessions, it’s important to:\n\nSet Up Your Coding Environment: Ensure that your R environment is ready to go, whether it’s on your local machine or via Posit Cloud. Having everything set up in advance will allow you to dive straight into the exercises.\nBe Ready to Engage: These sessions are meant for active participation. Come prepared to work through the exercises and to engage with your peers and instructor.",
+    "crumbs": [
+      "Labs",
+      "Overview",
+      "Lab Sessions"
+    ]
+  },
+  {
+    "objectID": "labs/index.html#resources-and-support",
+    "href": "labs/index.html#resources-and-support",
+    "title": "Lab Sessions",
+    "section": "Resources and Support",
+    "text": "Resources and Support\nLab sessions are designed to be supportive and collaborative. Here’s how you can make the most of the available resources:\n\nAsk Questions Freely: If you encounter any difficulties, whether they are related to syntax or conceptual understanding, don’t hesitate to ask. The lab is a place to explore and learn, and questions are a crucial part of that process.\nCollaborate with Classmates: Use the lab time to discuss the exercises with your peers. Collaboration can lead to deeper insights and a better understanding of the material.\nLeverage Supplementary Materials: Any additional resources provided, such as example scripts, datasets, or reference guides, are there to help you succeed. Make sure to use them to your advantage during the lab sessions.",
+    "crumbs": [
+      "Labs",
+      "Overview",
+      "Lab Sessions"
+    ]
+  },
+  {
+    "objectID": "content/04-content.html",
+    "href": "content/04-content.html",
+    "title": "Streamlining Research with R",
+    "section": "",
+    "text": "IN CONSTRUCTION!",
+    "crumbs": [
+      "Lessons",
+      "Streamlining Research",
+      "4: Reproducible Research and Automation"
+    ]
+  },
+  {
+    "objectID": "content/04-content.html#overview",
+    "href": "content/04-content.html#overview",
+    "title": "Streamlining Research with R",
+    "section": "",
+    "text": "IN CONSTRUCTION!",
+    "crumbs": [
+      "Lessons",
+      "Streamlining Research",
+      "4: Reproducible Research and Automation"
+    ]
+  },
+  {
+    "objectID": "content/04-content.html#guiding-questions",
+    "href": "content/04-content.html#guiding-questions",
+    "title": "Streamlining Research with R",
+    "section": "Guiding Questions",
+    "text": "Guiding Questions\n\n\n\n\n\n\nThese are optional!\n\n\n\nYou don’t need to answer all of these—or even any of them! They are here to help guide your thinking and reflection on the content. Feel free to explore whatever aspects you find most interesting.\n\n\n\nQuestion 1",
+    "crumbs": [
+      "Lessons",
+      "Streamlining Research",
+      "4: Reproducible Research and Automation"
+    ]
+  },
+  {
+    "objectID": "content/04-content.html#readings",
+    "href": "content/04-content.html#readings",
+    "title": "Streamlining Research with R",
+    "section": "Readings",
+    "text": "Readings\n\nNo readings for this session.",
+    "crumbs": [
+      "Lessons",
+      "Streamlining Research",
+      "4: Reproducible Research and Automation"
+    ]
+  },
+  {
+    "objectID": "content/04-content.html#slides",
+    "href": "content/04-content.html#slides",
+    "title": "Streamlining Research with R",
+    "section": "Slides",
+    "text": "Slides\nThe slides for this session are available online as an HTML file. Use the buttons below to open the slides either as an interactive website or as a static PDF (for printing or storing for later). You can also navigate through the embedded slides directly on this page using your left and right arrow keys.\n\n View all slides in new window  Download PDF of all slides\n\n\n\n\n\n\n\n\n\n\n\nTip\n\n\n\nPro tip: If you type ? (or shift + /) while viewing the slides, you can access a list of special commands to enhance your experience.",
+    "crumbs": [
+      "Lessons",
+      "Streamlining Research",
+      "4: Reproducible Research and Automation"
+    ]
   }
 ]
