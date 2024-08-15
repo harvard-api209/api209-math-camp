@@ -1,5 +1,5 @@
 ---
-title: "R Lesson: Data Manipulation in R"
+title: "R Lesson: Data Wrangling in R"
 author: "Rony Rodrigo Maximiliano Rodriguez-Ramirez"
 date: "`r Sys.Date()`"
 output:
@@ -35,7 +35,7 @@ xaringanExtra::use_xaringan_extra(c("tile_view", "share_again"))
 
 class: center middle main-title section-title-4
 
-# Data Manipulation in R
+# Data Wrangling
 
 .class-info[
 
@@ -130,7 +130,7 @@ class: title title-crimson
 .center[
 **Ayush**
   <figure>
-  <img src="img/01/Ayush.jpg" style="border-radius: 50%; width: 350px; border: 5px solid black;"/>
+  <img src="https://indiaconferenceharvard.com/assets/team/Ayush_Shukla.jpg" style="border-radius: 50%; width: 350px; border: 5px solid black;"/>
   </figure>
 ]  
 ]
@@ -187,7 +187,7 @@ It is not up-to-date; but every week, you will have the materials for that respe
 
 # Coding
 
-Coding is a Skill
+Coding is a *Skill*
 
 .box-inv-crimson.medium[**It is most fun to practice a skill with people you know.**]
 
@@ -266,6 +266,43 @@ student_data |>
 - Respect others’ opinions and suggestions.
 - Try questions on your own first, then come together.
 - Take breaks and have fun!
+
+---
+
+# Using AI for Code Troubleshooting
+
+.SMALL[
+- **AI assistants like ChatGPT and Claude can help debug code**
+- **Steps to use AI for troubleshooting:**
+  1. Paste your code snippet and error message
+  2. Ask for help identifying and fixing the issue
+  3. Review AI's suggestions critically
+  4. Test proposed solutions in your environment
+- **Benefits:**
+  - Quick identification of common errors
+  - Explanations of underlying issues
+  - Suggestions for best practices
+]
+
+---
+
+layout: false
+class: middle
+
+<iframe src="https://embed.polleverywhere.com/multiple_choice_polls/rjGrLtq2xnzTicvBvI8Fm?controls=none&short_poll=true" width="100%" height="100%" frameBorder="0" allowFullScreen style="max-width: 1600px; max-height: 1600px; margin: 0 auto; display: block;"></iframe>
+
+---
+
+layout: true
+class: title title-crimson 
+
+---
+
+# Let the AI do it
+
+.center[
+<iframe src="https://giphy.com/embed/0lGd2OXXHe4tFhb7Wh" width="480" height="480" style="" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>
+]
 
 ---
 
@@ -363,7 +400,7 @@ layout: false
 name: data-manipulation
 class: center middle section-title section-title-crimson
 
-# Data manipulation
+# Data wrangling
 
 ---
 
@@ -372,7 +409,36 @@ class: title title-crimson
 
 ---
 
-# Advanced Data Manipulation
+# Data Manipulation vs Data Wrangling
+
+
+.pull-left[
+### Data Manipulation
+
+- Focused on changing data structure
+- Often uses specific functions or methods
+- Usually works with structured data
+- Examples: sorting, filtering, aggregating
+- Typically a part of data wrangling
+- More straightforward, less time-consuming
+
+]
+
+.pull-right[
+### Data Wrangling
+
+- Broader process including cleaning and transformation
+- May involve multiple tools and techniques
+- Handles both structured and unstructured data
+- Examples: merging datasets, handling missing values, format conversion
+- Encompasses the entire data preparation process
+- Can be complex and time-intensive
+
+]
+
+---
+
+# Advanced Data Wrangling
 
 **Mastering Data Manipulation in R**
 

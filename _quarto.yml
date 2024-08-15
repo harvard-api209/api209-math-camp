@@ -65,7 +65,7 @@ website:
             - content/index.qmd
         - section: "Data Mastery"
           contents:
-            - text: "1: Mastering Data Manipulation"
+            - text: "1: Mastering Data Wrangling"
               file: content/01-content.qmd
         - section: "Data Visualization"
           contents:
@@ -87,7 +87,7 @@ website:
             - handson/index.qmd
         - section: "Hands-on Sessions"
           contents:
-            - text: "1: Mastering Data Manipulation"
+            - text: "1: Mastering Data Wrangling"
               file: handson/01-handson.qmd
             - text: "2: Elegant Data Visualization with ggplot2"
               file: handson/02-handson.qmd
@@ -103,7 +103,7 @@ website:
             - labs/index.qmd
         - section: "Labs"
           contents:
-            - text: "1: Mastering Data Manipulation"
+            - text: "1: Mastering Data Wrangling"
               file: labs/01-labs.qmd
             - text: "2: Elegant Data Visualization with ggplot2"
               file: labs/02-labs.qmd
