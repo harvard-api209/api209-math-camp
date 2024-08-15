@@ -1,9 +1,11 @@
 {
-  "hash": "da67f74c2b01f2bb6e00ba00bd271bea",
+  "hash": "120eeaa3fa28eecc41a7d868fae399fb",
   "result": {
     "engine": "knitr",
-    "markdown": "---\ntitle: \"Reproducible Research and Automation\"\ndate: \"2024-08-14\"\n---\n\n\n\n\n\n## Overview\n\nIn Construction!",
-    "supporting": [],
+    "markdown": "---\ntitle: \"Reproducible Research and Automation (Hands-on Session)\"\ndate: \"2024-08-14\"\n---\n\n\n\n\n\n\n## Overview\n\n::: {.callout-note}\n\n[**Posit Cloud project**](https://posit.cloud/content/8531422)\n\n:::\n\nIn Construction!",
+    "supporting": [
+      "04-handson_files"
+    ],
     "filters": [
       "rmarkdown/pagebreak.lua"
     ],

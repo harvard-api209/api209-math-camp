@@ -1,9 +1,11 @@
 {
-  "hash": "eabdf8c3e3cad712e067f894c236b438",
+  "hash": "90b532f07c7c557e8e21d6461f10ab97",
   "result": {
     "engine": "knitr",
-    "markdown": "---\ntitle: \"Elegant Data Visualization with ggplot2 (Hands-on Session)\"\ndate: \"2024-08-14\"\n---\n\n\n\n\n\n## Overview\n\nIn Construction!",
-    "supporting": [],
+    "markdown": "---\ntitle: \"Elegant Data Visualization with ggplot2 (Hands-on Session)\"\ndate: \"2024-08-14\"\n---\n\n\n\n\n\n\n## Overview\n\n::: {.callout-note}\n\n[**Posit Cloud project**](https://posit.cloud/content/8531422)\n\n:::\n\nIn Construction!",
+    "supporting": [
+      "02-handson_files"
+    ],
     "filters": [
       "rmarkdown/pagebreak.lua"
     ],

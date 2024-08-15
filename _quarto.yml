@@ -39,7 +39,7 @@ website:
     right:
       - syllabus.qmd
       - schedule.qmd
-      - text: "Content"
+      - text: "Lessons"
         file: content/index.qmd
       - text: "Hands-on"
         file: handson/index.qmd
@@ -90,17 +90,17 @@ website:
             - text: "1: Mastering Data Manipulation"
               file: handson/01-handson.qmd
             - text: "2: Elegant Data Visualization with ggplot2"
-              file: handson/01-handson.qmd
+              file: handson/02-handson.qmd
             - text: "3: Advanced Statistical Modeling"
-              file: handson/01-handson.qmd
+              file: handson/03-handson.qmd
             - text: "4: Reproducible Research and Automation"
-              file: handson/01-handson.qmd    
+              file: handson/04-handson.qmd    
 
     - title: "Labs"
       contents:
         - section: "Overview"
           contents:
-            - lesson/index.qmd
+            - labs/index.qmd
         - section: "Labs"
           contents:
             - text: "1: Mastering Data Manipulation"

@@ -1,9 +1,11 @@
 {
-  "hash": "dcc0badaad2ddda40bc57ee8922ff39f",
+  "hash": "6acb92edd42059d6dae4beff172d7af7",
   "result": {
     "engine": "knitr",
     "markdown": "---\ntitle: Interactive lessons\nformat: html\nengine: knitr\nfilters:\n  - webr\nwebr:\n  packages:\n    - ggplot2\n    - dplyr\n    - scales\n    - gapminder\n  cell-options:\n    editor-font-scale: 0.8\n    fig-width: 7\n    fig-height: 4.3\n    out-width: \"100%\"\n---\n\n\n\n\nEach class session has an interactive lesson that you will work through ***after*** doing the readings and watching the lecture. These lessons are a central part of the class—they will teach you how to use {ggplot2} and other packages in the tidyverse to create beautiful and truthful visualizations with R.\n\nInteractive code sections look like this. Make changes in the text box and click on the green \"Run Code\" button to see the results. Sometimes there will be a tab with a hint or solution.\n\n:::: {.callout-important}\n\n### Your turn\n\nModify the code here to show the relationship between health and wealth for 2002 instead of 2007.\n\n::: {.panel-tabset}\n## {{< fa code >}}&ensp;Interactive editor\n\n```{webr-r}\ngapminder_filtered <- gapminder |>\n  filter(year == 2007)\n\nggplot(data = gapminder_filtered,\n       mapping = aes(x = gdpPercap, y = lifeExp, \n                     size = pop, color = continent)) +\n  geom_point() + \n  scale_x_log10(labels = scales::dollar_format(accuracy = 1)) +\n  scale_size_continuous(labels = scales::label_comma()) +\n  scale_color_viridis_d(option = \"plasma\") +\n  labs(x = \"GDP per capita\", y = \"Life expectancy\",\n       title = \"Health and wealth are strongly related\",\n       subtitle = \"142 countries; 2007 only\", caption = \"Source: The Gapminder Project\",\n       color = \"Continent\", size = \"Population\") +\n  theme_bw()\n```\n\n## {{< fa lightbulb >}}&ensp;Hint\n\n**Hint:** You'll want to change something in the code that creates `gapminder_filtered`. The text in the subtitle won't change automatically, so you'll want to edit that too.\n:::\n\n::::\n\nIf you're curious how this works, each interactive code section uses [the amazing {quarto-webr} package](https://quarto-webr.thecoatlessprofessor.com/) to run R directly in your browser.\n",
-    "supporting": [],
+    "supporting": [
+      "index_files"
+    ],
     "filters": [
       "rmarkdown/pagebreak.lua"
     ],

@@ -1,5 +1,5 @@
 ---
-title: Slides, and Additional Materials
+title: Slides nd Additional Materials
 ---
 
 Each class session is accompanied by a set of slides that will guide the lecture portion of the lesson. These slides are essential to follow along during the session and will be the primary resource used for instruction. You should review the slides before participating in the session to get the most out of the lecture.

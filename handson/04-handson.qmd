@@ -1,5 +1,5 @@
 ---
-title: "Reproducible Research and Automation"
+title: "Reproducible Research and Automation (Hands-on Session)"
 date: "2024-08-14"
 ---
 
@@ -8,5 +8,11 @@ source(here::here("R", "slide-things.R"))
 ```
 
 ## Overview
+
+::: {.callout-note}
+
+[**Posit Cloud project**](https://posit.cloud/content/8531422)
+
+:::
 
 In Construction!

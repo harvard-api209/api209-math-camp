@@ -1,6 +1,6 @@
 ---
 title: "Mastering Data Manipulation in R"
-date: "2024-08-14"
+date: "2024-08-15"
 ---
 
 ```{r slides-videos, echo=FALSE, include=FALSE}

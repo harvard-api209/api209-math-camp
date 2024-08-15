@@ -1,58 +1,31 @@
 ---
-title: Interactive lessons
-format: html
-engine: knitr
-filters:
-  - webr
-webr:
-  packages:
-    - ggplot2
-    - dplyr
-    - scales
-    - gapminder
-  cell-options:
-    editor-font-scale: 0.8
-    fig-width: 7
-    fig-height: 4.3
-    out-width: "100%"
+title: Lab Sessions
 ---
 
-Each class session has an interactive lesson that you will work through ***after*** doing the readings and watching the lecture. These lessons are a central part of the class—they will teach you how to use {ggplot2} and other packages in the tidyverse to create beautiful and truthful visualizations with R.
+Lab sessions are designed to provide you with an immersive, hands-on experience focused on applying the concepts and techniques you have learned during lectures. These sessions emphasize active learning through exercises and real-world data analysis, offering an opportunity to enhance your understanding and skills in a practical setting.
 
-Interactive code sections look like this. Make changes in the text box and click on the green "Run Code" button to see the results. Sometimes there will be a tab with a hint or solution.
+**What to Expect:**
 
-:::: {.callout-important}
+- **Focused Exercises:** Each lab session centers around a series of exercises that challenge you to apply specific techniques covered in the course. These exercises are designed to reinforce your knowledge and help you become proficient in data analysis using R.
 
-### Your turn
+- **Practical Data Analysis:** You'll work with real datasets, similar to what you'd encounter in research or professional settings. This provides a chance to see how the theoretical concepts translate into practical application.
 
-Modify the code here to show the relationship between health and wealth for 2002 instead of 2007.
+- **Open Floor for Questions:** Lab sessions are an open environment where you can ask questions, seek clarification, and discuss any challenges you encounter. The goal is to ensure that you fully grasp the material and can confidently apply it.
 
-::: {.panel-tabset}
-## {{< fa code >}}&ensp;Interactive editor
+## Preparing for Lab Sessions
 
-```{webr-r}
-gapminder_filtered <- gapminder |>
-  filter(year == 2007)
+To get the most out of your lab sessions, it's important to:
 
-ggplot(data = gapminder_filtered,
-       mapping = aes(x = gdpPercap, y = lifeExp, 
-                     size = pop, color = continent)) +
-  geom_point() + 
-  scale_x_log10(labels = scales::dollar_format(accuracy = 1)) +
-  scale_size_continuous(labels = scales::label_comma()) +
-  scale_color_viridis_d(option = "plasma") +
-  labs(x = "GDP per capita", y = "Life expectancy",
-       title = "Health and wealth are strongly related",
-       subtitle = "142 countries; 2007 only", caption = "Source: The Gapminder Project",
-       color = "Continent", size = "Population") +
-  theme_bw()
-```
+1. **Set Up Your Coding Environment:** Ensure that your R environment is ready to go, whether it's on your local machine or via Posit Cloud. Having everything set up in advance will allow you to dive straight into the exercises.
 
-## {{< fa lightbulb >}}&ensp;Hint
+3. **Be Ready to Engage:** These sessions are meant for active participation. Come prepared to work through the exercises and to engage with your peers and instructor. 
 
-**Hint:** You'll want to change something in the code that creates `gapminder_filtered`. The text in the subtitle won't change automatically, so you'll want to edit that too.
-:::
+## Resources and Support
 
-::::
+Lab sessions are designed to be supportive and collaborative. Here’s how you can make the most of the available resources:
 
-If you're curious how this works, each interactive code section uses [the amazing {quarto-webr} package](https://quarto-webr.thecoatlessprofessor.com/) to run R directly in your browser.
+- **Ask Questions Freely:** If you encounter any difficulties, whether they are related to syntax or conceptual understanding, don’t hesitate to ask. The lab is a place to explore and learn, and questions are a crucial part of that process.
+
+- **Collaborate with Classmates:** Use the lab time to discuss the exercises with your peers. Collaboration can lead to deeper insights and a better understanding of the material.
+
+- **Leverage Supplementary Materials:** Any additional resources provided, such as example scripts, datasets, or reference guides, are there to help you succeed. Make sure to use them to your advantage during the lab sessions.

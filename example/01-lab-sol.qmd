@@ -1,0 +1,197 @@
+---
+title: "Lab 1: Analyzing Olympic Data with R (Solutions)"
+date: "2024-08-16"
+output: html_document
+---
+
+# Introduction
+
+In this lab session, you'll work with a dataset containing information about the Olympics. The dataset includes various variables, such as the edition of the games, country codes, sports, events, athletes, and the results. Your goal is to explore this data, identify patterns, handle missing values, and generate insights using R.
+
+The dataset contains the following variables:
+
+- `edition`: The edition of the Olympic Games.
+- `edition_id`: A unique identifier for the edition.
+- `country_noc`: The National Olympic Committee (NOC) code representing the country.
+- `sport`: The sport in which the event took place.
+- `event`: The specific event within the sport.
+- `result_id`: A unique identifier for the result.
+- `athlete`: The name of the athlete.
+- `athlete_id`: A unique identifier for the athlete.
+- `pos`: The position or rank the athlete achieved in the event.
+- `medal`: The type of medal won (if any).
+- `isTeamSport`: Indicates whether the event is a team sport.
+
+# Loading Packages and Data
+
+To start, you'll need to load the necessary packages and the dataset. This will allow you to perform the analyses required for the lab exercises.
+
+## Exercise 1: Data Exploration
+
+1. **Load the dataset into R.**  
+
+2. **Get an overview of the dataset.**  
+   You should display the first few rows and summarize each variable to understand the dataset's structure. This step is crucial for familiarizing yourself with the data you'll be working with.
+
+3. **Determine the number of unique editions, sports, and events in the dataset.**  
+   Your goal here is to identify the diversity within the dataset. Use R functions to calculate how many unique Olympic editions, sports, and events are represented in the data.
+
+### Expected Outcome:
+- An understanding of the dataset’s structure.
+- Insights into the diversity of the data, such as the number of unique Olympic editions and sports.
+
+```{r}
+# Load necessary packages
+library(tidyverse)
+
+# Load the dataset
+olympics_data <- read_csv("https://raw.githubusercontent.com/josephwccheng/olympedia_web_scraping/main/data/Olympic_Athlete_Event_Results.csv")
+
+# Display the first few rows
+head(olympics_data)
+
+# Summary of the dataset
+summary(olympics_data)
+
+# Number of unique editions, sports, and events
+n_editions <- n_distinct(olympics_data$edition)
+n_sports   <- n_distinct(olympics_data$sport)
+n_events   <- n_distinct(olympics_data$event)
+
+n_editions
+n_sports
+n_events
+```
+
+## Exercise 2: Handling Missing Values
+
+1. **Identify missing values.**  
+   Determine which variables have missing values and how many missing values are present in each. This will help you understand the completeness of the data.
+
+2. **Create a subset of the data where all missing values are removed.**  
+   You should generate a clean dataset without missing values. Consider how this might impact your analysis.
+
+3. **Discuss the impact of removing rows with missing values.**  
+   Reflect on how the removal of rows could influence the results and representativeness of the data.
+
+### Expected Outcome:
+- A list of variables with missing values.
+- A cleaned version of the dataset.
+- A thoughtful consideration of the implications of removing missing data.
+
+## Exercise 3: Analyzing Medals Distribution
+
+1. **Calculate the total number of medals won by each country.**  
+   You’ll need to group the data by country and count the total number of medals won.
+
+2. **Identify the country with the most gold medals.**  
+   Focus on identifying which country has excelled the most in terms of winning gold medals.
+
+```{r}
+# Identify missing values
+missing_values <- colSums(is.na(olympics_data))
+
+missing_values
+
+# Subset data with no missing values
+clean_data <- na.omit(olympics_data)
+
+# Display the cleaned data
+head(clean_data)
+```
+
+
+### Expected Outcome:
+- A summary table showing the total medals won by each country.
+- Identification of the top-performing country in terms of gold medals.
+
+```{r}
+# Total number of medals by country
+medals_by_country <- olympics_data |>
+  filter(!is.na(medal)) |>
+  group_by(country_noc) |>
+  summarize(total_medals = n(), 
+            gold_medals = sum(medal == "Gold")) |>
+  arrange(desc(total_medals))
+
+# Display the top 10 countries
+top_10_countries <- head(medals_by_country, 10)
+top_10_countries
+```
+
+## Exercise 4: Analyzing Performance by Athlete
+
+1. **Identify the athlete with the most medals overall.**  
+   Your task is to find the athlete who has won the most medals in the Olympics.
+
+2. **Determine the number of unique events the athlete has participated in.**  
+   Investigate the range of events this top athlete has competed in.
+
+### Expected Outcome:
+- The name of the athlete with the most medals.
+- The number of unique events this athlete has participated in, offering insight into their versatility.
+
+```{r}
+# Athlete with the most medals
+top_athlete <- olympics_data |>
+  filter(!is.na(medal)) |>
+  group_by(athlete) |>
+  summarize(total_medals = n()) |>
+  arrange(desc(total_medals)) |>
+  slice(1) |> 
+  pull(athlete)
+
+top_athlete
+
+# Number of unique events for the top athlete
+unique_events_top_athlete <- olympics_data |>
+  filter(athlete == top_athlete) |> 
+  distinct(event) |> 
+  count()
+
+unique_events_top_athlete
+
+# Distribution of medals for the top athlete
+medals_top_athlete <- olympics_data |>
+  filter(athlete == top_athlete, !is.na(medal)) |>
+  count(medal)
+
+medals_top_athlete
+```
+
+
+## Exercise 5: Team Sports vs. Individual Sports
+
+1. **Compare the number of medals won in team sports versus individual sports.**  
+   Analyze how successful athletes have been in team sports compared to individual sports.
+
+2. **Identify the most successful team sport.**  
+   Determine which team sport has yielded the most medals.
+
+### Expected Outcome:
+- A comparison of medals won in team versus individual sports.
+- Identification of the most successful team sport, providing insights into which team events dominate in terms of medals.
+
+```{r}
+# Medals in team vs. individual sports
+team_vs_individual <- olympics_data |>
+  filter(!is.na(medal)) |>
+  group_by(isTeamSport) |>
+  summarize(total_medals = n())
+
+team_vs_individual
+
+# Most successful team sport
+top_team_sport <- olympics_data |>
+  filter(!is.na(medal), isTeamSport == TRUE) |>
+  group_by(sport) |>
+  summarize(total_medals = n()) |>
+  arrange(desc(total_medals)) |>
+  slice(1)
+
+top_team_sport
+```
+
+# Conclusion
+
+This lab session is designed to help you work with real-world Olympic data, exploring various techniques to handle and analyze data in R. By the end of this session, you should be able to perform basic data exploration, handle missing data, and analyze key aspects of the dataset. Make sure to reflect on any challenges you encounter and bring them up in the next session for discussion.

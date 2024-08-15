@@ -335,6 +335,30 @@ class: title title-crimson
 
 ---
 
+# Original Plot
+
+.center[
+<div style="margin-top: -20px;">
+<figure>
+  <img src="img/01/Fig-economist-olympics-original.png" width="70%">
+</figure>
+</div>
+]
+
+---
+
+# Using ggplot
+
+.center[
+<div style="margin-top: -30px;">
+<figure>
+  <img src="img/01/Fig-economist-olympics.png" width="75%">
+</figure>
+</div>
+]
+
+---
+
 layout: false
 name: data-manipulation
 class: center middle section-title section-title-crimson
@@ -365,10 +389,11 @@ class: title title-crimson
 
 # Recap: The Tidyverse
 
+.small[
 **The tidyverse is a collection of R packages designed for data science.**  
 They share an underlying design philosophy, grammar, and data structures.
 
-.small[
+
 **Core Packages:**
 - `ggplot2` - Data visualization
 - `dplyr` - Data manipulation

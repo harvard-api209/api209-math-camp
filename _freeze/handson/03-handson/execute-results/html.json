@@ -1,9 +1,11 @@
 {
-  "hash": "5029ad6eeddb9570c6b2c1f43bb19619",
+  "hash": "af284bdaa7ae8f8b74514e0be6500beb",
   "result": {
     "engine": "knitr",
-    "markdown": "---\ntitle: \"Advanced Statistical Modeling in R\"\ndate: \"2024-08-14\"\n---\n\n\n\n\n\n## Overview\n\nIn Construction!",
-    "supporting": [],
+    "markdown": "---\ntitle: \"Advanced Statistical Modeling (Hands-on Session)\"\ndate: \"2024-08-14\"\n---\n\n\n\n\n\n\n## Overview\n\n::: {.callout-note}\n\n[**Posit Cloud project**](https://posit.cloud/content/8531422)\n\n:::\n\nIn Construction!",
+    "supporting": [
+      "03-handson_files"
+    ],
     "filters": [
       "rmarkdown/pagebreak.lua"
     ],

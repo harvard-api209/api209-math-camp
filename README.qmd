@@ -16,10 +16,10 @@ withr::with_dir(here::here(), {
 })
 ```
 
-# Data Visualization with R <a href='https://datavizs24.classes.andrewheiss.com/'><img src='files/favicon-512.png' align="right" height="139" /></a>
+# Data Visualization with R <a href='https://harvard-api209.github.io/api209-math-camp/'><img src='files/favicon-512.png' align="right" height="139" /></a>
 
-[PMAP 8551/4551 • Summer 2024](https://datavizs24.classes.andrewheiss.com/)  
-[Andrew Heiss](https://www.andrewheiss.com/) • Andrew Young School of Policy Studies • Georgia State University
+[API 209 • Summer 2024](https://harvard-api209.github.io/api209-math-camp//)  
+[Rony Rodriguez-Ramirez](https://www.rrmaximiliano.github.io/) • Harvard University
 
 ---
 

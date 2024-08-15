@@ -1,6 +1,7 @@
 ---
-title: "Mastering Data Manipulation in R"
-date: "2024-08-14"
+title: "Mastering Data Manipulation (Hands-on Session)"
+date: "2024-08-15"
+date_end: "2024-08-15"
 format: html
 engine: knitr
 filters:
@@ -24,7 +25,37 @@ source(here::here("R", "slide-things.R"))
 library(tidyverse)
 ```
 
+::: {.callout-warning}
+
+#### STOP: Super important warning!
+
+> If you didn't complete the **summer assignments**, you should definitely make time to do complete the following primers. The original content is coming from RStudio and was adapted by Prof. Andrew Heiss.
+
+For the first part of this week's lesson, you need to work through a few of Posit's introductory primers. You'll do these in your browser, where you can type code and see results immediately.
+
+You'll learn some of the basics of R, as well as some powerful methods for manipulating data with the {dplyr} package.
+
+Complete these primers. It may seem like there are a lot, but they're short and go fairly quickly, especially as you get the hang of the syntax. Also, **I have no way of seeing what you do or what you get wrong or right**, and that's totally fine! If you get stuck or want to skip some (or if it gets too easy), feel free to move on!
+
+- **The Basics**
+    - [Visualization basics](https://r-primers.andrewheiss.com/basics/01-visualization-basics/)
+    - [Programming basics](https://r-primers.andrewheiss.com/basics/02-programming-basics/)
+- **Work with Data**
+    - [Working with tibbles](https://r-primers.andrewheiss.com/transform-data/01-tibbles/)
+    - [Isolating data with {dplyr}](https://r-primers.andrewheiss.com/transform-data/02-isolating/)
+    - [Deriving information with {dplyr}](https://r-primers.andrewheiss.com/transform-data/03-deriving/)
+
+The content from these primers comes from the (free and online!) book [*R for Data Science* by Garrett Grolemund and Hadley Wickham](https://r4ds.hadley.nz/). I highly recommend the book as a reference and for continuing to learn and use R in the future (like running regression models and other types of statistical analysis).
+
+::: {.callout-warning}
+
 ## Introduction
+
+::: {.callout-note}
+
+[**Posit Cloud project**](https://posit.cloud/content/8531422)
+
+:::
 
 Welcome to the interactive hands-on session on migration data. This session is designed to be an interactive part of our website, allowing you to engage directly with the R code and data manipulation techniques discussed. For your convenience, the same script used here is available in R format within our Posit Cloud project, which you can access [here](https://posit.cloud/content/8531422). You are also welcome to use RStudio or Positron on your local machine to follow along.
 

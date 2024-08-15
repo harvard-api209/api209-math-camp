@@ -4,14 +4,6 @@ title: Hands-on Sessions
 
 Hands-on sessions are designed to provide you with practical, interactive experiences that reinforce the concepts covered in the lecture slides. These sessions are an opportunity to apply what you've learned, experiment with code, and deepen your understanding through direct practice.
 
-**What to Expect:**
-
-- **Interactive Exercises:** You'll work on a series of exercises that challenge you to implement the techniques discussed in the lectures.
-
-- **Guided Examples:** Each session includes guided examples that walk you through complex tasks step-by-step, helping you build confidence in your coding skills.
-
-- **Collaborative Learning:** Engage with your peers, share insights, and troubleshoot problems together. These sessions are meant to be collaborative, allowing you to learn from each other.
-
 ## Preparing for Hands-on Sessions
 
 Before participating in a hands-on session, it’s important to:
@@ -21,6 +13,18 @@ Before participating in a hands-on session, it’s important to:
 2. **Complete Any Pre-Session Readings:** If there are any additional readings or resources provided, make sure to review them beforehand.
 
 3. **Come Ready to Code:** These sessions are about active participation. Have your coding environment ready (whether on your local machine or via Posit Cloud) and be prepared to dive into the exercises.
+
+4. **Posit Cloud Project:** We have set up a [**Posit Cloud project**](https://posit.cloud/content/8531422) where you can find the hands-on and lab scripts (without solutions). This allows you to work directly in the cloud environment without needing to install anything locally.
+
+5. **Software Installation Resources:** If you prefer to work on your local machine, you can find instructions for installing R, RStudio, and other necessary software in the [**Resources (Install)**](/resource/install.qmd) section of the course website. This document provides detailed guidance on setting up your coding environment.
+
+**What to Expect:**
+
+- **Interactive Exercises:** You'll work on a series of exercises that challenge you to implement the techniques discussed in the lectures.
+
+- **Guided Examples:** Each session includes guided examples that walk you through complex tasks step-by-step, helping you build confidence in your coding skills.
+
+- **Collaborative Learning:** Engage with your peers, share insights, and troubleshoot problems together. These sessions are meant to be collaborative, allowing you to learn from each other.
 
 ## Resources and Support
 
