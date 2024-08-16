@@ -233,6 +233,25 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="introduction" class="level1">
 <h1>Introduction</h1>
 <p>In this lab session, you’ll work with a dataset containing information about the Olympics. The dataset includes various variables, such as the edition of the games, country codes, sports, events, athletes, and the results. Your goal is to explore this data, identify patterns, handle missing values, and generate insights using R.</p>
+<p>Throughout the lab, you will use the following R functions:</p>
+<ul>
+<li><code>read_csv()</code>: This function from the <code>readr</code> package reads a CSV file and creates a data frame.</li>
+<li><code>head()</code>: Displays the first few rows of a data frame to give you a quick look at the data.</li>
+<li><code>summary()</code>: Provides summary statistics for each variable in the dataset.</li>
+<li><code>n_distinct()</code>: Counts the number of unique values for a particular variable.</li>
+<li><code>colSums()</code>: Sums up the values in each column, which is useful for counting missing values.</li>
+<li><code>is.na()</code>: Checks for <code>NA</code> (missing) values in the dataset.</li>
+<li><code>na.omit()</code>: Removes rows with missing values from a data frame.</li>
+<li><code>filter()</code>: Extracts rows from a data frame that meet certain conditions.</li>
+<li><code>group_by()</code>: Groups the data by one or more variables, which is often used before summarizing data.</li>
+<li><code>summarize()</code>: Creates summary statistics for each group in the data.</li>
+<li><code>arrange()</code>: Orders the rows of a data frame based on the values of one or more columns.</li>
+<li><code>pull()</code>: Extracts a single column from a data frame as a vector.</li>
+<li><code>slice()</code>: Selects rows by position from a data frame.</li>
+<li><code>distinct()</code>: Extracts distinct (unique) rows from a data frame.</li>
+<li><code>count()</code>: Counts the number of occurrences of each unique value in a column.</li>
+</ul>
+<p>These functions will enable you to load and explore the dataset, handle missing data, and perform various analyses to extract insights.</p>
 <p>The dataset contains the following variables:</p>
 <ul>
 <li><code>edition</code>: The edition of the Olympic Games.</li>

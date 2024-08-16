@@ -13,6 +13,26 @@ date: "2024-08-16"
 
 In this lab session, you'll work with a dataset containing information about the Olympics. The dataset includes various variables, such as the edition of the games, country codes, sports, events, athletes, and the results. Your goal is to explore this data, identify patterns, handle missing values, and generate insights using R.
 
+Throughout the lab, you will use the following R functions:
+
+- `read_csv()`: This function from the `readr` package reads a CSV file and creates a data frame.
+- `head()`: Displays the first few rows of a data frame to give you a quick look at the data.
+- `summary()`: Provides summary statistics for each variable in the dataset.
+- `n_distinct()`: Counts the number of unique values for a particular variable.
+- `colSums()`: Sums up the values in each column, which is useful for counting missing values.
+- `is.na()`: Checks for `NA` (missing) values in the dataset.
+- `na.omit()`: Removes rows with missing values from a data frame.
+- `filter()`: Extracts rows from a data frame that meet certain conditions.
+- `group_by()`: Groups the data by one or more variables, which is often used before summarizing data.
+- `summarize()`: Creates summary statistics for each group in the data.
+- `arrange()`: Orders the rows of a data frame based on the values of one or more columns.
+- `pull()`: Extracts a single column from a data frame as a vector.
+- `slice()`: Selects rows by position from a data frame.
+- `distinct()`: Extracts distinct (unique) rows from a data frame.
+- `count()`: Counts the number of occurrences of each unique value in a column.
+
+These functions will enable you to load and explore the dataset, handle missing data, and perform various analyses to extract insights.
+
 The dataset contains the following variables:
 
 - `edition`: The edition of the Olympic Games.

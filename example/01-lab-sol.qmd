@@ -37,6 +37,7 @@ To start, you'll need to load the necessary packages and the dataset. This will 
    Your goal here is to identify the diversity within the dataset. Use R functions to calculate how many unique Olympic editions, sports, and events are represented in the data.
 
 ### Expected Outcome:
+
 - An understanding of the dataset’s structure.
 - Insights into the diversity of the data, such as the number of unique Olympic editions and sports.
 

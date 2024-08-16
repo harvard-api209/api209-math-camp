@@ -9,7 +9,6 @@
 # We will use the tidyverse for data manipulation and janitor for cleaning data.
 library(tidyverse)
 library(janitor)
-library(modelsummary)
 
 # Load the Data -----------------------------------------------------------
 # Let's start by loading the migration dataset. This dataset contains information
