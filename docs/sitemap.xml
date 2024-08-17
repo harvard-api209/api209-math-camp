@@ -5,16 +5,12 @@
     <lastmod>2024-08-08T20:28:22.400Z</lastmod>
   </url>
   <url>
-    <loc>https://harvard-api209.github.io/api209-math-camp/resource/install.html</loc>
-    <lastmod>2024-08-16T03:23:08.391Z</lastmod>
+    <loc>https://harvard-api209.github.io/api209-math-camp/resource/unzipping.html</loc>
+    <lastmod>2024-08-08T20:28:22.507Z</lastmod>
   </url>
   <url>
-    <loc>https://harvard-api209.github.io/api209-math-camp/resource/pipes.html</loc>
-    <lastmod>2024-08-08T20:28:22.504Z</lastmod>
-  </url>
-  <url>
-    <loc>https://harvard-api209.github.io/api209-math-camp/resource/quarto.html</loc>
-    <lastmod>2024-08-08T20:28:22.505Z</lastmod>
+    <loc>https://harvard-api209.github.io/api209-math-camp/example/01-lab-sol.html</loc>
+    <lastmod>2024-08-16T03:06:36.250Z</lastmod>
   </url>
   <url>
     <loc>https://harvard-api209.github.io/api209-math-camp/resource/markdown.html</loc>
@@ -31,6 +27,10 @@
   <url>
     <loc>https://harvard-api209.github.io/api209-math-camp/index.html</loc>
     <lastmod>2024-08-13T03:13:25.335Z</lastmod>
+  </url>
+  <url>
+    <loc>https://harvard-api209.github.io/api209-math-camp/resource/quarto.html</loc>
+    <lastmod>2024-08-17T03:48:13.339Z</lastmod>
   </url>
   <url>
     <loc>https://harvard-api209.github.io/api209-math-camp/labs/04-labs.html</loc>
@@ -113,6 +113,10 @@
     <lastmod>2024-08-12T04:52:05.903Z</lastmod>
   </url>
   <url>
+    <loc>https://harvard-api209.github.io/api209-math-camp/resource/install.html</loc>
+    <lastmod>2024-08-17T03:42:06.294Z</lastmod>
+  </url>
+  <url>
     <loc>https://harvard-api209.github.io/api209-math-camp/syllabus.html</loc>
     <lastmod>2024-08-12T05:46:49.517Z</lastmod>
   </url>
@@ -133,12 +137,8 @@
     <lastmod>2024-08-15T04:48:46.048Z</lastmod>
   </url>
   <url>
-    <loc>https://harvard-api209.github.io/api209-math-camp/example/01-lab-sol.html</loc>
-    <lastmod>2024-08-16T03:06:36.250Z</lastmod>
-  </url>
-  <url>
-    <loc>https://harvard-api209.github.io/api209-math-camp/resource/unzipping.html</loc>
-    <lastmod>2024-08-08T20:28:22.507Z</lastmod>
+    <loc>https://harvard-api209.github.io/api209-math-camp/resource/pipes.html</loc>
+    <lastmod>2024-08-08T20:28:22.504Z</lastmod>
   </url>
   <url>
     <loc>https://harvard-api209.github.io/api209-math-camp/resource/style.html</loc>
