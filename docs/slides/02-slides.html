@@ -1,15 +1,20 @@
 <!DOCTYPE html>
 <html lang="" xml:lang="">
   <head>
-    <title>Elegant Data Visualization with ggplot2</title>
+    <title>Tidy Data and Visualization</title>
     <meta charset="utf-8" />
     <meta name="author" content="Rony Rodrigo Maximiliano Rodriguez-Ramirez" />
-    <meta name="date" content="2024-08-12" />
+    <meta name="date" content="2024-08-19" />
     <script src="libs/header-attrs-2.27/header-attrs.js"></script>
     <link href="libs/remark-css-0.0.1/default.css" rel="stylesheet" />
+    <link href="libs/panelset-0.3.0/panelset.css" rel="stylesheet" />
+    <script src="libs/panelset-0.3.0/panelset.js"></script>
+    <script src="libs/clipboard-2.0.6/clipboard.min.js"></script>
+    <link href="libs/xaringanExtra-clipboard-0.2.6/xaringanExtra-clipboard.css" rel="stylesheet" />
+    <script src="libs/xaringanExtra-clipboard-0.2.6/xaringanExtra-clipboard.js"></script>
+    <script>window.xaringanExtraClipboard(null, {"button":"Copy Code","success":"Copied!","error":"Press Ctrl+C to Copy"})</script>
     <link href="libs/tile-view-0.2.6/tile-view.css" rel="stylesheet" />
     <script src="libs/tile-view-0.2.6/tile-view.js"></script>
-    <script src="libs/clipboard-2.0.6/clipboard.min.js"></script>
     <link href="libs/shareon-1.4.1/shareon.min.css" rel="stylesheet" />
     <script src="libs/shareon-1.4.1/shareon.min.js"></script>
     <link href="libs/xaringanExtra-shareagain-0.2.6/shareagain.css" rel="stylesheet" />
@@ -26,11 +31,9 @@
 
 
 
-
-
 class: center middle main-title section-title-4
 
-# Elegant Data Visualization with ggplot2
+# Tidy Data and Visualization
 
 .class-info[
 
@@ -44,23 +47,11 @@ Summer 2024]
 
 ---
 
-name: outline
-class: title title-inv-5
-
-# Plan for today
-
-1. List
-2. List
-3. List
-4. List
-
----
-
 layout: false
-name: knowing-each-other
+name: tidy-data
 class: center middle section-title section-title-crimson
 
-# First Part
+# Recap and Tidy Data
 
 ---
 
@@ -69,159 +60,53 @@ class: title title-crimson
 
 ---
 
-# Just show me the data!
+# Wrangling your data {Recap}
 
 
+* You are ***highly encouraged*** to read through [Hadley Wickham's chapter](https://r4ds.had.co.nz/transform.html). It's clear and concise.
 
---
+* Also check out this great "cheatsheet" [here](https://github.com/rstudio/cheatsheets/blob/master/data-transformation.pdf).
 
-.pull-left-3.small-code[
+* The package is organized around a set of **verbs**, i.e. *actions* to be taken.
 
-``` r
-head(my_data, 10)
-```
+* All *verbs* work as follows:
 
-```
-## # A tibble: 10 × 2
-##        x     y
-##    &lt;dbl&gt; &lt;dbl&gt;
-##  1  55.4  97.2
-##  2  51.5  96.0
-##  3  46.2  94.5
-##  4  42.8  91.4
-##  5  40.8  88.3
-##  6  38.7  84.9
-##  7  35.6  79.9
-##  8  33.1  77.6
-##  9  29.0  74.5
-## 10  26.2  71.4
-```
-]
+`$$\text{verb}(\underbrace{\text{data.frame}}_{\text{1st argument}}, \underbrace{\text{what to do}}_\text{2nd argument})$$`
 
---
+* Alternatively you can (should) use the `pipe` operator `%&gt;%`:
 
-.pull-middle-3.small-code[
+`$$\underbrace{\text{data.frame}}_{\text{1st argument}} \underbrace{\text{ %&gt;% }}_{\text{"pipe" operator}} \text{verb}(\underbrace{\text{what to do}}_\text{2nd argument})$$`
 
-``` r
-mean(my_data$x)
-```
-
-```
-*## [1] 54.26327
-```
-
-``` r
-mean(my_data$y)
-```
-
-```
-*## [1] 47.83225
-```
-
-``` r
-cor(my_data$x, my_data$y)
-```
-
-```
-*## [1] -0.06447185
-```
-]
-
---
-
-.pull-right-3[
-&amp;nbsp;
-
-.box-inv-3[Seems reasonable]
-
-&amp;nbsp;
-
-.box-inv-3[Seems reasonable]
-
-&amp;nbsp;
-
-.box-inv-3[No correlation]
-]
 
 ---
 
-# oh no
+# Tidy data
+
+
+- In most cases, your datasets won't be `tidy`. 
+
+&gt; **Tidy data**: A dataset is said to be tidy if it satisfies the following conditions: 
+
+&lt;img src="https://cdn.myportfolio.com/45214904-6a61-4e23-98d6-b140f8654a40/85520b8f-4629-4763-8a2a-9ceff27458bf_rw_1920.jpg?h=21007b20ac00cf37318dca645c215453" width="60%" style="display: block; margin: auto;" /&gt;
+
+---
+
+# Untidy data is pretty common
 
 .center[
-&lt;figure&gt;
-  &lt;img src="img/01/DinoSequentialSmaller.gif" alt="Datasaurus Dozen" title="Datasaurus Dozen" width="100%"&gt;
-  &lt;figcaption&gt;&lt;a href="https://www.autodeskresearch.com/publications/samestats" target="_blank"&gt;The Datasaurus Dozen&lt;/a&gt;&lt;/figcaption&gt;
-&lt;/figure&gt;
+
+![](img/02/bad-data.png)
+
 ]
+
+However, storing data in wide form is easier to display in a printed table. 
 
 ---
+layout: false
+class: center middle
 
-# Raw data is not enough
-
-.box-inv-3.small[Each of these has the same mean, standard deviation, variance, and correlation]
-
-&lt;img src="02-slides_files/figure-html/plot-full-dozen-1.png" width="100%" style="display: block; margin: auto;" /&gt;
-
-
----
-
-# Humans love patterns
-
-.center[
-&lt;figure&gt;
-  &lt;img src="img/01/pattern-processing.png" alt="Pattern processing" title="Pattern processing" width="100%"&gt;
-  &lt;figcaption&gt;&lt;a href="https://doi.org/10.3389/fnins.2014.00265" target="_blank"&gt;https://doi.org/10.3389/fnins.2014.00265&lt;/a&gt;&lt;/figcaption&gt;
-&lt;/figure&gt;
-]
-
----
-
-# (Sometimes we love them too much)
-
---
-
-.center[
-.box-inv-3.sp-after[**Pareidolia**: seeing patterns that aren't there.]
-]
-
---
-
-.pull-left-3[
-![](img/01/pareidolia-1.jpg)
-]
-
---
-
-.pull-middle-3[
-![](img/01/pareidolia-2.jpg)
-]
-
---
-
-.pull-right-3[
-![](img/01/pareidolia-3.jpg)
-]
-
----
-
-# Beauty is necessary to see patterns
-
-.pull-left[
-
-&lt;figure&gt;
-  &lt;img src="img/01/amount-diffs-table.png" alt="Amount donated table" title="Amount donated table" width="100%"&gt;
-&lt;/figure&gt;
-
-]
-
---
-
-.pull-right.center[
-
-&lt;figure&gt;
-  &lt;img src="img/01/amount-diffs.png" alt="Amount donated graph" title="Amount donated graph" width="85%"&gt;
-&lt;/figure&gt;
-
+.huge[
+  .box-crimson[Tidy] data&lt;br&gt;is data in&lt;br&gt;.box-crimson[long] format
 ]
 
 ---
@@ -231,6 +116,13 @@ name: beautiful-visualizations
 class: center middle section-title section-title-crimson
 
 # Beautiful visualizations
+
+---
+
+layout: false
+class: center middle
+
+&lt;img src="img/02/01_dubois_georgia_negro_budget.jpg" width="70%" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -271,25 +163,14 @@ Alberto Cairo, *The Truthful Art*:
 
 # What makes a great visualization?
 
-.box-inv-6["Graphical excellence is the **well-designed presentation of interesting data**—a matter of substance, of statistics, and of design … [It] consists of complex ideas communicated with clarity, precision, and efficiency. … [It] is that which **gives to the viewer the greatest number of ideas in the shortest time with the least ink in the smallest space** … [It] is nearly always multivariate … And graphical excellence requires **telling the truth about the data**."]
-
-.box-6.tiny[Edward Tufte, *The Visual Display of Quantitative Information*, p. 51]
-
----
-
-# What makes a great visualization?
-
 .box-inv-6.medium[Good aesthetics]
 
---
 
 .box-inv-6.medium[No substantive issues]
 
---
 
 .box-inv-6.medium[No perceptual issues]
 
---
 
 .box-inv-6.medium[Honesty + good judgment]
 
@@ -297,11 +178,11 @@ Alberto Cairo, *The Truthful Art*:
 
 ---
 
-# What's wrong?
+# You see bad plots everywhere: What's wrong?
 
 .center[
 &lt;figure&gt;
-  &lt;img src="img/01/pie-genus.png" alt="Distribution of genus" title="Distribution of genus" width="60%"&gt;
+  &lt;img src="img/02/ireland-wrong.png" width="40%"&gt;
 &lt;/figure&gt;
 ]
 
@@ -314,70 +195,173 @@ Alberto Cairo, *The Truthful Art*:
 
 ---
 
-# What's wrong?
+# Is this right?
 
 .center[
 &lt;figure&gt;
-  &lt;img src="img/01/changing-face-of-america.png" alt="Changing face of America" title="Changing face of America" width="45%"&gt;
+  &lt;img src="img/02/Fig-ireland-olympics.png" width="80%"&gt;
 &lt;/figure&gt;
 ]
 
-???
+---
 
-- Aesthetic issues
-- Substantive issues
-- Perceptual issues
-- Honesty + judgment issues
+layout: false
+name: ggplot
+class: center middle section-title section-title-crimson
+
+# Entering ggplot
 
 ---
 
-# What's wrong?
-
-.center[
-&lt;figure&gt;
-  &lt;img src="img/01/how-stuff-works-recidivism.png" alt="Recidivism pie chart" title="Recidivism pie chart" width="45%"&gt;
-&lt;/figure&gt;
-]
-
-???
-
-- Aesthetic issues
-- Substantive issues
-- Perceptual issues
-- Honesty + judgment issues
+layout: true
+class: title title-crimson
 
 ---
 
-# What's right?
+# ggplot
 
 .pull-left[
+For this session, you’ll use the ggplot2 package from the tidyverse meta-package.
 
-&lt;img src="02-slides_files/figure-html/flatten-the-curve-1.png" width="100%" style="display: block; margin: auto;" /&gt;
-
+- So, you can just load the `tidyverse` package when using ggplot.
 ]
 
-???
+.pull-right[
+1. Consistency with the [**Grammar of Graphics**](https://www.springer.com/gp/book/9780387245447)
+  * This book is the foundation of several data viz applications: 
+  
+  `ggplot2, polaris-tableau, vega-lite`
+2. Flexibility
+3. Layering and theme customization
+4. Community
 
-- Aesthetic issues
-- Substantive issues
-- Perceptual issues
-- Honesty + judgment issues
+It is a powerful and easy to use tool (once you understand its logic) that produces complex and multifaceted plots.
+]
+
+
+---
+
+# ggplot2: basic structure (template)
+
+The basic ggplot structure is:
+
+
+```
+ggplot(data = DATA) +
+  GEOM_FUNCTION(mapping = aes(AESTHETIC MAPPINGS))
+```
 
 --
 
-.pull-right.center[
+.center[Mapping data to aesthetics]
 
-&lt;figure&gt;
-  &lt;img src="img/01/bergstrom-tweet.png" alt="Carl Bergstrom tweet" title="Carl Bergstrom tweet" width="80%"&gt;
-  &lt;figcaption&gt;&lt;a href="https://twitter.com/CT_Bergstrom/status/1235865328074153986" target="_blank"&gt;Thread by Carl T. Bergstrom&lt;/a&gt;&lt;/figcaption&gt;
-&lt;/figure&gt;
+.box-7[Think about colors, sizes, x and y references]
+
+.center[We are going to learn how we connect our data to the components of a ggplot.] 
+
+--
+
+.center[I usually code like this:]
+
+```
+DATA |&gt; 
+  ggplot(aes(AESTHETIC MAPPINGS)) +
+  GEOM_FUNCTION()
+```
+
+---
+
+# Mapping
+
+&lt;center&gt;
+Mappings do not directly specify the particular, e.g., colors, shapes, or line styles that will appear on the plot. Rather, they establish which variables in the data will be represented by which visible elements on the plot.
+&lt;/center&gt;
+
+---
+
+# ggplot2: full structure
+
+.pull-left[
+```
+ggplot(data = &lt;DATA&gt;) +
+  &lt;GEOM_FUNCTION&gt;(
+     mapping = aes(&lt;MAPPINGS&gt;),
+     stat = &lt;STAT&gt;,
+     position = &lt;POSITION&gt;
+  ) +z
+  &lt;COORDINATE_FUNCTION&gt; +
+  &lt;FACET_FUNCTION&gt; +
+  &lt;SCALE_FUNTION&gt; +
+  &lt;THEME_FUNCTION&gt;
+
+```
+]
+
+.pull-right[
+
+.small[
+1. `Data`: The data that you want to visualize
+2. `Layers`: geom\_ and stat\_ → The geometric shapes and statistical summaries representing the data
+3. `Aesthetics`: aes() → Aesthetic mappings of the geometric and statistical objects
+4. `Scales`: scale_ → Maps between the data and the aesthetic dimensions
+5. `Coordinate system`: coord_ → Maps data into the plane of the data rectangle
+6. `Facets`: facet_ → The arrangement of the data into a grid of plots
+7. `Visual themes`: theme() and theme_ → The overall visual defaults of a plot
+]
 
 ]
 
-???
+---
 
-[Carl Bergstrom on the flatten the curve visualization](https://twitter.com/CT_Bergstrom/status/1235865328074153986)
+# ggplot2: decomposition
 
+.pull-left[
+
+**There are multiple ways to structure plots with ggplot**
+
+For this presentation, I will stick to Thomas Lin Pedersen's decomposition who is one of most prominent developers of the ggplot and gganimate package.&lt;br&gt;&lt;br&gt;These components can be seen as layers, this is why we use the `+` sign in our ggplot syntax.
+
+]
+
+.pull-right[
+
+![](img/02/ggplot_decom.png)
+]
+
+---
+
+# Exploratory Analysis
+
+The most common `geoms` are:
+
+
+* `geom_bar()`, `geom_col()`: bar charts.
+* `geom_boxplot()`: box and whiskers plots.
+* `geom_density()`: density estimates.
+* `geom_jitter()`: jittered points.
+* `geom_line()`: line plots.
+* `geom_point()`: scatter plots.
+
+
+&gt; If you want to know more about layers, you can refer to [this](https://ggplot2.tidyverse.org/reference/).
+
+
+---
+class: middle
+
+# Time to code
+
+.center[
+&lt;iframe src="https://giphy.com/embed/2IudUHdI075HL02Pkk" width="480" height="360" style="" frameBorder="0" class="giphy-embed" allowFullScreen&gt;&lt;/iframe&gt;&lt;p&gt;&lt;a href="https://giphy.com/gifs/pudgypenguins-data-code-coding-2IudUHdI075HL02Pkk"&gt;via GIPHY&lt;/a&gt;&lt;/p&gt;
+]
+
+
+---
+
+# Our goal
+
+
+&lt;img src="img/02/data-viz.png" width="75%" style="display: block; margin: auto;" /&gt;
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="libs/remark-latest.min.js"></script>

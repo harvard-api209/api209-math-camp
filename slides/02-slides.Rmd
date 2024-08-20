@@ -1,5 +1,5 @@
 ---
-title: "Elegant Data Visualization with ggplot2"
+title: "Tidy Data and Visualization"
 author: "Rony Rodrigo Maximiliano Rodriguez-Ramirez"
 date: "`r Sys.Date()`"
 output:
@@ -23,10 +23,14 @@ editor_options:
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(warning = FALSE, message = FALSE, 
                       fig.retina = 3, fig.align = "center")
-```
 
-```{r packages-data, include=FALSE}
+if(!require(flair)) devtools::install_github("r-for-educators/flair")
+library(flair)
+library(xaringanExtra)
 library(tidyverse)
+xaringanExtra::use_panelset()
+# xaringanExtra::use_webcam()
+xaringanExtra::use_clipboard()
 ```
 
 ```{r xaringanExtra, echo=FALSE}
@@ -35,7 +39,7 @@ xaringanExtra::use_xaringan_extra(c("tile_view", "share_again"))
 
 class: center middle main-title section-title-4
 
-# Elegant Data Visualization with ggplot2
+# Tidy Data and Visualization
 
 .class-info[
 
@@ -49,23 +53,11 @@ Summer 2024]
 
 ---
 
-name: outline
-class: title title-inv-5
-
-# Plan for today
-
-1. List
-2. List
-3. List
-4. List
-
----
-
 layout: false
-name: knowing-each-other
+name: tidy-data
 class: center middle section-title section-title-crimson
 
-# First Part
+# Recap and Tidy Data
 
 ---
 
@@ -74,132 +66,55 @@ class: title title-crimson
 
 ---
 
-# Just show me the data!
+# Wrangling your data {Recap}
 
-```{r load-datasaurus-dozen, echo=FALSE}
-dozen <- read_tsv("data/DatasaurusDozen.tsv")
-my_data <- dozen |> 
-  filter(dataset == "dino") |> 
-  select(x, y)
-```
 
---
+* You are ***highly encouraged*** to read through [Hadley Wickham's chapter](https://r4ds.had.co.nz/transform.html). It's clear and concise.
 
-.pull-left-3.small-code[
-```{r head-datasaurus}
-head(my_data, 10)
-```
-]
+* Also check out this great "cheatsheet" [here](https://github.com/rstudio/cheatsheets/blob/master/data-transformation.pdf).
 
---
+* The package is organized around a set of **verbs**, i.e. *actions* to be taken.
 
-.pull-middle-3.small-code[
-```{r summary-datasaurus, highlight.output=1}
-mean(my_data$x)
-mean(my_data$y)
-cor(my_data$x, my_data$y)
-```
-]
+* All *verbs* work as follows:
 
---
+$$\text{verb}(\underbrace{\text{data.frame}}_{\text{1st argument}}, \underbrace{\text{what to do}}_\text{2nd argument})$$
 
-.pull-right-3[
-&nbsp;
+* Alternatively you can (should) use the `pipe` operator `%>%`:
 
-.box-inv-3[Seems reasonable]
+$$\underbrace{\text{data.frame}}_{\text{1st argument}} \underbrace{\text{ %>% }}_{\text{"pipe" operator}} \text{verb}(\underbrace{\text{what to do}}_\text{2nd argument})$$
 
-&nbsp;
-
-.box-inv-3[Seems reasonable]
-
-&nbsp;
-
-.box-inv-3[No correlation]
-]
 
 ---
 
-# oh no
+# Tidy data
+
+
+- In most cases, your datasets won't be `tidy`. 
+
+> **Tidy data**: A dataset is said to be tidy if it satisfies the following conditions: 
+
+```{r, echo = FALSE, out.width="60%"}
+knitr::include_graphics("https://cdn.myportfolio.com/45214904-6a61-4e23-98d6-b140f8654a40/85520b8f-4629-4763-8a2a-9ceff27458bf_rw_1920.jpg?h=21007b20ac00cf37318dca645c215453")
+```
+
+---
+
+# Untidy data is pretty common
 
 .center[
-<figure>
-  <img src="img/01/DinoSequentialSmaller.gif" alt="Datasaurus Dozen" title="Datasaurus Dozen" width="100%">
-  <figcaption><a href="https://www.autodeskresearch.com/publications/samestats" target="_blank">The Datasaurus Dozen</a></figcaption>
-</figure>
+
+![](img/02/bad-data.png)
+
 ]
+
+However, storing data in wide form is easier to display in a printed table. 
 
 ---
+layout: false
+class: center middle
 
-# Raw data is not enough
-
-.box-inv-3.small[Each of these has the same mean, standard deviation, variance, and correlation]
-
-```{r plot-full-dozen, echo=FALSE, fig.dim=c(10, 4), out.width="100%"}
-ggplot(filter(dozen, dataset != "bullseye"), aes(x = x, y = y)) +
-  geom_point(size = 1) +
-  facet_wrap(vars(dataset))
-```
-
-
----
-
-# Humans love patterns
-
-.center[
-<figure>
-  <img src="img/01/pattern-processing.png" alt="Pattern processing" title="Pattern processing" width="100%">
-  <figcaption><a href="https://doi.org/10.3389/fnins.2014.00265" target="_blank">https://doi.org/10.3389/fnins.2014.00265</a></figcaption>
-</figure>
-]
-
----
-
-# (Sometimes we love them too much)
-
---
-
-.center[
-.box-inv-3.sp-after[**Pareidolia**: seeing patterns that aren't there.]
-]
-
---
-
-.pull-left-3[
-![](img/01/pareidolia-1.jpg)
-]
-
---
-
-.pull-middle-3[
-![](img/01/pareidolia-2.jpg)
-]
-
---
-
-.pull-right-3[
-![](img/01/pareidolia-3.jpg)
-]
-
----
-
-# Beauty is necessary to see patterns
-
-.pull-left[
-
-<figure>
-  <img src="img/01/amount-diffs-table.png" alt="Amount donated table" title="Amount donated table" width="100%">
-</figure>
-
-]
-
---
-
-.pull-right.center[
-
-<figure>
-  <img src="img/01/amount-diffs.png" alt="Amount donated graph" title="Amount donated graph" width="85%">
-</figure>
-
+.huge[
+  .box-crimson[Tidy] data<br>is data in<br>.box-crimson[long] format
 ]
 
 ---
@@ -209,6 +124,15 @@ name: beautiful-visualizations
 class: center middle section-title section-title-crimson
 
 # Beautiful visualizations
+
+---
+
+layout: false
+class: center middle
+
+```{r, echo = FALSE, out.width="70%"}
+knitr::include_graphics("img/02/01_dubois_georgia_negro_budget.jpg")
+```
 
 ---
 
@@ -249,25 +173,14 @@ Alberto Cairo, *The Truthful Art*:
 
 # What makes a great visualization?
 
-.box-inv-6["Graphical excellence is the **well-designed presentation of interesting data**—a matter of substance, of statistics, and of design … [It] consists of complex ideas communicated with clarity, precision, and efficiency. … [It] is that which **gives to the viewer the greatest number of ideas in the shortest time with the least ink in the smallest space** … [It] is nearly always multivariate … And graphical excellence requires **telling the truth about the data**."]
-
-.box-6.tiny[Edward Tufte, *The Visual Display of Quantitative Information*, p. 51]
-
----
-
-# What makes a great visualization?
-
 .box-inv-6.medium[Good aesthetics]
 
---
 
 .box-inv-6.medium[No substantive issues]
 
---
 
 .box-inv-6.medium[No perceptual issues]
 
---
 
 .box-inv-6.medium[Honesty + good judgment]
 
@@ -275,11 +188,11 @@ Alberto Cairo, *The Truthful Art*:
 
 ---
 
-# What's wrong?
+# You see bad plots everywhere: What's wrong?
 
 .center[
 <figure>
-  <img src="img/01/pie-genus.png" alt="Distribution of genus" title="Distribution of genus" width="60%">
+  <img src="img/02/ireland-wrong.png" width="40%">
 </figure>
 ]
 
@@ -292,109 +205,172 @@ Alberto Cairo, *The Truthful Art*:
 
 ---
 
-# What's wrong?
+# Is this right?
 
 .center[
 <figure>
-  <img src="img/01/changing-face-of-america.png" alt="Changing face of America" title="Changing face of America" width="45%">
+  <img src="img/02/Fig-ireland-olympics.png" width="80%">
 </figure>
 ]
 
-???
+---
 
-- Aesthetic issues
-- Substantive issues
-- Perceptual issues
-- Honesty + judgment issues
+layout: false
+name: ggplot
+class: center middle section-title section-title-crimson
+
+# Entering ggplot
 
 ---
 
-# What's wrong?
-
-.center[
-<figure>
-  <img src="img/01/how-stuff-works-recidivism.png" alt="Recidivism pie chart" title="Recidivism pie chart" width="45%">
-</figure>
-]
-
-???
-
-- Aesthetic issues
-- Substantive issues
-- Perceptual issues
-- Honesty + judgment issues
+layout: true
+class: title title-crimson
 
 ---
 
-# What's right?
+# ggplot
 
 .pull-left[
+For this session, you’ll use the ggplot2 package from the tidyverse meta-package.
 
-```{r flatten-the-curve, echo=FALSE, fig.dim=c(4.8, 3.75), out.width="100%"}
-high_mean <- 12
-high_sd <- 4
-flat_mean <- 35
-flat_sd <- 12
-
-ggplot(tibble(x = c(0, 70)), aes(x = x)) +
-  stat_function(geom = "area", fun = dnorm, n = 1000, 
-                args = list(mean = high_mean, sd = high_sd),
-                fill = "#FF4136", alpha = 0.8) +
-  stat_function(geom = "area", fun = dnorm, n = 1000, 
-                args = list(mean = flat_mean, sd = flat_sd),
-                fill = "#0074D9", alpha = 0.8) +
-  geom_hline(yintercept = dnorm(flat_mean, flat_mean, flat_sd), 
-             linetype = "61", color = "grey75") +
-  annotate(geom = "text", x = qnorm(0.5, high_mean, high_sd), 
-           y = dnorm(qnorm(0.5, high_mean, high_sd), high_mean, high_sd) / 2, 
-           label = "Without\nprotective\nmeasures", color = "white", size = 3,
-           family = "Fira Sans Condensed", fontface = "bold") +
-  annotate(geom = "text", x = qnorm(0.5, flat_mean, sd = flat_sd), 
-           y = dnorm(qnorm(0.5, flat_mean, sd = flat_sd), flat_mean, sd = flat_sd) / 2, 
-           label = "With protective\nmeasures", color = "white", size = 3,
-           family = "Fira Sans Condensed", fontface = "bold") +
-  annotate(geom = "text", x = 45, y = dnorm(flat_mean, flat_mean, sd = flat_sd), 
-           label = "Healthcare system capacity", vjust = -0.5, hjust = 0, size = 3,
-           family = "Fira Sans Condensed", fontface = "bold") +
-  labs(x = "Time since first case", 
-       y = "# of\ncases",
-       title = "Flatten the curve!", 
-       subtitle = "Slow down community spread by social distancing",
-       caption = "Adapted from the CDC and The Economist\nVisit flattenthecurve.com") +
-  scale_x_continuous(expand = c(0, 0)) +
-  scale_y_continuous(expand = c(0, 0)) +
-  theme_minimal(base_family = "Fira Sans Condensed Light") +
-  theme(panel.grid = element_blank(),
-        axis.line = element_line(color = "black"),
-        axis.text = element_blank(),
-        axis.title = element_text(family = "Fira Sans Condensed", face = "bold"),
-        axis.title.y = element_text(angle = 0, vjust = 0.5),
-        plot.title = element_text(family = "Fira Sans Condensed", face = "bold", size = rel(1.7)),
-        plot.subtitle = element_text(size = rel(1.2), color = "grey50"),
-        plot.caption = element_text(color = "grey50"))
-```
-
+- So, you can just load the `tidyverse` package when using ggplot.
 ]
 
-???
+.pull-right[
+1. Consistency with the [**Grammar of Graphics**](https://www.springer.com/gp/book/9780387245447)
+  * This book is the foundation of several data viz applications: 
+  
+  `ggplot2, polaris-tableau, vega-lite`
+2. Flexibility
+3. Layering and theme customization
+4. Community
 
-- Aesthetic issues
-- Substantive issues
-- Perceptual issues
-- Honesty + judgment issues
+It is a powerful and easy to use tool (once you understand its logic) that produces complex and multifaceted plots.
+]
+
+
+---
+
+# ggplot2: basic structure (template)
+
+The basic ggplot structure is:
+
+
+```
+ggplot(data = DATA) +
+  GEOM_FUNCTION(mapping = aes(AESTHETIC MAPPINGS))
+```
 
 --
 
-.pull-right.center[
+.center[Mapping data to aesthetics]
 
-<figure>
-  <img src="img/01/bergstrom-tweet.png" alt="Carl Bergstrom tweet" title="Carl Bergstrom tweet" width="80%">
-  <figcaption><a href="https://twitter.com/CT_Bergstrom/status/1235865328074153986" target="_blank">Thread by Carl T. Bergstrom</a></figcaption>
-</figure>
+.box-7[Think about colors, sizes, x and y references]
+
+.center[We are going to learn how we connect our data to the components of a ggplot.] 
+
+--
+
+.center[I usually code like this:]
+
+```
+DATA |> 
+  ggplot(aes(AESTHETIC MAPPINGS)) +
+  GEOM_FUNCTION()
+```
+
+---
+
+# Mapping
+
+<center>
+Mappings do not directly specify the particular, e.g., colors, shapes, or line styles that will appear on the plot. Rather, they establish which variables in the data will be represented by which visible elements on the plot.
+</center>
+
+---
+
+# ggplot2: full structure
+
+.pull-left[
+```
+ggplot(data = <DATA>) +
+  <GEOM_FUNCTION>(
+     mapping = aes(<MAPPINGS>),
+     stat = <STAT>,
+     position = <POSITION>
+  ) +z
+  <COORDINATE_FUNCTION> +
+  <FACET_FUNCTION> +
+  <SCALE_FUNTION> +
+  <THEME_FUNCTION>
+
+```
+]
+
+.pull-right[
+
+.small[
+1. `Data`: The data that you want to visualize
+2. `Layers`: geom\_ and stat\_ → The geometric shapes and statistical summaries representing the data
+3. `Aesthetics`: aes() → Aesthetic mappings of the geometric and statistical objects
+4. `Scales`: scale_ → Maps between the data and the aesthetic dimensions
+5. `Coordinate system`: coord_ → Maps data into the plane of the data rectangle
+6. `Facets`: facet_ → The arrangement of the data into a grid of plots
+7. `Visual themes`: theme() and theme_ → The overall visual defaults of a plot
+]
 
 ]
 
-???
+---
 
-[Carl Bergstrom on the flatten the curve visualization](https://twitter.com/CT_Bergstrom/status/1235865328074153986)
+# ggplot2: decomposition
 
+.pull-left[
+
+**There are multiple ways to structure plots with ggplot**
+
+For this presentation, I will stick to Thomas Lin Pedersen's decomposition who is one of most prominent developers of the ggplot and gganimate package.<br><br>These components can be seen as layers, this is why we use the `+` sign in our ggplot syntax.
+
+]
+
+.pull-right[
+
+![](img/02/ggplot_decom.png)
+]
+
+---
+
+# Exploratory Analysis
+
+The most common `geoms` are:
+
+
+* `geom_bar()`, `geom_col()`: bar charts.
+* `geom_boxplot()`: box and whiskers plots.
+* `geom_density()`: density estimates.
+* `geom_jitter()`: jittered points.
+* `geom_line()`: line plots.
+* `geom_point()`: scatter plots.
+
+
+> If you want to know more about layers, you can refer to [this](https://ggplot2.tidyverse.org/reference/).
+
+
+---
+class: middle
+
+# Time to code
+
+.center[
+<iframe src="https://giphy.com/embed/2IudUHdI075HL02Pkk" width="480" height="360" style="" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p><a href="https://giphy.com/gifs/pudgypenguins-data-code-coding-2IudUHdI075HL02Pkk">via GIPHY</a></p>
+]
+
+
+---
+
+# Our goal
+
+
+```{r, echo = FALSE, out.width="75%"}
+knitr::include_graphics("img/02/data-viz.png")
+```

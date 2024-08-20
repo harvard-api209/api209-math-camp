@@ -1,6 +1,6 @@
 ---
 title: "Advanced Statistical Modeling (Hands-on Session)"
-date: "2024-08-14"
+date: "2024-08-19"
 ---
 
 ```{r slides-videos, echo=FALSE, include=FALSE}

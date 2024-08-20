@@ -69,7 +69,7 @@ website:
               file: content/01-content.qmd
         - section: "Data Visualization"
           contents:
-            - text: "2: Elegant Data Visualization with ggplot2"
+            - text: "2: Data Visualization with ggplot2"
               file: content/02-content.qmd
         - section: "Modeling"
           contents:
@@ -89,7 +89,7 @@ website:
           contents:
             - text: "1: Mastering Data Wrangling"
               file: handson/01-handson.qmd
-            - text: "2: Elegant Data Visualization with ggplot2"
+            - text: "2: Data Visualization with ggplot2"
               file: handson/02-handson.qmd
             - text: "3: Advanced Statistical Modeling"
               file: handson/03-handson.qmd
@@ -105,7 +105,7 @@ website:
           contents:
             - text: "1: Mastering Data Wrangling"
               file: labs/01-labs.qmd
-            - text: "2: Elegant Data Visualization with ggplot2"
+            - text: "2: Data Visualization with ggplot2"
               file: labs/02-labs.qmd
             - text: "3: Advanced Statistical Modeling"
               file: labs/03-labs.qmd

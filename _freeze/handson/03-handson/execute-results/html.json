@@ -1,8 +1,8 @@
 {
-  "hash": "af284bdaa7ae8f8b74514e0be6500beb",
+  "hash": "74d6c188d6b35046a0b0943a5017bae6",
   "result": {
     "engine": "knitr",
-    "markdown": "---\ntitle: \"Advanced Statistical Modeling (Hands-on Session)\"\ndate: \"2024-08-14\"\n---\n\n\n\n\n\n\n## Overview\n\n::: {.callout-note}\n\n[**Posit Cloud project**](https://posit.cloud/content/8531422)\n\n:::\n\nIn Construction!",
+    "markdown": "---\ntitle: \"Advanced Statistical Modeling (Hands-on Session)\"\ndate: \"2024-08-19\"\n---\n\n\n\n\n\n\n## Overview\n\n::: {.callout-note}\n\n[**Posit Cloud project**](https://posit.cloud/content/8531422)\n\n:::\n\nIn Construction!",
     "supporting": [
       "03-handson_files"
     ],

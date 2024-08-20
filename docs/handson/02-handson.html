@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Elegant Data Visualization with ggplot2 (Hands-on Session) – API-209 R-Programming (Math Camp) 2024</title>
+<title>Tidy Data and Visualization (Hands-on Session) – API-209 R-Programming (Math Camp) 2024</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -19,6 +19,40 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -210,7 +244,66 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#overview" id="toc-overview" class="nav-link active" data-scroll-target="#overview">Overview</a></li>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">Introduction</a></li>
+  <li><a href="#note-on-the-data" id="toc-note-on-the-data" class="nav-link" data-scroll-target="#note-on-the-data">Note on the Data</a></li>
+  <li><a href="#overview-of-functions-to-be-used" id="toc-overview-of-functions-to-be-used" class="nav-link" data-scroll-target="#overview-of-functions-to-be-used">Overview of Functions to Be Used</a>
+  <ul class="collapse">
+  <li><a href="#data-preparation" id="toc-data-preparation" class="nav-link" data-scroll-target="#data-preparation">Data Preparation</a>
+  <ul class="collapse">
+  <li><a href="#load-packages" id="toc-load-packages" class="nav-link" data-scroll-target="#load-packages">Load Packages</a></li>
+  <li><a href="#load-the-data" id="toc-load-the-data" class="nav-link" data-scroll-target="#load-the-data">Load the Data</a></li>
+  <li><a href="#inspect-the-data" id="toc-inspect-the-data" class="nav-link" data-scroll-target="#inspect-the-data">Inspect the Data</a></li>
+  </ul></li>
+  <li><a href="#exercise-1-basic-scatter-plot" id="toc-exercise-1-basic-scatter-plot" class="nav-link" data-scroll-target="#exercise-1-basic-scatter-plot">Exercise 1: Basic Scatter Plot</a>
+  <ul class="collapse">
+  <li><a href="#objective" id="toc-objective" class="nav-link" data-scroll-target="#objective">Objective</a></li>
+  <li><a href="#instructions" id="toc-instructions" class="nav-link" data-scroll-target="#instructions">Instructions</a></li>
+  <li><a href="#explanation" id="toc-explanation" class="nav-link" data-scroll-target="#explanation">Explanation</a></li>
+  </ul></li>
+  <li><a href="#exercise-2-data-transformation" id="toc-exercise-2-data-transformation" class="nav-link" data-scroll-target="#exercise-2-data-transformation">Exercise 2: Data Transformation</a>
+  <ul class="collapse">
+  <li><a href="#objective-1" id="toc-objective-1" class="nav-link" data-scroll-target="#objective-1">Objective</a></li>
+  <li><a href="#instructions-1" id="toc-instructions-1" class="nav-link" data-scroll-target="#instructions-1">Instructions</a></li>
+  <li><a href="#explanation-1" id="toc-explanation-1" class="nav-link" data-scroll-target="#explanation-1">Explanation</a></li>
+  </ul></li>
+  <li><a href="#exercise-3-filtering-data" id="toc-exercise-3-filtering-data" class="nav-link" data-scroll-target="#exercise-3-filtering-data">Exercise 3: Filtering Data</a>
+  <ul class="collapse">
+  <li><a href="#objective-2" id="toc-objective-2" class="nav-link" data-scroll-target="#objective-2">Objective</a></li>
+  <li><a href="#instructions-2" id="toc-instructions-2" class="nav-link" data-scroll-target="#instructions-2">Instructions</a></li>
+  <li><a href="#explanation-2" id="toc-explanation-2" class="nav-link" data-scroll-target="#explanation-2">Explanation</a></li>
+  </ul></li>
+  <li><a href="#exercise-4-adding-a-regression-line" id="toc-exercise-4-adding-a-regression-line" class="nav-link" data-scroll-target="#exercise-4-adding-a-regression-line">Exercise 4: Adding a Regression Line</a>
+  <ul class="collapse">
+  <li><a href="#objective-3" id="toc-objective-3" class="nav-link" data-scroll-target="#objective-3">Objective</a></li>
+  <li><a href="#instructions-3" id="toc-instructions-3" class="nav-link" data-scroll-target="#instructions-3">Instructions</a></li>
+  <li><a href="#explanation-3" id="toc-explanation-3" class="nav-link" data-scroll-target="#explanation-3">Explanation</a></li>
+  </ul></li>
+  <li><a href="#exercise-5-adding-a-horizontal-reference-line" id="toc-exercise-5-adding-a-horizontal-reference-line" class="nav-link" data-scroll-target="#exercise-5-adding-a-horizontal-reference-line">Exercise 5: Adding a Horizontal Reference Line</a>
+  <ul class="collapse">
+  <li><a href="#objective-4" id="toc-objective-4" class="nav-link" data-scroll-target="#objective-4">Objective</a></li>
+  <li><a href="#instructions-4" id="toc-instructions-4" class="nav-link" data-scroll-target="#instructions-4">Instructions</a></li>
+  <li><a href="#explanation-4" id="toc-explanation-4" class="nav-link" data-scroll-target="#explanation-4">Explanation</a></li>
+  </ul></li>
+  <li><a href="#exercise-6-adding-text-labels" id="toc-exercise-6-adding-text-labels" class="nav-link" data-scroll-target="#exercise-6-adding-text-labels">Exercise 6: Adding Text Labels</a>
+  <ul class="collapse">
+  <li><a href="#objective-5" id="toc-objective-5" class="nav-link" data-scroll-target="#objective-5">Objective</a></li>
+  <li><a href="#instructions-5" id="toc-instructions-5" class="nav-link" data-scroll-target="#instructions-5">Instructions</a></li>
+  <li><a href="#explanation-5" id="toc-explanation-5" class="nav-link" data-scroll-target="#explanation-5">Explanation</a></li>
+  </ul></li>
+  <li><a href="#exercise-7-adjusting-axis-scales" id="toc-exercise-7-adjusting-axis-scales" class="nav-link" data-scroll-target="#exercise-7-adjusting-axis-scales">Exercise 7: Adjusting Axis Scales</a>
+  <ul class="collapse">
+  <li><a href="#objective-6" id="toc-objective-6" class="nav-link" data-scroll-target="#objective-6">Objective</a></li>
+  <li><a href="#instructions-6" id="toc-instructions-6" class="nav-link" data-scroll-target="#instructions-6">Instructions</a></li>
+  <li><a href="#explanation-6" id="toc-explanation-6" class="nav-link" data-scroll-target="#explanation-6">Explanation</a></li>
+  </ul></li>
+  <li><a href="#exercise-8-adding-facets" id="toc-exercise-8-adding-facets" class="nav-link" data-scroll-target="#exercise-8-adding-facets">Exercise 8: Adding Facets</a>
+  <ul class="collapse">
+  <li><a href="#objective-7" id="toc-objective-7" class="nav-link" data-scroll-target="#objective-7">Objective</a></li>
+  <li><a href="#instructions-7" id="toc-instructions-7" class="nav-link" data-scroll-target="#instructions-7">Instructions</a></li>
+  <li><a href="#explanation-7" id="toc-explanation-7" class="nav-link" data-scroll-target="#explanation-7">Explanation</a></li>
+  </ul></li>
+  <li><a href="#recap" id="toc-recap" class="nav-link" data-scroll-target="#recap">Recap</a></li>
+  </ul></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/harvard-api209/api209-math-camp/edit/main/handson/02-handson.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/harvard-api209/api209-math-camp/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
@@ -218,7 +311,7 @@ ul.task-list li input[type="checkbox"] {
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header">
-<h1 class="title display-7">Elegant Data Visualization with ggplot2 (Hands-on Session)</h1>
+<h1 class="title display-7">Tidy Data and Visualization (Hands-on Session)</h1>
 
 <div class="date-block bg-lesson text-white p-2">
   <p class="date">Lesson for Wednesday, August 14, 2024</p>
@@ -226,24 +319,502 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="overview" class="level2">
-<h2 class="anchored" data-anchor-id="overview">Overview</h2>
-<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout callout-style-default callout-warning callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Note
+STOP: Super important warning!
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p><a href="https://posit.cloud/content/8531422"><strong>Posit Cloud project</strong></a></p>
+<blockquote class="blockquote">
+<p>If you didn’t complete the <strong>summer assignments</strong>, you should definitely make time to do complete the following primers. The original content is coming from RStudio and was adapted by Prof.&nbsp;Andrew Heiss.</p>
+</blockquote>
+<p>For the first part of this week’s lesson, you need to work through a few of Posit’s introductory primers. You’ll do these in your browser, where you can type code and see results immediately.</p>
+<p>You’ll learn some of the basics of R, as well as some powerful methods for manipulating data with the {dplyr} package.</p>
+<p>Complete these primers. It may seem like there are a lot, but they’re short and go fairly quickly, especially as you get the hang of the syntax. Also, <strong>I have no way of seeing what you do or what you get wrong or right</strong>, and that’s totally fine! If you get stuck or want to skip some (or if it gets too easy), feel free to move on!</p>
+<ul>
+<li><strong>The Basics</strong>
+<ul>
+<li><a href="https://r-primers.andrewheiss.com/basics/01-visualization-basics/">Visualization basics</a></li>
+<li><a href="https://r-primers.andrewheiss.com/basics/02-programming-basics/">Programming basics</a></li>
+</ul></li>
+<li><strong>Work with Data</strong>
+<ul>
+<li><a href="https://r-primers.andrewheiss.com/transform-data/01-tibbles/">Working with tibbles</a></li>
+<li><a href="https://r-primers.andrewheiss.com/transform-data/02-isolating/">Isolating data with {dplyr}</a></li>
+<li><a href="https://r-primers.andrewheiss.com/transform-data/03-deriving/">Deriving information with {dplyr}</a></li>
+</ul></li>
+</ul>
+<p>The content from these primers comes from the (free and online!) book <a href="https://r4ds.hadley.nz/"><em>R for Data Science</em> by Garrett Grolemund and Hadley Wickham</a>. I highly recommend the book as a reference and for continuing to learn and use R in the future (like running regression models and other types of statistical analysis).</p>
 </div>
 </div>
-<p>In Construction!</p>
+<section id="introduction" class="level2">
+<h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
+<p>In this hands-on session, we will explore the relationship between various state-level characteristics and the share of votes received by Donald Trump in the 2016 presidential election. We will build a visualization step by step, using the <code>ggplot2</code> package in R. Throughout this session, you’ll learn how to manipulate data, create plots, and progressively add layers to enhance your visualizations.</p>
+</section>
+<section id="note-on-the-data" class="level2">
+<h2 class="anchored" data-anchor-id="note-on-the-data">Note on the Data</h2>
+<p>The dataset we’ll be using contains various economic and demographic indicators for U.S. states during the 2016 presidential election. It includes information such as the percentage of the population that completed college (<code>percoled</code>), the share of votes received by Donald Trump (<code>trumpshare</code>), whether Trump won the state (<code>trumpw</code>), and more. Understanding the context of these variables will help you interpret the plots we create.</p>
+</section>
+<section id="overview-of-functions-to-be-used" class="level1">
+<h1>Overview of Functions to Be Used</h1>
+<p>We’ll use the following functions in our session:</p>
+<ul>
+<li><code>ggplot()</code>: Initializes a ggplot object that stores data and aesthetic mappings.</li>
+<li><code>aes()</code>: Defines aesthetic mappings such as x and y axes, color, size, etc.</li>
+<li><code>geom_point()</code>: Adds points to the plot, commonly used for scatter plots.</li>
+<li><code>geom_smooth()</code>: Adds a smoothed conditional mean, often used to visualize trends.</li>
+<li><code>geom_hline()</code>: Adds a horizontal line across the plot, useful for reference lines.</li>
+<li><code>geom_text()</code>: Adds text labels to points in the plot.</li>
+<li><code>scale_x_continuous()</code> and <code>scale_y_continuous()</code>: Adjust the scales of the axes.</li>
+<li><code>scale_color_manual()</code>: Manually adjusts the color scale used in the plot.</li>
+<li><code>coord_cartesian()</code>: Limits the plot display area without changing the data.</li>
+<li><code>facet_wrap()</code>: Creates separate plots (facets) for subsets of data.</li>
+<li><code>labs()</code>: Adds labels to the axes, title, and other plot elements.</li>
+<li><code>theme_minimal()</code>: Applies a minimal theme to the plot for a clean look.</li>
+</ul>
+<section id="data-preparation" class="level2">
+<h2 class="anchored" data-anchor-id="data-preparation">Data Preparation</h2>
+<section id="load-packages" class="level3">
+<h3 class="anchored" data-anchor-id="load-packages">Load Packages</h3>
+<p>We’ll begin by loading the necessary packages that will help us manipulate the data and create visualizations.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load the necessary packages for data manipulation and visualization.</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
+✔ dplyr     1.1.4     ✔ readr     2.1.5
+✔ forcats   1.0.0     ✔ stringr   1.5.1
+✔ ggplot2   3.5.1     ✔ tibble    3.2.1
+✔ lubridate 1.9.3     ✔ tidyr     1.3.1
+✔ purrr     1.0.2     
+── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+✖ dplyr::filter() masks stats::filter()
+✖ dplyr::lag()    masks stats::lag()
+ℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(hrbrthemes)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="load-the-data" class="level3">
+<h3 class="anchored" data-anchor-id="load-the-data">Load the Data</h3>
+<p>Next, we’ll load the election dataset, which contains information about state-level turnout and various economic indicators during the 2016 presidential election.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load the election dataset.</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>election <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"../files/data/external_data/election_turnout.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Rows: 51 Columns: 15
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+chr  (3): state, region, division
+dbl (12): rownames, year, turnoutho, perhsed, percoled, gdppercap, ss, trump...
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
+</div>
+</div>
+</section>
+<section id="inspect-the-data" class="level3">
+<h3 class="anchored" data-anchor-id="inspect-the-data">Inspect the Data</h3>
+<p>It’s always important to inspect your data before starting any analysis. This helps you understand the structure of the data and the types of variables you’re working with.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Use glimpse() to get a quick overview of the dataset.</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>election <span class="sc">|&gt;</span> <span class="fu">glimpse</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows: 51
+Columns: 15
+$ rownames    &lt;dbl&gt; 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17,…
+$ year        &lt;dbl&gt; 2016, 2016, 2016, 2016, 2016, 2016, 2016, 2016, 2016, 2016…
+$ state       &lt;chr&gt; "Alabama", "Alaska", "Arizona", "Arkansas", "California", …
+$ region      &lt;chr&gt; "South", "West", "West", "South", "West", "West", "Northea…
+$ division    &lt;chr&gt; "East South Central", "Pacific", "Mountain", "West South C…
+$ turnoutho   &lt;dbl&gt; 59.0, 61.3, 55.0, 52.8, 56.7, 70.1, 65.2, 64.4, 60.9, 64.6…
+$ perhsed     &lt;dbl&gt; 84.3, 92.1, 86.0, 84.8, 81.8, 90.7, 89.9, 88.4, 89.3, 86.9…
+$ percoled    &lt;dbl&gt; 23.5, 28.0, 27.5, 21.1, 31.4, 38.1, 37.6, 30.0, 54.6, 27.3…
+$ gdppercap   &lt;dbl&gt; 42663, 81801, 43269, 41129, 61924, 58009, 72331, 69930, 18…
+$ ss          &lt;dbl&gt; 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0…
+$ trumpw      &lt;dbl&gt; 1, 1, 1, 1, 0, 0, 0, 0, 0, 1, 1, 0, 1, 0, 1, 1, 1, 1, 1, 0…
+$ trumpshare  &lt;dbl&gt; 0.62083092, 0.51281512, 0.48671616, 0.60574102, 0.31617107…
+$ sunempr     &lt;dbl&gt; 5.8, 6.9, 5.2, 3.8, 5.4, 2.9, 4.9, 4.5, 6.0, 4.7, 5.3, 2.8…
+$ sunempr12md &lt;dbl&gt; -0.2, 0.3, -0.6, -0.6, -0.3, -0.6, -0.7, -0.2, -0.5, -0.4,…
+$ gdp         &lt;dbl&gt; 203829.8, 49363.4, 311091.0, 120374.8, 2657797.6, 329368.3…</code></pre>
+</div>
+</div>
+</section>
+</section>
+<section id="exercise-1-basic-scatter-plot" class="level2">
+<h2 class="anchored" data-anchor-id="exercise-1-basic-scatter-plot">Exercise 1: Basic Scatter Plot</h2>
+<section id="objective" class="level3">
+<h3 class="anchored" data-anchor-id="objective">Objective</h3>
+<p>In this exercise, we aim to create a basic scatter plot that visualizes the relationship between the share of the vote Trump received (<code>trumpshare</code>) and the percentage of the state that completed college (<code>percoled</code>). This is a straightforward way to explore potential correlations between education levels and voting behavior.</p>
+</section>
+<section id="instructions" class="level3">
+<h3 class="anchored" data-anchor-id="instructions">Instructions</h3>
+<p>Use the <code>ggplot()</code> function to initialize the plot, mapping <code>percoled</code> to the x-axis and <code>trumpshare</code> to the y-axis. Then, add points to the plot using <code>geom_point()</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a basic scatter plot.</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>election <span class="sc">|&gt;</span> </span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">aes</span>(</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>      <span class="at">x =</span> percoled,    <span class="co"># percoled on the x-axis</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>      <span class="at">y =</span> trumpshare   <span class="co"># trumpshare on the y-axis</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span>          <span class="co"># Add points to represent each state</span></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Relationship between Trump Vote Share and College Education"</span>,</span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Percentage with College Education"</span>,</span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Trump Vote Share"</span></span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="02-handson_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="explanation" class="level3">
+<h3 class="anchored" data-anchor-id="explanation">Explanation</h3>
+<p>In this plot, each point represents a state, with the x-axis showing the percentage of the population with a college education and the y-axis showing the percentage of votes Trump received. This basic plot will help us identify any apparent trends or outliers.</p>
+</section>
+</section>
+<section id="exercise-2-data-transformation" class="level2">
+<h2 class="anchored" data-anchor-id="exercise-2-data-transformation">Exercise 2: Data Transformation</h2>
+<section id="objective-1" class="level3">
+<h3 class="anchored" data-anchor-id="objective-1">Objective</h3>
+<p>Before enhancing our plot, we’ll transform some variables to better suit our analysis. Specifically, we’ll convert <code>trumpw</code> into a categorical variable (factor) and rescale <code>percoled</code> to represent it as a proportion (dividing by 100).</p>
+</section>
+<section id="instructions-1" class="level3">
+<h3 class="anchored" data-anchor-id="instructions-1">Instructions</h3>
+<p>Use the <code>mutate()</code> function to transform the data and then create a scatter plot with the transformed variables.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Transform the data.</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>election_transformed <span class="ot">&lt;-</span> election <span class="sc">|&gt;</span> </span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">trumpw =</span> <span class="fu">as_factor</span>(trumpw),  <span class="co"># Convert trumpw to a factor</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">percoled =</span> percoled <span class="sc">/</span> <span class="dv">100</span>    <span class="co"># Rescale percoled to be a proportion</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot using the transformed data.</span></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>election_transformed <span class="sc">|&gt;</span> </span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(</span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">aes</span>(</span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>      <span class="at">x =</span> percoled,</span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>      <span class="at">y =</span> trumpshare</span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Trump Vote Share vs. College Education (Transformed Data)"</span>,</span>
+<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Percentage with College Education"</span>,</span>
+<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Trump Vote Share"</span></span>
+<span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb9-22"><a href="#cb9-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="02-handson_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="explanation-1" class="level3">
+<h3 class="anchored" data-anchor-id="explanation-1">Explanation</h3>
+<p>By converting <code>trumpw</code> to a factor, we make it easier to group the data by whether Trump won a state. Rescaling <code>percoled</code> to a proportion standardizes the variable, allowing for more intuitive interpretation, especially when we apply formatting later on.</p>
+</section>
+</section>
+<section id="exercise-3-filtering-data" class="level2">
+<h2 class="anchored" data-anchor-id="exercise-3-filtering-data">Exercise 3: Filtering Data</h2>
+<section id="objective-2" class="level3">
+<h3 class="anchored" data-anchor-id="objective-2">Objective</h3>
+<p>In this exercise, we’ll filter out the District of Columbia from our dataset. D.C. is often an outlier in many analyses due to its unique characteristics, so excluding it can make patterns in the rest of the data clearer.</p>
+</section>
+<section id="instructions-2" class="level3">
+<h3 class="anchored" data-anchor-id="instructions-2">Instructions</h3>
+<p>Use the <code>filter()</code> function to remove D.C. from the dataset, then create a scatter plot with the filtered data.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Filter the data.</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>election_filtered <span class="ot">&lt;-</span> election_transformed <span class="sc">|&gt;</span> </span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(state <span class="sc">!=</span> <span class="st">"District of Columbia"</span>)</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot the filtered data.</span></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>election_filtered <span class="sc">|&gt;</span> </span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(</span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">aes</span>(</span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>      <span class="at">x =</span> percoled,</span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>      <span class="at">y =</span> trumpshare</span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Trump Vote Share vs. College Education (Filtered Data)"</span>,</span>
+<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Percentage with College Education"</span>,</span>
+<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Trump Vote Share"</span></span>
+<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="02-handson_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="explanation-2" class="level3">
+<h3 class="anchored" data-anchor-id="explanation-2">Explanation</h3>
+<p>Removing D.C. reduces the potential for this outlier to skew the visual representation of the data, allowing for a more accurate depiction of the relationship between education levels and Trump’s vote share in the other states.</p>
+</section>
+</section>
+<section id="exercise-4-adding-a-regression-line" class="level2">
+<h2 class="anchored" data-anchor-id="exercise-4-adding-a-regression-line">Exercise 4: Adding a Regression Line</h2>
+<section id="objective-3" class="level3">
+<h3 class="anchored" data-anchor-id="objective-3">Objective</h3>
+<p>To better understand the relationship between education and Trump’s vote share, we’ll add a linear regression line to our scatter plot. This line will help us see the overall trend in the data.</p>
+</section>
+<section id="instructions-3" class="level3">
+<h3 class="anchored" data-anchor-id="instructions-3">Instructions</h3>
+<p>Use <code>geom_smooth()</code> with the <code>method = "lm"</code> argument to add a linear regression line to your scatter plot.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Add a linear regression line to the plot.</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>election_filtered <span class="sc">|&gt;</span> </span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">aes</span>(</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>     </span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a> <span class="at">x =</span> percoled,</span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>      <span class="at">y =</span> trumpshare</span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">color =</span> <span class="st">"black"</span>, <span class="at">se =</span> <span class="cn">FALSE</span>) <span class="sc">+</span>       <span class="co"># Add a linear regression line</span></span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Trump Vote Share vs. College Education with Regression Line"</span>,</span>
+<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Percentage with College Education"</span>,</span>
+<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Trump Vote Share"</span></span>
+<span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb11-18"><a href="#cb11-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>`geom_smooth()` using formula = 'y ~ x'</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="02-handson_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="explanation-3" class="level3">
+<h3 class="anchored" data-anchor-id="explanation-3">Explanation</h3>
+<p>The regression line provides a clear visual summary of the direction and strength of the relationship between the percentage of college-educated individuals and Trump’s vote share. The slope of the line will indicate whether there’s a positive or negative correlation.</p>
+</section>
+</section>
+<section id="exercise-5-adding-a-horizontal-reference-line" class="level2">
+<h2 class="anchored" data-anchor-id="exercise-5-adding-a-horizontal-reference-line">Exercise 5: Adding a Horizontal Reference Line</h2>
+<section id="objective-4" class="level3">
+<h3 class="anchored" data-anchor-id="objective-4">Objective</h3>
+<p>In this exercise, we’ll add a horizontal reference line at 50% Trump vote share. This line represents a key threshold, indicating whether Trump received more or less than half of the votes in each state.</p>
+</section>
+<section id="instructions-4" class="level3">
+<h3 class="anchored" data-anchor-id="instructions-4">Instructions</h3>
+<p>Use <code>geom_hline()</code> to add a horizontal dashed line at <code>y = 0.5</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Add a horizontal reference line at 50% Trump vote share.</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>election_filtered <span class="sc">|&gt;</span> </span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">aes</span>(</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>      <span class="at">x =</span> percoled,</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>      <span class="at">y =</span> trumpshare</span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">color =</span> <span class="st">"black"</span>, <span class="at">se =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="fl">0.5</span>, <span class="at">linetype =</span> <span class="st">"dashed"</span>, <span class="at">color =</span> <span class="st">"grey"</span>) <span class="sc">+</span> <span class="co"># Add horizontal line at 50%</span></span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Trump Vote Share vs. College Education with Reference Line"</span>,</span>
+<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Percentage with College Education"</span>,</span>
+<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Trump Vote Share"</span></span>
+<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>`geom_smooth()` using formula = 'y ~ x'</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="02-handson_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="explanation-4" class="level3">
+<h3 class="anchored" data-anchor-id="explanation-4">Explanation</h3>
+<p>The 50% line is a critical point of reference, as it allows us to quickly see which states Trump won (above the line) and which he lost (below the line). This adds another layer of interpretation to the plot.</p>
+</section>
+</section>
+<section id="exercise-6-adding-text-labels" class="level2">
+<h2 class="anchored" data-anchor-id="exercise-6-adding-text-labels">Exercise 6: Adding Text Labels</h2>
+<section id="objective-5" class="level3">
+<h3 class="anchored" data-anchor-id="objective-5">Objective</h3>
+<p>To make the plot more informative, we’ll add text labels to the points. This will allow us to see which state each point represents without having to hover over or refer to another source.</p>
+</section>
+<section id="instructions-5" class="level3">
+<h3 class="anchored" data-anchor-id="instructions-5">Instructions</h3>
+<p>Use <code>geom_text()</code> to add state labels to the points on your scatter plot.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Add text labels to the points.</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>election_filtered <span class="sc">|&gt;</span> </span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">aes</span>(</span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>      <span class="at">x =</span> percoled,</span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>      <span class="at">y =</span> trumpshare</span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">color =</span> <span class="st">"black"</span>, <span class="at">se =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="fl">0.5</span>, <span class="at">linetype =</span> <span class="st">"dashed"</span>, <span class="at">color =</span> <span class="st">"grey"</span>) <span class="sc">+</span></span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label =</span> state), <span class="at">vjust =</span> <span class="sc">-</span><span class="fl">0.5</span>, <span class="at">size =</span> <span class="dv">3</span>, <span class="at">show.legend =</span> <span class="cn">FALSE</span>) <span class="sc">+</span> <span class="co"># Add text labels</span></span>
+<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Trump Vote Share vs. College Education with State Labels"</span>,</span>
+<span id="cb15-15"><a href="#cb15-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Percentage with College Education"</span>,</span>
+<span id="cb15-16"><a href="#cb15-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Trump Vote Share"</span></span>
+<span id="cb15-17"><a href="#cb15-17" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb15-18"><a href="#cb15-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>`geom_smooth()` using formula = 'y ~ x'</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="02-handson_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="explanation-5" class="level3">
+<h3 class="anchored" data-anchor-id="explanation-5">Explanation</h3>
+<p>By labeling each point with its corresponding state abbreviation, we can easily identify which states exhibit particular voting and education patterns. This is especially useful for recognizing outliers or regional trends.</p>
+</section>
+</section>
+<section id="exercise-7-adjusting-axis-scales" class="level2">
+<h2 class="anchored" data-anchor-id="exercise-7-adjusting-axis-scales">Exercise 7: Adjusting Axis Scales</h2>
+<section id="objective-6" class="level3">
+<h3 class="anchored" data-anchor-id="objective-6">Objective</h3>
+<p>To improve the readability of our plot, we’ll adjust the x and y axes to display percentages. We’ll also add a custom color scale to differentiate between states that Trump won and those he didn’t.</p>
+</section>
+<section id="instructions-6" class="level3">
+<h3 class="anchored" data-anchor-id="instructions-6">Instructions</h3>
+<p>Use <code>scale_x_continuous()</code> and <code>scale_y_continuous()</code> to format the axes as percentages, and <code>scale_color_manual()</code> to define custom colors for the <code>trumpw</code> variable.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Adjust axis scales and color scale.</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>election_filtered <span class="sc">|&gt;</span> </span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">aes</span>(</span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>      <span class="at">x =</span> percoled,</span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>      <span class="at">y =</span> trumpshare,</span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>      <span class="at">color =</span> trumpw    <span class="co"># Color points by whether Trump won the state</span></span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">color =</span> <span class="st">"black"</span>, <span class="at">se =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="fl">0.5</span>, <span class="at">linetype =</span> <span class="st">"dashed"</span>, <span class="at">color =</span> <span class="st">"grey"</span>) <span class="sc">+</span></span>
+<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label =</span> state), <span class="at">vjust =</span> <span class="sc">-</span><span class="fl">0.5</span>, <span class="at">size =</span> <span class="dv">3</span>, <span class="at">show.legend =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">labels =</span> scales<span class="sc">::</span>percent) <span class="sc">+</span>  <span class="co"># Format x-axis as percentage</span></span>
+<span id="cb17-15"><a href="#cb17-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">breaks =</span> <span class="fu">seq</span>(<span class="dv">0</span>,<span class="dv">1</span>,.<span class="dv">2</span>), <span class="at">labels =</span> scales<span class="sc">::</span>percent) <span class="sc">+</span>  <span class="co"># Format y-axis as percentage</span></span>
+<span id="cb17-16"><a href="#cb17-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"No"</span>, <span class="st">"Yes"</span>), <span class="at">values =</span> <span class="fu">c</span>(<span class="st">"blue"</span>, <span class="st">"red"</span>)) <span class="sc">+</span> <span class="co"># Custom color scale</span></span>
+<span id="cb17-17"><a href="#cb17-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb17-18"><a href="#cb17-18" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Trump Vote Share vs. College Education with Adjusted Scales"</span>,</span>
+<span id="cb17-19"><a href="#cb17-19" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Percentage with College Education"</span>,</span>
+<span id="cb17-20"><a href="#cb17-20" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Trump Vote Share"</span>,</span>
+<span id="cb17-21"><a href="#cb17-21" aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">"Did Trump win the State?"</span></span>
+<span id="cb17-22"><a href="#cb17-22" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb17-23"><a href="#cb17-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>`geom_smooth()` using formula = 'y ~ x'</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="02-handson_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="explanation-6" class="level3">
+<h3 class="anchored" data-anchor-id="explanation-6">Explanation</h3>
+<p>Formatting the axes as percentages makes the data more interpretable for viewers. The custom color scale enhances the plot by visually distinguishing states based on the election outcome, making patterns and trends easier to detect.</p>
+</section>
+</section>
+<section id="exercise-8-adding-facets" class="level2">
+<h2 class="anchored" data-anchor-id="exercise-8-adding-facets">Exercise 8: Adding Facets</h2>
+<section id="objective-7" class="level3">
+<h3 class="anchored" data-anchor-id="objective-7">Objective</h3>
+<p>Finally, we’ll use facets to create separate plots for each region. This allows us to compare trends across different parts of the country more effectively.</p>
+</section>
+<section id="instructions-7" class="level3">
+<h3 class="anchored" data-anchor-id="instructions-7">Instructions</h3>
+<p>Use <code>facet_wrap(~ region)</code> to create a separate plot for each region.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Add facets to create separate plots by region.</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>election_filtered <span class="sc">|&gt;</span> </span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(</span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">aes</span>(</span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>      <span class="at">x =</span> percoled,</span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>      <span class="at">y =</span> trumpshare,</span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>      <span class="at">color =</span> trumpw</span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">color =</span> <span class="st">"black"</span>, <span class="at">se =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb19-12"><a href="#cb19-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="fl">0.5</span>, <span class="at">linetype =</span> <span class="st">"dashed"</span>, <span class="at">color =</span> <span class="st">"grey"</span>) <span class="sc">+</span></span>
+<span id="cb19-13"><a href="#cb19-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label =</span> state), <span class="at">vjust =</span> <span class="sc">-</span><span class="fl">0.5</span>, <span class="at">size =</span> <span class="dv">3</span>, <span class="at">show.legend =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb19-14"><a href="#cb19-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">labels =</span> scales<span class="sc">::</span>percent) <span class="sc">+</span>  </span>
+<span id="cb19-15"><a href="#cb19-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">breaks =</span> <span class="fu">seq</span>(<span class="dv">0</span>,<span class="dv">1</span>,.<span class="dv">2</span>), <span class="at">labels =</span> scales<span class="sc">::</span>percent) <span class="sc">+</span></span>
+<span id="cb19-16"><a href="#cb19-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"No"</span>, <span class="st">"Yes"</span>), <span class="at">values =</span> <span class="fu">c</span>(<span class="st">"blue"</span>, <span class="st">"red"</span>)) <span class="sc">+</span></span>
+<span id="cb19-17"><a href="#cb19-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_cartesian</span>(<span class="at">clip =</span> <span class="st">"off"</span>) <span class="sc">+</span> <span class="co"># Ensure labels are not clipped</span></span>
+<span id="cb19-18"><a href="#cb19-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span> region) <span class="sc">+</span>          <span class="co"># Facet by region</span></span>
+<span id="cb19-19"><a href="#cb19-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb19-20"><a href="#cb19-20" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Trump Vote Share vs. College Education by Region"</span>,</span>
+<span id="cb19-21"><a href="#cb19-21" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Percentage with College Education"</span>,</span>
+<span id="cb19-22"><a href="#cb19-22" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Trump Vote Share"</span>,</span>
+<span id="cb19-23"><a href="#cb19-23" aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">"Did Trump win the State?"</span></span>
+<span id="cb19-24"><a href="#cb19-24" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb19-25"><a href="#cb19-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>`geom_smooth()` using formula = 'y ~ x'</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="02-handson_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="explanation-7" class="level3">
+<h3 class="anchored" data-anchor-id="explanation-7">Explanation</h3>
+<p>Faceting allows us to see how the relationship between education and Trump’s vote share varies across different regions. This can reveal regional differences that might not be apparent when looking at the data as a whole.</p>
+</section>
+</section>
+<section id="recap" class="level2">
+<h2 class="anchored" data-anchor-id="recap">Recap</h2>
+<p>In this session, we’ve progressively built a complex <code>ggplot2</code> visualization, starting from a basic scatter plot and adding layers such as regression lines, reference lines, text labels, custom scales, and facets. Each step has added more depth to our understanding of the data, demonstrating the power and flexibility of <code>ggplot2</code> for exploring relationships within data.</p>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->
