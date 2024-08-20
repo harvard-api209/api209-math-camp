@@ -590,3 +590,9 @@ Coloring and inverse coloring in title bars and content boxes
 .show-only-last-code-result pre + pre:not(:last-of-type) code[class="remark-code"] {
     display: none;
 }
+
+.hlb {
+  /* color: #d16666;
+  color: #ff3e41; */
+  color: #d14;
+}

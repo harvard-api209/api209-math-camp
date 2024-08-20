@@ -28,6 +28,7 @@ if(!require(flair)) devtools::install_github("r-for-educators/flair")
 library(flair)
 library(xaringanExtra)
 library(tidyverse)
+library(gapminder)
 xaringanExtra::use_panelset()
 # xaringanExtra::use_webcam()
 xaringanExtra::use_clipboard()
@@ -168,6 +169,25 @@ Alberto Cairo, *The Truthful Art*:
 > 4. It is insightful, as it reveals evidence that we would have a hard time seeing otherwise.
 > 
 > 5. It is enlightening because if we grasp and accept the evidence it depicts, it will change our minds for the better.
+
+---
+
+# How do we express visuals in words?
+
+- **Data** to be visualized
+
+- **.hlb[Geom]etric objects** that appear on the plot
+
+- **.hlb[Aes]thetic mappings** from data to visual component
+
+- **.hlb[Stat]istics** transform data on the way to visualization
+
+- **.hlb[Coord]inates** organize location of geometric objects
+
+- **.hlb[Scale]s** define the range of values for aesthetics
+
+- **.hlb[Facet]s** group into subplots
+
 
 ---
 
@@ -355,9 +375,254 @@ The most common `geoms` are:
 
 > If you want to know more about layers, you can refer to [this](https://ggplot2.tidyverse.org/reference/).
 
+---
+
+# Step by step from Garrick Aden-Buie's gentle guide
+
+Using the `gapminder` package, let's start with `lifeExp` vs `gdpPercap`
+
+```{r summary-gapminder, echo=FALSE, comment=""}
+glimpse(gapminder)
+```
 
 ---
-class: middle
+class: fullscreen
+layout: true
+---
+
+.left-code[
+```{r gapminder-le-gdp-0, fig.show="hide"}
+ggplot(gapminder) 
+```
+]
+
+.right-plot[
+![](`r knitr::fig_chunk("gapminder-le-gdp-0", "png")`)
+]
+
+The Canvas
+
+---
+
+.left-code[
+```{r gapminder-le-gdp-0a, fig.show="hide"}
+ggplot(gapminder) +
+  aes(x = gdpPercap)
+```
+]
+
+.right-plot[
+![](`r knitr::fig_chunk("gapminder-le-gdp-0a", "png")`)
+]
+
+The Canvas
+
+---
+
+.left-code[
+```{r gapminder-le-gdp-1, fig.show="hide"}
+ggplot(gapminder) +
+  aes(x = gdpPercap,
+      y = lifeExp)
+```
+]
+
+.right-plot[
+![](`r knitr::fig_chunk("gapminder-le-gdp-1", "png")`)
+]
+
+--
+
+Add points...
+
+---
+
+.left-code[
+```{r gapminder-le-gdp-2, fig.show="hide"}
+ggplot(gapminder) +
+  aes(x = gdpPercap,
+      y = lifeExp) +
+  geom_point() #<<
+```
+]
+
+.right-plot[
+![](`r knitr::fig_chunk("gapminder-le-gdp-2", "png")`)
+]
+
+--
+
+How can I tell countries apart?
+
+---
+
+.left-code[
+```{r gapminder-le-gdp-3, fig.show="hide"}
+ggplot(gapminder) +
+  aes(x = gdpPercap,
+      y = lifeExp,
+      color = continent) + #<<
+  geom_point()
+```
+]
+
+.right-plot[
+![](`r knitr::fig_chunk("gapminder-le-gdp-3", "png")`)
+]
+
+--
+
+GDP is squished together on the left
+
+---
+
+.left-code[
+```{r gapminder-le-gdp-4, fig.show="hide"}
+ggplot(gapminder) +
+  aes(x = gdpPercap,
+      y = lifeExp,
+      color = continent) +
+  geom_point() +
+  scale_x_log10() #<<
+```
+]
+
+.right-plot[
+![](`r knitr::fig_chunk("gapminder-le-gdp-4", "png")`)
+]
+
+--
+
+Still lots of overlap in the countries...
+
+---
+
+.left-code[
+```{r gapminder-le-gdp-5, fig.show="hide"}
+ggplot(gapminder) +
+  aes(x = gdpPercap,
+      y = lifeExp,
+      color = continent) +
+  geom_point() +
+  scale_x_log10() +
+  facet_wrap(~ continent) + #<<
+  guides(color = FALSE)     #<<
+```
+
+No need for color legend thanks to facet titles
+]
+
+.right-plot[
+![](`r knitr::fig_chunk("gapminder-le-gdp-5", "png")`)
+]
+
+--
+
+Lots of overplotting due to point size
+
+---
+
+.left-code[
+```{r gapminder-le-gdp-6, fig.show="hide"}
+ggplot(gapminder) +
+  aes(x = gdpPercap,
+      y = lifeExp,
+      color = continent) +
+  geom_point(size = 0.25) + #<<
+  scale_x_log10() +
+  facet_wrap(~ continent) +
+  guides(color = FALSE)
+```
+]
+
+.right-plot[
+![](`r knitr::fig_chunk("gapminder-le-gdp-6", "png")`)
+]
+
+--
+
+Is there a trend?
+
+---
+
+.left-code[
+```{r gapminder-le-gdp-7, fig.show="hide"}
+ggplot(gapminder) +
+  aes(x = gdpPercap,
+      y = lifeExp,
+      color = continent) +
+  geom_line() + #<<
+  geom_point(size = 0.25) +
+  scale_x_log10() +
+  facet_wrap(~ continent) +
+  guides(color = FALSE)
+```
+]
+
+.right-plot[
+![](`r knitr::fig_chunk("gapminder-le-gdp-7", "png")`)
+]
+
+--
+
+Okay, that line just connected all of the points sequentially...
+
+---
+
+.left-code[
+```{r gapminder-le-gdp-8, fig.show="hide"}
+ggplot(gapminder) +
+  aes(x = gdpPercap,
+      y = lifeExp,
+      color = continent) +
+  geom_line(
+    aes(group = country) #<<
+  ) +
+  geom_point(size = 0.25) +
+  scale_x_log10() +
+  facet_wrap(~ continent) +
+  guides(color = FALSE)
+```
+
+.font200.center[&#x1F914;]
+]
+
+.right-plot[
+![](`r knitr::fig_chunk("gapminder-le-gdp-8", "png")`)
+]
+
+--
+
+&#x1F4A1; We need time on x-axis!
+
+---
+
+.left-code[
+```{r gapminder-gdp-year-1, fig.show="hide"}
+ggplot(gapminder) +
+  aes(x = year, #<<
+      y = gdpPercap, #<<
+      color = continent) +
+  geom_line(
+    aes(group = country)
+  ) +
+  geom_point(size = 0.25) +
+  scale_y_log10() + #<<
+  facet_wrap(~ continent) +
+  guides(color = FALSE)
+```
+]
+
+.right-plot[
+![](`r knitr::fig_chunk("gapminder-gdp-year-1", "png")`)
+]
+
+---
+
+layout: true
+class: title title-crimson
+
+---
 
 # Time to code
 
