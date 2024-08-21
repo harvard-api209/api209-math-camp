@@ -1,6 +1,7 @@
 ---
 title: "Lab 2: Tidy Data and Visualization in R -- PISA"
 date: "2024-08-21"
+output: html_document
 ---
 
 # Introduction

@@ -88,278 +88,416 @@
     ]
   },
   {
-    "objectID": "resource/pipes.html",
-    "href": "resource/pipes.html",
-    "title": "Pipes",
+    "objectID": "example/02-lab.html",
+    "href": "example/02-lab.html",
+    "title": "Lab 2: Tidy Data and Visualization in R – PISA",
     "section": "",
-    "text": "In the primers (and in Lesson 4) you were introduced to the pipe operator |&gt;, which takes the object on the left of the pipe and passes it as the first argument to the function on the right.\nLike, you can find the average of the numbers 1, 2, 3, 4, and 5 like this:\nmean(c(1, 2, 3, 4, 5))\n## [1] 3\nOr like this:\nc(1, 2, 3, 4, 5) |&gt; mean()\n## [1] 3",
-    "crumbs": [
-      "Resources",
-      "Guides",
-      "Pipes"
-    ]
+    "text": "In this lab session, you’ll work with a dataset containing information about PISA data. The data comes from the learningtower package. Throughout the lab, you will use the following R functions to achieve the final visualization: filter(), group_by(), summarise(), pivot_longer(), mutate(), ggplot(), aes(), geom_line(), geom_point(), facet_wrap(), scale_y_continuous(), labs(), and theme_minimal().\n\n\nThe dataset contains the following variables:\n\nyear: Year of the PISA data. Factor.\ncountry: Country 3-character code. Note that some regions/territories are coded as country for ease of input. Factor.\nschool_id: The school identification number, unique for each country and year combination. Factor.\nstudent_id: The student identification number, unique for each school, country, and year combination. Factor.\nmother_educ: Highest level of mother’s education. Ranges from “less than ISCED1” to “ISCED 3A”. Factor. Note that in 2000, all entries are missing.\nfather_educ: Highest level of father’s education. Ranges from “less than ISCED1” to “ISCED 3A”. Factor. Note that in 2000, all entries are missing.\ngender: Gender of the student. Only “male” and “female” are recorded. Factor. Note that we call this variable gender and not sex as this term was used in the OECD PISA database.\ncomputer: Possession of a computer. Only “yes” and “no” are recorded. Factor.\ninternet: Access to the internet. Only “yes” and “no” are recorded. Factor.\nmath: Simulated score in mathematics. Numeric.\nread: Simulated score in reading. Numeric.\nscience: Simulated score in science. Numeric.\nstu_wgt: The final survey weight score for the student. Numeric.\ndesk: Possession of a desk to study at. Only “yes” and “no” are recorded. Factor.\nroom: Possession of a room of your own. Only “yes” and “no” are recorded. Factor.\ndishwasher: Possession of a dishwasher. Only “yes” and “no” are recorded. Factor. Note that in 2015 and 2018, all entries are missing.\ntelevision: Number of televisions. “0”, “1”, “2” are coded for no, one, and two TVs in the house. “3+” codes for three or more TVs. Factor. Note that in 2003, all entries are missing.\ncomputer_n: Number of computers. “0”, “1”, “2” are coded for no, one, and two computers in the house. “3+” codes for three or more computers. Factor. Note that in 2003, all entries are missing.\ncar: Number of cars. “0”, “1”, “2” are coded for no, one, and two cars in the house. “3+” codes for three or more cars. Factor. Note that in 2003, all entries are missing.\nbook: Number of books. Factor. Note that encoding is different in the years 2000 and 2003 compared to all other years. Evaluate table(student$book, student$year) for a demo.\nwealth: Family wealth. Numeric. Note that in 2003, all entries are missing.\nescs: Index of economic, social, and cultural status. Numeric."
   },
   {
-    "objectID": "resource/pipes.html#pipe-styles",
-    "href": "resource/pipes.html#pipe-styles",
-    "title": "Pipes",
-    "section": "Pipe styles",
-    "text": "Pipe styles\nThere are actually two pipe operators in R, and you’ll see both in the wild.\n\n\n\n\n\nRené Magritte, “The Treachery of Images”\n\n\n\nThe %&gt;% operator was invented first in 2014 in an R package named {magrittr}, a pun on René Magritte’s famous painting of a pipe, “The Treachery of Images”.\nThe |&gt; operator was added as a native part of R itself with version 4.1.0 in May 2021. It doesn’t require any extra packages to use.\n\nIn 99% of cases, the two pipes are the same (see here for details about their differences; or see this too). The magrittr %&gt;% is still wildly popular and you’ll see code online that uses it. The main downside to the magrittr pipe is that it requires that you load a package to use it. If you run library(tidyverse), you’ll have access to it, and in this class you’ll load tidyverse 100% of the time, so you can use %&gt;% without any problems.\nI switched my R classes away from %&gt;% to |&gt; starting in January 2024, mostly following the example of Hadley Wickham (inventor of ggplot, dplyr, and pretty much all the tidyverse). The first edition of R for Data Science by Hadley Wickham and Garrett Grolemund used the magrittr pipe (%&gt;%) extensively, which is partially why it became so popular. In the second edition of R for Data Science, though, published in June 2023, they switched to the native pipe (|&gt;). I took that as a cue to do the same in my own R work.\nSo I’m teaching you the native pipe (|&gt;). But don’t panic if you see the magrittr pipe (%&gt;%) out there. And feel free to use it too. Again, 99% of the time, it works the same:\n\n# {magrittr} pipe\nc(1, 2, 3, 4, 5) %&gt;% mean()\n## [1] 3\n\n\n# Native pipe\nc(1, 2, 3, 4, 5) |&gt; mean()\n## [1] 3\n\nJust don’t mix the two pipes in the same chain of functions. This is bad:\nmpg |&gt; \n  group_by(...) %&gt;%\n  summarize(...) |&gt;\n  filter(...) %&gt;%\n  select(...)",
-    "crumbs": [
-      "Resources",
-      "Guides",
-      "Pipes"
-    ]
-  },
-  {
-    "objectID": "resource/pipes.html#pipes-and-fancy-fonts",
-    "href": "resource/pipes.html#pipes-and-fancy-fonts",
-    "title": "Pipes",
-    "section": "Pipes and fancy fonts",
-    "text": "Pipes and fancy fonts\nThe |&gt; is actually designed to look like a triangle pointing to the left: ▷\nBut in pretty much all fonts, the | character is too tall and doesn’t align with the top and bottom of the left side of the &gt; character, so it doesn’t quite look right.\nIf you want to be fancy and cool, you can download and install a special programming font named Fira Code that uses some typographic magic to make certain combinations of characters appear differently in RStudio.\nLike, check out the == and != and &lt;= and |&gt; characters normally:\n\n\n\nSample code with a normal font\n\n\nAnd now look at them with Fira Code, where they’re magically transformed into fancier combinations:\n\n\n\nSample code with Fira Code\n\n\nThe underlying code is the same—the != combination isn’t actually converted to a ≠ character. It just looks that way.\nInstall the font, then go to Tools &gt; Global Options… &gt; Appearance and change the editor font if you want to use Fira Code in RStudio.",
-    "crumbs": [
-      "Resources",
-      "Guides",
-      "Pipes"
-    ]
-  },
-  {
-    "objectID": "resource/pipes.html#pipe-keyboard-shortcut",
-    "href": "resource/pipes.html#pipe-keyboard-shortcut",
-    "title": "Pipes",
-    "section": "Pipe keyboard shortcut",
-    "text": "Pipe keyboard shortcut\nIn RStudio, you can insert a pipe operator with a keyboard shortcut:\n\nOn macOS: ⌘ + ⇧ + M1\nOn Windows: ctrl + shift + M\n\n1 The “M” here refers to the magrittr pipeYou can control which kind of pipe is inserted by going to Tools &gt; Global options… &gt; Code &gt; Editing and toggling the “Use native pipe operator” option:\n\n\n\nRStudio pipe options",
-    "crumbs": [
-      "Resources",
-      "Guides",
-      "Pipes"
-    ]
-  },
-  {
-    "objectID": "schedule.html",
-    "href": "schedule.html",
-    "title": "Schedule",
+    "objectID": "example/02-lab.html#description-of-the-dataset",
+    "href": "example/02-lab.html#description-of-the-dataset",
+    "title": "Lab 2: Tidy Data and Visualization in R – PISA",
     "section": "",
-    "text": "Here’s your roadmap for the summer camp!\n\nLessons (): This page contains the slides for the topic. Read and go through these first.\nHands-on Sessions (): This page provides the interactive, practical exercises that correspond with each lesson. Engage with these sessions after reviewing the slides to solidify your understanding. We will go through these during each odd numbered session.\nLabs (): This page contains, when needed, interactive sessions, and also the contents for each lab. Go through these after doing the lessons and hands-on sessions. This is more on your own, so we will go through these during each even numbered session.\n\n\n\n\n\ntl;dr: You should follow this general process for each session:\n\nRead the slides in the lesson page ()\nWork through the hands-on page ()\nDo the labs page ()\n\n\n\n\n\n\n\n\n\n\n\n\nSubscribe!\n\n\n\nYou can subscribe to this calendar URL in Outlook, Google Calendar, or Apple Calendar:\n\n\n\n Download\n\n\n\n\n\n\n\n\n\n\n\nMath Camp (R Programming)\n\n\n\n\n\n\nTitle\n\n\nContent\n\n\nHands-on\n\n\nLabs\n\n\n\n\n\n\nAugust 15–August 19(Session 1-2)\n\n\nData Wrangling\n\n\n\n\n\n\n\n\n\n\n\n\n\nAugust 20–August 26(Session 3-4)\n\n\nElegant Data Visualization with ggplot2\n\n\n\n\n\n\n\n\n\n\n\n\n\nAugust 26–August 28(Session 5-6)\n\n\nAdvanced Statistical Modeling in R\n\n\n\n\n\n\n\n\n\n\n\n\n\nSeptember 2–September 4(Session 7-8)\n\n\nReproducible Research and Automation"
+    "text": "The dataset contains the following variables:\n\nyear: Year of the PISA data. Factor.\ncountry: Country 3-character code. Note that some regions/territories are coded as country for ease of input. Factor.\nschool_id: The school identification number, unique for each country and year combination. Factor.\nstudent_id: The student identification number, unique for each school, country, and year combination. Factor.\nmother_educ: Highest level of mother’s education. Ranges from “less than ISCED1” to “ISCED 3A”. Factor. Note that in 2000, all entries are missing.\nfather_educ: Highest level of father’s education. Ranges from “less than ISCED1” to “ISCED 3A”. Factor. Note that in 2000, all entries are missing.\ngender: Gender of the student. Only “male” and “female” are recorded. Factor. Note that we call this variable gender and not sex as this term was used in the OECD PISA database.\ncomputer: Possession of a computer. Only “yes” and “no” are recorded. Factor.\ninternet: Access to the internet. Only “yes” and “no” are recorded. Factor.\nmath: Simulated score in mathematics. Numeric.\nread: Simulated score in reading. Numeric.\nscience: Simulated score in science. Numeric.\nstu_wgt: The final survey weight score for the student. Numeric.\ndesk: Possession of a desk to study at. Only “yes” and “no” are recorded. Factor.\nroom: Possession of a room of your own. Only “yes” and “no” are recorded. Factor.\ndishwasher: Possession of a dishwasher. Only “yes” and “no” are recorded. Factor. Note that in 2015 and 2018, all entries are missing.\ntelevision: Number of televisions. “0”, “1”, “2” are coded for no, one, and two TVs in the house. “3+” codes for three or more TVs. Factor. Note that in 2003, all entries are missing.\ncomputer_n: Number of computers. “0”, “1”, “2” are coded for no, one, and two computers in the house. “3+” codes for three or more computers. Factor. Note that in 2003, all entries are missing.\ncar: Number of cars. “0”, “1”, “2” are coded for no, one, and two cars in the house. “3+” codes for three or more cars. Factor. Note that in 2003, all entries are missing.\nbook: Number of books. Factor. Note that encoding is different in the years 2000 and 2003 compared to all other years. Evaluate table(student$book, student$year) for a demo.\nwealth: Family wealth. Numeric. Note that in 2003, all entries are missing.\nescs: Index of economic, social, and cultural status. Numeric."
   },
   {
-    "objectID": "assignment/01-exercise.html",
-    "href": "assignment/01-exercise.html",
-    "title": "Introduction to R and the tidyverse",
+    "objectID": "example/02-lab.html#extra-exercises",
+    "href": "example/02-lab.html#extra-exercises",
+    "title": "Lab 2: Tidy Data and Visualization in R – PISA",
+    "section": "Extra exercises",
+    "text": "Extra exercises\n\nExercise 8: Customizing the Plot\nExperiment with different themes and color palettes to make the plot more visually appealing.\n\n\nExercise 9: Adding Context to the Visualization\nAdd annotations or text to the plot to highlight significant events or changes in the data."
+  },
+  {
+    "objectID": "resource/unzipping.html",
+    "href": "resource/unzipping.html",
+    "title": "Unzipping files",
     "section": "",
-    "text": "Important\n\n\n\nBefore starting this exercise, make sure you complete everything at the lesson for this week, especially the Posit Primers."
+    "text": "Because RStudio projects typically consist of multiple files (R scripts, datasets, graphical output, etc.) the easiest way to distribute them to you for examples, assignments, and projects is to combine all the different files in to a single compressed collection called a zip file. When you unzip a zipped file, your operating system extracts all the files that are contained inside into a new folder on your computer.\nUnzipping files on macOS is trivial, but unzipping files on Windows can mess you up if you don’t pay careful attention. Here’s a helpful guide to unzipping files on both macOS and Windows."
   },
   {
-    "objectID": "assignment/01-exercise.html#task-1-make-an-rstudio-project",
-    "href": "assignment/01-exercise.html#task-1-make-an-rstudio-project",
-    "title": "Introduction to R and the tidyverse",
-    "section": "Task 1: Make an RStudio Project",
-    "text": "Task 1: Make an RStudio Project\n\nUse either Posit.cloud or RStudio on your computer (preferably RStudio on your computer! Follow these instructions to get started!) to create a new RStudio Project.\nCreate a folder named “data” in the project folder you just made.\nDownload this CSV file and place it in that folder:\n\n cars.csv\n\nIn RStudio, go to “File” &gt; “New File…” &gt; “Quarto Document…” and click “OK” in the dialog without changing anything.\nDelete all the placeholder text in that new file and replace it with this:\n---\ntitle: \"Introduction to R and the tidyverse\"\nsubtitle: \"Exercise 1 --- PMAP 8551, Summer 2024\"\nformat: \n  html:\n    toc: true\n  pdf:\n    toc: true\n  docx:\n    toc: true\n---\n\n```{r}\n#| label: load-libraries-data\n#| warning: false\n#| message: false\n\nlibrary(tidyverse)\n\ncars &lt;- read_csv(\"data/cars.csv\")\n```\n\n# Reflection\n\nReplace this text with your reflection\n\n\n# My first plots\n\nInsert a chunk below and use it to create a scatterplot (hint: `geom_point()`) with diplacement (`displ`) on the x-axis, city MPG (`cty`) on the y-axis, and with the points colored by drive (`drv`).\n\nPUT CHUNK HERE\n\nInsert a chunk below and use it to create a histogram (hint: `geom_histogram()`) with highway MPG (`hwy`) on the x-axis. Do not include anything on the y-axis (`geom_histogram()` will do that automatically for you). Choose an appropriate bin width. If you're brave, facet by drive (`drv`).\n\nPUT CHUNK HERE\n\n\n# My first data manipulation\n\nInsert a chunk below and use it to calculate the average city MPG (`cty`) by class of car (`class`). This won't be a plot---it'll be a table. Hint: use a combination of `group_by()` and `summarize()`.\n\nPUT CHUNK HERE\nSave the Quarto file with some sort of name (without any spaces!)\nYour project folder should look something like this:\n\n\n\n\n\n\n\n\n\nExample project folder on macOS\n\n\n\n\n \n\n\n\n\n\nExample project folder on Windows"
+    "objectID": "resource/unzipping.html#unzipping-files-on-macos",
+    "href": "resource/unzipping.html#unzipping-files-on-macos",
+    "title": "Unzipping files",
+    "section": "Unzipping files on macOS",
+    "text": "Unzipping files on macOS\nDouble click on the downloaded .zip file. macOS will automatically create a new folder with the same name as the .zip file, and all the file’s contents will be inside. Double click on the RStudio Project file (.Rproj) to get started."
   },
   {
-    "objectID": "assignment/01-exercise.html#task-2-work-with-r",
-    "href": "assignment/01-exercise.html#task-2-work-with-r",
-    "title": "Introduction to R and the tidyverse",
-    "section": "Task 2: Work with R",
-    "text": "Task 2: Work with R\n\nAdd your reading reflection to the appropriate place in the Quarto file. You can type directly in RStudio if you want (though there’s no spell checker), or you can type it in Word or Google Docs and then paste it into RStudio.\nRemove the text that says “PUT CHUNK HERE” and insert a new R code chunk. Either type ctrl + alt + i on Windows, or ⌘ + ⌥ + i on macOS, or use the “Insert Chunk” menu:\n\n\n\n\n\n\n\n\n\nFollow the instructions for the three chunks of code.\nRender your document as a Word file (or PDF if you’re brave and installed LaTeX). Use the “Render” menu:\n\n\n\n\n\n\n\n\n\nUpload the rendered document to iCollege.\n🎉 Party! 🎉\n\n\n\n\n\n\n\nFile organization\n\n\n\nYou’ll be doing this same process for all your future exercises. Each exercise will involve an Quarto file. Or you can create individual projects for each assignment and mini-project (recommended!):\n\n\n\n\n\n\n\n\n\nIndividual folders for each project on macOS\n\n\n\n\n \n\n\n\n\n\nIndividual folders for each project on Windows\n\n\n\n\n\nOr you can create a new RStudio Project directory for all your work (not recommended!):\n\n\n\n\n\n\n\n\n\nOne folder for everything on macOS\n\n\n\n\n \n\n\n\n\n\nOne folder for everything on Windows"
+    "objectID": "resource/unzipping.html#unzipping-files-on-windows",
+    "href": "resource/unzipping.html#unzipping-files-on-windows",
+    "title": "Unzipping files",
+    "section": "Unzipping files on Windows",
+    "text": "Unzipping files on Windows\ntl;dr: Right click on the .zip file, select “Extract All…”, and work with the resulting unzipped folder.\nUnlike macOS, Windows does not automatically unzip things for you. If you double click on the .zip file, Windows will show you what’s inside, but it will do so without actually extracting anything. This can be is incredibly confusing! Here’s what it looks like—the only clues that this folder is really a .zip file are that there’s a “Compressed Folder Tools” tab at the top, and there’s a “Ratio” column that shows how much each file is compressed.\n\n\n\n\n\n\n\n\n\nIt is very tempting to try to open files from this view. However, if you do, things will break and you won’t be able to correctly work with any of the files in the zipped folder. If you open the R Project file, for instance, RStudio will point to a bizarre working directory buried deep in some temporary folder:\n\n\n\n\n\n\n\n\n\nYou most likely won’t be able to open any data files or save anything, which will be frustrating.\nInstead, you need to right click on the .zip file and select “Extract All…”:\n\n\n\n\n\n\n\n\n\nThen choose where you want to unzip all the files and click on “Extract”\n\n\n\n\n\n\n\n\n\nYou should then finally have a real folder with all the contents of the zipped file. Open the R Project file and RStudio will point to the correct working directory and everything will work."
   },
   {
-    "objectID": "content/03-content.html",
-    "href": "content/03-content.html",
-    "title": "Advanced Statistical Modeling in R",
+    "objectID": "example/01-lab-sol.html",
+    "href": "example/01-lab-sol.html",
+    "title": "Lab 1: Analyzing Olympic Data with R (Solutions)",
+    "section": "",
+    "text": "In this lab session, you’ll work with a dataset containing information about the Olympics. The dataset includes various variables, such as the edition of the games, country codes, sports, events, athletes, and the results. Your goal is to explore this data, identify patterns, handle missing values, and generate insights using R.\nThe dataset contains the following variables:\n\nedition: The edition of the Olympic Games.\nedition_id: A unique identifier for the edition.\ncountry_noc: The National Olympic Committee (NOC) code representing the country.\nsport: The sport in which the event took place.\nevent: The specific event within the sport.\nresult_id: A unique identifier for the result.\nathlete: The name of the athlete.\nathlete_id: A unique identifier for the athlete.\npos: The position or rank the athlete achieved in the event.\nmedal: The type of medal won (if any).\nisTeamSport: Indicates whether the event is a team sport."
+  },
+  {
+    "objectID": "example/01-lab-sol.html#exercise-1-data-exploration",
+    "href": "example/01-lab-sol.html#exercise-1-data-exploration",
+    "title": "Lab 1: Analyzing Olympic Data with R (Solutions)",
+    "section": "Exercise 1: Data Exploration",
+    "text": "Exercise 1: Data Exploration\n\nLoad the dataset into R.\nGet an overview of the dataset.\nYou should display the first few rows and summarize each variable to understand the dataset’s structure. This step is crucial for familiarizing yourself with the data you’ll be working with.\nDetermine the number of unique editions, sports, and events in the dataset.\nYour goal here is to identify the diversity within the dataset. Use R functions to calculate how many unique Olympic editions, sports, and events are represented in the data.\n\n\nExpected Outcome:\n\nAn understanding of the dataset’s structure.\nInsights into the diversity of the data, such as the number of unique Olympic editions and sports.\n\n\n# Load necessary packages\nlibrary(tidyverse)\n\n── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──\n✔ dplyr     1.1.4     ✔ readr     2.1.5\n✔ forcats   1.0.0     ✔ stringr   1.5.1\n✔ ggplot2   3.5.1     ✔ tibble    3.2.1\n✔ lubridate 1.9.3     ✔ tidyr     1.3.1\n✔ purrr     1.0.2     \n── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──\n✖ dplyr::filter() masks stats::filter()\n✖ dplyr::lag()    masks stats::lag()\nℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors\n\n# Load the dataset\nolympics_data &lt;- read_csv(\"https://raw.githubusercontent.com/josephwccheng/olympedia_web_scraping/main/data/Olympic_Athlete_Event_Results.csv\")\n\nRows: 314907 Columns: 11\n── Column specification ────────────────────────────────────────────────────────\nDelimiter: \",\"\nchr (7): edition, country_noc, sport, event, athlete, pos, medal\ndbl (3): edition_id, result_id, athlete_id\nlgl (1): isTeamSport\n\nℹ Use `spec()` to retrieve the full column specification for this data.\nℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.\n\n# Display the first few rows\nhead(olympics_data)\n\n# A tibble: 6 × 11\n  edition  edition_id country_noc sport event result_id athlete athlete_id pos  \n  &lt;chr&gt;         &lt;dbl&gt; &lt;chr&gt;       &lt;chr&gt; &lt;chr&gt;     &lt;dbl&gt; &lt;chr&gt;        &lt;dbl&gt; &lt;chr&gt;\n1 1908 Su…          5 ANZ         Athl… 100 …     56265 Ernest…      64710 DNS  \n2 1908 Su…          5 ANZ         Athl… 400 …     56313 Henry …      64756 DNS  \n3 1908 Su…          5 ANZ         Athl… 800 …     56338 Harvey…      64808 3 h8…\n4 1908 Su…          5 ANZ         Athl… 800 …     56338 Guy Ha…     922519 DNS  \n5 1908 Su…          5 ANZ         Athl… 800 …     56338 Joseph…      64735 DNS  \n6 1908 Su…          5 ANZ         Athl… 800 …     56338 Henry …      64756 DNS  \n# ℹ 2 more variables: medal &lt;chr&gt;, isTeamSport &lt;lgl&gt;\n\n# Summary of the dataset\nsummary(olympics_data)\n\n   edition            edition_id    country_noc           sport          \n Length:314907      Min.   : 1.00   Length:314907      Length:314907     \n Class :character   1st Qu.:16.00   Class :character   Class :character  \n Mode  :character   Median :24.00   Mode  :character   Mode  :character  \n                    Mean   :30.16                                        \n                    3rd Qu.:49.00                                        \n                    Max.   :62.00                                        \n    event             result_id          athlete            athlete_id      \n Length:314907      Min.   :       1   Length:314907      Min.   :       1  \n Class :character   1st Qu.:   31505   Class :character   1st Qu.:   36020  \n Mode  :character   Median :   65810   Mode  :character   Median :   76333  \n                    Mean   : 1502015                      Mean   :  123781  \n                    3rd Qu.:  260000                      3rd Qu.:  111028  \n                    Max.   :90016770                      Max.   :22000000  \n     pos               medal           isTeamSport    \n Length:314907      Length:314907      Mode :logical  \n Class :character   Class :character   FALSE:194095   \n Mode  :character   Mode  :character   TRUE :120812   \n                                                      \n                                                      \n                                                      \n\n# Number of unique editions, sports, and events\nn_editions &lt;- n_distinct(olympics_data$edition)\nn_sports   &lt;- n_distinct(olympics_data$sport)\nn_events   &lt;- n_distinct(olympics_data$event)\n\nn_editions\n\n[1] 55\n\nn_sports\n\n[1] 108\n\nn_events\n\n[1] 916"
+  },
+  {
+    "objectID": "example/01-lab-sol.html#exercise-2-handling-missing-values",
+    "href": "example/01-lab-sol.html#exercise-2-handling-missing-values",
+    "title": "Lab 1: Analyzing Olympic Data with R (Solutions)",
+    "section": "Exercise 2: Handling Missing Values",
+    "text": "Exercise 2: Handling Missing Values\n\nIdentify missing values.\nDetermine which variables have missing values and how many missing values are present in each. This will help you understand the completeness of the data.\nCreate a subset of the data where all missing values are removed.\nYou should generate a clean dataset without missing values. Consider how this might impact your analysis.\nDiscuss the impact of removing rows with missing values.\nReflect on how the removal of rows could influence the results and representativeness of the data.\n\n\nExpected Outcome:\n\nA list of variables with missing values.\nA cleaned version of the dataset.\nA thoughtful consideration of the implications of removing missing data."
+  },
+  {
+    "objectID": "example/01-lab-sol.html#exercise-3-analyzing-medals-distribution",
+    "href": "example/01-lab-sol.html#exercise-3-analyzing-medals-distribution",
+    "title": "Lab 1: Analyzing Olympic Data with R (Solutions)",
+    "section": "Exercise 3: Analyzing Medals Distribution",
+    "text": "Exercise 3: Analyzing Medals Distribution\n\nCalculate the total number of medals won by each country.\nYou’ll need to group the data by country and count the total number of medals won.\nIdentify the country with the most gold medals.\nFocus on identifying which country has excelled the most in terms of winning gold medals.\n\n\n# Identify missing values\nmissing_values &lt;- colSums(is.na(olympics_data))\n\nmissing_values\n\n    edition  edition_id country_noc       sport       event   result_id \n          0           0           0           0           0           0 \n    athlete  athlete_id         pos       medal isTeamSport \n          0           0           0      270336           0 \n\n# Subset data with no missing values\nclean_data &lt;- na.omit(olympics_data)\n\n# Display the cleaned data\nhead(clean_data)\n\n# A tibble: 6 × 11\n  edition  edition_id country_noc sport event result_id athlete athlete_id pos  \n  &lt;chr&gt;         &lt;dbl&gt; &lt;chr&gt;       &lt;chr&gt; &lt;chr&gt;     &lt;dbl&gt; &lt;chr&gt;        &lt;dbl&gt; &lt;chr&gt;\n1 1908 Su…          5 ANZ         Athl… 3,50…     56421 Harry …      64719 3    \n2 1908 Su…          5 ANZ         Boxi… Midd…     21263 Snowy …      45153 2    \n3 1908 Su…          5 ANZ         Rugby Rugb…     31505 John B…      11237 1    \n4 1908 Su…          5 ANZ         Rugby Rugb…     31505 Phil C…      11239 1    \n5 1908 Su…          5 ANZ         Rugby Rugb…     31505 Dan Ca…      11240 1    \n6 1908 Su…          5 ANZ         Rugby Rugb…     31505 Bob Cr…      11241 1    \n# ℹ 2 more variables: medal &lt;chr&gt;, isTeamSport &lt;lgl&gt;\n\n\n\nExpected Outcome:\n\nA summary table showing the total medals won by each country.\nIdentification of the top-performing country in terms of gold medals.\n\n\n# Total number of medals by country\nmedals_by_country &lt;- olympics_data |&gt;\n  filter(!is.na(medal)) |&gt;\n  group_by(country_noc) |&gt;\n  summarize(total_medals = n(), \n            gold_medals = sum(medal == \"Gold\")) |&gt;\n  arrange(desc(total_medals))\n\n# Display the top 10 countries\ntop_10_countries &lt;- head(medals_by_country, 10)\ntop_10_countries\n\n# A tibble: 10 × 3\n   country_noc total_medals gold_medals\n   &lt;chr&gt;              &lt;int&gt;       &lt;int&gt;\n 1 USA                 6273        2931\n 2 URS                 2543        1099\n 3 GER                 2437         816\n 4 GBR                 2367         810\n 5 FRA                 1968         564\n 6 ITA                 1746         593\n 7 CAN                 1668         578\n 8 SWE                 1654         522\n 9 AUS                 1490         409\n10 NED                 1239         348"
+  },
+  {
+    "objectID": "example/01-lab-sol.html#exercise-4-analyzing-performance-by-athlete",
+    "href": "example/01-lab-sol.html#exercise-4-analyzing-performance-by-athlete",
+    "title": "Lab 1: Analyzing Olympic Data with R (Solutions)",
+    "section": "Exercise 4: Analyzing Performance by Athlete",
+    "text": "Exercise 4: Analyzing Performance by Athlete\n\nIdentify the athlete with the most medals overall.\nYour task is to find the athlete who has won the most medals in the Olympics.\nDetermine the number of unique events the athlete has participated in.\nInvestigate the range of events this top athlete has competed in.\n\n\nExpected Outcome:\n\nThe name of the athlete with the most medals.\nThe number of unique events this athlete has participated in, offering insight into their versatility.\n\n\n# Athlete with the most medals\ntop_athlete &lt;- olympics_data |&gt;\n  filter(!is.na(medal)) |&gt;\n  group_by(athlete) |&gt;\n  summarize(total_medals = n()) |&gt;\n  arrange(desc(total_medals)) |&gt;\n  slice(1) |&gt; \n  pull(athlete)\n\ntop_athlete\n\n[1] \"Michael Phelps\"\n\n# Number of unique events for the top athlete\nunique_events_top_athlete &lt;- olympics_data |&gt;\n  filter(athlete == top_athlete) |&gt; \n  distinct(event) |&gt; \n  count()\n\nunique_events_top_athlete\n\n# A tibble: 1 × 1\n      n\n  &lt;int&gt;\n1     8\n\n# Distribution of medals for the top athlete\nmedals_top_athlete &lt;- olympics_data |&gt;\n  filter(athlete == top_athlete, !is.na(medal)) |&gt;\n  count(medal)\n\nmedals_top_athlete\n\n# A tibble: 3 × 2\n  medal      n\n  &lt;chr&gt;  &lt;int&gt;\n1 Bronze     2\n2 Gold      23\n3 Silver     3"
+  },
+  {
+    "objectID": "example/01-lab-sol.html#exercise-5-team-sports-vs.-individual-sports",
+    "href": "example/01-lab-sol.html#exercise-5-team-sports-vs.-individual-sports",
+    "title": "Lab 1: Analyzing Olympic Data with R (Solutions)",
+    "section": "Exercise 5: Team Sports vs. Individual Sports",
+    "text": "Exercise 5: Team Sports vs. Individual Sports\n\nCompare the number of medals won in team sports versus individual sports.\nAnalyze how successful athletes have been in team sports compared to individual sports.\nIdentify the most successful team sport.\nDetermine which team sport has yielded the most medals.\n\n\nExpected Outcome:\n\nA comparison of medals won in team versus individual sports.\nIdentification of the most successful team sport, providing insights into which team events dominate in terms of medals.\n\n\n# Medals in team vs. individual sports\nteam_vs_individual &lt;- olympics_data |&gt;\n  filter(!is.na(medal)) |&gt;\n  group_by(isTeamSport) |&gt;\n  summarize(total_medals = n())\n\nteam_vs_individual\n\n# A tibble: 2 × 2\n  isTeamSport total_medals\n  &lt;lgl&gt;              &lt;int&gt;\n1 FALSE              15279\n2 TRUE               29292\n\n# Most successful team sport\ntop_team_sport &lt;- olympics_data |&gt;\n  filter(!is.na(medal), isTeamSport == TRUE) |&gt;\n  group_by(sport) |&gt;\n  summarize(total_medals = n()) |&gt;\n  arrange(desc(total_medals)) |&gt;\n  slice(1)\n\ntop_team_sport\n\n# A tibble: 1 × 2\n  sport  total_medals\n  &lt;chr&gt;         &lt;int&gt;\n1 Rowing         2951"
+  },
+  {
+    "objectID": "resource/markdown.html",
+    "href": "resource/markdown.html",
+    "title": "Using Markdown",
+    "section": "",
+    "text": "Markdown is a special kind of markup language that lets you format text with simple syntax. You can then use a converter program like pandoc to convert Markdown into whatever format you want: HTML, PDF, Word, PowerPoint, etc. (see the full list of output types here)",
+    "crumbs": [
+      "Resources",
+      "Guides",
+      "Using Markdown"
+    ]
+  },
+  {
+    "objectID": "resource/markdown.html#basic-markdown-formatting",
+    "href": "resource/markdown.html#basic-markdown-formatting",
+    "title": "Using Markdown",
+    "section": "Basic Markdown formatting",
+    "text": "Basic Markdown formatting\n\n\n\n\n\n\n\nType…\n…to get\n\n\n\n\nSome text in a paragraph.\n\nMore text in the next paragraph. Always\nuse empty lines between paragraphs.\nSome text in a paragraph.\nMore text in the next paragraph. Always use empty lines between paragraphs.\n\n\n*Italic* or _Italic_\nItalic\n\n\n**Bold** or __Bold__\nBold\n\n\n# Heading 1\nHeading 1\n\n\n## Heading 2\nHeading 2\n\n\n### Heading 3\nHeading 3\n\n\n(Go up to heading level 6 with ######)\n\n\n\n[Link text](https://www.example.com)\nLink text\n\n\n![Image caption](path/to/image.png)\n\n\n\nImage caption\n\n\n\n\n`Inline code` with backticks\nInline code with backticks\n\n\nBlock of code with triple backticks:\n\n\n\n```\nBlock of code in between\ntriple backticks\n```\nBlock of code in between\ntriple backticks\n\n\nOptionally specify a language:\n\n\n\n``` r\nx &lt;- c(1, 3, 5, 7)\nplot(x)\n```\nx &lt;- c(1, 3, 5, 7)\nplot(x)\n\n\n&gt; Blockquote\n\nBlockquote\n\n\n\n- Things in\n- an unordered\n- list\n\nThings in\nan unordered\nlist\n\n\n\n1. Things in\n1. an ordered\n2. list\n3. Notice that the\n8. numbers don't\n18. matter\n\nThings in\nan ordered\nlist\nNotice that the\nnumbers don’t\nmatter\n\n\n\nHorizontal line\n---\nHorizontal line",
+    "crumbs": [
+      "Resources",
+      "Guides",
+      "Using Markdown"
+    ]
+  },
+  {
+    "objectID": "resource/markdown.html#math",
+    "href": "resource/markdown.html#math",
+    "title": "Using Markdown",
+    "section": "Math",
+    "text": "Math\n\nBasic math commands\nMarkdown uses LaTeX to create fancy mathematical equations. There are like a billion little options and features available for math equations—you can find helpful examples of the the most common basic commands here. In this class, these will be the most common things you’ll use:\n\n\n\n\n\n  \n    \n    \n    \n  \n  \n    \n      Description\n      Command\n      Output\n    \n  \n  \n    \n      Letters\n    \n    Roman letters\n\na b c d e f\n\n\\(a\\ b\\ c\\ d\\ e\\ f\\)\n\n    Greek letters (see this for all possible letters)\n\n\\alpha \\beta \\Gamma \\gamma \\Delta \\delta \\epsilon\n\n\\(\\alpha\\ \\beta\\ \\Gamma\\ \\gamma\\ \\Delta\\ \\delta\\ \\epsilon\\)\n\n    Letters will automatically be italicized and treated as math variables;\nif you want actual text in the math, use \\text{}\n\nEw: Treatment = \\beta\nGood: \\text{Treatment} = \\beta\n\nEw: \\(Treatment = \\beta\\)\nGood: \\(\\text{Treatment} = \\beta\\)\n\n    Extra spaces will automatically be removed; if you want a space, use \\ \n\nNo space: x y\nSpace: x\\ y\n\nNo space: \\(x y\\)\nSpace: \\(x\\ y\\)\n\n    \n      Superscripts and subscripts\n    \n    Use ^ to make one character superscripted.\n\nx^2\n\n\\(x^2\\)\n\n    Wrap the superscripted part in {} if there’s more than one character\n\nx^{2+y}\n\n\\(x^{2+y}\\)\n\n    Use _ to make one character subscripted\n\n\\beta_1\n\n\\(\\beta_1\\)\n\n    Wrap the subscripted part in {} if there’s more than one character\n\n\\beta_{i, t}\n\n\\(\\beta_{i, t}\\)\n\n    Use superscripts and subscripts simultaneously\n\n\\beta_1^{\\text{Treatment}}\n\n\\(\\beta_1^{\\text{Treatment}}\\)\n\n    You can even nest them\n\nx^{2^{2^2}}\n\n\\(x^{2^{2^2}}\\)\n\n    \n      Math operations\n    \n    Addition\n\n2 + 5 = 7\n\n\\(2 + 5 = 7\\)\n\n    Subtraction\n\n2 - 5 = -3\n\n\\(2 - 5 = -3\\)\n\n    Multiplication\n\nx \\times y\nx \\cdot y\n\n\\(x \\times y\\)\n\\(x \\cdot y\\)\n\n    Division\n\n8 \\div 2\n\n\\(8 \\div 2\\)\n\n    Fractions\n\n\\frac{8}{2}\n\n\\(\\frac{8}{2}\\)\n\n    Square roots; use [3] for other roots\n\n\\sqrt{81} = 9\n\\sqrt[3]{27} = 3\n\n\\(\\sqrt{81} = 9\\)\n\\(\\sqrt[3]{27} = 3\\)\n\n    Summation; use sub/superscripts for extra details\n\n\\sum x\n\\sum_{n=1}^{\\infty} \\frac{1}{n}\n\n\\(\\sum x\\)\n\\(\\sum_{n=1}^{\\infty} \\frac{1}{n}\\)\n\n    Products; use sub/superscripts for extra details\n\n\\prod x\n\\prod_{n=1}^{5} n^2\n\n\\(\\prod x\\)\n\\(\\prod_{n=1}^{5} n^2\\)\n\n    Integrals; use sub/superscripts for extra details\n\n\\int x^2 \\ dx\n\\int_{1}^{100} x^2 \\ dx\n\n\\(\\int x^2 \\ dx\\)\n\\(\\int_{1}^{100} x^2 \\ dx\\)\n\n    \n      Extra symbols\n    \n    Add a bar for things like averages\n\n\\bar{x}\n\n\\(\\bar{x}\\)\n\n    Use an overline for longer things\n\nEw: \\bar{abcdef}\nGood: \\overline{abcdef}\n\nEw: \\(\\bar{abcdef}\\)\nGood: \\(\\overline{abcdef}\\)\n\n    Add a hat for things like estimates\n\n\\hat{y}\n\n\\(\\hat{y}\\)\n\n    Use a wide hat for longer things\n\nEw: \\hat{abcdef}\nGood: \\widehat{abcdef}\n\nEw: \\(\\hat{abcdef}\\)\nGood: \\(\\widehat{abcdef}\\)\n\n    Use arrows for DAG-like things\n\nZ \\rightarrow Y \\leftarrow X\n\n\\(Z \\rightarrow Y \\leftarrow X\\)\n\n    \n      Bonus fun\n    \n    Use colors!; see here for more details and here for a list of color names\n\n{\\color{red} y} = {\\color{blue} \\beta_1 x_1}\n\n\\({\\color{red} y} = {\\color{blue} \\beta_1 x_1}\\)\n\n  \n  \n  \n\n\n\n\n\n\nUsing math inline\nYou can use math in two different ways: inline or in a display block. To use math inline, wrap it in single dollar signs, like $y = mx + b$:\n\n\n\n\n\n\nInline math\n\n\n\nType…\nBased on the DAG, the regression model for estimating the effect of education on wages\nis $\\hat{y} = \\beta_0 + \\beta_1 x_1 + \\epsilon$, or $\\text{Wages} = \\beta_0 + \\beta_1 \\text{Education} + \\epsilon$.\n…to get…\n\nBased on the DAG, the regression model for estimating the effect of education on wages is \\(\\hat{y} = \\beta_0 + \\beta_1 x_1 + \\epsilon\\), or \\(\\text{Wages} = \\beta_0 + \\beta_1 \\text{Education} + \\epsilon\\)\n\n\n\n\n\nUsing math in a block\nTo put an equation on its own line in a display block, wrap it in double dollar signs, like this:\n\n\n\n\n\n\nBlock math\n\n\n\nType…\nThe quadratic equation was an important part of high school math:\n\n$$\nx = \\frac{-b \\pm \\sqrt{b^2 - 4ac}}{2a}\n$$\n\nBut now we just use computers to solve for $x$.\n…to get…\n\nThe quadratic equation was an important part of high school math:\n\\[\nx = \\frac{-b \\pm \\sqrt{b^2 - 4ac}}{2a}\n\\]\nBut now we just use computers to solve for \\(x\\).\n\n\n\n\n\nDollar signs and math\nBecause dollar signs are used to indicate math equations, you can’t just use dollar signs like normal if you’re writing about actual dollars. For instance, if you write This book costs $5.75 and this other costs $40, Markdown will treat everything that comes between the dollar signs as math, like so: “This book costs \\(5.75 and this other costs \\)40”.\nTo get around that, put a backslash (\\) in front of the dollar signs, so that This book costs \\$5.75 and this other costs \\$40 becomes “This book costs $5.75 and this other costs $40”.",
+    "crumbs": [
+      "Resources",
+      "Guides",
+      "Using Markdown"
+    ]
+  },
+  {
+    "objectID": "resource/markdown.html#tables",
+    "href": "resource/markdown.html#tables",
+    "title": "Using Markdown",
+    "section": "Tables",
+    "text": "Tables\nThere are a few different ways to hand-create tables in Markdown—I say “hand-create” because it’s normally way easier to use R to generate these things with packages like {gt} or {knitr} or {kableExtra}. The two most common are simple tables and pipe tables. You should look at the full documentation here.\n\n\n\n\n\n\nSimple tables\n\n\n\nFor simple tables, type…\n  Right     Left     Center     Default\n-------     ------ ----------   -------\n     12     12        12            12\n    123     123       123          123\n      1     1          1             1\n\nTable: Caption goes here\n…to get…\n\nCaption goes here\n\n\nRight\nLeft\nCenter\nDefault\n\n\n\n\n12\n12\n12\n12\n\n\n123\n123\n123\n123\n\n\n1\n1\n1\n1\n\n\n\n\n\n\n\n\n\n\n\nPipe tables\n\n\n\nFor pipe tables, type…\n| Right | Left | Default | Center |\n|------:|:-----|---------|:------:|\n|   12  |  12  |    12   |    12  |\n|  123  |  123 |   123   |   123  |\n|    1  |    1 |     1   |     1  |\n\nTable: Caption goes here\n…to get…\n\nCaption goes here\n\n\nRight\nLeft\nDefault\nCenter\n\n\n\n\n12\n12\n12\n12\n\n\n123\n123\n123\n123\n\n\n1\n1\n1\n1",
+    "crumbs": [
+      "Resources",
+      "Guides",
+      "Using Markdown"
+    ]
+  },
+  {
+    "objectID": "resource/markdown.html#footnotes",
+    "href": "resource/markdown.html#footnotes",
+    "title": "Using Markdown",
+    "section": "Footnotes",
+    "text": "Footnotes\nThere are two different ways to add footnotes (see here for complete documentation): regular and inline.\nRegular notes need (1) an identifier and (2) the actual note. The identifier can be whatever you want. Some people like to use numbers like [^1], but if you ever rearrange paragraphs or add notes before #1, the numbering will be wrong (in your Markdown file, not in the output; everything will be correct in the output). Because of that, I prefer to use some sort of text label:\n\n\n\n\n\n\nFootnotes\n\n\n\nType…\nHere is a footnote reference[^1] and here is another [^note-on-dags].\n\n[^1]: This is a note.\n\n[^note-on-dags]: DAGs are neat. \n\nAnd here's more of the document.\n…to get…\n\nHere is a footnote reference1 and here is another.2\nAnd here’s more of the document.\n\n\n\n\n\nThis is a note.↩︎\n\n\n\n\nDAGs are neat.↩︎\n\n\n\n\n\n\n\nYou can also use inline footnotes with ^[Text of the note goes here], which are often easier because you don’t need to worry about identifiers:\n\n\n\n\n\n\nInline footnotes\n\n\n\nType…\nCausal inference is neat.^[But it can be hard too!]\n…to get…\n\nCausal inference is neat.1\n\n\n\n\n\nBut it can be hard too!↩︎",
+    "crumbs": [
+      "Resources",
+      "Guides",
+      "Using Markdown"
+    ]
+  },
+  {
+    "objectID": "resource/markdown.html#front-matter",
+    "href": "resource/markdown.html#front-matter",
+    "title": "Using Markdown",
+    "section": "Front matter",
+    "text": "Front matter\nYou can include a special section at the top of a Markdown document that contains metadata (or data about your document) like the title, date, author, etc. This section uses a special simple syntax named YAML (or “YAML Ain’t Markup Language”) that follows this basic outline: setting: value for setting. Here’s an example YAML metadata section. Note that it must start and end with three dashes (---).\n---\ntitle: Title of your document\ndate: \"June 4, 2024\"\nauthor: \"Your name\"\n---\nYou can put the values inside quotes (like the date and name in the example above), or you can leave them outside of quotes (like the title in the example above). I typically use quotes just to be safe—if the value you’re using has a colon (:) in it, it’ll confuse Markdown since it’ll be something like title: My cool title: a subtitle, which has two colons. It’s better to do this:\n---\ntitle: \"My cool title: a subtitle\"\n---\nIf you want to use quotes inside one of the values (e.g. your document is An evaluation of \"scare quotes\"), you can use single quotes instead:\n---\ntitle: 'An evaluation of \"scare quotes\"'\n---",
+    "crumbs": [
+      "Resources",
+      "Guides",
+      "Using Markdown"
+    ]
+  },
+  {
+    "objectID": "resource/markdown.html#citations",
+    "href": "resource/markdown.html#citations",
+    "title": "Using Markdown",
+    "section": "Citations",
+    "text": "Citations\nOne of the most powerful features of Markdown + pandoc is the ability to automatically cite things and generate bibliographies. to use citations, you need to create a BibTeX file (ends in .bib) that contains a database of the things you want to cite. You can do this with bibliography managers designed to work with BibTeX directly (like BibDesk on macOS), or you can use Zotero (macOS and Windows) to export a .bib file. You can download an example .bib file of all the readings from this class here.\nComplete details for using citations can be found here. In brief, you need to do three things:\n\nAdd a bibliography: entry to the YAML metadata:\n---\ntitle: Title of your document\ndate: \"June 4, 2024\"\nauthor: \"Your name\"\nbibliography: name_of_file.bib\n---\nChoose a citation style based on a CSL file. The default is Chicago author-date, but you can choose from 2,000+ at this repository. Download the CSL file, put it in your project folder, and add an entry to the YAML metadata (or provide a URL to the online version):\n---\ntitle: Title of your document\ndate: \"June 4, 2024\"\nauthor: \"Your name\"\nbibliography: name_of_file.bib\ncsl: \"https://raw.githubusercontent.com/citation-style-language/styles/master/apa.csl\"\n---\nSome of the most common CSLs are:\n\nChicago author-date\nChicago note-bibliography\nChicago full note-bibliography (no shortened notes or ibids)\nAPA 7th edition\nMLA 8th edition\n\nCite things in your document. Check the documentation for full details of how to do this. Essentially, you use @citationkey inside square brackets ([]):\n\n\n\n\n\n\n\nType…\n…to get…\n\n\n\n\nCausal inference is neat [@Rohrer:2018;\n@AngristPischke:2015].\nCausal inference is neat (Rohrer 2018; Angrist and Pischke 2015).\n\n\nCausal inference is neat [see @Rohrer:2018, p. 34;\nalso @AngristPischke:2015, chapter 1].\nCausal inference is neat (see Rohrer 2018, 34; also Angrist and Pischke 2015, chap. 1).\n\n\nAngrist and Pischke say causal inference is neat\n[-@AngristPischke:2015; see also @Rohrer:2018].\nAngrist and Pischke say causal inference is neat (2015; see also Rohrer 2018).\n\n\n@AngristPischke:2015 [chapter 1] say causal\ninference is neat, and @Rohrer:2018 agrees.\nAngrist and Pischke (2015, chap. 1) say causal inference is neat, and Rohrer (2018) agrees.\n\n\n\nAfter compiling, you should have a perfectly formatted bibliography added to the end of your document too:\n\nAngrist, Joshua D., and Jörn-Steffen Pischke. 2015. Mastering ’Metrics: The Path from Cause to Effect. Princeton, NJ: Princeton University Press.\nRohrer, Julia M. 2018. “Thinking Clearly About Correlations and Causation: Graphical Causal Models for Observational Data.” Advances in Methods and Practices in Psychological Science 1 (1): 27–42. https://doi.org/10.1177/2515245917745629.",
+    "crumbs": [
+      "Resources",
+      "Guides",
+      "Using Markdown"
+    ]
+  },
+  {
+    "objectID": "resource/markdown.html#other-references",
+    "href": "resource/markdown.html#other-references",
+    "title": "Using Markdown",
+    "section": "Other references",
+    "text": "Other references\nThese websites have additional details and examples and practice tools:\n\nCommonMark’s Markdown tutorial: A quick interactive Markdown tutorial.\nMarkdown tutorial: Another interactive tutorial to practice using Markdown.\nMarkdown cheatsheet: Useful one-page reminder of Markdown syntax.\nThe Plain Person’s Guide to Plain Text Social Science: A comprehensive explanation and tutorial about why you should write data-based reports in Markdown.",
+    "crumbs": [
+      "Resources",
+      "Guides",
+      "Using Markdown"
+    ]
+  },
+  {
+    "objectID": "content/04-content.html",
+    "href": "content/04-content.html",
+    "title": "Streamlining Research with R",
     "section": "",
     "text": "IN CONSTRUCTION!",
     "crumbs": [
       "Lessons",
-      "Modeling",
-      "3: Advanced Statistical Modeling"
+      "Streamlining Research",
+      "4: Reproducible Research and Automation"
     ]
   },
   {
-    "objectID": "content/03-content.html#overview",
-    "href": "content/03-content.html#overview",
-    "title": "Advanced Statistical Modeling in R",
+    "objectID": "content/04-content.html#overview",
+    "href": "content/04-content.html#overview",
+    "title": "Streamlining Research with R",
     "section": "",
     "text": "IN CONSTRUCTION!",
     "crumbs": [
       "Lessons",
-      "Modeling",
-      "3: Advanced Statistical Modeling"
+      "Streamlining Research",
+      "4: Reproducible Research and Automation"
     ]
   },
   {
-    "objectID": "content/03-content.html#guiding-questions",
-    "href": "content/03-content.html#guiding-questions",
-    "title": "Advanced Statistical Modeling in R",
+    "objectID": "content/04-content.html#guiding-questions",
+    "href": "content/04-content.html#guiding-questions",
+    "title": "Streamlining Research with R",
     "section": "Guiding Questions",
     "text": "Guiding Questions\n\n\n\n\n\n\nThese are optional!\n\n\n\nYou don’t need to answer all of these—or even any of them! They are here to help guide your thinking and reflection on the content. Feel free to explore whatever aspects you find most interesting.\n\n\n\nQuestion 1",
     "crumbs": [
       "Lessons",
-      "Modeling",
-      "3: Advanced Statistical Modeling"
+      "Streamlining Research",
+      "4: Reproducible Research and Automation"
     ]
   },
   {
-    "objectID": "content/03-content.html#readings",
-    "href": "content/03-content.html#readings",
-    "title": "Advanced Statistical Modeling in R",
+    "objectID": "content/04-content.html#readings",
+    "href": "content/04-content.html#readings",
+    "title": "Streamlining Research with R",
     "section": "Readings",
     "text": "Readings\n\nNo readings for this session.",
     "crumbs": [
       "Lessons",
-      "Modeling",
-      "3: Advanced Statistical Modeling"
+      "Streamlining Research",
+      "4: Reproducible Research and Automation"
     ]
   },
   {
-    "objectID": "content/03-content.html#slides",
-    "href": "content/03-content.html#slides",
-    "title": "Advanced Statistical Modeling in R",
+    "objectID": "content/04-content.html#slides",
+    "href": "content/04-content.html#slides",
+    "title": "Streamlining Research with R",
     "section": "Slides",
     "text": "Slides\nThe slides for this session are available online as an HTML file. Use the buttons below to open the slides either as an interactive website or as a static PDF (for printing or storing for later). You can also navigate through the embedded slides directly on this page using your left and right arrow keys.\n\n View all slides in new window  Download PDF of all slides\n\n\n\n\n\n\n\n\n\n\n\nTip\n\n\n\nPro tip: If you type ? (or shift + /) while viewing the slides, you can access a list of special commands to enhance your experience.",
     "crumbs": [
       "Lessons",
-      "Modeling",
-      "3: Advanced Statistical Modeling"
+      "Streamlining Research",
+      "4: Reproducible Research and Automation"
     ]
   },
   {
-    "objectID": "content/01-content.html",
-    "href": "content/01-content.html",
-    "title": "Mastering Data Manipulation in R",
+    "objectID": "content/02-content.html",
+    "href": "content/02-content.html",
+    "title": "Elegant Data Visualization with ggplot2",
     "section": "",
-    "text": "This session will focus on advanced data manipulation techniques using R and the tidyverse. While the primary resource for this session will be the slides, consider reflecting on the following questions as you engage with the material.",
+    "text": "IN CONSTRUCTION!",
     "crumbs": [
       "Lessons",
-      "Data Mastery",
-      "1: Mastering Data Wrangling"
+      "Data Visualization",
+      "2: Data Visualization with ggplot2"
     ]
   },
   {
-    "objectID": "content/01-content.html#overview",
-    "href": "content/01-content.html#overview",
-    "title": "Mastering Data Manipulation in R",
+    "objectID": "content/02-content.html#overview",
+    "href": "content/02-content.html#overview",
+    "title": "Elegant Data Visualization with ggplot2",
     "section": "",
-    "text": "This session will focus on advanced data manipulation techniques using R and the tidyverse. While the primary resource for this session will be the slides, consider reflecting on the following questions as you engage with the material.",
+    "text": "IN CONSTRUCTION!",
     "crumbs": [
       "Lessons",
-      "Data Mastery",
-      "1: Mastering Data Wrangling"
+      "Data Visualization",
+      "2: Data Visualization with ggplot2"
     ]
   },
   {
-    "objectID": "content/01-content.html#guiding-questions",
-    "href": "content/01-content.html#guiding-questions",
-    "title": "Mastering Data Manipulation in R",
+    "objectID": "content/02-content.html#guiding-questions",
+    "href": "content/02-content.html#guiding-questions",
+    "title": "Elegant Data Visualization with ggplot2",
     "section": "Guiding Questions",
-    "text": "Guiding Questions\n\n\n\n\n\n\nThese are optional!\n\n\n\nYou don’t need to answer all of these—or even any of them! They are here to help guide your thinking and reflection on the content. Feel free to explore whatever aspects you find most interesting.\n\n\n\nHow do complex filtering and selection operations enhance data analysis?\nWhat are the benefits of using the tidyverse for data manipulation?\nHow do different data reshaping techniques (e.g., pivoting) impact the way data is analyzed and interpreted?\nWhat challenges do you encounter when working with large datasets, and how can they be overcome with efficient R techniques?\nHow does the native pipe (|&gt;) improve code readability and workflow in R?",
+    "text": "Guiding Questions\n\n\n\n\n\n\nThese are optional!\n\n\n\nYou don’t need to answer all of these—or even any of them! They are here to help guide your thinking and reflection on the content. Feel free to explore whatever aspects you find most interesting.\n\n\n\nQuestion 1",
     "crumbs": [
       "Lessons",
-      "Data Mastery",
-      "1: Mastering Data Wrangling"
+      "Data Visualization",
+      "2: Data Visualization with ggplot2"
     ]
   },
   {
-    "objectID": "content/01-content.html#readings",
-    "href": "content/01-content.html#readings",
-    "title": "Mastering Data Manipulation in R",
+    "objectID": "content/02-content.html#readings",
+    "href": "content/02-content.html#readings",
+    "title": "Elegant Data Visualization with ggplot2",
     "section": "Readings",
     "text": "Readings\n\nNo readings for this session.",
     "crumbs": [
       "Lessons",
-      "Data Mastery",
-      "1: Mastering Data Wrangling"
+      "Data Visualization",
+      "2: Data Visualization with ggplot2"
     ]
   },
   {
-    "objectID": "content/01-content.html#slides",
-    "href": "content/01-content.html#slides",
-    "title": "Mastering Data Manipulation in R",
+    "objectID": "content/02-content.html#slides",
+    "href": "content/02-content.html#slides",
+    "title": "Elegant Data Visualization with ggplot2",
     "section": "Slides",
     "text": "Slides\nThe slides for this session are available online as an HTML file. Use the buttons below to open the slides either as an interactive website or as a static PDF (for printing or storing for later). You can also navigate through the embedded slides directly on this page using your left and right arrow keys.\n\n View all slides in new window  Download PDF of all slides\n\n\n\n\n\n\n\n\n\n\n\nTip\n\n\n\nPro tip: If you type ? (or shift + /) while viewing the slides, you can access a list of special commands to enhance your experience.",
     "crumbs": [
       "Lessons",
-      "Data Mastery",
-      "1: Mastering Data Wrangling"
+      "Data Visualization",
+      "2: Data Visualization with ggplot2"
     ]
   },
   {
-    "objectID": "syllabus.html",
-    "href": "syllabus.html",
-    "title": "Syllabus",
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "\n            Advanced Quantitative Methods: Description and Prediction  Summer Math Camp\n        ",
     "section": "",
-    "text": "Rony Rodriguez-Ramirez\n Wexner 436. HKS\n rrodriguezramirez@g.harvard.edu\n Bluesky\n\n\n\n\n\n Check schedule page\n August 15-August 28, 2024\n Check schedule page\n Anywhere\n\n\n\n\n\n Schedule an appointment\n Slack"
+    "text": "Advanced Quantitative Methods: Description and Prediction  Summer Math Camp\n        \n        \n            Conceptual mastery of statistical methods for public policy, focusing on application rather than mechanics\n        \n        \n            API 209 • Summer 2024Prof: Dan Levy | Summer TF: Rony RodriguezHarvard University\n        \n    \n    \n      \n        \n        \n        \n      \n    \n\n\n\n\n\n\nSummer TF\n\n Rony Rodriguez-Ramirez\n Wexner 436. HKS\n rrodriguezramirez@g.harvard.edu\n Bluesky\n Twitter\n\n\n\nCourse details\n\n Check schedule page\n August 15-August 28, 2024\n Check schedule page\n Anywhere\n\n\n\nContacting me\n\n Schedule an appointment\n Slack\n\nE-mail and Slack are the best ways to get in contact with me. Sometimes, life happens so bear with me if I don’t respond quickly!"
   },
   {
-    "objectID": "syllabus.html#course-overview",
-    "href": "syllabus.html#course-overview",
-    "title": "Syllabus",
-    "section": "Course Overview",
-    "text": "Course Overview\nThis summer camp focuses on advanced R programming, specifically on four key areas of data manipulation using the tidyverse. This is a continuation of the pre-summer assignment you completed, where you started using Posit Cloud. There is no formal syllabus for this course, as it is designed to be hands-on and interactive, emphasizing practical application over traditional lecture formats.\n\nCourse Objectives\nBy the end of this summer camp, you will be able to:\n\nMaster Advanced Data Manipulation Techniques: Apply complex filtering, selection, and data reshaping operations using the tidyverse.\nCreate Elegant Data Visualizations: Utilize advanced ggplot2 features to produce publication-quality visuals and interactive plots.\nBuild and Interpret Statistical Models: Develop and diagnose statistical models, including regression and mixed models, to analyze real-world data.\nAutomate and Reproduce Research Workflows: Use RMarkdown and workflow automation tools to create reproducible, efficient research workflows.\n\n\n\nKey Topics\n1. Data Mastery in R - Session 1: Mastering Data Manipulation in R - Advanced filtering and selection with dplyr - Complex mutate operations - Dynamic column selection\n2. Visualizing Data with Precision - Session 2: Elegant Data Visualization with ggplot2 - Advanced ggplot2 concepts: layering, themes, and facets - Interactive visualizations with plotly\n3. Modeling the Real World - Session 3: Advanced Statistical Modeling in R - Regression models and mixed models - Model diagnostics and validation\n4. Streamlining Research with R - Session 4: Reproducible Research and Automation - Using RMarkdown for dynamic documents - Workflow automation with drake or targets\n\n\nRStudio vs. Positron\nIn this course, you’ll be primarily using RStudio and Posit Cloud as your development environments. However, it’s also worth exploring Positron, a new IDE designed to enhance your R programming experience with modern development tools and a sleek interface. Both IDEs offer robust support for R, but Positron brings some cutting-edge features that may be beneficial for more advanced users."
-  },
-  {
-    "objectID": "syllabus.html#important-pep-talk",
-    "href": "syllabus.html#important-pep-talk",
-    "title": "Syllabus",
-    "section": "Important Pep Talk!",
-    "text": "Important Pep Talk!\nYou can do this! Programming can be challenging, but remember that frustration is part of the learning process. Don’t hesitate to reach out for help when you need it. Take breaks when you’re stuck!\nI like what Andrew Heiss usually tell his students when teaching R.\n\nLearning R can be difficult at first—it’s like learning a new language, just like Spanish, French, or Chinese. Hadley Wickham—the chief data scientist at RStudio and the author of some amazing R packages you’ll be using like {ggplot2}—made this wise observation:\n\n\nIt’s easy when you start out programming to get really frustrated and think, “Oh it’s me, I’m really stupid,” or, “I’m not made out to program.” But, that is absolutely not the case. Everyone gets frustrated. I still get frustrated occasionally when writing R code. It’s just a natural part of programming. So, it happens to everyone and gets less and less over time. Don’t blame yourself. Just take a break, do something fun, and then come back and try again later.\n\n\nEven experienced programmers find themselves bashing their heads against seemingly intractable errors. If you’re finding yourself taking way too long hitting your head against a wall and not understanding, take a break, talk to classmates, e-mail me, etc."
-  },
-  {
-    "objectID": "resource/install.html",
-    "href": "resource/install.html",
-    "title": "Installing R, RStudio, tidyverse, and tinytex",
+    "objectID": "resource/quarto.html",
+    "href": "resource/quarto.html",
+    "title": "Using Quarto",
     "section": "",
-    "text": "You will do all of your work in this class with the open source (and free!) programming language R. You will use RStudio as the main program to access R. Think of R as an engine and RStudio as a car dashboard—R handles all the calculations and the actual statistics, while RStudio provides a nice interface for running R code.",
+    "text": "Quarto Markdown is regular Markdown with R code and output sprinkled in. You can do everything you can with regular Markdown, but you can incorporate graphs, tables, and other code output directly in your document. You can create HTML, PDF, and Word documents, PowerPoint and HTML presentations, websites, books, and even interactive dashboards with Quarto. This whole course website is created with Quarto.\nQuarto’s predecessor was called R Markdown and worked exclusively with R (though there are ways to use other languages in document). Quarto is essentially “R Markdown 2.0,” but it is designed to be language agnostic. You can use R, Python, Julia, Observable JS, and even Stata code all in the same document. It is magical.\nHere are the most important things you’ll need to know about Quarto in this class:",
     "crumbs": [
       "Resources",
       "Guides",
-      "Installing R, RStudio, tidyverse, and tinytex"
+      "Using Quarto"
     ]
   },
   {
-    "objectID": "resource/install.html#posit.cloud",
-    "href": "resource/install.html#posit.cloud",
-    "title": "Installing R, RStudio, tidyverse, and tinytex",
-    "section": "Posit.cloud",
-    "text": "Posit.cloud\nR is free, but it can sometimes be a pain to install and configure. To make life easier, you can (and should!) use the free Posit.cloud service initially, which lets you run a full instance of RStudio in your web browser. This means you won’t have to install anything on your computer to get started with R! We will have a shared class workspace in Posit.cloud that will let you quickly copy templates for assignments.\nGo to https://posit.cloud/ and create an account. You’ll receive a link to join the shared class workspace separately. If you don’t get this link, let me know and I will invite you.",
+    "objectID": "resource/quarto.html#key-terms",
+    "href": "resource/quarto.html#key-terms",
+    "title": "Using Quarto",
+    "section": "Key terms",
+    "text": "Key terms\n\nDocument: A Markdown file where you type stuff\nChunk: A piece of R code that is included in your document. It looks like this:\n```{r}\n# Code goes here\n1 + 1\n```\nThere must be an empty line before and after the chunk. The final three backticks must be the only thing on the line—if you add more text, or if you forget to add the backticks, or accidentally delete the backticks, your document will not render correctly.\nRender: When you render a document, R runs each of the chunks sequentially and converts the output of each chunk into Markdown. R then runs the document through pandoc to convert it to HTML or PDF or Word (or whatever output you’ve selected).\nYou can render by clicking on the “Render” button at the top of the editor window, or by pressing ⌘⇧K on macOS or control + shift + K on Windows.",
     "crumbs": [
       "Resources",
       "Guides",
-      "Installing R, RStudio, tidyverse, and tinytex"
+      "Using Quarto"
     ]
   },
   {
-    "objectID": "resource/install.html#rstudio-on-your-computer",
-    "href": "resource/install.html#rstudio-on-your-computer",
-    "title": "Installing R, RStudio, tidyverse, and tinytex",
-    "section": "RStudio on your computer",
-    "text": "RStudio on your computer\nPosit.cloud is convenient, but it can be slow and it is not designed to be able to handle larger datasets, more complicated analysis, or fancier graphics. Over the course of the semester, you should wean yourself off of Posit.cloud and install all these things locally. This is also important if you want to customize fonts, since Posit.cloud has extremely limited support for fonts other than Helvetica.\nHere’s how you install all these things\n\nInstall R\nFirst you need to install R itself (the engine).\n\nGo to the CRAN (Collective R Archive Network) website: https://cran.r-project.org/\nClick on “Download R for XXX”, where XXX is either Mac or Windows:\n\n\nIf you use macOS, scroll down to the first .pkg file in the list of files (in this picture, it’s R-4.0.0.pkg; as of right now, the current version is 4.4.0) and download it.\n\nIf you use Windows, click “base” (or click on the bolded “install R for the first time” link) and download it.\n\n\nDouble click on the downloaded file (check your Downloads folder). Click yes through all the prompts to install like any other program.\nIf you use macOS, download and install XQuartz. You do not need to do this on Windows.\n\n\n\nInstall RStudio\nNext, you need to install RStudio, the nicer graphical user interface (GUI) for R (the dashboard). Once R and RStudio are both installed, you can ignore R and only use RStudio. RStudio will use R automatically and you won’t ever have to interact with it directly.\n\nGo to the free download location on RStudio’s website: https://www.rstudio.com/products/rstudio/download/#download\nThe website should automatically detect your operating system (macOS or Windows) and show a big download button for it:\n\nIf not, scroll down a little to the large table and choose the version of RStudio that matches your operating system.\n\nDouble click on the downloaded file (again, check your Downloads folder). Click yes through all the prompts to install like any other program.\n\nDouble click on RStudio to run it (check your applications folder or start menu).\n\n\nInstall tidyverse\nR packages are easy to install with RStudio. Select the packages panel, click on “Install,” type the name of the package you want to install, and press enter.\n\nThis can sometimes be tedious when you’re installing lots of packages, though. The tidyverse, for instance, consists of dozens of packages (including {ggplot2}) that all work together. Rather than install each individually, you can install a single magical package and get them all at the same time.\nGo to the packages panel in RStudio, click on “Install,” type “tidyverse”, and press enter. You’ll see a bunch of output in the RStudio console as all the tidyverse packages are installed.\n\nNotice also that RStudio will generate a line of code for you and run it: install.packages(\"tidyverse\"). You can also just paste and run this instead of using the packages panel.\n\n\nInstall TinyTeX\nWhen you render to PDF, R uses a special scientific typesetting program named LaTeX (pronounced “lay-tek” or “lah-tex”; for goofy nerdy reasons, the x is technically the “ch” sound in “Bach”, but most people just say it as “k”—saying “layteks” is frowned on for whatever reason).\nLaTeX is neat and makes pretty documents, but it’s a huge program—the macOS version, for instance, is nearly 4 GB! To make life easier, there’s a smaller version named TinyTeX that automatically deals with differences between macOS and Windows and automatically installs any missing LaTeX packages as needed.\nHere’s how to install TinyTeX so you can create pretty PDFs:\n\nOpen the Terminal panel in RStudio (down in the bottom left corner where the Console panel is; there’s a tab named “Terminal” there)\nType this:\nquarto install tinytex",
+    "objectID": "resource/quarto.html#add-chunks",
+    "href": "resource/quarto.html#add-chunks",
+    "title": "Using Quarto",
+    "section": "Add chunks",
+    "text": "Add chunks\nThere are three ways to insert chunks:\n\nPress ⌘⌥I on macOS or control + alt + I on Windows\nClick on the “Insert” button at the top of the editor window\n\n\n\nManually type all the backticks and curly braces (don’t do this)",
     "crumbs": [
       "Resources",
       "Guides",
-      "Installing R, RStudio, tidyverse, and tinytex"
+      "Using Quarto"
     ]
   },
   {
-    "objectID": "labs/03-labs.html",
-    "href": "labs/03-labs.html",
-    "title": "Lab 3:",
+    "objectID": "resource/quarto.html#chunk-names",
+    "href": "resource/quarto.html#chunk-names",
+    "title": "Using Quarto",
+    "section": "Chunk names",
+    "text": "Chunk names\nYou can add names to chunks to make it easier to navigate your document. If you click on the little dropdown menu at the bottom of your editor in RStudio, you can see a table of contents that shows all the headings and chunks. If you name chunks, they’ll appear in the list. If you don’t include a name, the chunk will still show up, but you won’t know what it does.\n\nThere are two ways to add a chunk name:\n\nAs a special comment called label:, following #| at the top of the chunk (this is the preferred way):\n```{r}\n#| label: name-of-this-chunk\n\n1 + 1\n```\nImmediately after the {r in the first line of the chunk (this is the older way):\n```{r name-of-this-chunk}\n1 + 1\n```\n\nNames cannot contain spaces, but they can contain underscores and dashes. All chunk names in your document must be unique.",
+    "crumbs": [
+      "Resources",
+      "Guides",
+      "Using Quarto"
+    ]
+  },
+  {
+    "objectID": "resource/quarto.html#chunk-options",
+    "href": "resource/quarto.html#chunk-options",
+    "title": "Using Quarto",
+    "section": "Chunk options",
+    "text": "Chunk options\nThere are a bunch of different options you can set for each chunk. You can see a complete list in the R Markdown Reference Guide or at {knitr}’s website.\nSet chunk options as special comments following #| at the top of the chunk (this is the preferred way):\n```{r}\n#| label: fig-some-plot\n#| fig-cap: \"Here's a caption for this plot\"\n#| fig-width: 6\n#| fig-height: 4\n#| echo: false\n\nggplot(mpg, aes(x = displ, y = hwy, color = drv)) +\n  geom_point() +\n  geom_smooth(method = \"lm\")\n```\nTechnically you can also set these options inside the {r} section of the chunk—this is the old way to do it, but it gets really gross and long when you have lots of settings:\n{r fig-some-plot, fig.width=6, fig.height=4, echo=FALSE, fig.cap = \"Here's a caption for this plot\"}\nHere are some of the most common chunk options you’ll use in this class:\n\nlabel: fig-whatever: Try to always use chunk labels. If you want things to be cross-referenceable, use a fig- prefix on chunks that make figures and a tbl- prefix on chunks that make tables\ntbl-cap: \"Blah\": Add a caption to your table\nfig-cap: \"Blah\": Add a caption to your figure\nfig-width: 5 and fig-height: 3 (or whatever number you want): Set the dimensions for figures\necho: false: The code is not shown in the final document, but the results are\nmessage: false: Any messages that R generates (like all the notes that appear after you load a package) are omitted\nwarning: false: Any warnings that R generates are omitted\ninclude: false: The chunk still runs, but the code and results are not included in the final document",
+    "crumbs": [
+      "Resources",
+      "Guides",
+      "Using Quarto"
+    ]
+  },
+  {
+    "objectID": "resource/quarto.html#inline-chunks",
+    "href": "resource/quarto.html#inline-chunks",
+    "title": "Using Quarto",
+    "section": "Inline chunks",
+    "text": "Inline chunks\nYou can also include R output directly in your text, which is really helpful if you want to report numbers from your analysis. To do this, use `r r_code_here`.\nIt’s generally easiest to calculate numbers in a regular chunk beforehand and then use an inline chunk to display the value in your text. For instance, this document…\n```{r}\n#| label: find-avg-mpg\n#| echo: false\n\navg_mpg &lt;- mean(mtcars$mpg)\n```\n\nThe average fuel efficiency for cars from 1974 was `r round(avg_mpg, 1)` miles per gallon.\n… would render to this:\n\nThe average fuel efficiency for cars from 1974 was 20.1 miles per gallon.",
+    "crumbs": [
+      "Resources",
+      "Guides",
+      "Using Quarto"
+    ]
+  },
+  {
+    "objectID": "resource/quarto.html#output-formats",
+    "href": "resource/quarto.html#output-formats",
+    "title": "Using Quarto",
+    "section": "Output formats",
+    "text": "Output formats\nYou can specify what kind of document you create when you render in the YAML front matter.\ntitle: \"My document\"\nformat:\n  html: default\n  pdf: default\n  docx: default\nThe indentation of the YAML section matters, especially when you have settings nested under each output type. Here’s what a typical format section might look like:\n---\ntitle: \"My document\"\nauthor: \"My name\"\ndate: \"June 4, 2024\"\nformat: \n  html_document: \n    toc: yes\n  pdf_document: \n    toc: yes\n  word_document: \n    toc: yes\n---",
+    "crumbs": [
+      "Resources",
+      "Guides",
+      "Using Quarto"
+    ]
+  },
+  {
+    "objectID": "labs/04-labs.html",
+    "href": "labs/04-labs.html",
+    "title": "Lab 4:",
     "section": "",
     "text": "To complete",
     "crumbs": [
       "Labs",
-      "3: Advanced Statistical Modeling"
+      "4: Reproducible Research and Automation"
     ]
   },
   {
-    "objectID": "labs/03-labs.html#part-1",
-    "href": "labs/03-labs.html#part-1",
-    "title": "Lab 3:",
+    "objectID": "labs/04-labs.html#part-1",
+    "href": "labs/04-labs.html#part-1",
+    "title": "Lab 4:",
     "section": "",
     "text": "To complete",
     "crumbs": [
       "Labs",
-      "3: Advanced Statistical Modeling"
+      "4: Reproducible Research and Automation"
     ]
   },
   {
@@ -859,418 +997,333 @@
     ]
   },
   {
+    "objectID": "labs/03-labs.html",
+    "href": "labs/03-labs.html",
+    "title": "Lab 3:",
+    "section": "",
+    "text": "To complete",
+    "crumbs": [
+      "Labs",
+      "3: Advanced Statistical Modeling"
+    ]
+  },
+  {
+    "objectID": "labs/03-labs.html#part-1",
+    "href": "labs/03-labs.html#part-1",
+    "title": "Lab 3:",
+    "section": "",
+    "text": "To complete",
+    "crumbs": [
+      "Labs",
+      "3: Advanced Statistical Modeling"
+    ]
+  },
+  {
+    "objectID": "resource/install.html",
+    "href": "resource/install.html",
+    "title": "Installing R, RStudio, tidyverse, and tinytex",
+    "section": "",
+    "text": "You will do all of your work in this class with the open source (and free!) programming language R. You will use RStudio as the main program to access R. Think of R as an engine and RStudio as a car dashboard—R handles all the calculations and the actual statistics, while RStudio provides a nice interface for running R code.",
+    "crumbs": [
+      "Resources",
+      "Guides",
+      "Installing R, RStudio, tidyverse, and tinytex"
+    ]
+  },
+  {
+    "objectID": "resource/install.html#posit.cloud",
+    "href": "resource/install.html#posit.cloud",
+    "title": "Installing R, RStudio, tidyverse, and tinytex",
+    "section": "Posit.cloud",
+    "text": "Posit.cloud\nR is free, but it can sometimes be a pain to install and configure. To make life easier, you can (and should!) use the free Posit.cloud service initially, which lets you run a full instance of RStudio in your web browser. This means you won’t have to install anything on your computer to get started with R! We will have a shared class workspace in Posit.cloud that will let you quickly copy templates for assignments.\nGo to https://posit.cloud/ and create an account. You’ll receive a link to join the shared class workspace separately. If you don’t get this link, let me know and I will invite you.",
+    "crumbs": [
+      "Resources",
+      "Guides",
+      "Installing R, RStudio, tidyverse, and tinytex"
+    ]
+  },
+  {
+    "objectID": "resource/install.html#rstudio-on-your-computer",
+    "href": "resource/install.html#rstudio-on-your-computer",
+    "title": "Installing R, RStudio, tidyverse, and tinytex",
+    "section": "RStudio on your computer",
+    "text": "RStudio on your computer\nPosit.cloud is convenient, but it can be slow and it is not designed to be able to handle larger datasets, more complicated analysis, or fancier graphics. Over the course of the semester, you should wean yourself off of Posit.cloud and install all these things locally. This is also important if you want to customize fonts, since Posit.cloud has extremely limited support for fonts other than Helvetica.\nHere’s how you install all these things\n\nInstall R\nFirst you need to install R itself (the engine).\n\nGo to the CRAN (Collective R Archive Network) website: https://cran.r-project.org/\nClick on “Download R for XXX”, where XXX is either Mac or Windows:\n\n\nIf you use macOS, scroll down to the first .pkg file in the list of files (in this picture, it’s R-4.0.0.pkg; as of right now, the current version is 4.4.0) and download it.\n\nIf you use Windows, click “base” (or click on the bolded “install R for the first time” link) and download it.\n\n\nDouble click on the downloaded file (check your Downloads folder). Click yes through all the prompts to install like any other program.\nIf you use macOS, download and install XQuartz. You do not need to do this on Windows.\n\n\n\nInstall RStudio\nNext, you need to install RStudio, the nicer graphical user interface (GUI) for R (the dashboard). Once R and RStudio are both installed, you can ignore R and only use RStudio. RStudio will use R automatically and you won’t ever have to interact with it directly.\n\nGo to the free download location on RStudio’s website: https://www.rstudio.com/products/rstudio/download/#download\nThe website should automatically detect your operating system (macOS or Windows) and show a big download button for it:\n\nIf not, scroll down a little to the large table and choose the version of RStudio that matches your operating system.\n\nDouble click on the downloaded file (again, check your Downloads folder). Click yes through all the prompts to install like any other program.\n\nDouble click on RStudio to run it (check your applications folder or start menu).\n\n\nInstall tidyverse\nR packages are easy to install with RStudio. Select the packages panel, click on “Install,” type the name of the package you want to install, and press enter.\n\nThis can sometimes be tedious when you’re installing lots of packages, though. The tidyverse, for instance, consists of dozens of packages (including {ggplot2}) that all work together. Rather than install each individually, you can install a single magical package and get them all at the same time.\nGo to the packages panel in RStudio, click on “Install,” type “tidyverse”, and press enter. You’ll see a bunch of output in the RStudio console as all the tidyverse packages are installed.\n\nNotice also that RStudio will generate a line of code for you and run it: install.packages(\"tidyverse\"). You can also just paste and run this instead of using the packages panel.\n\n\nInstall TinyTeX\nWhen you render to PDF, R uses a special scientific typesetting program named LaTeX (pronounced “lay-tek” or “lah-tex”; for goofy nerdy reasons, the x is technically the “ch” sound in “Bach”, but most people just say it as “k”—saying “layteks” is frowned on for whatever reason).\nLaTeX is neat and makes pretty documents, but it’s a huge program—the macOS version, for instance, is nearly 4 GB! To make life easier, there’s a smaller version named TinyTeX that automatically deals with differences between macOS and Windows and automatically installs any missing LaTeX packages as needed.\nHere’s how to install TinyTeX so you can create pretty PDFs:\n\nOpen the Terminal panel in RStudio (down in the bottom left corner where the Console panel is; there’s a tab named “Terminal” there)\nType this:\nquarto install tinytex",
+    "crumbs": [
+      "Resources",
+      "Guides",
+      "Installing R, RStudio, tidyverse, and tinytex"
+    ]
+  },
+  {
+    "objectID": "syllabus.html",
+    "href": "syllabus.html",
+    "title": "Syllabus",
+    "section": "",
+    "text": "Rony Rodriguez-Ramirez\n Wexner 436. HKS\n rrodriguezramirez@g.harvard.edu\n Bluesky\n\n\n\n\n\n Check schedule page\n August 15-August 28, 2024\n Check schedule page\n Anywhere\n\n\n\n\n\n Schedule an appointment\n Slack"
+  },
+  {
+    "objectID": "syllabus.html#course-overview",
+    "href": "syllabus.html#course-overview",
+    "title": "Syllabus",
+    "section": "Course Overview",
+    "text": "Course Overview\nThis summer camp focuses on advanced R programming, specifically on four key areas of data manipulation using the tidyverse. This is a continuation of the pre-summer assignment you completed, where you started using Posit Cloud. There is no formal syllabus for this course, as it is designed to be hands-on and interactive, emphasizing practical application over traditional lecture formats.\n\nCourse Objectives\nBy the end of this summer camp, you will be able to:\n\nMaster Advanced Data Manipulation Techniques: Apply complex filtering, selection, and data reshaping operations using the tidyverse.\nCreate Elegant Data Visualizations: Utilize advanced ggplot2 features to produce publication-quality visuals and interactive plots.\nBuild and Interpret Statistical Models: Develop and diagnose statistical models, including regression and mixed models, to analyze real-world data.\nAutomate and Reproduce Research Workflows: Use RMarkdown and workflow automation tools to create reproducible, efficient research workflows.\n\n\n\nKey Topics\n1. Data Mastery in R - Session 1: Mastering Data Manipulation in R - Advanced filtering and selection with dplyr - Complex mutate operations - Dynamic column selection\n2. Visualizing Data with Precision - Session 2: Elegant Data Visualization with ggplot2 - Advanced ggplot2 concepts: layering, themes, and facets - Interactive visualizations with plotly\n3. Modeling the Real World - Session 3: Advanced Statistical Modeling in R - Regression models and mixed models - Model diagnostics and validation\n4. Streamlining Research with R - Session 4: Reproducible Research and Automation - Using RMarkdown for dynamic documents - Workflow automation with drake or targets\n\n\nRStudio vs. Positron\nIn this course, you’ll be primarily using RStudio and Posit Cloud as your development environments. However, it’s also worth exploring Positron, a new IDE designed to enhance your R programming experience with modern development tools and a sleek interface. Both IDEs offer robust support for R, but Positron brings some cutting-edge features that may be beneficial for more advanced users."
+  },
+  {
+    "objectID": "syllabus.html#important-pep-talk",
+    "href": "syllabus.html#important-pep-talk",
+    "title": "Syllabus",
+    "section": "Important Pep Talk!",
+    "text": "Important Pep Talk!\nYou can do this! Programming can be challenging, but remember that frustration is part of the learning process. Don’t hesitate to reach out for help when you need it. Take breaks when you’re stuck!\nI like what Andrew Heiss usually tell his students when teaching R.\n\nLearning R can be difficult at first—it’s like learning a new language, just like Spanish, French, or Chinese. Hadley Wickham—the chief data scientist at RStudio and the author of some amazing R packages you’ll be using like {ggplot2}—made this wise observation:\n\n\nIt’s easy when you start out programming to get really frustrated and think, “Oh it’s me, I’m really stupid,” or, “I’m not made out to program.” But, that is absolutely not the case. Everyone gets frustrated. I still get frustrated occasionally when writing R code. It’s just a natural part of programming. So, it happens to everyone and gets less and less over time. Don’t blame yourself. Just take a break, do something fun, and then come back and try again later.\n\n\nEven experienced programmers find themselves bashing their heads against seemingly intractable errors. If you’re finding yourself taking way too long hitting your head against a wall and not understanding, take a break, talk to classmates, e-mail me, etc."
+  },
+  {
+    "objectID": "content/01-content.html",
+    "href": "content/01-content.html",
+    "title": "Mastering Data Manipulation in R",
+    "section": "",
+    "text": "This session will focus on advanced data manipulation techniques using R and the tidyverse. While the primary resource for this session will be the slides, consider reflecting on the following questions as you engage with the material.",
+    "crumbs": [
+      "Lessons",
+      "Data Mastery",
+      "1: Mastering Data Wrangling"
+    ]
+  },
+  {
+    "objectID": "content/01-content.html#overview",
+    "href": "content/01-content.html#overview",
+    "title": "Mastering Data Manipulation in R",
+    "section": "",
+    "text": "This session will focus on advanced data manipulation techniques using R and the tidyverse. While the primary resource for this session will be the slides, consider reflecting on the following questions as you engage with the material.",
+    "crumbs": [
+      "Lessons",
+      "Data Mastery",
+      "1: Mastering Data Wrangling"
+    ]
+  },
+  {
+    "objectID": "content/01-content.html#guiding-questions",
+    "href": "content/01-content.html#guiding-questions",
+    "title": "Mastering Data Manipulation in R",
+    "section": "Guiding Questions",
+    "text": "Guiding Questions\n\n\n\n\n\n\nThese are optional!\n\n\n\nYou don’t need to answer all of these—or even any of them! They are here to help guide your thinking and reflection on the content. Feel free to explore whatever aspects you find most interesting.\n\n\n\nHow do complex filtering and selection operations enhance data analysis?\nWhat are the benefits of using the tidyverse for data manipulation?\nHow do different data reshaping techniques (e.g., pivoting) impact the way data is analyzed and interpreted?\nWhat challenges do you encounter when working with large datasets, and how can they be overcome with efficient R techniques?\nHow does the native pipe (|&gt;) improve code readability and workflow in R?",
+    "crumbs": [
+      "Lessons",
+      "Data Mastery",
+      "1: Mastering Data Wrangling"
+    ]
+  },
+  {
+    "objectID": "content/01-content.html#readings",
+    "href": "content/01-content.html#readings",
+    "title": "Mastering Data Manipulation in R",
+    "section": "Readings",
+    "text": "Readings\n\nNo readings for this session.",
+    "crumbs": [
+      "Lessons",
+      "Data Mastery",
+      "1: Mastering Data Wrangling"
+    ]
+  },
+  {
+    "objectID": "content/01-content.html#slides",
+    "href": "content/01-content.html#slides",
+    "title": "Mastering Data Manipulation in R",
+    "section": "Slides",
+    "text": "Slides\nThe slides for this session are available online as an HTML file. Use the buttons below to open the slides either as an interactive website or as a static PDF (for printing or storing for later). You can also navigate through the embedded slides directly on this page using your left and right arrow keys.\n\n View all slides in new window  Download PDF of all slides\n\n\n\n\n\n\n\n\n\n\n\nTip\n\n\n\nPro tip: If you type ? (or shift + /) while viewing the slides, you can access a list of special commands to enhance your experience.",
+    "crumbs": [
+      "Lessons",
+      "Data Mastery",
+      "1: Mastering Data Wrangling"
+    ]
+  },
+  {
+    "objectID": "content/03-content.html",
+    "href": "content/03-content.html",
+    "title": "Advanced Statistical Modeling in R",
+    "section": "",
+    "text": "IN CONSTRUCTION!",
+    "crumbs": [
+      "Lessons",
+      "Modeling",
+      "3: Advanced Statistical Modeling"
+    ]
+  },
+  {
+    "objectID": "content/03-content.html#overview",
+    "href": "content/03-content.html#overview",
+    "title": "Advanced Statistical Modeling in R",
+    "section": "",
+    "text": "IN CONSTRUCTION!",
+    "crumbs": [
+      "Lessons",
+      "Modeling",
+      "3: Advanced Statistical Modeling"
+    ]
+  },
+  {
+    "objectID": "content/03-content.html#guiding-questions",
+    "href": "content/03-content.html#guiding-questions",
+    "title": "Advanced Statistical Modeling in R",
+    "section": "Guiding Questions",
+    "text": "Guiding Questions\n\n\n\n\n\n\nThese are optional!\n\n\n\nYou don’t need to answer all of these—or even any of them! They are here to help guide your thinking and reflection on the content. Feel free to explore whatever aspects you find most interesting.\n\n\n\nQuestion 1",
+    "crumbs": [
+      "Lessons",
+      "Modeling",
+      "3: Advanced Statistical Modeling"
+    ]
+  },
+  {
+    "objectID": "content/03-content.html#readings",
+    "href": "content/03-content.html#readings",
+    "title": "Advanced Statistical Modeling in R",
+    "section": "Readings",
+    "text": "Readings\n\nNo readings for this session.",
+    "crumbs": [
+      "Lessons",
+      "Modeling",
+      "3: Advanced Statistical Modeling"
+    ]
+  },
+  {
+    "objectID": "content/03-content.html#slides",
+    "href": "content/03-content.html#slides",
+    "title": "Advanced Statistical Modeling in R",
+    "section": "Slides",
+    "text": "Slides\nThe slides for this session are available online as an HTML file. Use the buttons below to open the slides either as an interactive website or as a static PDF (for printing or storing for later). You can also navigate through the embedded slides directly on this page using your left and right arrow keys.\n\n View all slides in new window  Download PDF of all slides\n\n\n\n\n\n\n\n\n\n\n\nTip\n\n\n\nPro tip: If you type ? (or shift + /) while viewing the slides, you can access a list of special commands to enhance your experience.",
+    "crumbs": [
+      "Lessons",
+      "Modeling",
+      "3: Advanced Statistical Modeling"
+    ]
+  },
+  {
+    "objectID": "assignment/01-exercise.html",
+    "href": "assignment/01-exercise.html",
+    "title": "Introduction to R and the tidyverse",
+    "section": "",
+    "text": "Important\n\n\n\nBefore starting this exercise, make sure you complete everything at the lesson for this week, especially the Posit Primers."
+  },
+  {
+    "objectID": "assignment/01-exercise.html#task-1-make-an-rstudio-project",
+    "href": "assignment/01-exercise.html#task-1-make-an-rstudio-project",
+    "title": "Introduction to R and the tidyverse",
+    "section": "Task 1: Make an RStudio Project",
+    "text": "Task 1: Make an RStudio Project\n\nUse either Posit.cloud or RStudio on your computer (preferably RStudio on your computer! Follow these instructions to get started!) to create a new RStudio Project.\nCreate a folder named “data” in the project folder you just made.\nDownload this CSV file and place it in that folder:\n\n cars.csv\n\nIn RStudio, go to “File” &gt; “New File…” &gt; “Quarto Document…” and click “OK” in the dialog without changing anything.\nDelete all the placeholder text in that new file and replace it with this:\n---\ntitle: \"Introduction to R and the tidyverse\"\nsubtitle: \"Exercise 1 --- PMAP 8551, Summer 2024\"\nformat: \n  html:\n    toc: true\n  pdf:\n    toc: true\n  docx:\n    toc: true\n---\n\n```{r}\n#| label: load-libraries-data\n#| warning: false\n#| message: false\n\nlibrary(tidyverse)\n\ncars &lt;- read_csv(\"data/cars.csv\")\n```\n\n# Reflection\n\nReplace this text with your reflection\n\n\n# My first plots\n\nInsert a chunk below and use it to create a scatterplot (hint: `geom_point()`) with diplacement (`displ`) on the x-axis, city MPG (`cty`) on the y-axis, and with the points colored by drive (`drv`).\n\nPUT CHUNK HERE\n\nInsert a chunk below and use it to create a histogram (hint: `geom_histogram()`) with highway MPG (`hwy`) on the x-axis. Do not include anything on the y-axis (`geom_histogram()` will do that automatically for you). Choose an appropriate bin width. If you're brave, facet by drive (`drv`).\n\nPUT CHUNK HERE\n\n\n# My first data manipulation\n\nInsert a chunk below and use it to calculate the average city MPG (`cty`) by class of car (`class`). This won't be a plot---it'll be a table. Hint: use a combination of `group_by()` and `summarize()`.\n\nPUT CHUNK HERE\nSave the Quarto file with some sort of name (without any spaces!)\nYour project folder should look something like this:\n\n\n\n\n\n\n\n\n\nExample project folder on macOS\n\n\n\n\n \n\n\n\n\n\nExample project folder on Windows"
+  },
+  {
+    "objectID": "assignment/01-exercise.html#task-2-work-with-r",
+    "href": "assignment/01-exercise.html#task-2-work-with-r",
+    "title": "Introduction to R and the tidyverse",
+    "section": "Task 2: Work with R",
+    "text": "Task 2: Work with R\n\nAdd your reading reflection to the appropriate place in the Quarto file. You can type directly in RStudio if you want (though there’s no spell checker), or you can type it in Word or Google Docs and then paste it into RStudio.\nRemove the text that says “PUT CHUNK HERE” and insert a new R code chunk. Either type ctrl + alt + i on Windows, or ⌘ + ⌥ + i on macOS, or use the “Insert Chunk” menu:\n\n\n\n\n\n\n\n\n\nFollow the instructions for the three chunks of code.\nRender your document as a Word file (or PDF if you’re brave and installed LaTeX). Use the “Render” menu:\n\n\n\n\n\n\n\n\n\nUpload the rendered document to iCollege.\n🎉 Party! 🎉\n\n\n\n\n\n\n\nFile organization\n\n\n\nYou’ll be doing this same process for all your future exercises. Each exercise will involve an Quarto file. Or you can create individual projects for each assignment and mini-project (recommended!):\n\n\n\n\n\n\n\n\n\nIndividual folders for each project on macOS\n\n\n\n\n \n\n\n\n\n\nIndividual folders for each project on Windows\n\n\n\n\n\nOr you can create a new RStudio Project directory for all your work (not recommended!):\n\n\n\n\n\n\n\n\n\nOne folder for everything on macOS\n\n\n\n\n \n\n\n\n\n\nOne folder for everything on Windows"
+  },
+  {
+    "objectID": "schedule.html",
+    "href": "schedule.html",
+    "title": "Schedule",
+    "section": "",
+    "text": "Here’s your roadmap for the summer camp!\n\nLessons (): This page contains the slides for the topic. Read and go through these first.\nHands-on Sessions (): This page provides the interactive, practical exercises that correspond with each lesson. Engage with these sessions after reviewing the slides to solidify your understanding. We will go through these during each odd numbered session.\nLabs (): This page contains, when needed, interactive sessions, and also the contents for each lab. Go through these after doing the lessons and hands-on sessions. This is more on your own, so we will go through these during each even numbered session.\n\n\n\n\n\ntl;dr: You should follow this general process for each session:\n\nRead the slides in the lesson page ()\nWork through the hands-on page ()\nDo the labs page ()\n\n\n\n\n\n\n\n\n\n\n\n\nSubscribe!\n\n\n\nYou can subscribe to this calendar URL in Outlook, Google Calendar, or Apple Calendar:\n\n\n\n Download\n\n\n\n\n\n\n\n\n\n\n\nMath Camp (R Programming)\n\n\n\n\n\n\nTitle\n\n\nContent\n\n\nHands-on\n\n\nLabs\n\n\n\n\n\n\nAugust 15–August 19(Session 1-2)\n\n\nData Wrangling\n\n\n\n\n\n\n\n\n\n\n\n\n\nAugust 20–August 26(Session 3-4)\n\n\nElegant Data Visualization with ggplot2\n\n\n\n\n\n\n\n\n\n\n\n\n\nAugust 26–August 28(Session 5-6)\n\n\nAdvanced Statistical Modeling in R\n\n\n\n\n\n\n\n\n\n\n\n\n\nSeptember 2–September 4(Session 7-8)\n\n\nReproducible Research and Automation"
+  },
+  {
+    "objectID": "resource/pipes.html",
+    "href": "resource/pipes.html",
+    "title": "Pipes",
+    "section": "",
+    "text": "In the primers (and in Lesson 4) you were introduced to the pipe operator |&gt;, which takes the object on the left of the pipe and passes it as the first argument to the function on the right.\nLike, you can find the average of the numbers 1, 2, 3, 4, and 5 like this:\nmean(c(1, 2, 3, 4, 5))\n## [1] 3\nOr like this:\nc(1, 2, 3, 4, 5) |&gt; mean()\n## [1] 3",
+    "crumbs": [
+      "Resources",
+      "Guides",
+      "Pipes"
+    ]
+  },
+  {
+    "objectID": "resource/pipes.html#pipe-styles",
+    "href": "resource/pipes.html#pipe-styles",
+    "title": "Pipes",
+    "section": "Pipe styles",
+    "text": "Pipe styles\nThere are actually two pipe operators in R, and you’ll see both in the wild.\n\n\n\n\n\nRené Magritte, “The Treachery of Images”\n\n\n\nThe %&gt;% operator was invented first in 2014 in an R package named {magrittr}, a pun on René Magritte’s famous painting of a pipe, “The Treachery of Images”.\nThe |&gt; operator was added as a native part of R itself with version 4.1.0 in May 2021. It doesn’t require any extra packages to use.\n\nIn 99% of cases, the two pipes are the same (see here for details about their differences; or see this too). The magrittr %&gt;% is still wildly popular and you’ll see code online that uses it. The main downside to the magrittr pipe is that it requires that you load a package to use it. If you run library(tidyverse), you’ll have access to it, and in this class you’ll load tidyverse 100% of the time, so you can use %&gt;% without any problems.\nI switched my R classes away from %&gt;% to |&gt; starting in January 2024, mostly following the example of Hadley Wickham (inventor of ggplot, dplyr, and pretty much all the tidyverse). The first edition of R for Data Science by Hadley Wickham and Garrett Grolemund used the magrittr pipe (%&gt;%) extensively, which is partially why it became so popular. In the second edition of R for Data Science, though, published in June 2023, they switched to the native pipe (|&gt;). I took that as a cue to do the same in my own R work.\nSo I’m teaching you the native pipe (|&gt;). But don’t panic if you see the magrittr pipe (%&gt;%) out there. And feel free to use it too. Again, 99% of the time, it works the same:\n\n# {magrittr} pipe\nc(1, 2, 3, 4, 5) %&gt;% mean()\n## [1] 3\n\n\n# Native pipe\nc(1, 2, 3, 4, 5) |&gt; mean()\n## [1] 3\n\nJust don’t mix the two pipes in the same chain of functions. This is bad:\nmpg |&gt; \n  group_by(...) %&gt;%\n  summarize(...) |&gt;\n  filter(...) %&gt;%\n  select(...)",
+    "crumbs": [
+      "Resources",
+      "Guides",
+      "Pipes"
+    ]
+  },
+  {
+    "objectID": "resource/pipes.html#pipes-and-fancy-fonts",
+    "href": "resource/pipes.html#pipes-and-fancy-fonts",
+    "title": "Pipes",
+    "section": "Pipes and fancy fonts",
+    "text": "Pipes and fancy fonts\nThe |&gt; is actually designed to look like a triangle pointing to the left: ▷\nBut in pretty much all fonts, the | character is too tall and doesn’t align with the top and bottom of the left side of the &gt; character, so it doesn’t quite look right.\nIf you want to be fancy and cool, you can download and install a special programming font named Fira Code that uses some typographic magic to make certain combinations of characters appear differently in RStudio.\nLike, check out the == and != and &lt;= and |&gt; characters normally:\n\n\n\nSample code with a normal font\n\n\nAnd now look at them with Fira Code, where they’re magically transformed into fancier combinations:\n\n\n\nSample code with Fira Code\n\n\nThe underlying code is the same—the != combination isn’t actually converted to a ≠ character. It just looks that way.\nInstall the font, then go to Tools &gt; Global Options… &gt; Appearance and change the editor font if you want to use Fira Code in RStudio.",
+    "crumbs": [
+      "Resources",
+      "Guides",
+      "Pipes"
+    ]
+  },
+  {
+    "objectID": "resource/pipes.html#pipe-keyboard-shortcut",
+    "href": "resource/pipes.html#pipe-keyboard-shortcut",
+    "title": "Pipes",
+    "section": "Pipe keyboard shortcut",
+    "text": "Pipe keyboard shortcut\nIn RStudio, you can insert a pipe operator with a keyboard shortcut:\n\nOn macOS: ⌘ + ⇧ + M1\nOn Windows: ctrl + shift + M\n\n1 The “M” here refers to the magrittr pipeYou can control which kind of pipe is inserted by going to Tools &gt; Global options… &gt; Code &gt; Editing and toggling the “Use native pipe operator” option:\n\n\n\nRStudio pipe options",
+    "crumbs": [
+      "Resources",
+      "Guides",
+      "Pipes"
+    ]
+  },
+  {
+    "objectID": "example/02-lab-sol.html",
+    "href": "example/02-lab-sol.html",
+    "title": "Lab 2: Tidy Data and Visualization in R – PISA",
+    "section": "",
+    "text": "In this lab session, you’ll work with a dataset containing information about PISA data. The data comes from the learningtower package. Throughout the lab, you will use the following R functions to achieve the final visualization: filter(), group_by(), summarise(), pivot_longer(), mutate(), ggplot(), aes(), geom_line(), geom_point(), facet_wrap(), scale_y_continuous(), labs(), and theme_minimal().\n\n\nThe dataset contains the following variables:\n\nyear: Year of the PISA data. Factor.\ncountry: Country 3-character code. Note that some regions/territories are coded as country for ease of input. Factor.\nschool_id: The school identification number, unique for each country and year combination. Factor.\nstudent_id: The student identification number, unique for each school, country, and year combination. Factor.\nmother_educ: Highest level of mother’s education. Ranges from “less than ISCED1” to “ISCED 3A”. Factor. Note that in 2000, all entries are missing.\nfather_educ: Highest level of father’s education. Ranges from “less than ISCED1” to “ISCED 3A”. Factor. Note that in 2000, all entries are missing.\ngender: Gender of the student. Only “male” and “female” are recorded. Factor. Note that we call this variable gender and not sex as this term was used in the OECD PISA database.\ncomputer: Possession of a computer. Only “yes” and “no” are recorded. Factor.\ninternet: Access to the internet. Only “yes” and “no” are recorded. Factor.\nmath: Simulated score in mathematics. Numeric.\nread: Simulated score in reading. Numeric.\nscience: Simulated score in science. Numeric.\nstu_wgt: The final survey weight score for the student. Numeric.\ndesk: Possession of a desk to study at. Only “yes” and “no” are recorded. Factor.\nroom: Possession of a room of your own. Only “yes” and “no” are recorded. Factor.\ndishwasher: Possession of a dishwasher. Only “yes” and “no” are recorded. Factor. Note that in 2015 and 2018, all entries are missing.\ntelevision: Number of televisions. “0”, “1”, “2” are coded for no, one, and two TVs in the house. “3+” codes for three or more TVs. Factor. Note that in 2003, all entries are missing.\ncomputer_n: Number of computers. “0”, “1”, “2” are coded for no, one, and two computers in the house. “3+” codes for three or more computers. Factor. Note that in 2003, all entries are missing.\ncar: Number of cars. “0”, “1”, “2” are coded for no, one, and two cars in the house. “3+” codes for three or more cars. Factor. Note that in 2003, all entries are missing.\nbook: Number of books. Factor. Note that encoding is different in the years 2000 and 2003 compared to all other years. Evaluate table(student$book, student$year) for a demo.\nwealth: Family wealth. Numeric. Note that in 2003, all entries are missing.\nescs: Index of economic, social, and cultural status. Numeric."
+  },
+  {
+    "objectID": "example/02-lab-sol.html#description-of-the-dataset",
+    "href": "example/02-lab-sol.html#description-of-the-dataset",
+    "title": "Lab 2: Tidy Data and Visualization in R – PISA",
+    "section": "",
+    "text": "The dataset contains the following variables:\n\nyear: Year of the PISA data. Factor.\ncountry: Country 3-character code. Note that some regions/territories are coded as country for ease of input. Factor.\nschool_id: The school identification number, unique for each country and year combination. Factor.\nstudent_id: The student identification number, unique for each school, country, and year combination. Factor.\nmother_educ: Highest level of mother’s education. Ranges from “less than ISCED1” to “ISCED 3A”. Factor. Note that in 2000, all entries are missing.\nfather_educ: Highest level of father’s education. Ranges from “less than ISCED1” to “ISCED 3A”. Factor. Note that in 2000, all entries are missing.\ngender: Gender of the student. Only “male” and “female” are recorded. Factor. Note that we call this variable gender and not sex as this term was used in the OECD PISA database.\ncomputer: Possession of a computer. Only “yes” and “no” are recorded. Factor.\ninternet: Access to the internet. Only “yes” and “no” are recorded. Factor.\nmath: Simulated score in mathematics. Numeric.\nread: Simulated score in reading. Numeric.\nscience: Simulated score in science. Numeric.\nstu_wgt: The final survey weight score for the student. Numeric.\ndesk: Possession of a desk to study at. Only “yes” and “no” are recorded. Factor.\nroom: Possession of a room of your own. Only “yes” and “no” are recorded. Factor.\ndishwasher: Possession of a dishwasher. Only “yes” and “no” are recorded. Factor. Note that in 2015 and 2018, all entries are missing.\ntelevision: Number of televisions. “0”, “1”, “2” are coded for no, one, and two TVs in the house. “3+” codes for three or more TVs. Factor. Note that in 2003, all entries are missing.\ncomputer_n: Number of computers. “0”, “1”, “2” are coded for no, one, and two computers in the house. “3+” codes for three or more computers. Factor. Note that in 2003, all entries are missing.\ncar: Number of cars. “0”, “1”, “2” are coded for no, one, and two cars in the house. “3+” codes for three or more cars. Factor. Note that in 2003, all entries are missing.\nbook: Number of books. Factor. Note that encoding is different in the years 2000 and 2003 compared to all other years. Evaluate table(student$book, student$year) for a demo.\nwealth: Family wealth. Numeric. Note that in 2003, all entries are missing.\nescs: Index of economic, social, and cultural status. Numeric."
+  },
+  {
+    "objectID": "example/02-lab-sol.html#extra-exercises",
+    "href": "example/02-lab-sol.html#extra-exercises",
+    "title": "Lab 2: Tidy Data and Visualization in R – PISA",
+    "section": "Extra exercises",
+    "text": "Extra exercises\n\nExercise 8: Customizing the Plot\nExperiment with different themes and color palettes to make the plot more visually appealing.\n\n\nExercise 9: Adding Context to the Visualization\nAdd annotations or text to the plot to highlight significant events or changes in the data."
+  },
+  {
     "objectID": "labs/02-labs.html",
     "href": "labs/02-labs.html",
-    "title": "Lab 2:",
+    "title": "Lab 2: Tidy Data and Visualization in R – PISA",
     "section": "",
-    "text": "To complete",
+    "text": "In this lab session, you’ll work with a dataset containing information about PISA data. The data comes from the learningtower package. Throughout the lab, you will use the following R functions to achieve the final visualization: filter(), group_by(), summarise(), pivot_longer(), mutate(), ggplot(), aes(), geom_line(), geom_point(), facet_wrap(), scale_y_continuous(), labs(), and theme_minimal().\n\n\nThe dataset contains the following variables:\n\nyear: Year of the PISA data. Factor.\ncountry: Country 3-character code. Note that some regions/territories are coded as country for ease of input. Factor.\nschool_id: The school identification number, unique for each country and year combination. Factor.\nstudent_id: The student identification number, unique for each school, country, and year combination. Factor.\nmother_educ: Highest level of mother’s education. Ranges from “less than ISCED1” to “ISCED 3A”. Factor. Note that in 2000, all entries are missing.\nfather_educ: Highest level of father’s education. Ranges from “less than ISCED1” to “ISCED 3A”. Factor. Note that in 2000, all entries are missing.\ngender: Gender of the student. Only “male” and “female” are recorded. Factor. Note that we call this variable gender and not sex as this term was used in the OECD PISA database.\ncomputer: Possession of a computer. Only “yes” and “no” are recorded. Factor.\ninternet: Access to the internet. Only “yes” and “no” are recorded. Factor.\nmath: Simulated score in mathematics. Numeric.\nread: Simulated score in reading. Numeric.\nscience: Simulated score in science. Numeric.\nstu_wgt: The final survey weight score for the student. Numeric.\ndesk: Possession of a desk to study at. Only “yes” and “no” are recorded. Factor.\nroom: Possession of a room of your own. Only “yes” and “no” are recorded. Factor.\ndishwasher: Possession of a dishwasher. Only “yes” and “no” are recorded. Factor. Note that in 2015 and 2018, all entries are missing.\ntelevision: Number of televisions. “0”, “1”, “2” are coded for no, one, and two TVs in the house. “3+” codes for three or more TVs. Factor. Note that in 2003, all entries are missing.\ncomputer_n: Number of computers. “0”, “1”, “2” are coded for no, one, and two computers in the house. “3+” codes for three or more computers. Factor. Note that in 2003, all entries are missing.\ncar: Number of cars. “0”, “1”, “2” are coded for no, one, and two cars in the house. “3+” codes for three or more cars. Factor. Note that in 2003, all entries are missing.\nbook: Number of books. Factor. Note that encoding is different in the years 2000 and 2003 compared to all other years. Evaluate table(student$book, student$year) for a demo.\nwealth: Family wealth. Numeric. Note that in 2003, all entries are missing.\nescs: Index of economic, social, and cultural status. Numeric.",
     "crumbs": [
       "Labs",
       "2: Data Visualization with ggplot2"
     ]
   },
   {
-    "objectID": "labs/02-labs.html#part-1",
-    "href": "labs/02-labs.html#part-1",
-    "title": "Lab 2:",
+    "objectID": "labs/02-labs.html#description-of-the-dataset",
+    "href": "labs/02-labs.html#description-of-the-dataset",
+    "title": "Lab 2: Tidy Data and Visualization in R – PISA",
     "section": "",
-    "text": "To complete",
+    "text": "The dataset contains the following variables:\n\nyear: Year of the PISA data. Factor.\ncountry: Country 3-character code. Note that some regions/territories are coded as country for ease of input. Factor.\nschool_id: The school identification number, unique for each country and year combination. Factor.\nstudent_id: The student identification number, unique for each school, country, and year combination. Factor.\nmother_educ: Highest level of mother’s education. Ranges from “less than ISCED1” to “ISCED 3A”. Factor. Note that in 2000, all entries are missing.\nfather_educ: Highest level of father’s education. Ranges from “less than ISCED1” to “ISCED 3A”. Factor. Note that in 2000, all entries are missing.\ngender: Gender of the student. Only “male” and “female” are recorded. Factor. Note that we call this variable gender and not sex as this term was used in the OECD PISA database.\ncomputer: Possession of a computer. Only “yes” and “no” are recorded. Factor.\ninternet: Access to the internet. Only “yes” and “no” are recorded. Factor.\nmath: Simulated score in mathematics. Numeric.\nread: Simulated score in reading. Numeric.\nscience: Simulated score in science. Numeric.\nstu_wgt: The final survey weight score for the student. Numeric.\ndesk: Possession of a desk to study at. Only “yes” and “no” are recorded. Factor.\nroom: Possession of a room of your own. Only “yes” and “no” are recorded. Factor.\ndishwasher: Possession of a dishwasher. Only “yes” and “no” are recorded. Factor. Note that in 2015 and 2018, all entries are missing.\ntelevision: Number of televisions. “0”, “1”, “2” are coded for no, one, and two TVs in the house. “3+” codes for three or more TVs. Factor. Note that in 2003, all entries are missing.\ncomputer_n: Number of computers. “0”, “1”, “2” are coded for no, one, and two computers in the house. “3+” codes for three or more computers. Factor. Note that in 2003, all entries are missing.\ncar: Number of cars. “0”, “1”, “2” are coded for no, one, and two cars in the house. “3+” codes for three or more cars. Factor. Note that in 2003, all entries are missing.\nbook: Number of books. Factor. Note that encoding is different in the years 2000 and 2003 compared to all other years. Evaluate table(student$book, student$year) for a demo.\nwealth: Family wealth. Numeric. Note that in 2003, all entries are missing.\nescs: Index of economic, social, and cultural status. Numeric.",
     "crumbs": [
       "Labs",
       "2: Data Visualization with ggplot2"
     ]
   },
   {
-    "objectID": "labs/04-labs.html",
-    "href": "labs/04-labs.html",
-    "title": "Lab 4:",
-    "section": "",
-    "text": "To complete",
+    "objectID": "labs/02-labs.html#extra-exercises",
+    "href": "labs/02-labs.html#extra-exercises",
+    "title": "Lab 2: Tidy Data and Visualization in R – PISA",
+    "section": "Extra exercises",
+    "text": "Extra exercises\n\nExercise 8: Customizing the Plot\nExperiment with different themes and color palettes to make the plot more visually appealing.\n\n\nExercise 9: Adding Context to the Visualization\nAdd annotations or text to the plot to highlight significant events or changes in the data.",
     "crumbs": [
       "Labs",
-      "4: Reproducible Research and Automation"
-    ]
-  },
-  {
-    "objectID": "labs/04-labs.html#part-1",
-    "href": "labs/04-labs.html#part-1",
-    "title": "Lab 4:",
-    "section": "",
-    "text": "To complete",
-    "crumbs": [
-      "Labs",
-      "4: Reproducible Research and Automation"
-    ]
-  },
-  {
-    "objectID": "resource/quarto.html",
-    "href": "resource/quarto.html",
-    "title": "Using Quarto",
-    "section": "",
-    "text": "Quarto Markdown is regular Markdown with R code and output sprinkled in. You can do everything you can with regular Markdown, but you can incorporate graphs, tables, and other code output directly in your document. You can create HTML, PDF, and Word documents, PowerPoint and HTML presentations, websites, books, and even interactive dashboards with Quarto. This whole course website is created with Quarto.\nQuarto’s predecessor was called R Markdown and worked exclusively with R (though there are ways to use other languages in document). Quarto is essentially “R Markdown 2.0,” but it is designed to be language agnostic. You can use R, Python, Julia, Observable JS, and even Stata code all in the same document. It is magical.\nHere are the most important things you’ll need to know about Quarto in this class:",
-    "crumbs": [
-      "Resources",
-      "Guides",
-      "Using Quarto"
-    ]
-  },
-  {
-    "objectID": "resource/quarto.html#key-terms",
-    "href": "resource/quarto.html#key-terms",
-    "title": "Using Quarto",
-    "section": "Key terms",
-    "text": "Key terms\n\nDocument: A Markdown file where you type stuff\nChunk: A piece of R code that is included in your document. It looks like this:\n```{r}\n# Code goes here\n1 + 1\n```\nThere must be an empty line before and after the chunk. The final three backticks must be the only thing on the line—if you add more text, or if you forget to add the backticks, or accidentally delete the backticks, your document will not render correctly.\nRender: When you render a document, R runs each of the chunks sequentially and converts the output of each chunk into Markdown. R then runs the document through pandoc to convert it to HTML or PDF or Word (or whatever output you’ve selected).\nYou can render by clicking on the “Render” button at the top of the editor window, or by pressing ⌘⇧K on macOS or control + shift + K on Windows.",
-    "crumbs": [
-      "Resources",
-      "Guides",
-      "Using Quarto"
-    ]
-  },
-  {
-    "objectID": "resource/quarto.html#add-chunks",
-    "href": "resource/quarto.html#add-chunks",
-    "title": "Using Quarto",
-    "section": "Add chunks",
-    "text": "Add chunks\nThere are three ways to insert chunks:\n\nPress ⌘⌥I on macOS or control + alt + I on Windows\nClick on the “Insert” button at the top of the editor window\n\n\n\nManually type all the backticks and curly braces (don’t do this)",
-    "crumbs": [
-      "Resources",
-      "Guides",
-      "Using Quarto"
-    ]
-  },
-  {
-    "objectID": "resource/quarto.html#chunk-names",
-    "href": "resource/quarto.html#chunk-names",
-    "title": "Using Quarto",
-    "section": "Chunk names",
-    "text": "Chunk names\nYou can add names to chunks to make it easier to navigate your document. If you click on the little dropdown menu at the bottom of your editor in RStudio, you can see a table of contents that shows all the headings and chunks. If you name chunks, they’ll appear in the list. If you don’t include a name, the chunk will still show up, but you won’t know what it does.\n\nThere are two ways to add a chunk name:\n\nAs a special comment called label:, following #| at the top of the chunk (this is the preferred way):\n```{r}\n#| label: name-of-this-chunk\n\n1 + 1\n```\nImmediately after the {r in the first line of the chunk (this is the older way):\n```{r name-of-this-chunk}\n1 + 1\n```\n\nNames cannot contain spaces, but they can contain underscores and dashes. All chunk names in your document must be unique.",
-    "crumbs": [
-      "Resources",
-      "Guides",
-      "Using Quarto"
-    ]
-  },
-  {
-    "objectID": "resource/quarto.html#chunk-options",
-    "href": "resource/quarto.html#chunk-options",
-    "title": "Using Quarto",
-    "section": "Chunk options",
-    "text": "Chunk options\nThere are a bunch of different options you can set for each chunk. You can see a complete list in the R Markdown Reference Guide or at {knitr}’s website.\nSet chunk options as special comments following #| at the top of the chunk (this is the preferred way):\n```{r}\n#| label: fig-some-plot\n#| fig-cap: \"Here's a caption for this plot\"\n#| fig-width: 6\n#| fig-height: 4\n#| echo: false\n\nggplot(mpg, aes(x = displ, y = hwy, color = drv)) +\n  geom_point() +\n  geom_smooth(method = \"lm\")\n```\nTechnically you can also set these options inside the {r} section of the chunk—this is the old way to do it, but it gets really gross and long when you have lots of settings:\n{r fig-some-plot, fig.width=6, fig.height=4, echo=FALSE, fig.cap = \"Here's a caption for this plot\"}\nHere are some of the most common chunk options you’ll use in this class:\n\nlabel: fig-whatever: Try to always use chunk labels. If you want things to be cross-referenceable, use a fig- prefix on chunks that make figures and a tbl- prefix on chunks that make tables\ntbl-cap: \"Blah\": Add a caption to your table\nfig-cap: \"Blah\": Add a caption to your figure\nfig-width: 5 and fig-height: 3 (or whatever number you want): Set the dimensions for figures\necho: false: The code is not shown in the final document, but the results are\nmessage: false: Any messages that R generates (like all the notes that appear after you load a package) are omitted\nwarning: false: Any warnings that R generates are omitted\ninclude: false: The chunk still runs, but the code and results are not included in the final document",
-    "crumbs": [
-      "Resources",
-      "Guides",
-      "Using Quarto"
-    ]
-  },
-  {
-    "objectID": "resource/quarto.html#inline-chunks",
-    "href": "resource/quarto.html#inline-chunks",
-    "title": "Using Quarto",
-    "section": "Inline chunks",
-    "text": "Inline chunks\nYou can also include R output directly in your text, which is really helpful if you want to report numbers from your analysis. To do this, use `r r_code_here`.\nIt’s generally easiest to calculate numbers in a regular chunk beforehand and then use an inline chunk to display the value in your text. For instance, this document…\n```{r}\n#| label: find-avg-mpg\n#| echo: false\n\navg_mpg &lt;- mean(mtcars$mpg)\n```\n\nThe average fuel efficiency for cars from 1974 was `r round(avg_mpg, 1)` miles per gallon.\n… would render to this:\n\nThe average fuel efficiency for cars from 1974 was 20.1 miles per gallon.",
-    "crumbs": [
-      "Resources",
-      "Guides",
-      "Using Quarto"
-    ]
-  },
-  {
-    "objectID": "resource/quarto.html#output-formats",
-    "href": "resource/quarto.html#output-formats",
-    "title": "Using Quarto",
-    "section": "Output formats",
-    "text": "Output formats\nYou can specify what kind of document you create when you render in the YAML front matter.\ntitle: \"My document\"\nformat:\n  html: default\n  pdf: default\n  docx: default\nThe indentation of the YAML section matters, especially when you have settings nested under each output type. Here’s what a typical format section might look like:\n---\ntitle: \"My document\"\nauthor: \"My name\"\ndate: \"June 4, 2024\"\nformat: \n  html_document: \n    toc: yes\n  pdf_document: \n    toc: yes\n  word_document: \n    toc: yes\n---",
-    "crumbs": [
-      "Resources",
-      "Guides",
-      "Using Quarto"
-    ]
-  },
-  {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "\n            Advanced Quantitative Methods: Description and Prediction  Summer Math Camp\n        ",
-    "section": "",
-    "text": "Advanced Quantitative Methods: Description and Prediction  Summer Math Camp\n        \n        \n            Conceptual mastery of statistical methods for public policy, focusing on application rather than mechanics\n        \n        \n            API 209 • Summer 2024Prof: Dan Levy | Summer TF: Rony RodriguezHarvard University\n        \n    \n    \n      \n        \n        \n        \n      \n    \n\n\n\n\n\n\nSummer TF\n\n Rony Rodriguez-Ramirez\n Wexner 436. HKS\n rrodriguezramirez@g.harvard.edu\n Bluesky\n Twitter\n\n\n\nCourse details\n\n Check schedule page\n August 15-August 28, 2024\n Check schedule page\n Anywhere\n\n\n\nContacting me\n\n Schedule an appointment\n Slack\n\nE-mail and Slack are the best ways to get in contact with me. Sometimes, life happens so bear with me if I don’t respond quickly!"
-  },
-  {
-    "objectID": "content/02-content.html",
-    "href": "content/02-content.html",
-    "title": "Elegant Data Visualization with ggplot2",
-    "section": "",
-    "text": "IN CONSTRUCTION!",
-    "crumbs": [
-      "Lessons",
-      "Data Visualization",
       "2: Data Visualization with ggplot2"
     ]
-  },
-  {
-    "objectID": "content/02-content.html#overview",
-    "href": "content/02-content.html#overview",
-    "title": "Elegant Data Visualization with ggplot2",
-    "section": "",
-    "text": "IN CONSTRUCTION!",
-    "crumbs": [
-      "Lessons",
-      "Data Visualization",
-      "2: Data Visualization with ggplot2"
-    ]
-  },
-  {
-    "objectID": "content/02-content.html#guiding-questions",
-    "href": "content/02-content.html#guiding-questions",
-    "title": "Elegant Data Visualization with ggplot2",
-    "section": "Guiding Questions",
-    "text": "Guiding Questions\n\n\n\n\n\n\nThese are optional!\n\n\n\nYou don’t need to answer all of these—or even any of them! They are here to help guide your thinking and reflection on the content. Feel free to explore whatever aspects you find most interesting.\n\n\n\nQuestion 1",
-    "crumbs": [
-      "Lessons",
-      "Data Visualization",
-      "2: Data Visualization with ggplot2"
-    ]
-  },
-  {
-    "objectID": "content/02-content.html#readings",
-    "href": "content/02-content.html#readings",
-    "title": "Elegant Data Visualization with ggplot2",
-    "section": "Readings",
-    "text": "Readings\n\nNo readings for this session.",
-    "crumbs": [
-      "Lessons",
-      "Data Visualization",
-      "2: Data Visualization with ggplot2"
-    ]
-  },
-  {
-    "objectID": "content/02-content.html#slides",
-    "href": "content/02-content.html#slides",
-    "title": "Elegant Data Visualization with ggplot2",
-    "section": "Slides",
-    "text": "Slides\nThe slides for this session are available online as an HTML file. Use the buttons below to open the slides either as an interactive website or as a static PDF (for printing or storing for later). You can also navigate through the embedded slides directly on this page using your left and right arrow keys.\n\n View all slides in new window  Download PDF of all slides\n\n\n\n\n\n\n\n\n\n\n\nTip\n\n\n\nPro tip: If you type ? (or shift + /) while viewing the slides, you can access a list of special commands to enhance your experience.",
-    "crumbs": [
-      "Lessons",
-      "Data Visualization",
-      "2: Data Visualization with ggplot2"
-    ]
-  },
-  {
-    "objectID": "content/04-content.html",
-    "href": "content/04-content.html",
-    "title": "Streamlining Research with R",
-    "section": "",
-    "text": "IN CONSTRUCTION!",
-    "crumbs": [
-      "Lessons",
-      "Streamlining Research",
-      "4: Reproducible Research and Automation"
-    ]
-  },
-  {
-    "objectID": "content/04-content.html#overview",
-    "href": "content/04-content.html#overview",
-    "title": "Streamlining Research with R",
-    "section": "",
-    "text": "IN CONSTRUCTION!",
-    "crumbs": [
-      "Lessons",
-      "Streamlining Research",
-      "4: Reproducible Research and Automation"
-    ]
-  },
-  {
-    "objectID": "content/04-content.html#guiding-questions",
-    "href": "content/04-content.html#guiding-questions",
-    "title": "Streamlining Research with R",
-    "section": "Guiding Questions",
-    "text": "Guiding Questions\n\n\n\n\n\n\nThese are optional!\n\n\n\nYou don’t need to answer all of these—or even any of them! They are here to help guide your thinking and reflection on the content. Feel free to explore whatever aspects you find most interesting.\n\n\n\nQuestion 1",
-    "crumbs": [
-      "Lessons",
-      "Streamlining Research",
-      "4: Reproducible Research and Automation"
-    ]
-  },
-  {
-    "objectID": "content/04-content.html#readings",
-    "href": "content/04-content.html#readings",
-    "title": "Streamlining Research with R",
-    "section": "Readings",
-    "text": "Readings\n\nNo readings for this session.",
-    "crumbs": [
-      "Lessons",
-      "Streamlining Research",
-      "4: Reproducible Research and Automation"
-    ]
-  },
-  {
-    "objectID": "content/04-content.html#slides",
-    "href": "content/04-content.html#slides",
-    "title": "Streamlining Research with R",
-    "section": "Slides",
-    "text": "Slides\nThe slides for this session are available online as an HTML file. Use the buttons below to open the slides either as an interactive website or as a static PDF (for printing or storing for later). You can also navigate through the embedded slides directly on this page using your left and right arrow keys.\n\n View all slides in new window  Download PDF of all slides\n\n\n\n\n\n\n\n\n\n\n\nTip\n\n\n\nPro tip: If you type ? (or shift + /) while viewing the slides, you can access a list of special commands to enhance your experience.",
-    "crumbs": [
-      "Lessons",
-      "Streamlining Research",
-      "4: Reproducible Research and Automation"
-    ]
-  },
-  {
-    "objectID": "resource/markdown.html",
-    "href": "resource/markdown.html",
-    "title": "Using Markdown",
-    "section": "",
-    "text": "Markdown is a special kind of markup language that lets you format text with simple syntax. You can then use a converter program like pandoc to convert Markdown into whatever format you want: HTML, PDF, Word, PowerPoint, etc. (see the full list of output types here)",
-    "crumbs": [
-      "Resources",
-      "Guides",
-      "Using Markdown"
-    ]
-  },
-  {
-    "objectID": "resource/markdown.html#basic-markdown-formatting",
-    "href": "resource/markdown.html#basic-markdown-formatting",
-    "title": "Using Markdown",
-    "section": "Basic Markdown formatting",
-    "text": "Basic Markdown formatting\n\n\n\n\n\n\n\nType…\n…to get\n\n\n\n\nSome text in a paragraph.\n\nMore text in the next paragraph. Always\nuse empty lines between paragraphs.\nSome text in a paragraph.\nMore text in the next paragraph. Always use empty lines between paragraphs.\n\n\n*Italic* or _Italic_\nItalic\n\n\n**Bold** or __Bold__\nBold\n\n\n# Heading 1\nHeading 1\n\n\n## Heading 2\nHeading 2\n\n\n### Heading 3\nHeading 3\n\n\n(Go up to heading level 6 with ######)\n\n\n\n[Link text](https://www.example.com)\nLink text\n\n\n![Image caption](path/to/image.png)\n\n\n\nImage caption\n\n\n\n\n`Inline code` with backticks\nInline code with backticks\n\n\nBlock of code with triple backticks:\n\n\n\n```\nBlock of code in between\ntriple backticks\n```\nBlock of code in between\ntriple backticks\n\n\nOptionally specify a language:\n\n\n\n``` r\nx &lt;- c(1, 3, 5, 7)\nplot(x)\n```\nx &lt;- c(1, 3, 5, 7)\nplot(x)\n\n\n&gt; Blockquote\n\nBlockquote\n\n\n\n- Things in\n- an unordered\n- list\n\nThings in\nan unordered\nlist\n\n\n\n1. Things in\n1. an ordered\n2. list\n3. Notice that the\n8. numbers don't\n18. matter\n\nThings in\nan ordered\nlist\nNotice that the\nnumbers don’t\nmatter\n\n\n\nHorizontal line\n---\nHorizontal line",
-    "crumbs": [
-      "Resources",
-      "Guides",
-      "Using Markdown"
-    ]
-  },
-  {
-    "objectID": "resource/markdown.html#math",
-    "href": "resource/markdown.html#math",
-    "title": "Using Markdown",
-    "section": "Math",
-    "text": "Math\n\nBasic math commands\nMarkdown uses LaTeX to create fancy mathematical equations. There are like a billion little options and features available for math equations—you can find helpful examples of the the most common basic commands here. In this class, these will be the most common things you’ll use:\n\n\n\n\n\n  \n    \n    \n    \n  \n  \n    \n      Description\n      Command\n      Output\n    \n  \n  \n    \n      Letters\n    \n    Roman letters\n\na b c d e f\n\n\\(a\\ b\\ c\\ d\\ e\\ f\\)\n\n    Greek letters (see this for all possible letters)\n\n\\alpha \\beta \\Gamma \\gamma \\Delta \\delta \\epsilon\n\n\\(\\alpha\\ \\beta\\ \\Gamma\\ \\gamma\\ \\Delta\\ \\delta\\ \\epsilon\\)\n\n    Letters will automatically be italicized and treated as math variables;\nif you want actual text in the math, use \\text{}\n\nEw: Treatment = \\beta\nGood: \\text{Treatment} = \\beta\n\nEw: \\(Treatment = \\beta\\)\nGood: \\(\\text{Treatment} = \\beta\\)\n\n    Extra spaces will automatically be removed; if you want a space, use \\ \n\nNo space: x y\nSpace: x\\ y\n\nNo space: \\(x y\\)\nSpace: \\(x\\ y\\)\n\n    \n      Superscripts and subscripts\n    \n    Use ^ to make one character superscripted.\n\nx^2\n\n\\(x^2\\)\n\n    Wrap the superscripted part in {} if there’s more than one character\n\nx^{2+y}\n\n\\(x^{2+y}\\)\n\n    Use _ to make one character subscripted\n\n\\beta_1\n\n\\(\\beta_1\\)\n\n    Wrap the subscripted part in {} if there’s more than one character\n\n\\beta_{i, t}\n\n\\(\\beta_{i, t}\\)\n\n    Use superscripts and subscripts simultaneously\n\n\\beta_1^{\\text{Treatment}}\n\n\\(\\beta_1^{\\text{Treatment}}\\)\n\n    You can even nest them\n\nx^{2^{2^2}}\n\n\\(x^{2^{2^2}}\\)\n\n    \n      Math operations\n    \n    Addition\n\n2 + 5 = 7\n\n\\(2 + 5 = 7\\)\n\n    Subtraction\n\n2 - 5 = -3\n\n\\(2 - 5 = -3\\)\n\n    Multiplication\n\nx \\times y\nx \\cdot y\n\n\\(x \\times y\\)\n\\(x \\cdot y\\)\n\n    Division\n\n8 \\div 2\n\n\\(8 \\div 2\\)\n\n    Fractions\n\n\\frac{8}{2}\n\n\\(\\frac{8}{2}\\)\n\n    Square roots; use [3] for other roots\n\n\\sqrt{81} = 9\n\\sqrt[3]{27} = 3\n\n\\(\\sqrt{81} = 9\\)\n\\(\\sqrt[3]{27} = 3\\)\n\n    Summation; use sub/superscripts for extra details\n\n\\sum x\n\\sum_{n=1}^{\\infty} \\frac{1}{n}\n\n\\(\\sum x\\)\n\\(\\sum_{n=1}^{\\infty} \\frac{1}{n}\\)\n\n    Products; use sub/superscripts for extra details\n\n\\prod x\n\\prod_{n=1}^{5} n^2\n\n\\(\\prod x\\)\n\\(\\prod_{n=1}^{5} n^2\\)\n\n    Integrals; use sub/superscripts for extra details\n\n\\int x^2 \\ dx\n\\int_{1}^{100} x^2 \\ dx\n\n\\(\\int x^2 \\ dx\\)\n\\(\\int_{1}^{100} x^2 \\ dx\\)\n\n    \n      Extra symbols\n    \n    Add a bar for things like averages\n\n\\bar{x}\n\n\\(\\bar{x}\\)\n\n    Use an overline for longer things\n\nEw: \\bar{abcdef}\nGood: \\overline{abcdef}\n\nEw: \\(\\bar{abcdef}\\)\nGood: \\(\\overline{abcdef}\\)\n\n    Add a hat for things like estimates\n\n\\hat{y}\n\n\\(\\hat{y}\\)\n\n    Use a wide hat for longer things\n\nEw: \\hat{abcdef}\nGood: \\widehat{abcdef}\n\nEw: \\(\\hat{abcdef}\\)\nGood: \\(\\widehat{abcdef}\\)\n\n    Use arrows for DAG-like things\n\nZ \\rightarrow Y \\leftarrow X\n\n\\(Z \\rightarrow Y \\leftarrow X\\)\n\n    \n      Bonus fun\n    \n    Use colors!; see here for more details and here for a list of color names\n\n{\\color{red} y} = {\\color{blue} \\beta_1 x_1}\n\n\\({\\color{red} y} = {\\color{blue} \\beta_1 x_1}\\)\n\n  \n  \n  \n\n\n\n\n\n\nUsing math inline\nYou can use math in two different ways: inline or in a display block. To use math inline, wrap it in single dollar signs, like $y = mx + b$:\n\n\n\n\n\n\nInline math\n\n\n\nType…\nBased on the DAG, the regression model for estimating the effect of education on wages\nis $\\hat{y} = \\beta_0 + \\beta_1 x_1 + \\epsilon$, or $\\text{Wages} = \\beta_0 + \\beta_1 \\text{Education} + \\epsilon$.\n…to get…\n\nBased on the DAG, the regression model for estimating the effect of education on wages is \\(\\hat{y} = \\beta_0 + \\beta_1 x_1 + \\epsilon\\), or \\(\\text{Wages} = \\beta_0 + \\beta_1 \\text{Education} + \\epsilon\\)\n\n\n\n\n\nUsing math in a block\nTo put an equation on its own line in a display block, wrap it in double dollar signs, like this:\n\n\n\n\n\n\nBlock math\n\n\n\nType…\nThe quadratic equation was an important part of high school math:\n\n$$\nx = \\frac{-b \\pm \\sqrt{b^2 - 4ac}}{2a}\n$$\n\nBut now we just use computers to solve for $x$.\n…to get…\n\nThe quadratic equation was an important part of high school math:\n\\[\nx = \\frac{-b \\pm \\sqrt{b^2 - 4ac}}{2a}\n\\]\nBut now we just use computers to solve for \\(x\\).\n\n\n\n\n\nDollar signs and math\nBecause dollar signs are used to indicate math equations, you can’t just use dollar signs like normal if you’re writing about actual dollars. For instance, if you write This book costs $5.75 and this other costs $40, Markdown will treat everything that comes between the dollar signs as math, like so: “This book costs \\(5.75 and this other costs \\)40”.\nTo get around that, put a backslash (\\) in front of the dollar signs, so that This book costs \\$5.75 and this other costs \\$40 becomes “This book costs $5.75 and this other costs $40”.",
-    "crumbs": [
-      "Resources",
-      "Guides",
-      "Using Markdown"
-    ]
-  },
-  {
-    "objectID": "resource/markdown.html#tables",
-    "href": "resource/markdown.html#tables",
-    "title": "Using Markdown",
-    "section": "Tables",
-    "text": "Tables\nThere are a few different ways to hand-create tables in Markdown—I say “hand-create” because it’s normally way easier to use R to generate these things with packages like {gt} or {knitr} or {kableExtra}. The two most common are simple tables and pipe tables. You should look at the full documentation here.\n\n\n\n\n\n\nSimple tables\n\n\n\nFor simple tables, type…\n  Right     Left     Center     Default\n-------     ------ ----------   -------\n     12     12        12            12\n    123     123       123          123\n      1     1          1             1\n\nTable: Caption goes here\n…to get…\n\nCaption goes here\n\n\nRight\nLeft\nCenter\nDefault\n\n\n\n\n12\n12\n12\n12\n\n\n123\n123\n123\n123\n\n\n1\n1\n1\n1\n\n\n\n\n\n\n\n\n\n\n\nPipe tables\n\n\n\nFor pipe tables, type…\n| Right | Left | Default | Center |\n|------:|:-----|---------|:------:|\n|   12  |  12  |    12   |    12  |\n|  123  |  123 |   123   |   123  |\n|    1  |    1 |     1   |     1  |\n\nTable: Caption goes here\n…to get…\n\nCaption goes here\n\n\nRight\nLeft\nDefault\nCenter\n\n\n\n\n12\n12\n12\n12\n\n\n123\n123\n123\n123\n\n\n1\n1\n1\n1",
-    "crumbs": [
-      "Resources",
-      "Guides",
-      "Using Markdown"
-    ]
-  },
-  {
-    "objectID": "resource/markdown.html#footnotes",
-    "href": "resource/markdown.html#footnotes",
-    "title": "Using Markdown",
-    "section": "Footnotes",
-    "text": "Footnotes\nThere are two different ways to add footnotes (see here for complete documentation): regular and inline.\nRegular notes need (1) an identifier and (2) the actual note. The identifier can be whatever you want. Some people like to use numbers like [^1], but if you ever rearrange paragraphs or add notes before #1, the numbering will be wrong (in your Markdown file, not in the output; everything will be correct in the output). Because of that, I prefer to use some sort of text label:\n\n\n\n\n\n\nFootnotes\n\n\n\nType…\nHere is a footnote reference[^1] and here is another [^note-on-dags].\n\n[^1]: This is a note.\n\n[^note-on-dags]: DAGs are neat. \n\nAnd here's more of the document.\n…to get…\n\nHere is a footnote reference1 and here is another.2\nAnd here’s more of the document.\n\n\n\n\n\nThis is a note.↩︎\n\n\n\n\nDAGs are neat.↩︎\n\n\n\n\n\n\n\nYou can also use inline footnotes with ^[Text of the note goes here], which are often easier because you don’t need to worry about identifiers:\n\n\n\n\n\n\nInline footnotes\n\n\n\nType…\nCausal inference is neat.^[But it can be hard too!]\n…to get…\n\nCausal inference is neat.1\n\n\n\n\n\nBut it can be hard too!↩︎",
-    "crumbs": [
-      "Resources",
-      "Guides",
-      "Using Markdown"
-    ]
-  },
-  {
-    "objectID": "resource/markdown.html#front-matter",
-    "href": "resource/markdown.html#front-matter",
-    "title": "Using Markdown",
-    "section": "Front matter",
-    "text": "Front matter\nYou can include a special section at the top of a Markdown document that contains metadata (or data about your document) like the title, date, author, etc. This section uses a special simple syntax named YAML (or “YAML Ain’t Markup Language”) that follows this basic outline: setting: value for setting. Here’s an example YAML metadata section. Note that it must start and end with three dashes (---).\n---\ntitle: Title of your document\ndate: \"June 4, 2024\"\nauthor: \"Your name\"\n---\nYou can put the values inside quotes (like the date and name in the example above), or you can leave them outside of quotes (like the title in the example above). I typically use quotes just to be safe—if the value you’re using has a colon (:) in it, it’ll confuse Markdown since it’ll be something like title: My cool title: a subtitle, which has two colons. It’s better to do this:\n---\ntitle: \"My cool title: a subtitle\"\n---\nIf you want to use quotes inside one of the values (e.g. your document is An evaluation of \"scare quotes\"), you can use single quotes instead:\n---\ntitle: 'An evaluation of \"scare quotes\"'\n---",
-    "crumbs": [
-      "Resources",
-      "Guides",
-      "Using Markdown"
-    ]
-  },
-  {
-    "objectID": "resource/markdown.html#citations",
-    "href": "resource/markdown.html#citations",
-    "title": "Using Markdown",
-    "section": "Citations",
-    "text": "Citations\nOne of the most powerful features of Markdown + pandoc is the ability to automatically cite things and generate bibliographies. to use citations, you need to create a BibTeX file (ends in .bib) that contains a database of the things you want to cite. You can do this with bibliography managers designed to work with BibTeX directly (like BibDesk on macOS), or you can use Zotero (macOS and Windows) to export a .bib file. You can download an example .bib file of all the readings from this class here.\nComplete details for using citations can be found here. In brief, you need to do three things:\n\nAdd a bibliography: entry to the YAML metadata:\n---\ntitle: Title of your document\ndate: \"June 4, 2024\"\nauthor: \"Your name\"\nbibliography: name_of_file.bib\n---\nChoose a citation style based on a CSL file. The default is Chicago author-date, but you can choose from 2,000+ at this repository. Download the CSL file, put it in your project folder, and add an entry to the YAML metadata (or provide a URL to the online version):\n---\ntitle: Title of your document\ndate: \"June 4, 2024\"\nauthor: \"Your name\"\nbibliography: name_of_file.bib\ncsl: \"https://raw.githubusercontent.com/citation-style-language/styles/master/apa.csl\"\n---\nSome of the most common CSLs are:\n\nChicago author-date\nChicago note-bibliography\nChicago full note-bibliography (no shortened notes or ibids)\nAPA 7th edition\nMLA 8th edition\n\nCite things in your document. Check the documentation for full details of how to do this. Essentially, you use @citationkey inside square brackets ([]):\n\n\n\n\n\n\n\nType…\n…to get…\n\n\n\n\nCausal inference is neat [@Rohrer:2018;\n@AngristPischke:2015].\nCausal inference is neat (Rohrer 2018; Angrist and Pischke 2015).\n\n\nCausal inference is neat [see @Rohrer:2018, p. 34;\nalso @AngristPischke:2015, chapter 1].\nCausal inference is neat (see Rohrer 2018, 34; also Angrist and Pischke 2015, chap. 1).\n\n\nAngrist and Pischke say causal inference is neat\n[-@AngristPischke:2015; see also @Rohrer:2018].\nAngrist and Pischke say causal inference is neat (2015; see also Rohrer 2018).\n\n\n@AngristPischke:2015 [chapter 1] say causal\ninference is neat, and @Rohrer:2018 agrees.\nAngrist and Pischke (2015, chap. 1) say causal inference is neat, and Rohrer (2018) agrees.\n\n\n\nAfter compiling, you should have a perfectly formatted bibliography added to the end of your document too:\n\nAngrist, Joshua D., and Jörn-Steffen Pischke. 2015. Mastering ’Metrics: The Path from Cause to Effect. Princeton, NJ: Princeton University Press.\nRohrer, Julia M. 2018. “Thinking Clearly About Correlations and Causation: Graphical Causal Models for Observational Data.” Advances in Methods and Practices in Psychological Science 1 (1): 27–42. https://doi.org/10.1177/2515245917745629.",
-    "crumbs": [
-      "Resources",
-      "Guides",
-      "Using Markdown"
-    ]
-  },
-  {
-    "objectID": "resource/markdown.html#other-references",
-    "href": "resource/markdown.html#other-references",
-    "title": "Using Markdown",
-    "section": "Other references",
-    "text": "Other references\nThese websites have additional details and examples and practice tools:\n\nCommonMark’s Markdown tutorial: A quick interactive Markdown tutorial.\nMarkdown tutorial: Another interactive tutorial to practice using Markdown.\nMarkdown cheatsheet: Useful one-page reminder of Markdown syntax.\nThe Plain Person’s Guide to Plain Text Social Science: A comprehensive explanation and tutorial about why you should write data-based reports in Markdown.",
-    "crumbs": [
-      "Resources",
-      "Guides",
-      "Using Markdown"
-    ]
-  },
-  {
-    "objectID": "example/01-lab-sol.html",
-    "href": "example/01-lab-sol.html",
-    "title": "Lab 1: Analyzing Olympic Data with R (Solutions)",
-    "section": "",
-    "text": "In this lab session, you’ll work with a dataset containing information about the Olympics. The dataset includes various variables, such as the edition of the games, country codes, sports, events, athletes, and the results. Your goal is to explore this data, identify patterns, handle missing values, and generate insights using R.\nThe dataset contains the following variables:\n\nedition: The edition of the Olympic Games.\nedition_id: A unique identifier for the edition.\ncountry_noc: The National Olympic Committee (NOC) code representing the country.\nsport: The sport in which the event took place.\nevent: The specific event within the sport.\nresult_id: A unique identifier for the result.\nathlete: The name of the athlete.\nathlete_id: A unique identifier for the athlete.\npos: The position or rank the athlete achieved in the event.\nmedal: The type of medal won (if any).\nisTeamSport: Indicates whether the event is a team sport."
-  },
-  {
-    "objectID": "example/01-lab-sol.html#exercise-1-data-exploration",
-    "href": "example/01-lab-sol.html#exercise-1-data-exploration",
-    "title": "Lab 1: Analyzing Olympic Data with R (Solutions)",
-    "section": "Exercise 1: Data Exploration",
-    "text": "Exercise 1: Data Exploration\n\nLoad the dataset into R.\nGet an overview of the dataset.\nYou should display the first few rows and summarize each variable to understand the dataset’s structure. This step is crucial for familiarizing yourself with the data you’ll be working with.\nDetermine the number of unique editions, sports, and events in the dataset.\nYour goal here is to identify the diversity within the dataset. Use R functions to calculate how many unique Olympic editions, sports, and events are represented in the data.\n\n\nExpected Outcome:\n\nAn understanding of the dataset’s structure.\nInsights into the diversity of the data, such as the number of unique Olympic editions and sports.\n\n\n# Load necessary packages\nlibrary(tidyverse)\n\n── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──\n✔ dplyr     1.1.4     ✔ readr     2.1.5\n✔ forcats   1.0.0     ✔ stringr   1.5.1\n✔ ggplot2   3.5.1     ✔ tibble    3.2.1\n✔ lubridate 1.9.3     ✔ tidyr     1.3.1\n✔ purrr     1.0.2     \n── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──\n✖ dplyr::filter() masks stats::filter()\n✖ dplyr::lag()    masks stats::lag()\nℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors\n\n# Load the dataset\nolympics_data &lt;- read_csv(\"https://raw.githubusercontent.com/josephwccheng/olympedia_web_scraping/main/data/Olympic_Athlete_Event_Results.csv\")\n\nRows: 314907 Columns: 11\n── Column specification ────────────────────────────────────────────────────────\nDelimiter: \",\"\nchr (7): edition, country_noc, sport, event, athlete, pos, medal\ndbl (3): edition_id, result_id, athlete_id\nlgl (1): isTeamSport\n\nℹ Use `spec()` to retrieve the full column specification for this data.\nℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.\n\n# Display the first few rows\nhead(olympics_data)\n\n# A tibble: 6 × 11\n  edition  edition_id country_noc sport event result_id athlete athlete_id pos  \n  &lt;chr&gt;         &lt;dbl&gt; &lt;chr&gt;       &lt;chr&gt; &lt;chr&gt;     &lt;dbl&gt; &lt;chr&gt;        &lt;dbl&gt; &lt;chr&gt;\n1 1908 Su…          5 ANZ         Athl… 100 …     56265 Ernest…      64710 DNS  \n2 1908 Su…          5 ANZ         Athl… 400 …     56313 Henry …      64756 DNS  \n3 1908 Su…          5 ANZ         Athl… 800 …     56338 Harvey…      64808 3 h8…\n4 1908 Su…          5 ANZ         Athl… 800 …     56338 Guy Ha…     922519 DNS  \n5 1908 Su…          5 ANZ         Athl… 800 …     56338 Joseph…      64735 DNS  \n6 1908 Su…          5 ANZ         Athl… 800 …     56338 Henry …      64756 DNS  \n# ℹ 2 more variables: medal &lt;chr&gt;, isTeamSport &lt;lgl&gt;\n\n# Summary of the dataset\nsummary(olympics_data)\n\n   edition            edition_id    country_noc           sport          \n Length:314907      Min.   : 1.00   Length:314907      Length:314907     \n Class :character   1st Qu.:16.00   Class :character   Class :character  \n Mode  :character   Median :24.00   Mode  :character   Mode  :character  \n                    Mean   :30.16                                        \n                    3rd Qu.:49.00                                        \n                    Max.   :62.00                                        \n    event             result_id          athlete            athlete_id      \n Length:314907      Min.   :       1   Length:314907      Min.   :       1  \n Class :character   1st Qu.:   31505   Class :character   1st Qu.:   36020  \n Mode  :character   Median :   65810   Mode  :character   Median :   76333  \n                    Mean   : 1502015                      Mean   :  123781  \n                    3rd Qu.:  260000                      3rd Qu.:  111028  \n                    Max.   :90016770                      Max.   :22000000  \n     pos               medal           isTeamSport    \n Length:314907      Length:314907      Mode :logical  \n Class :character   Class :character   FALSE:194095   \n Mode  :character   Mode  :character   TRUE :120812   \n                                                      \n                                                      \n                                                      \n\n# Number of unique editions, sports, and events\nn_editions &lt;- n_distinct(olympics_data$edition)\nn_sports   &lt;- n_distinct(olympics_data$sport)\nn_events   &lt;- n_distinct(olympics_data$event)\n\nn_editions\n\n[1] 55\n\nn_sports\n\n[1] 108\n\nn_events\n\n[1] 916"
-  },
-  {
-    "objectID": "example/01-lab-sol.html#exercise-2-handling-missing-values",
-    "href": "example/01-lab-sol.html#exercise-2-handling-missing-values",
-    "title": "Lab 1: Analyzing Olympic Data with R (Solutions)",
-    "section": "Exercise 2: Handling Missing Values",
-    "text": "Exercise 2: Handling Missing Values\n\nIdentify missing values.\nDetermine which variables have missing values and how many missing values are present in each. This will help you understand the completeness of the data.\nCreate a subset of the data where all missing values are removed.\nYou should generate a clean dataset without missing values. Consider how this might impact your analysis.\nDiscuss the impact of removing rows with missing values.\nReflect on how the removal of rows could influence the results and representativeness of the data.\n\n\nExpected Outcome:\n\nA list of variables with missing values.\nA cleaned version of the dataset.\nA thoughtful consideration of the implications of removing missing data."
-  },
-  {
-    "objectID": "example/01-lab-sol.html#exercise-3-analyzing-medals-distribution",
-    "href": "example/01-lab-sol.html#exercise-3-analyzing-medals-distribution",
-    "title": "Lab 1: Analyzing Olympic Data with R (Solutions)",
-    "section": "Exercise 3: Analyzing Medals Distribution",
-    "text": "Exercise 3: Analyzing Medals Distribution\n\nCalculate the total number of medals won by each country.\nYou’ll need to group the data by country and count the total number of medals won.\nIdentify the country with the most gold medals.\nFocus on identifying which country has excelled the most in terms of winning gold medals.\n\n\n# Identify missing values\nmissing_values &lt;- colSums(is.na(olympics_data))\n\nmissing_values\n\n    edition  edition_id country_noc       sport       event   result_id \n          0           0           0           0           0           0 \n    athlete  athlete_id         pos       medal isTeamSport \n          0           0           0      270336           0 \n\n# Subset data with no missing values\nclean_data &lt;- na.omit(olympics_data)\n\n# Display the cleaned data\nhead(clean_data)\n\n# A tibble: 6 × 11\n  edition  edition_id country_noc sport event result_id athlete athlete_id pos  \n  &lt;chr&gt;         &lt;dbl&gt; &lt;chr&gt;       &lt;chr&gt; &lt;chr&gt;     &lt;dbl&gt; &lt;chr&gt;        &lt;dbl&gt; &lt;chr&gt;\n1 1908 Su…          5 ANZ         Athl… 3,50…     56421 Harry …      64719 3    \n2 1908 Su…          5 ANZ         Boxi… Midd…     21263 Snowy …      45153 2    \n3 1908 Su…          5 ANZ         Rugby Rugb…     31505 John B…      11237 1    \n4 1908 Su…          5 ANZ         Rugby Rugb…     31505 Phil C…      11239 1    \n5 1908 Su…          5 ANZ         Rugby Rugb…     31505 Dan Ca…      11240 1    \n6 1908 Su…          5 ANZ         Rugby Rugb…     31505 Bob Cr…      11241 1    \n# ℹ 2 more variables: medal &lt;chr&gt;, isTeamSport &lt;lgl&gt;\n\n\n\nExpected Outcome:\n\nA summary table showing the total medals won by each country.\nIdentification of the top-performing country in terms of gold medals.\n\n\n# Total number of medals by country\nmedals_by_country &lt;- olympics_data |&gt;\n  filter(!is.na(medal)) |&gt;\n  group_by(country_noc) |&gt;\n  summarize(total_medals = n(), \n            gold_medals = sum(medal == \"Gold\")) |&gt;\n  arrange(desc(total_medals))\n\n# Display the top 10 countries\ntop_10_countries &lt;- head(medals_by_country, 10)\ntop_10_countries\n\n# A tibble: 10 × 3\n   country_noc total_medals gold_medals\n   &lt;chr&gt;              &lt;int&gt;       &lt;int&gt;\n 1 USA                 6273        2931\n 2 URS                 2543        1099\n 3 GER                 2437         816\n 4 GBR                 2367         810\n 5 FRA                 1968         564\n 6 ITA                 1746         593\n 7 CAN                 1668         578\n 8 SWE                 1654         522\n 9 AUS                 1490         409\n10 NED                 1239         348"
-  },
-  {
-    "objectID": "example/01-lab-sol.html#exercise-4-analyzing-performance-by-athlete",
-    "href": "example/01-lab-sol.html#exercise-4-analyzing-performance-by-athlete",
-    "title": "Lab 1: Analyzing Olympic Data with R (Solutions)",
-    "section": "Exercise 4: Analyzing Performance by Athlete",
-    "text": "Exercise 4: Analyzing Performance by Athlete\n\nIdentify the athlete with the most medals overall.\nYour task is to find the athlete who has won the most medals in the Olympics.\nDetermine the number of unique events the athlete has participated in.\nInvestigate the range of events this top athlete has competed in.\n\n\nExpected Outcome:\n\nThe name of the athlete with the most medals.\nThe number of unique events this athlete has participated in, offering insight into their versatility.\n\n\n# Athlete with the most medals\ntop_athlete &lt;- olympics_data |&gt;\n  filter(!is.na(medal)) |&gt;\n  group_by(athlete) |&gt;\n  summarize(total_medals = n()) |&gt;\n  arrange(desc(total_medals)) |&gt;\n  slice(1) |&gt; \n  pull(athlete)\n\ntop_athlete\n\n[1] \"Michael Phelps\"\n\n# Number of unique events for the top athlete\nunique_events_top_athlete &lt;- olympics_data |&gt;\n  filter(athlete == top_athlete) |&gt; \n  distinct(event) |&gt; \n  count()\n\nunique_events_top_athlete\n\n# A tibble: 1 × 1\n      n\n  &lt;int&gt;\n1     8\n\n# Distribution of medals for the top athlete\nmedals_top_athlete &lt;- olympics_data |&gt;\n  filter(athlete == top_athlete, !is.na(medal)) |&gt;\n  count(medal)\n\nmedals_top_athlete\n\n# A tibble: 3 × 2\n  medal      n\n  &lt;chr&gt;  &lt;int&gt;\n1 Bronze     2\n2 Gold      23\n3 Silver     3"
-  },
-  {
-    "objectID": "example/01-lab-sol.html#exercise-5-team-sports-vs.-individual-sports",
-    "href": "example/01-lab-sol.html#exercise-5-team-sports-vs.-individual-sports",
-    "title": "Lab 1: Analyzing Olympic Data with R (Solutions)",
-    "section": "Exercise 5: Team Sports vs. Individual Sports",
-    "text": "Exercise 5: Team Sports vs. Individual Sports\n\nCompare the number of medals won in team sports versus individual sports.\nAnalyze how successful athletes have been in team sports compared to individual sports.\nIdentify the most successful team sport.\nDetermine which team sport has yielded the most medals.\n\n\nExpected Outcome:\n\nA comparison of medals won in team versus individual sports.\nIdentification of the most successful team sport, providing insights into which team events dominate in terms of medals.\n\n\n# Medals in team vs. individual sports\nteam_vs_individual &lt;- olympics_data |&gt;\n  filter(!is.na(medal)) |&gt;\n  group_by(isTeamSport) |&gt;\n  summarize(total_medals = n())\n\nteam_vs_individual\n\n# A tibble: 2 × 2\n  isTeamSport total_medals\n  &lt;lgl&gt;              &lt;int&gt;\n1 FALSE              15279\n2 TRUE               29292\n\n# Most successful team sport\ntop_team_sport &lt;- olympics_data |&gt;\n  filter(!is.na(medal), isTeamSport == TRUE) |&gt;\n  group_by(sport) |&gt;\n  summarize(total_medals = n()) |&gt;\n  arrange(desc(total_medals)) |&gt;\n  slice(1)\n\ntop_team_sport\n\n# A tibble: 1 × 2\n  sport  total_medals\n  &lt;chr&gt;         &lt;int&gt;\n1 Rowing         2951"
-  },
-  {
-    "objectID": "resource/unzipping.html",
-    "href": "resource/unzipping.html",
-    "title": "Unzipping files",
-    "section": "",
-    "text": "Because RStudio projects typically consist of multiple files (R scripts, datasets, graphical output, etc.) the easiest way to distribute them to you for examples, assignments, and projects is to combine all the different files in to a single compressed collection called a zip file. When you unzip a zipped file, your operating system extracts all the files that are contained inside into a new folder on your computer.\nUnzipping files on macOS is trivial, but unzipping files on Windows can mess you up if you don’t pay careful attention. Here’s a helpful guide to unzipping files on both macOS and Windows."
-  },
-  {
-    "objectID": "resource/unzipping.html#unzipping-files-on-macos",
-    "href": "resource/unzipping.html#unzipping-files-on-macos",
-    "title": "Unzipping files",
-    "section": "Unzipping files on macOS",
-    "text": "Unzipping files on macOS\nDouble click on the downloaded .zip file. macOS will automatically create a new folder with the same name as the .zip file, and all the file’s contents will be inside. Double click on the RStudio Project file (.Rproj) to get started."
-  },
-  {
-    "objectID": "resource/unzipping.html#unzipping-files-on-windows",
-    "href": "resource/unzipping.html#unzipping-files-on-windows",
-    "title": "Unzipping files",
-    "section": "Unzipping files on Windows",
-    "text": "Unzipping files on Windows\ntl;dr: Right click on the .zip file, select “Extract All…”, and work with the resulting unzipped folder.\nUnlike macOS, Windows does not automatically unzip things for you. If you double click on the .zip file, Windows will show you what’s inside, but it will do so without actually extracting anything. This can be is incredibly confusing! Here’s what it looks like—the only clues that this folder is really a .zip file are that there’s a “Compressed Folder Tools” tab at the top, and there’s a “Ratio” column that shows how much each file is compressed.\n\n\n\n\n\n\n\n\n\nIt is very tempting to try to open files from this view. However, if you do, things will break and you won’t be able to correctly work with any of the files in the zipped folder. If you open the R Project file, for instance, RStudio will point to a bizarre working directory buried deep in some temporary folder:\n\n\n\n\n\n\n\n\n\nYou most likely won’t be able to open any data files or save anything, which will be frustrating.\nInstead, you need to right click on the .zip file and select “Extract All…”:\n\n\n\n\n\n\n\n\n\nThen choose where you want to unzip all the files and click on “Extract”\n\n\n\n\n\n\n\n\n\nYou should then finally have a real folder with all the contents of the zipped file. Open the R Project file and RStudio will point to the correct working directory and everything will work."
   },
   {
     "objectID": "handson/02-handson.html",

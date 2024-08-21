@@ -1,6 +1,7 @@
 ---
 title: "Lab 2: Tidy Data and Visualization in R -- PISA"
 date: "2024-08-21"
+output: html_document
 ---
 
 # Introduction
@@ -41,7 +42,9 @@ The dataset contains the following variables:
 Let's start by loading the tidyverse package and the data:
 
 ```{r}
-# Your code here
+library(tidyverse)
+
+pisa_df <- read_rds("files/data/external_data/pisa_data.rds")
 ```
 
 ### Exercise 1: Filtering the Data
@@ -49,7 +52,8 @@ Let's start by loading the tidyverse package and the data:
 Start by filtering the dataset to focus on three specific countries: Canada (CAN), the United States (USA), and Mexico (MEX). You can select any country you have. The data uses country 3 character codes. If you don't know your country's iso code, you can find it [here](https://github.com/vincentarelbundock/countrycode/blob/main/dictionary/data_iso.csv).
 
 ```{r}
-# Your code here
+pisa_df_filtered <- pisa_df |>
+  filter(country %in% c("CAN", "USA", "MEX"))
 ```
 
 ### Exercise 2: Summarizing the Data
@@ -61,7 +65,13 @@ Now that you have filtered the dataset, let's summarize the PISA scores in mathe
 In survey data like PISA, not all students represent the same number of individuals in the population. The stu_wgt variable represents the survey weight, which adjusts for the survey design, non-response, and post-stratification. Applying weights is crucial because it ensures that the results are representative of the broader population. Without weighting, the mean scores could be biased, particularly if certain groups of students (e.g., from specific regions or demographic backgrounds) are over- or under-represented in the sample.
 
 ```{r}
-# Your code here
+pisa_summary <- pisa_df_filtered |>
+  group_by(year, country) |> 
+  summarise(
+    math = weighted.mean(math, stu_wgt, na.rm = TRUE),
+    read = weighted.mean(read, stu_wgt, na.rm = TRUE),
+    science = weighted.mean(science, stu_wgt, na.rm = TRUE)
+  )
 ```
 
 ### Exercise 3: Reshaping the Data (Tidying)
@@ -75,7 +85,8 @@ To create an effective visualization, our data needs to be in a tidy format. Spe
 To achieve this tidy format, we will use the `pivot_longer()` function to reshape the data. This function takes multiple columns and condenses them into key-value pairs, which results in a longer, more flexible dataset. Assign the new format to the object `pisa_long`
 
 ```{r}
-# Your code here
+pisa_long <- pisa_summary |> 
+  pivot_longer(cols = -c(year, country), values_to = "score", names_to = "test")
 ```
 
 After running this code, your data will have four key columns: year, country, and test, with the scores in a single column named score. This format is ideal for visualization in ggplot2.
@@ -87,7 +98,8 @@ After running this code, your data will have four key columns: year, country, an
 Use the `mutate()` function to capitalize the test names. This will make the final plot more readable. Re-assign the updated `test` variable to the same object `pisa_long`. **Hint** Look at the `str_to_title()` function.
 
 ```{r}
-# Your code here
+pisa_long <- pisa_long |>
+  mutate(test = str_to_title(test))
 ```
 
 ### Exercise 5: Creating a Line Plot with Points
@@ -97,10 +109,24 @@ In this exercise, you will create a line plot of the PISA scores over time for e
 **Task:** Use `geom_line()` to connect the data points and `geom_point()` to highlight each data point on the plot.
 
 ```{r}
-# Your code here
+pisa_plot <- pisa_long |> 
+  ggplot(
+    aes(
+      x = year, 
+      y = score, 
+      group = country, 
+      color = country
+    )
+  ) + 
+  geom_line() +
+  geom_point()
+
+pisa_plot
 ```
 
 **Question:** What is the main issue with this plot?
+
+------------------------------------------------------------------------
 
 ### Exercise 6: Adding Facets to the Plot
 
@@ -109,8 +135,13 @@ Faceting allows you to create multiple plots based on the levels of a factor var
 **Task:** Add `facet_wrap(~ test)` to the plot to create a separate panel for each test.
 
 ```{r}
-# Your code here
+pisa_plot <- pisa_plot +
+  facet_wrap(~ test)
+
+pisa_plot
 ```
+
+------------------------------------------------------------------------
 
 ### Exercise 7: Customizing Labels and Scales
 
@@ -119,7 +150,23 @@ Labels and scales are essential for making your plot informative and easy to rea
 **Task:** Use the `labs()` function to add labels and titles, and `scale_y_continuous()` to set the limits of the y-axis (**Hint**: Look for the `limits` argument).
 
 ```{r}
-# Your code here
+pisa_plot <- pisa_plot +
+  scale_y_continuous(limits = c(250, 800)) +
+  labs(
+    x = "Year",
+    y = "Score",
+    title = "PISA Scores from 2000 - 2018",
+    caption = "Source: OECD",
+    color = NULL
+  ) +
+  theme_minimal() +  
+  theme(
+    text = element_text(size = 12),
+    legend.position = "bottom",
+    axis.text.x = element_text(size = 8)
+  )
+
+pisa_plot
 ```
 
 ## Extra exercises
