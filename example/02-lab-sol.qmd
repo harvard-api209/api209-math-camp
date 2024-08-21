@@ -2,6 +2,9 @@
 title: "Lab 2: Tidy Data and Visualization in R -- PISA"
 date: "2024-08-21"
 output: html_document
+knitr:
+  opts_chunk:
+    fig.path: figs/
 ---
 
 # Introduction
@@ -44,7 +47,7 @@ Let's start by loading the tidyverse package and the data:
 ```{r}
 library(tidyverse)
 
-pisa_df <- read_rds("files/data/external_data/pisa_data.rds")
+pisa_df <- read_rds("data/pisa_data.rds")
 ```
 
 ### Exercise 1: Filtering the Data
@@ -126,8 +129,6 @@ pisa_plot
 
 **Question:** What is the main issue with this plot?
 
-------------------------------------------------------------------------
-
 ### Exercise 6: Adding Facets to the Plot
 
 Faceting allows you to create multiple plots based on the levels of a factor variable. In this case, we will use facets to separate the plots by the type of test (math, read, science). This makes it easier to compare the trends in different test scores.
@@ -141,7 +142,6 @@ pisa_plot <- pisa_plot +
 pisa_plot
 ```
 
-------------------------------------------------------------------------
 
 ### Exercise 7: Customizing Labels and Scales
 
@@ -178,6 +178,52 @@ Experiment with different themes and color palettes to make the plot more visual
 ### Exercise 9: Adding Context to the Visualization
 
 Add annotations or text to the plot to highlight significant events or changes in the data.
+
+### Extra: Creating functions
+
+```{r}
+plot_pisa_scores <- function(data, countries) {
+  data |>
+    filter(country %in% countries) |>
+    group_by(year, country) |> 
+    summarise(
+      math = weighted.mean(math, stu_wgt, na.rm = TRUE),
+      read = weighted.mean(read, stu_wgt, na.rm = TRUE),
+      science = weighted.mean(science, stu_wgt, na.rm = TRUE)
+    ) |> 
+    pivot_longer(cols = -c(year, country), values_to = "score", names_to = "test") |>
+    mutate(test = str_to_title(test)) |> 
+    ggplot(
+      aes(
+        x = year, 
+        y = score, 
+        group = country, 
+        color = country
+      )
+    ) + 
+    geom_line() +
+    geom_point() + 
+    facet_wrap(~ test) + 
+    scale_y_continuous(limits = c(250, 800)) +
+    labs(
+      x = "Year",
+      y = "Score",
+      title = "PISA Scores from 2000 - 2018",
+      caption = "Source: OECD",
+      color = NULL
+    ) +
+    theme_minimal() +  
+    theme(
+      text = element_text(size = 12),
+      legend.position = "bottom",
+      axis.text.x = element_text(size = 8)
+    )
+}
+
+# Example usage:
+plot_pisa_scores(pisa_df, c("CAN", "USA", "MEX"))
+
+```
 
 # Conclusion
 
