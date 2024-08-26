@@ -15,6 +15,14 @@ author:
 date: 26 August 2024 
 ---
 
+# Reproducibility
+
+##
+
+<center>
+![](img/reprod.jpg){width="150px}
+</center>
+
 ## Why Reproducibility?
 
 ### Are We in a Crisis?
