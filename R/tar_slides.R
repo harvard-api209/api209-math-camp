@@ -1,57 +1,53 @@
-devtools::source_gist("https://gist.github.com/gadenbuie/f6b8ec0335bdd45ed5a68bead60ef4fa")
+suppressPackageStartupMessages(library(tidyverse))
+library(kjhslides)
 
+# Using decktape
+html_to_pdf <- function(slide_path) {
+  outdir_path <- stringr::str_replace(slide_path, "/slides.*\\.html$", "")
+
+  kjhslides::kjh_decktape_one_slide(
+    infile = slide_path,
+    outdir = outdir_path
+  )
+
+  fl = list.files(
+    here_rel("2024/weeks"), 
+    pattern = "^slides.*\\.qmd$", 
+    full.names = TRUE, 
+    recursive = TRUE
+  )
+
+  paste0("docs/", stringr::str_replace(fl, "qmd", "html"))
+  return(paste0(tools::file_path_sans_ext(slide_path), ".pdf"))
+}
+
+# Modify slides function to include all the slides.qmd in the 2024 folder
 slides <- tibble::tibble(
-  path = list.files(here_rel("slides"), pattern = "\\.Rmd", full.names = TRUE)
+    path = list.files(here_rel("2024/weeks"), pattern = "slides\\.qmd", full.names = TRUE, recursive = TRUE)
   ) |>
   mutate(
     name = tools::file_path_sans_ext(basename(path)),
-    sym = syms(janitor::make_clean_names(paste0("slide_rmd_", name))),
-    sym_html = syms(janitor::make_clean_names(paste0("slide_html_", name))),
-    sym_pdf = syms(janitor::make_clean_names(paste0("slide_pdf_", name)))
+    sym = syms(janitor::make_clean_names(paste0("qmd_", name))),
+    sym_html = syms(janitor::make_clean_names(paste0("html_", name))),
+    sym_pdf = syms(janitor::make_clean_names(paste0("pdf_", name)))
   )
 
+# Build the slides
 build_slides <- list(
   tar_eval(
-    tar_files_input(target_name, rmd_file),
+    tar_files_input(target_name, qmd_file),
     values = list(
       target_name = slides$sym,
-      rmd_file = slides$path
+      qmd_file = slides$path
     )
   ),
   
   tar_eval(
-    tar_target(target_name, render_xaringan(rmd_file), format = "file"),
+    tar_target(target_name, quarto::quarto_render(qmd_file), format = "file"),
     values = list(
       target_name = slides$sym_html,
-      rmd_file = slides$sym
+      qmd_file = slides$sym
     )
-  ),
-  
-  tar_eval(
-    tar_target(target_name, xaringan_to_pdf(html_file), format = "file"),
-    values = list(
-      target_name = slides$sym_pdf,
-      html_file = slides$sym_html
-    )
-  )
+  )  
 )
-
-# We need to return the path to the rendered HTML file. In this case,
-# rmarkdown::render() *does* return a path, but it returns an absolute path,
-# which makes the targets pipeline less portable. So we return our own path to
-# the HTML file instead.
-render_xaringan <- function(slide_path) {
-  # crayon does weird things to R Markdown and xaringan output, so we need to
-  # disable it here. This is the same thing that tarchetypes::tar_render() does
-  # behind the scenes too.
-  withr::local_options(list(crayon.enabled = NULL))
-  
-  rmarkdown::render(
-    slide_path, 
-    envir = parent.frame(),
-    quiet = TRUE
-  )
-  
-  return(paste0(tools::file_path_sans_ext(slide_path), ".html"))
-}
 

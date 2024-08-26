@@ -1,0 +1,103 @@
+/*-- scss:defaults --*/
+
+// fonts
+@import url('https://fonts.googleapis.com/css2?family=Fira+Sans+Condensed:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap');
+
+$font-family-sans-serif: "Fira Sans Condensed", sans-serif !default;
+$font-family-monospace:  "JetBrains Mono", monospace;
+$presentation-h-font12:	 "Fira Sans Condensed", sans-serif !default; 
+$font-size-base: 1.5rem !default;
+
+$h12-font-weight: 500 !default;
+$h1-font-size: $font-size-base * 2.45;
+$h2-font-size: $font-size-base * 1.85;
+$h3-font-size: $font-size-base * 1.5;
+$h4-font-size: $font-size-base * 1.2;
+$h5-font-size: $font-size-base * 1;
+$h6-font-size: $font-size-base * 0.8;
+
+// Colors
+$crimson-color:     #A51C30;
+$alert-color:       #A51C30 !default;
+$selection-bg-color:#26351C !default;
+$selection-fcolor:  #fff !default;
+$body-bg:           #FFFFFF !default;
+$body-fg-color:     #000000 !default;
+$link-color: $crimson-color !default;
+$body-color: $body-fg-color !default; 
+
+// headings
+$presentation-heading-font: "Fira Sans", !default;
+$presentation-heading-color: $crimson-color, !default;
+
+/*-- scss:rules --*/
+
+.reveal {
+  // Footer
+  .footer > * {
+    color: $crimson-color;
+  }
+  
+  // Section titles
+  h1, h2 {
+    font-family: $presentation-h-font12;
+    font-weight: $h12-font-weight;
+  }
+
+  // Section bg
+  .slide-background.title-slide {
+    background-color: $crimson-color;
+  }
+
+  // Block quotes
+  .slide blockquote {
+    border-left: 3px solid $text-muted;
+    padding-left: 0.5em;
+  }
+}
+
+// List
+// Target unordered list markers
+// Target unordered list markers
+ul {
+  list-style: disc;
+  li {
+    &::marker {
+      color: $crimson-color;
+    }
+  }
+}
+
+// Target ordered list markers
+ol {
+  list-style: decimal;
+  li {
+    &::marker {
+      color: $crimson-color;
+    }
+  }
+}
+
+main {
+  // No space after lists-within-lists
+  ol ol,
+  ul ul,
+  ol ul,
+  ul ol {
+    margin-bottom: 0em;
+  }
+
+  // But yes space after lists-within-lists when paragraphs are involved
+  ol p + ol,
+  ul p + ul,
+  ol p + ul,
+  ul p + ol {
+    margin-bottom: 1em;
+  }
+}
+
+// Custom 
+.alert { 
+  // color: $alert-color;
+  color: $crimson-color; 
+}

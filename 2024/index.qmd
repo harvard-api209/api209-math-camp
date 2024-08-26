@@ -1,0 +1,74 @@
+---
+title: "API209<br>Summer Math Camp"
+subtitle: "Academic Year: 2024"
+author: ""
+format: html
+---
+
+::: {.callout-important collapse=false}
+## 📢 Important
+
+(12/03/2023)
+
+- [🗓️ Week 03 lecture material](/2024/weeks/week03/page.qmd) is now available!
+
+:::
+
+# 🧑🏻‍🏫 Our Team
+
+::: {.panel-tabset}
+## Course Convenor
+::: columns
+
+::: {.column style="display:inline-block;width:40%;height:60%;border-radius:1em;margin:1%;padding:1.5%;background-color:#f5f5f5"}
+<figure>
+    <img src="/figures/people/dan.jpg" alt="Photo of Professor Levy" role="presentation" style="object-fit: cover;width:5em;height:5em;border-radius: 50%;font-size:1em;" class="img-responsive atto_image_button_text-bottom">
+    <figcaption>
+        <strong>Prof.&nbsp;<span><a href="https://scholar.harvard.edu/danlevy/home" target="_blank" class="external">Dan Levy</a></span></strong> 
+        <br/>Harvard Kennedy School
+        <br/>📧 [dan_levy@hks.harvard.edu ](mailto:dan_levy@hks.harvard.edu)
+    </figcaption>
+</figure>
+:::
+
+::: {.column style="display:inline-block;width:40%;height:60%;border-radius:1em;margin:1%;padding:1.5%;background-color:#f5f5f5"}
+<figure>
+    <img src="/figures/people/rony.jpg" alt="Photo of Teaching Fellow" role="presentation" style="object-fit: cover;width:5em;height:5em;border-radius: 50%;font-size:1em;" class="img-responsive atto_image_button_text-bottom">
+    <figcaption>
+        <strong>TF&nbsp;<span><a href="https://rrmaximiliano.github.io" target="_blank" class="external">Rony Rodriguez-Ramirez</a></span></strong> 
+        <br/>Harvard University
+        <br/>📧 [rrodriguezramirez@g.harvard.edu](mailto:rrodriguezramirez@g.harvard.edu)
+    </figcaption>
+</figure>
+:::
+
+Office Hours (TF):
+
+- How to book: 
+  - {{< fa calendar-check >}} [Schedule an appointment using Calendly]({{< var instructor.appointment_url >}})
+- Where: Zoom
+
+:::
+
+## Course Assistants
+
+![](/figures/people/ayush.jpeg){fig-align="left" fig-alt="Photo of TA_NAME" style="object-fit: cover;width:5em;height:5em;border-radius: 50%;"}  
+**[Ayush Shukla](#)** <br/>
+MPA/ID Candidate 2025 <br> 
+📧 [ayushshukla@hks.harvard.edu](mailto:ayushshukla@hks.harvard.edu)
+
+![](/figures/people/sara.jpeg){fig-align="left" fig-alt="Photo of TA_NAME" style="object-fit: cover;width:5em;height:5em;border-radius: 50%;"}  
+**[Sara Wong Becerra](#)** <br/>
+MPA/ID Candidate 2025 <br> 
+📧 [EMAIL](mailto:swongbecerra@hks.harvard.edu)
+
+![](/figures/people/shan.jpeg){fig-align="left" fig-alt="Photo of TA_NAME" style="object-fit: cover;width:5em;height:5em;border-radius: 50%;"}  
+**[Hussaini Shan-e-Abba](#)** <br/>
+MPA/ID Candidate 2025 <br> 
+📧 [hshaneabbas@hks.harvard.edu](mailto:hshaneabbas@hks.harvard.edu)
+
+:::
+
+# 📍 Lessons/Hands-on Sessions/Labs
+
+- {{< fa location-dot >}} {{< var course.location >}}

@@ -1,0 +1,216 @@
+---
+title: "Tutorial 3: Introduction to Tidyverse and the Base Pipe"
+format: html
+---
+
+```{r}
+#| echo: false
+library(tidyverse)
+```
+
+# Introduction to Tidyverse and the Base Pipe
+
+In this tutorial, we will introduce the **Tidyverse**, a collection of R packages designed for data science. We will also explore the **base pipe** (`|>`), which allows for cleaner and more readable code by chaining operations. This tutorial will guide you through essential data manipulation functions using the `dplyr` package within the Tidyverse, with examples focused on education data.
+
+## 3.1 Introduction to Tidyverse
+
+The **Tidyverse** is a suite of R packages that work together to simplify data manipulation, exploration, and visualization. Key packages in the Tidyverse include `dplyr`, `ggplot2`, `tidyr`, `readr`, and more. In this tutorial, we'll focus on `dplyr`, which is used for data manipulation.
+
+### 3.1.1 Installing and Loading Tidyverse
+
+Before using Tidyverse functions, you need to install and load the package.
+
+```{r}
+#| eval: false
+# Install Tidyverse (if not already installed)
+install.packages("tidyverse")
+
+# Load Tidyverse
+library(tidyverse)
+```
+
+**Explanation:**
+- The `install.packages()` function installs the Tidyverse package if it isn't already installed on your system.
+- The `library()` function loads the Tidyverse, making its functions available for use.
+
+### 3.1.2 Introduction to the Base Pipe (`|>`)
+
+The **base pipe** operator `|>` was introduced in R 4.1.0. It allows for cleaner, more readable code by enabling a sequence of operations to be chained together.
+
+```{r}
+# Example using base pipe to calculate the mean of a vector
+scores <- c(85, 90, 78, 92, 88)
+mean_score <- scores |> mean()
+mean_score
+```
+
+**Explanation:**
+- The `|>` operator takes the output of the left-hand expression and passes it as the first argument to the function on the right-hand side.
+- In this example, `scores` is passed to the `mean()` function to calculate the mean score.
+
+## 3.2 dplyr Basics
+
+`dplyr` is the main package within the Tidyverse for data manipulation. It provides a set of intuitive functions for working with data frames.
+
+### 3.2.1 select(): Selecting Columns
+
+The `select()` function allows you to choose specific columns from a data frame.
+
+```{r}
+# Example data frame
+students_df <- data.frame(
+  Name = c("Alice", "Bob", "Charlie"),
+  Age = c(20, 21, 19),
+  Score = c(85, 90, 78),
+  Major = c("Economics", "History", "Biology")
+)
+
+# Selecting Name and Score columns
+selected_df <- students_df |> select(Name, Score)
+selected_df
+```
+
+**Explanation:**
+- `select()` is used to pick specific columns from the data frame.
+- The base pipe `|>` passes `students_df` to the `select()` function.
+
+### 3.2.2 filter(): Filtering Rows
+
+The `filter()` function allows you to filter rows based on specific conditions.
+
+```{r}
+# Filtering students with a score greater than 80
+filtered_df <- students_df |> filter(Score > 80)
+filtered_df
+```
+
+**Explanation:**
+- `filter()` is used to select rows that meet a condition. Here, only students with a score greater than 80 are included.
+
+### 3.2.3 arrange(): Arranging Rows
+
+The `arrange()` function orders the rows of a data frame based on the values of specified columns.
+
+```{r}
+# Arranging students by score in descending order
+arranged_df <- students_df |> arrange(desc(Score))
+arranged_df
+```
+
+**Explanation:**
+- `arrange()` orders the rows based on the specified column. `desc()` is used to sort in descending order.
+
+### 3.2.4 mutate(): Creating New Variables
+
+The `mutate()` function creates new variables or modifies existing ones within a data frame.
+
+```{r}
+# Adding a new column for grade based on score
+students_df <- students_df |> mutate(Grade = ifelse(Score >= 85, "A", "B"))
+students_df
+```
+
+**Explanation:**
+- `mutate()` adds a new column `Grade`, where students with a score of 85 or higher receive an "A" grade, and others receive a "B".
+
+### 3.2.5 summarise() and group_by(): Summarizing Data
+
+The `summarise()` function, used in conjunction with `group_by()`, allows you to compute summary statistics for groups of data.
+
+```{r}
+# Grouping by Major and calculating the average score for each group
+summary_df <- students_df |>
+  group_by(Major) |>
+  summarise(AverageScore = mean(Score))
+summary_df
+```
+
+**Explanation:**
+- `group_by()` groups the data by a specific variable (`Major` in this case).
+- `summarise()` calculates the mean score for each group.
+
+## Exercises and Solutions
+
+### Exercise 1: Selecting and Filtering Data
+
+1. Using the `students_df` data frame, select only the `Name` and `Major` columns.
+2. Filter the data to include only students who are majoring in "Economics".
+
+**Solution:**
+```{r}
+# Step 1: Selecting Name and Major columns
+selected_df <- students_df |> 
+  select(Name, Major)
+
+# Step 2: Filtering students majoring in Economics
+economics_students_df <- selected_df |> 
+  filter(Major == "Economics")
+
+economics_students_df
+```
+
+### Exercise 2: Arranging and Mutating Data
+
+1. Arrange the `students_df` data frame by `Age` in ascending order.
+2. Add a new column called `AgeGroup` that categorizes students as "Young" (Age <= 20) or "Mature" (Age > 20).
+
+**Solution:**
+```{r}
+# Step 1: Arranging by Age
+arranged_df <- students_df |> 
+  arrange(Age)
+
+# Step 2: Adding AgeGroup column
+students_df <- students_df |>
+  mutate(AgeGroup = ifelse(Age <= 20, "Young", "Mature"))
+```
+
+### Exercise 3: Summarizing Data by Group
+
+1. Group the `students_df` data frame by `Major`.
+2. Calculate the total number of students and the average score for each `Major`.
+
+**Solution:**
+```{r}
+# Step 1: Grouping by Major
+grouped_df <- students_df |> 
+  group_by(Major)
+
+# Step 2: Summarising total students and average score
+summary_df <- grouped_df |>
+  summarise(
+    TotalStudents = n(),
+    AverageScore = mean(Score)
+  )
+```
+
+### Exercise 4: Combining dplyr Functions
+
+1. Using `students_df`, filter for students with a score greater than 80, then select their `Name` and `Score`.
+2. Arrange the result by `Score` in descending order.
+
+**Solution:**
+```{r}
+# Combining filter, select, and arrange
+result_df <- students_df |>
+  filter(Score > 80) |>
+  select(Name, Score) |>
+  arrange(desc(Score))
+```
+
+### Exercise 5: Applying Multiple Transformations
+
+1. Create a new data frame by selecting `Name`, `Score`, and `Major` from `students_df`.
+2. Filter out students with a score less than 80.
+3. Add a column `Pass` indicating whether the student passed (Score >= 85).
+4. Arrange the result by `Major` and `Score`.
+
+**Solution:**
+```{r}
+# Applying multiple transformations
+final_df <- students_df |>
+  select(Name, Score, Major) |>
+  filter(Score >= 80) |>
+  mutate(Pass = Score >= 85) |>
+  arrange(Major, desc(Score))
+```

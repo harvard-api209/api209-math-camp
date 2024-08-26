@@ -1,0 +1,281 @@
+---
+title: "Hands-On Session: Creating a Quarto Report"
+author: "Instructor Name"
+date: "2024-08-26"
+---
+
+# Introduction
+
+In this hands-on session, you will create a Quarto document that simulates a report. You'll learn how to structure your report, integrate R code for analysis, and generate visualizations using the tidyverse. By the end of this session, you'll have a fully reproducible report that you can apply to your problem sets.
+
+---
+
+# Exercise 1: Setting Up Your Quarto Document
+
+## Objective
+
+Set up a Quarto document that will serve as the foundation for your report.
+
+## Instructions
+
+1. **Create a New Quarto Document**:
+   - Open RStudio (or your preferred editor).
+   - Go to File > New File > Quarto Document.
+   - Choose "HTML" as the output format.
+
+2. **Add Document Metadata**:
+   - Give your document a title, author, and date.
+   - Example:
+   
+     ```yaml
+     ---
+     title: "PISA Data Analysis Report"
+     author: "Your Name"
+     date: "2024-08-25"
+     format: html
+     ---
+     ```
+
+3. **Save Your Document**:
+   - Save the file with a descriptive name, like `pisa_report.qmd`.
+
+---
+
+# Exercise 2: Writing an Introduction
+
+## Objective
+
+Introduce the purpose of your report and the dataset you will be analyzing.
+
+## Instructions
+
+1. **Write an Introduction Section**:
+   - Describe the PISA dataset and the focus of your analysis.
+   - Example:
+
+     ```markdown
+     # Introduction
+
+     This report analyzes data from the PISA dataset to explore the relationship between students' socioeconomic status and their academic performance in mathematics, reading, and science. The goal is to identify trends and disparities across different countries and years.
+     ```
+
+2. **Outline the Structure of the Report**:
+   - Briefly mention the different sections that will be included in the report (e.g., Data Exploration, Analysis, Visualization, Conclusion).
+
+---
+
+# Exercise 3: Loading and Exploring the Data
+
+## Objective
+
+Load the PISA dataset and explore its structure to understand the variables and data types.
+
+## Instructions
+
+1. **Load the Required Libraries**:
+   - At the top of your document, add a code chunk to load the tidyverse package.
+   - Example:
+   
+     ```{r}
+     library(tidyverse)
+     ```
+
+2. **Load the Dataset**:
+   - Use `read_csv()` to load the PISA dataset.
+   - Example:
+   
+     ```{r}
+     #| eval: false
+     pisa_data <- read_csv("path_to_your_data/pisa.csv")
+     ```
+
+3. **Explore the Data**:
+   - Use functions like `head()`, `glimpse()`, and `summary()` to get an overview of the dataset.
+   - Example:
+   
+     ```{r}
+     #| eval: false
+     head(pisa_data)
+     glimpse(pisa_data)
+     summary(pisa_data)
+     ```
+
+4. **Write a Data Description Section**:
+   - Describe the dataset, including the key variables and their types.
+   - Example:
+
+     ```markdown
+     # Data Description
+
+     The PISA dataset includes information on students' performance in mathematics, reading, and science across various countries. Key variables include year, country, gender, and socioeconomic indicators such as access to resources at home.
+     ```
+
+---
+
+# Exercise 4: Data Filtering and Summarizing
+
+## Objective
+
+Filter the dataset to focus on specific countries and summarize the data to understand trends over time.
+
+## Instructions
+
+1. **Filter the Data**:
+   - Focus on Canada, the United States, and Mexico.
+   - Example:
+   
+     ```{r}
+     #| eval: false
+     pisa_filtered <- pisa_data %>%
+       filter(country %in% c("CAN", "USA", "MEX"))
+     ```
+
+2. **Summarize the Data**:
+   - Calculate the mean scores in mathematics, reading, and science for each country by year.
+   - Example:
+   
+     ```{r}
+     #| eval: false
+     pisa_summary <- pisa_filtered %>%
+       group_by(country, year) %>%
+       summarise(
+         mean_math = mean(math, na.rm = TRUE),
+         mean_read = mean(read, na.rm = TRUE),
+         mean_science = mean(science, na.rm = TRUE)
+       )
+     pisa_summary
+     ```
+
+3. **Write a Summary Section**:
+   - Describe the summary statistics and what they reveal about the data.
+   - Example:
+
+     ```markdown
+     # Data Summary
+
+     The summary statistics show that over the years, the average scores in mathematics, reading, and science have varied significantly across the three countries. Notably, there are consistent trends in the relative performance of each country in these subjects.
+     ```
+
+---
+
+# Exercise 5: Data Visualization
+
+## Objective
+
+Create visualizations to explore the trends in PISA scores across the selected countries.
+
+## Instructions
+
+1. **Create a Line Plot for Math Scores**:
+   - Use `ggplot2` to visualize the average math scores over time for each country.
+   - Example:
+   
+     ```{r}
+     #| eval: false
+     ggplot(pisa_summary, aes(x = year, y = mean_math, color = country)) +
+       geom_line() +
+       geom_point() +
+       labs(
+         title = "Average PISA Math Scores Over Time",
+         x = "Year",
+         y = "Average Math Score"
+       ) +
+       theme_minimal()
+     ```
+
+2. **Create Faceted Plots**:
+   - Create faceted plots for math, reading, and science scores.
+   - Example:
+   
+     ```{r}
+     #| eval: false
+     pisa_long <- pisa_summary %>%
+       pivot_longer(cols = starts_with("mean_"), names_to = "subject", values_to = "score")
+
+     ggplot(pisa_long, aes(x = year, y = score, color = country)) +
+       geom_line() +
+       geom_point() +
+       facet_wrap(~ subject) +
+       labs(
+         title = "Average PISA Scores Over Time by Subject",
+         x = "Year",
+         y = "Average Score"
+       ) +
+       theme_minimal()
+     ```
+
+3. **Write a Visualization Section**:
+   - Include the plots and describe the trends they reveal.
+   - Example:
+
+     ```markdown
+     # Data Visualization
+
+     The plots below illustrate the trends in PISA scores over time for Canada, the United States, and Mexico. Each plot is faceted by subject (mathematics, reading, and science) to allow for a clear comparison of trends across different areas of academic performance.
+     ```
+
+---
+
+# Exercise 6: Writing a Conclusion
+
+## Objective
+
+Summarize your findings and discuss any patterns or trends observed in the data.
+
+## Instructions
+
+1. **Write a Conclusion Section**:
+   - Discuss the key insights gained from your analysis and visualizations.
+   - Example:
+
+     ```markdown
+     # Conclusion
+
+     This analysis of the PISA dataset reveals several important trends. For instance, Canada's performance in mathematics has consistently been strong relative to the United States and Mexico. The visualizations also highlight how socioeconomic factors may influence academic performance, as seen in the varying trends across different countries.
+     ```
+
+2. **Suggest Further Analysis**:
+   - Mention any additional questions or analyses that could be explored in future work.
+
+---
+
+# Final Steps: Rendering and Sharing Your Report
+
+## Objective
+
+Render your Quarto document to HTML and share your results.
+
+## Instructions
+
+1. **Render the Document**:
+   - Click the "Render" button in RStudio to generate the HTML output.
+   
+2. **Review the Report**:
+   - Check the output for any errors or formatting issues.
+
+3. **Share Your Report**:
+   - Save the rendered HTML file and share it with your peers or instructor.
+
+---
+
+# Summary and Next Steps
+
+## What You've Learned
+
+- How to set up a Quarto document and structure it like a report.
+- How to integrate R code and perform data analysis using the tidyverse.
+- How to create and interpret visualizations.
+- How to produce a reproducible report that can be shared with others.
+
+## Next Steps
+
+- **Practice**: Apply these skills to your problem sets and other projects.
+- **Explore More**: Look into advanced Quarto features, such as creating PDFs, Word documents, or interactive websites.
+
+---
+
+# Questions?
+
+If you have any questions or need further clarification, feel free to ask!
+```
+

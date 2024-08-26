@@ -1,0 +1,460 @@
+---
+title: "<font style='font-size:1em;'>Week 02<br/>Tidy Data and Visualization</font>"
+subtitle: "API209: Summer Math Camp"
+format: 
+  clean-api-revealjs:
+    self-contained: true
+    highlight-style: breeze
+html-math-method:
+  method: mathjax
+  url: "https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"
+author:
+  - name: Rony Rodrigo Maximiliano Rodriguez-Ramirez
+    email: rrodriguezramirez@g.harvard.edu
+    affiliations: "Harvard University"
+date: 20 August 2024    
+---
+
+```{r setup, include=FALSE}
+library(xaringanExtra)
+library(tidyverse)
+library(gapminder)
+```
+
+# Recap and Tidy Data
+
+## Wrangling your data {Recap}
+
+
+:::{.small}
+* You are ***highly encouraged*** to read through [Hadley Wickham's chapter](https://r4ds.had.co.nz/transform.html). It's clear and concise.
+
+* Also check out this great "cheatsheet" [here](https://github.com/rstudio/cheatsheets/blob/master/data-transformation.pdf).
+
+* The package is organized around a set of **verbs**, i.e. *actions* to be taken.
+
+* All *verbs* work as follows:
+
+$$\text{verb}(\underbrace{\text{data.frame}}_{\text{1st argument}}, \underbrace{\text{what to do}}_\text{2nd argument})$$
+
+* Alternatively you can (should) use the `pipe` operator `%>%`:
+
+$$\underbrace{\text{data.frame}}_{\text{1st argument}} \underbrace{\text{ %>% }}_{\text{"pipe" operator}} \text{verb}(\underbrace{\text{what to do}}_\text{2nd argument})$$
+:::
+
+## Tidy data
+
+- In most cases, your datasets won't be `tidy`. 
+
+> **Tidy data**: A dataset is said to be tidy if it satisfies the following conditions: 
+
+![](https://cdn.myportfolio.com/45214904-6a61-4e23-98d6-b140f8654a40/85520b8f-4629-4763-8a2a-9ceff27458bf_rw_1920.jpg?h=21007b20ac00cf37318dca645c215453){.nostretch fig-align="center" width="60%"}
+
+## Untidy data is pretty common
+
+![](img/bad-data.png){.nostretch fig-align="center" width="80%"}
+
+
+However, storing data in wide form is easier to display in a printed table. 
+
+## 
+
+:::{.huge}
+:::{.center-txt}
+ [Tidy data]{.fg-red}<br />is data in<br />[long]{.fg-red} format  
+:::
+:::
+
+# Beautiful visualizations
+
+## 
+
+![](img/01_dubois_georgia_negro_budget.jpg){.nostretch fig-align="center" width="80%"}
+
+
+## What makes a great visualization?
+
+:::{.center-txt}
+[Truthful]{.box-inv-crimson}
+
+[Functional]{.box-inv-crimson}
+
+[Beautiful]{.box-inv-crimson}
+
+[Insightful]{.box-inv-crimson}
+
+[Enlightening]{.box-inv-crimson}
+
+[Alberto Cairo, *The Truthful Art*]{.box-inv-crimson-sma}
+:::
+
+## How do we express visuals in words?
+
+- **Data** to be visualized
+
+- **[Geom]{.alert}etric objects** that appear on the plot
+
+- **[Aes]{.alert}thetic mappings** from data to visual component
+
+- **[Stat]{.alert}istics** transform data on the way to visualization
+
+- **[Coord]{.alert}inates** organize location of geometric objects
+
+- **[Scale]{.alert}s** define the range of values for aesthetics
+
+- **[Facet]{.alert}s** group into subplots
+
+## What makes a great visualization?
+
+:::{.center-txt}
+[Good aesthetics]{.box-inv-crimson-med}
+
+[No substantive issues]{.box-inv-crimson-med}
+
+[No perceptual issues]{.box-inv-crimson-med}
+
+[Honesty + good judgment]{.box-inv-crimson-med}
+
+[Kieran Healy, *Data Visualization: A Practical Introduction*]{.box-inv-crimson-small}
+:::
+
+## You see bad plots everywhere: What's wrong?
+
+<center>
+  <img src="img/ireland-wrong.png" width="50%">
+</center>
+
+## Is this right?
+
+<center>
+  <img src="img/Fig-ireland-olympics.png" width="80%">
+</center>
+
+# Entering ggplot
+
+## ggplot
+
+:::: {.columns}
+
+::: {.column}
+::: {.small}
+For this session, you’ll use the ggplot2 package from the tidyverse meta-package.
+
+- So, you can just load the `tidyverse` package when using ggplot.
+:::
+:::
+
+::: {.column}
+::: {.small}
+1. Consistency with the [**Grammar of Graphics**](https://www.springer.com/gp/book/9780387245447)
+    * This book is the foundation of several data viz applications: 
+    `ggplot2, polaris-tableau, vega-lite`
+2. Flexibility
+3. Layering and theme customization
+4. Community
+
+It is a powerful and easy to use tool (once you understand its logic) that produces complex and multifaceted plots.
+:::
+:::
+::::
+
+## ggplot2: basic structure (template)
+
+The basic ggplot structure is:
+
+```
+ggplot(data = DATA) +
+  GEOM_FUNCTION(mapping = aes(AESTHETIC MAPPINGS))
+```
+
+::: {.fragment}
+[Mapping data to aesthetics]{.small}
+:::
+::: {.fragment}
+[Think about colors, sizes, x and y references]{.small}
+:::
+::: {.fragment}
+[We are going to learn how we connect our data to the components of a ggplot.]{.small} 
+:::
+::: {.fragment}
+[I usually code like this:]{.small}
+```
+DATA |> 
+  ggplot(aes(AESTHETIC MAPPINGS)) +
+  GEOM_FUNCTION()
+```
+:::
+
+## Mapping
+
+<center>
+[Mappings]{.fg-red} do not directly specify the particular, e.g., colors, shapes, or line styles that will appear on the plot. 
+
+Rather, they establish which variables in the data will be represented by which visible elements on the plot.
+</center>
+
+## ggplot2: full structure
+
+:::: {.columns}
+
+::: {.column}
+```
+ggplot(data = <DATA>) +
+  <GEOM_FUNCTION>(
+     mapping = aes(<MAPPINGS>),
+     stat = <STAT>,
+     position = <POSITION>
+  ) +z
+  <COORDINATE_FUNCTION> +
+  <FACET_FUNCTION> +
+  <SCALE_FUNTION> +
+  <THEME_FUNCTION>
+
+```
+:::
+
+::: {.column}
+::: {.tiny}
+1. `Data`: The data that you want to visualize
+2. `Layers`: geom\_ and stat\_ → The geometric shapes and statistical summaries representing the data
+3. `Aesthetics`: aes() → Aesthetic mappings of the geometric and statistical objects
+4. `Scales`: scale_ → Maps between the data and the aesthetic dimensions
+5. `Coordinate system`: coord_ → Maps data into the plane of the data rectangle
+6. `Facets`: facet_ → The arrangement of the data into a grid of plots
+7. `Visual themes`: theme() and theme_ → The overall visual defaults of a plot
+:::
+:::
+::::
+
+## ggplot2: decomposition
+
+:::: {.columns}
+
+::: {.column}
+
+**There are multiple ways to structure plots with ggplot**
+
+:::{.small}
+For this presentation, I will stick to Thomas Lin Pedersen's decomposition who is one of most prominent developers of the ggplot and gganimate package.<br><br>These components can be seen as layers, this is why we use the `+` sign in our ggplot syntax.
+:::
+
+:::
+
+::: {.column}
+
+<center>
+  <img src="img/ggplot_decom.png" width="80%">
+</center>
+
+:::
+::::
+
+## Exploratory Analysis
+
+The most common `geoms` are:
+
+:::{.small}
+
+* `geom_bar()`, `geom_col()`: bar charts.
+* `geom_boxplot()`: box and whiskers plots.
+* `geom_density()`: density estimates.
+* `geom_jitter()`: jittered points.
+* `geom_line()`: line plots.
+* `geom_point()`: scatter plots.
+
+:::
+
+> If you want to know more about layers, you can refer to [this](https://ggplot2.tidyverse.org/reference/).
+
+## Step by step from Garrick Aden-Buie's gentle guide
+
+Using the `gapminder` package, let's start with `lifeExp` vs `gdpPercap`
+
+```{r}
+#| echo: true
+#| code-line-numbers: "1"
+glimpse(gapminder)
+```
+
+## 
+
+```{r}
+#| echo: true
+#| output-location: column
+#| code-line-numbers: "1"
+ggplot(gapminder) 
+```
+
+The Canvas
+
+##
+
+```{r}
+#| echo: true
+#| output-location: column
+ggplot(gapminder) +
+  aes(
+    x = gdpPercap
+  )
+```
+
+The Canvas
+
+##
+
+```{r}
+#| echo: true
+#| output-location: column
+ggplot(gapminder) +
+  aes(
+    x = gdpPercap,
+    y = lifeExp
+  )
+```
+
+Let's add points...
+
+##
+
+```{r}
+#| echo: true
+#| output-location: column
+ggplot(gapminder) +
+  aes(
+    x = gdpPercap,
+    y = lifeExp
+  ) + 
+  geom_point() 
+```
+
+
+How can I tell countries apart? GDP is squished together on the left
+
+##
+
+```{r}
+#| echo: true
+#| output-location: column
+#| code-line-numbers: "7"
+ggplot(gapminder) +
+  aes(
+    x = gdpPercap,
+    y = lifeExp
+  ) + 
+  geom_point() +
+  scale_x_log10()
+```
+
+Still lots of overlap in the countries...
+
+##
+
+```{r}
+#| echo: true
+#| output-location: column
+#| code-line-numbers: "|8|9|10"
+ggplot(gapminder) +
+  aes(
+    x = gdpPercap,
+    y = lifeExp,
+    color = continent
+  ) +
+  geom_point() +
+  scale_x_log10() +
+  facet_wrap(~ continent) +
+  guides(color = FALSE)    
+```
+
+No need for color legend thanks to facet titles.
+
+Lots of overplotting due to point size.
+
+##
+
+```{r}
+#| echo: true
+#| output-location: column
+ggplot(gapminder) +
+  aes(
+    x = gdpPercap,
+    y = lifeExp,
+    color = continent
+  ) +
+  geom_point(size = 0.25) + 
+  scale_x_log10() +
+  facet_wrap(~ continent) +
+  guides(color = FALSE)
+```
+
+Is there a trend?
+
+##
+
+```{r}
+#| echo: true
+#| output-location: column
+ggplot(gapminder) +
+  aes(
+    x = gdpPercap,
+    y = lifeExp,
+    color = continent
+  ) +
+  geom_line() + #<<
+  geom_point(size = 0.25) +
+  scale_x_log10() +
+  facet_wrap(~ continent) +
+  guides(color = FALSE)
+```
+
+Okay, that line just connected all of the points sequentially...
+
+##
+
+```{r}
+#| echo: true
+#| output-location: column
+ggplot(gapminder) +
+  aes(
+    x = gdpPercap,
+    y = lifeExp,
+    color = continent
+  ) +
+  geom_line(
+    aes(group = country)
+  ) +
+  geom_point(size = 0.25) +
+  scale_x_log10() +
+  facet_wrap(~ continent) +
+  guides(color = FALSE)
+```
+
+Oh no! Too confusing!
+
+##
+
+```{r}
+#| echo: true
+#| output-location: column
+#| code-line-numbers: "|3"
+ggplot(gapminder) +
+  aes(
+    x = year,
+    y = lifeExp,
+    color = continent
+  ) +
+  geom_line(
+    aes(group = country)
+  ) +
+  geom_point(size = 0.25) +
+  scale_y_log10() +
+  facet_wrap(~ continent) +
+  guides(color = FALSE)
+```
+
+Let's add `year` in our x-axis instead of `gdp`!
+
+## Our goal
+
+<center>
+  <img src="img/data-viz.png" width="90%">
+</center>

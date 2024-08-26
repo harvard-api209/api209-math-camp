@@ -1,0 +1,248 @@
+---
+title: "Tutorial 4: Data Analysis with Tidyverse"
+format: html
+---
+
+# Data Analysis with Tidyverse
+
+In this tutorial, we will delve deeper into data analysis using the Tidyverse, focusing on more advanced data manipulation techniques. We will explore grouping data, summarizing results, and transforming data into a tidy format. These techniques are crucial for conducting meaningful data analysis, particularly in the context of educational data. We will load the `dplyr` and `tidyr` packages from the tidyverse for this tutorial. Remember that if you haven't installed the tidyverse, you can use `install.packages()`. 
+
+```{r}
+library(dplyr)
+library(tidyr)
+```
+
+## 4.1 Grouping and Summarizing Data
+
+One of the most powerful features of `dplyr` is the ability to group data by one or more variables and then summarize each group using a variety of summary statistics.
+
+### 4.1.1 group_by(): Grouping Data
+
+The `group_by()` function allows you to group data by one or more variables. This is often the first step in data analysis when you want to calculate summary statistics for different groups within your dataset.
+
+```{r}
+# Example data frame
+students_df <- data.frame(
+  Name = c("Alice", "Bob", "Charlie", "David", "Eva"),
+  Major = c("Economics", "Economics", "History", "Biology", "History"),
+  Score = c(85, 90, 78, 88, 92)
+)
+
+# Grouping by Major
+grouped_df <- students_df |> 
+  group_by(Major)
+grouped_df
+```
+
+**Explanation:**
+- `group_by()` creates a grouped data frame where operations can be applied separately to each group.
+- In this example, students are grouped by their `Major`.
+
+### 4.1.2 summarise(): Summarizing Data
+
+Once the data is grouped, you can use the `summarise()` function to calculate summary statistics, such as the mean, median, count, etc., for each group.
+
+```{r}
+# Calculating the average score for each major
+summary_df <- grouped_df |> 
+  summarise(AverageScore = mean(Score))
+summary_df
+```
+
+**Explanation:**
+- `summarise()` creates a new data frame with summary statistics calculated for each group. Here, the mean score is calculated for each `Major`.
+
+### 4.1.3 Combining group_by() and summarise()
+
+You can combine `group_by()` and `summarise()` to perform complex analyses on your data.
+
+```{r}
+# Calculating both the average score and the number of students in each major
+summary_df <- students_df |>
+  group_by(Major) |>
+  summarise(
+    AverageScore = mean(Score),
+    StudentCount = n()
+  )
+summary_df
+```
+
+**Explanation:**
+- This example shows how to calculate multiple summary statistics at once. The `n()` function counts the number of observations in each group.
+
+## 4.2 Data Transformation with mutate() and transmute()
+
+The `mutate()` function allows you to create new variables or modify existing ones, while `transmute()` does the same but only keeps the newly created variables.
+
+### 4.2.1 mutate(): Creating and Modifying Variables
+
+```{r}
+# Adding a new column for standardized scores
+students_df <- students_df |>
+  mutate(
+    StandardizedScore = (Score - mean(Score)) / sd(Score)
+  )
+
+students_df
+```
+
+**Explanation:**
+- `mutate()` creates a new column `StandardizedScore`, which standardizes the `Score` by subtracting the mean and dividing by the standard deviation.
+
+### 4.2.2 transmute(): Keeping Only New Variables
+
+If you only want to keep the newly created variables, use `transmute()`.
+
+```{r}
+# Keeping only the standardized scores
+standardized_df <- students_df |>
+  transmute(
+    Name, StandardizedScore = (Score - mean(Score)) / sd(Score)
+  )
+
+standardized_df
+```
+
+**Explanation:**
+- `transmute()` creates the `StandardizedScore` column and drops all other columns except `Name`.
+
+## 4.3 Pivoting Data with pivot_longer() and pivot_wider()
+
+Data often needs to be reshaped from wide to long format or vice versa. The `pivot_longer()` and `pivot_wider()` functions from the `tidyr` package are used for this purpose.
+
+### 4.3.1 pivot_longer(): Converting Data from Wide to Long Format
+
+```{r}
+# Example wide data frame
+wide_df <- data.frame(
+  Name = c("Alice", "Bob", "Charlie"),
+  Math_Score = c(85, 90, 78),
+  History_Score = c(88, 80, 90)
+)
+
+# Converting to long format
+long_df <- wide_df |>
+  pivot_longer(
+    cols = contains("Score"), 
+    names_to = "Subject", 
+    values_to = "Score"
+  )
+
+long_df
+```
+
+**Explanation:**
+- `pivot_longer()` converts the data from wide format (separate columns for each subject) to long format (one column for subjects and one for scores).
+- The `cols` argument specifies which columns to pivot, `names_to` specifies the name of the new variable that will contain the original column names, and `values_to` specifies the name of the variable that will contain the values.
+
+### 4.3.2 pivot_wider(): Converting Data from Long to Wide Format
+
+```{r}
+# Converting long format back to wide format
+wide_again_df <- long_df |>
+  pivot_wider(
+    names_from = Subject, 
+    values_from = Score
+  )
+
+wide_again_df
+```
+
+**Explanation:**
+- `pivot_wider()` is the opposite of `pivot_longer()`. It spreads key-value pairs across multiple columns, converting the data back to wide format.
+
+## Exercises and Solutions
+
+### Exercise 1: Grouping and Summarizing Data
+
+1. Using the `students_df` data frame, group the data by `Major`.
+2. Calculate the total number of students and the maximum score for each `Major`.
+
+**Solution:**
+```{r}
+# Step 1: Grouping by Major
+grouped_df <- students_df |> 
+  group_by(Major)
+
+# Step 2: Summarising total students and maximum score
+summary_df <- grouped_df |>
+  summarise(
+    TotalStudents = n(),
+    MaxScore = max(Score)
+  )
+```
+
+### Exercise 2: Mutating Data
+
+1. Create a new column in `students_df` called `ScoreCategory` that categorizes scores as "High" (>= 85) or "Low" (< 85).
+2. Modify the `ScoreCategory` column to reflect "Very High" for scores >= 90.
+
+**Solution:**
+```{r}
+# Step 1: Adding ScoreCategory column
+students_df <- students_df |>
+  mutate(
+    ScoreCategory = ifelse(Score >= 85, "High", "Low")
+  )
+
+# Step 2: Modifying ScoreCategory for Very High scores
+students_df <- students_df |>
+  mutate(
+    ScoreCategory = ifelse(Score >= 90, "Very High", ScoreCategory)
+  )
+
+students_df
+```
+
+### Exercise 3: Pivoting Data
+
+1. Convert the `wide_df` data frame from wide to long format using `pivot_longer()`.
+2. Rename the `Subject` column to `Course` in the long data frame.
+
+**Solution:**
+```{r}
+# Step 1: Pivoting from wide to long format
+long_df <- wide_df |>
+  pivot_longer(
+    cols = contains("Score"), 
+    names_to = "Subject", 
+    values_to = "Score"
+  )
+
+# Step 2: Renaming Subject to Course
+long_df <- long_df |>
+  rename(Course = Subject)
+
+long_df
+```
+
+### Exercise 4: Combining Data Transformation and Summarization
+
+1. Using `students_df`, create a new column called `AdjustedScore` where each score is increased by 5%.
+2. Group the data by `Major` and calculate the average `AdjustedScore` for each `Major`.
+
+**Solution:**
+```{r}
+# Step 1: Adding AdjustedScore column
+students_df <- students_df |>
+  mutate(AdjustedScore = Score * 1.05)
+
+# Step 2: Grouping by Major and calculating average AdjustedScore
+summary_df <- students_df |>
+  group_by(Major) |>
+  summarise(AverageAdjustedScore = mean(AdjustedScore))
+```
+
+### Exercise 5: Advanced Pivoting
+
+1. Using `long_df`, convert the data back to wide format with `pivot_wider()`.
+2. Ensure the resulting data frame has `Name` as rows and `Course` as columns with scores as values.
+
+**Solution:**
+```{r}
+# Pivoting from long to wide format
+wide_again_df <- long_df |>
+  pivot_wider(names_from = Course, values_from = Score)
+
+wide_again_df
+```

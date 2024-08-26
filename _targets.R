@@ -1,18 +1,25 @@
+# Created by use_targets().
+# Follow the comments below to fill in this target script.
+# Then follow the manual to check and run the pipeline:
+#   https://books.ropensci.org/targets/walkthrough.html#inspect-the-pipeline
+
+# Load packages required to define the pipeline:
 library(targets)
-library(tarchetypes)
-suppressPackageStartupMessages(library(tidyverse))
+library(tarchetypes) 
 
 class_number <- "API 209"
-base_url     <- "https://harvard-api209.github.io/api209-math-camp/"
+base_url     <- "https://harvard-api209.github.io/api209-math-camp"
 page_suffix  <- ".html"
+yaml_vars    <- yaml::read_yaml(here::here("_variables.yml"))
 
 options(
   tidyverse.quiet = TRUE,
   dplyr.summarise.inform = FALSE
 )
 
+# Set target options:
 tar_option_set(
-  packages = c("tibble"),
+  packages = c("tibble", "dplyr", "readr", "tidyverse"),
   format = "rds",
   workspace_on_error = TRUE
 )
@@ -24,65 +31,50 @@ tar_option_set(
 # https://github.com/r-lib/here/issues/36#issuecomment-530894167)
 here_rel <- function(...) {fs::path_rel(here::here(...))}
 
-# Load functions for the pipeline
+# Sources
+source("R/slide-things.R")
 source("R/tar_slides.R")
-# source("R/tar_data.R")
-# source("R/tar_projects.R")
 source("R/tar_calendar.R")
 
-# THE MAIN PIPELINE ----
+# Replace the target list below with your own:
 list(
+  ## Build quarto site ----
+  tar_quarto(site, path = ".", quiet = FALSE),
+
   ## Slides ----
   # Render all the slides and make PDFs
-  build_slides,
+  # build_slides,
   
-  # The main index.qmd page loads all_slides as a target to link it as a dependency
-  tar_combine(
-    all_slides,
-    tar_select_targets(build_slides, starts_with("slide_pdf_"))
-  ),
+  tar_files(rendered_slides, {
+    # Force dependencies
+    site
+    fl = list.files(
+      here_rel("2024/weeks"), 
+      pattern = "^slides.*\\.qmd$", 
+      full.names = TRUE, 
+      recursive = TRUE
+    )
+
+    paste0("docs/", stringr::str_replace(fl, "qmd", "html"))
+  }),
+
+  tar_target(quarto_pdfs, {
+    html_to_pdf(rendered_slides)
+  }, pattern = map(rendered_slides), format = "file"),  
   
-  ## Project folders ----
-  # Create/copy data and zip up all the project folders
-  # make_data_and_zip_projects,
-  
-  # # The main index.qmd page loads all_zipped_projects as a target to link it as a dependency
-  # tar_combine(
-  #   all_zipped_projects,
-  #   tar_select_targets(make_data_and_zip_projects, starts_with("zip_"))
-  # ),
-  
+
   ## Class schedule calendar ----
   tar_target(schedule_file, here_rel("data", "schedule.csv"), format = "file"),
   tar_target(schedule_page_data, build_schedule_for_page(schedule_file)),
-  tar_target(
-    schedule_ical_data,
-    build_ical(
-      schedule_file, base_url,
-      page_suffix, class_number
-    )
-  ),
+  tar_target(schedule_ical_data, build_ical(schedule_file, base_url,
+                                            page_suffix, class_number)),
   tar_target(
     schedule_ical_file,
-    save_ical(
-      schedule_ical_data,
-      here_rel("files", "schedule.ics")
+      save_ical(
+        schedule_ical_data,
+        here_rel("files", "schedule.ics"
+      )
     ),
     format = "file"
-  ),
-  
-  ## Build site ----
-  tar_quarto(site, path = ".", quiet = FALSE)
-  
-  ## Upload site ----
-  # tar_target(deploy_script, here_rel("deploy.sh"), format = "file"),
-  # tar_target(deploy_site, {
-  #   # Force dependencies
-  #   site
-  #   # Run the deploy script
-  #   if (Sys.getenv("UPLOAD_WEBSITES") == "TRUE") {
-  #     processx::run(paste0("./", deploy_script))
-  #   }
-  # })
+  )
 )
-

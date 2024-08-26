@@ -1,5 +1,5 @@
 ---
-title: "Schedule"
+title: "Schedule: Summer 2024"
 sidebar: false
 toc: false
 page-layout: full
@@ -21,13 +21,17 @@ ical_url_absolute <- paste0(base_url, "/", schedule_ical_file)
 
 ::: {.schedule-page}
 
-Here's your roadmap for the summer camp!
+Here's your roadmap for the math camp!
 
-- [**Lessons**](/content/index.qmd) ({{< fa book-open-reader >}}): This page contains the slides for the topic. Read and go through these first.
+The content for each week is organized into three sections, which you'll follow in this order:
 
-- [**Hands-on Sessions**](/handson/index.qmd) ({{< fa laptop-code >}}): This page provides the interactive, practical exercises that correspond with each lesson. Engage with these sessions after reviewing the slides to solidify your understanding. We will go through these during each odd numbered session.
+- [**Lessons**](/2024/weeks/week01/page.qmd) ({{< fa book-open-reader >}}): Begin with the Lesson section. These pages contain the slides for each topic. Make sure to read through them first to build your foundation for the week.
 
-- [**Labs**](/labs/index.qmd) ({{< fa chalkboard-teacher >}}): This page contains, when needed, interactive sessions, and also the contents for each lab. Go through these after doing the lessons and hands-on sessions. This is more on your own, so we will go through these during each even numbered session.
+- [**Hands-on Sessions**](/2024/weeks/week01/hands-on.qmd) ({{< fa chalkboard-teacher >}}): Next, move on to the Hands-on Sessions. These pages include practical exercises that will help you apply what you've learned in the lessons. We'll work on these together during the odd-numbered sessions each week.
+
+- [**Labs**](/2024/weeks/week01/lab.qmd) ({{< fa laptop-code >}}): Finally, explore the Lab section. These pages offer additional interactive components and lab exercises. You'll complete these primarily on your own, and we'll discuss them during the even-numbered sessions each week.
+
+Each week's content is structured in this same way, so be sure to follow this sequence to get the most out of your learning experience.
 
 :::::: {.row .d-flex .justify-content-center}
 ::::: {.col-12 .col-sm-10 .col-md-6}
@@ -37,8 +41,8 @@ Here's your roadmap for the summer camp!
 **tl;dr**: You should follow this general process for each session:
 
 - Read the slides in the lesson page ({{< fa book-open-reader >}})
-- Work through the hands-on page ({{< fa laptop-code >}})
-- Do the labs page ({{< fa chalkboard-teacher >}})
+- Work through the hands-on page ({{< fa chalkboard-teacher >}})
+- Do the labs page ({{< fa laptop-code >}})
 
 :::
 ::::
@@ -71,15 +75,20 @@ You can subscribe to this calendar URL in Outlook, Google Calendar, or Apple Cal
 show_table <- function(group_id) {
   # Add a heading
   cat(as.character(paste("\n\n###", schedule_nested$group[[group_id]], "\n\n")))
-
+  
   # Make the table
-  tbl <- schedule_nested$data[[group_id]] |>
-    kbl(escape = FALSE, align = "rlccc", table.attr = 'class="schedule-table"') |>
-    kable_styling() |>
-    column_spec(1, width = "20%", extra_css = "padding-right: 20px;") |>
-    column_spec(2, width = "48%") |>
-    column_spec(3:5, width = "8%")
-
+  tbl <- schedule_nested$data[[group_id]] %>% 
+    select(-subgroup) %>% 
+    kbl(escape = FALSE, align = "rlccc", table.attr = 'class="schedule-table"') %>% 
+    kable_styling() %>% 
+    column_spec(1, width = "15%", extra_css = "padding-right: 20px;") %>% 
+    column_spec(2, width = "50%") %>% 
+    column_spec(3:5, width = "10%") %>% 
+    pack_rows(
+      index = schedule_nested$subgroup_index[[group_id]],
+      label_row_css = "border-bottom: 1px solid #adb5bd;"
+    )
+  
   cat(tbl)
 }
 ```

@@ -1,0 +1,333 @@
+---
+title: "Tutorial 2: Working with Data Structures in R"
+format: html
+---
+
+# Working with Data Structures in R
+
+In this tutorial, we will explore three fundamental data structures in R: **matrices**, **lists**, and **data frames**. Understanding these structures is essential for effective data manipulation and analysis. This tutorial includes detailed explanations, code examples, and exercises with solutions to reinforce learning.
+
+## 2.1 Matrices
+
+A **matrix** is a two-dimensional data structure that stores elements of the same data type arranged in rows and columns. Matrices are useful for mathematical computations and organizing data in a tabular format.
+
+### 2.1.1 Creating Matrices
+
+Use the `matrix()` function to create a matrix by specifying the data, number of rows, and number of columns.
+
+```{r}
+# Creating a matrix of student scores across 3 subjects
+scores <- c(85, 78, 92, 90, 82, 79, 78, 91, 86)
+student_scores <- matrix(scores, nrow = 3, ncol = 3, byrow = TRUE)
+
+# Assigning row and column names
+rownames(student_scores) <- c("Student1", "Student2", "Student3")
+colnames(student_scores) <- c("Math", "History", "Biology")
+
+student_scores
+```
+
+**Explanation:**
+- A numeric vector `scores` is created containing nine score values.
+- The `matrix()` function organizes these scores into a 3x3 matrix filled by rows.
+- `rownames()` and `colnames()` assign descriptive labels to rows and columns for clarity.
+
+### 2.1.2 Accessing and Modifying Matrix Elements
+
+Access specific elements, rows, or columns using square brackets `[]`.
+
+```{r}
+# Accessing the score of Student2 in History
+student_scores["Student2", "History"]
+
+# Accessing all scores of Student3
+student_scores["Student3", ]
+
+# Modifying a specific score
+student_scores["Student1", "Biology"] <- 95
+```
+
+**Explanation:**
+- Specify row and column names or indices within brackets to access elements.
+- Assign new values to modify existing data in the matrix.
+
+### 2.1.3 Matrix Operations
+
+Perform various operations such as calculating row and column sums or means.
+
+```{r}
+# Calculating total scores for each student
+total_scores <- rowSums(student_scores)
+
+# Calculating average scores for each subject
+average_subject_scores <- colMeans(student_scores)
+```
+
+**Explanation:**
+- `rowSums()` computes the sum across rows, giving total scores per student.
+- `colMeans()` computes the average across columns, providing average scores per subject.
+
+## 2.2 Lists
+
+A **list** is a versatile data structure that can contain elements of different types, including numbers, strings, vectors, and even other lists.
+
+### 2.2.1 Creating Lists
+
+Use the `list()` function to create a list containing heterogeneous elements.
+
+```{r}
+# Creating a list with student information
+student_info <- list(
+  name = "Alice",
+  age = 20,
+  major = "Economics",
+  scores = c(88, 92, 85)
+)
+
+student_info
+```
+
+**Explanation:**
+- The list `student_info` contains character, numeric, and vector elements, encapsulating diverse data related to a student.
+
+### 2.2.2 Accessing and Modifying List Elements
+
+Access list elements using the `$` operator or double square brackets `[[]]`.
+
+```{r}
+# Accessing the student's major
+student_info$major
+
+# Accessing the student's scores
+student_info[["scores"]]
+
+# Modifying the student's age
+student_info$age <- 21
+```
+
+**Explanation:**
+- `$` and `[[]]` operators retrieve specific elements from the list.
+- Assign new values to update existing elements within the list.
+
+### 2.2.3 Nested Lists
+
+Lists can contain other lists, allowing for complex data structures.
+
+```{r}
+# Creating a nested list with course details
+course_details <- list(
+  course_name = "Introduction to Economics",
+  credits = 3,
+  instructor = list(
+    name = "Dr. Smith",
+    office = "Room 101",
+    email = "dr.smith@university.edu"
+  )
+)
+
+course_details
+```
+
+**Explanation:**
+- The `instructor` element is itself a list containing detailed information, demonstrating how lists can be nested for hierarchical data representation.
+
+## 2.3 Data Frames
+
+A **data frame** is a table-like structure where each column can contain different data types. Data frames are widely used for storing and manipulating datasets.
+
+### 2.3.1 Creating Data Frames
+
+Use the `data.frame()` function to create a data frame by combining vectors of equal length.
+
+```{r}
+# Creating a data frame with multiple students' information
+students_df <- data.frame(
+  Name = c("Alice", "Bob", "Charlie"),
+  Age = c(20, 22, 19),
+  Major = c("Economics", "History", "Biology"),
+  GPA = c(3.8, 3.6, 3.9)
+)
+
+students_df
+```
+
+**Explanation:**
+- Each vector represents a column in the data frame, and each row represents an observation (a student in this case).
+
+### 2.3.2 Accessing and Modifying Data Frame Elements
+
+Access data frame elements using `$`, `[]`, or `subset()`.
+
+```{r}
+# Accessing the 'Major' column
+students_df$Major
+
+# Accessing the second row
+students_df[2, ]
+
+# Modifying Bob's GPA
+students_df[students_df$Name == "Bob", "GPA"] <- 3.7
+```
+
+**Explanation:**
+- `$` retrieves entire columns.
+- `[]` with row and column indices retrieves specific elements or subsets.
+- Logical conditions identify and modify specific rows.
+
+### 2.3.3 Adding and Removing Columns
+
+Add new columns or remove existing ones as needed.
+
+```{r}
+# Adding a new column for graduation year
+students_df$GraduationYear <- c(2022, 2021, 2023)
+
+# Removing the 'Age' column
+students_df$Age <- NULL
+```
+
+**Explanation:**
+- Assigning a vector to a new column name adds it to the data frame.
+- Setting a column to `NULL` removes it from the data frame.
+
+### 2.3.4 Filtering and Subsetting Data
+
+Use conditions to filter rows and select subsets of data.
+
+```{r}
+# Filtering students with GPA above 3.7
+high_gpa_students <- subset(students_df, GPA > 3.7)
+
+# Selecting specific columns
+name_major_df <- students_df[, c("Name", "Major")]
+```
+
+**Explanation:**
+- `subset()` filters rows based on specified conditions.
+- Column indices within `[]` select specific columns for a new data frame.
+
+## Exercises and Solutions
+
+### Exercise 1: Working with Matrices
+
+1. Create a matrix named `enrollment` representing the number of students enrolled in three courses over four semesters. Use the following data:
+   - Semester 1: 120, 85, 90
+   - Semester 2: 130, 80, 95
+   - Semester 3: 125, 90, 100
+   - Semester 4: 140, 88, 110
+2. Assign row names as "Semester1" to "Semester4" and column names as "Economics", "History", "Biology".
+3. Calculate the average enrollment for each course across all semesters.
+
+**Solution:**
+```{r}
+# Step 1: Creating the enrollment matrix
+enrollment_numbers <- c(120, 85, 90, 130, 80, 95, 125, 90, 100, 140, 88, 110)
+enrollment <- matrix(enrollment_numbers, nrow = 4, byrow = TRUE)
+
+# Step 2: Assigning row and column names
+rownames(enrollment) <- c("Semester1", "Semester2", "Semester3", "Semester4")
+colnames(enrollment) <- c("Economics", "History", "Biology")
+
+# Step 3: Calculating average enrollment for each course
+average_enrollment <- colMeans(enrollment)
+average_enrollment
+```
+
+### Exercise 2: Creating and Manipulating Lists
+
+1. Create a list named `university` containing:
+   - `name`: "ABC University"
+   - `established`: 1965
+   - `departments`: a vector of "Economics", "History", "Biology"
+   - `student_count`: a vector of enrollment numbers 5000, 3000, 4000 corresponding to the departments.
+2. Access the `departments` element from the list.
+3. Add a new element `location` with the value "Cityville".
+
+**Solution:**
+```{r}
+# Step 1: Creating the university list
+university <- list(
+  name = "ABC University",
+  established = 1965,
+  departments = c("Economics", "History", "Biology"),
+  student_count = c(5000, 3000, 4000)
+)
+
+# Step 2: Accessing the departments element
+university_departments <- university$departments
+
+# Step 3: Adding the location element
+university$location <- "Cityville"
+```
+
+### Exercise 3: Building and Modifying Data Frames
+
+1. Create a data frame named `faculty_df` with the following data:
+   - `Name`: "Dr. Adams", "Dr. Baker", "Dr. Clark"
+   - `Department`: "Economics", "History", "Biology"
+   - `ExperienceYears`: 10, 8, 12
+2. Add a new row for "Dr. Davis" from the "Economics" department with 5 years of experience.
+3. Change "Dr. Baker"'s experience years to 9.
+
+**Solution:**
+```{r}
+# Step 1: Creating the faculty_df data frame
+faculty_df <- data.frame(
+  Name = c("Dr. Adams", "Dr. Baker", "Dr. Clark"),
+  Department = c("Economics", "History", "Biology"),
+  ExperienceYears = c(10, 8, 12),
+  stringsAsFactors = FALSE
+)
+
+# Step 2: Adding a new row for Dr. Davis
+new_faculty <- data.frame(
+  Name = "Dr. Davis",
+  Department = "Economics",
+  ExperienceYears = 5,
+  stringsAsFactors = FALSE
+)
+faculty_df <- rbind(faculty_df, new_faculty)
+
+# Step 3: Updating Dr. Baker's experience years
+faculty_df[faculty_df$Name == "Dr. Baker", "ExperienceYears"] <- 9
+```
+
+### Exercise 4: Filtering and Selecting Data
+
+1. Using the `faculty_df` from Exercise 3, filter the data frame to include only faculty members from the "Economics" department.
+2. Select only the `Name` and `ExperienceYears` columns from the filtered data.
+
+**Solution:**
+```{r}
+# Step 1: Filtering faculty members from Economics department
+economics_faculty <- subset(faculty_df, Department == "Economics")
+
+# Step 2: Selecting Name and ExperienceYears columns
+economics_faculty_details <- economics_faculty[, c("Name", "ExperienceYears")]
+```
+
+### Exercise 5: Combining Data Frames
+
+1. Create a data frame named `courses_df` with:
+   - `CourseID`: 101, 102, 103
+   - `CourseName`: "Microeconomics", "World History", "Genetics"
+   - `Department`: "Economics", "History", "Biology"
+2. Merge `courses_df` with `faculty_df` based on the `Department` column.
+3. Remove any rows where there is no matching department in both data frames.
+
+**Solution:**
+```{r}
+# Step 1: Creating the courses_df data frame
+courses_df <- data.frame(
+  CourseID = c(101, 102, 103),
+  CourseName = c("Microeconomics", "World History", "Genetics"),
+  Department = c("Economics", "History", "Biology"),
+  stringsAsFactors = FALSE
+)
+
+# Step 2: Merging courses_df with faculty_df
+merged_df <- merge(courses_df, faculty_df, by = "Department")
+
+# Step 3: Ensuring all rows have matching departments (already ensured by merge function)
+merged_df
+```

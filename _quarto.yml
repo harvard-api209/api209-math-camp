@@ -1,152 +1,156 @@
 project:
-  type: website
-  output-dir: docs
+  type: "website"
+  output-dir: docs  
+  preview: 
+    port: 3333
+  title: "API209: Summer Math Camp"
   render:
     - "*.qmd"
-    - "!slides/"
-    - "!projects/"
-    - "!files/projects/"
-  resources:
-    - "files/"
-    - "projects/"
-    - "slides/*.html"
-    - "slides/*.pdf"
-    - "slides/img/"
-    - "slides/libs/"
-    - "slides/css/"
-    - "slides/*_files/"
-  preview:
-    port: 3333
-  
+    - "schedule.qmd"
+    - "2024/*.qmd"
+    - "2024/weeks/week01/*.qmd"
+    - "2024/weeks/week02/*.qmd"
+    - "2024/weeks/week03/*.qmd"
+    - "2024/weeks/week04/*.qmd"    
+    - "resource/*.qmd"
+    - "tutorial/*.qmd" 
+
 execute:
   freeze: auto  # Re-render only when source changes
-  
+
 website:
-  title: "API-209 R-Programming (Math Camp) 2024"
-  description: "Conceptual mastery of statistical methods for public policy, focusing on application rather than mechanics"
-  site-url: "https://harvard-api209.github.io/api209-math-camp/"
-  
-  favicon: "/files/favicon-512.png"
-  
-  repo-url: "https://github.com/harvard-api209/api209-math-camp/"
-  repo-actions: [edit, issue]
-  
+  title: "🏠 API209: Summer Math Camp"
+  site-url: "https://harvard-api209.github.io/api209-math-camp"
   page-navigation: true
-  
-  navbar:
-    pinned: true
-    background: "#A51C30"
-    right:
-      - syllabus.qmd
-      - schedule.qmd
-      - text: "Lessons"
-        file: content/index.qmd
-      - text: "Hands-on"
-        file: handson/index.qmd
-      - text: "Labs"
-        file: labs/index.qmd
-      - text: "Resources"
-        file: resource/index.qmd
-      - icon: slack
-        href: "https://harvard.enterprise.slack.com"
-        aria-label: Slack
-      - icon: cloud-fill
-        href: "https://posit.cloud"
-        aria-label: Posit.cloud
+  reader-mode: true
+  open-graph: true
+  favicon: "figures/icons/favicon-512.png"
+  search:
+    location: navbar
+    type: textbox
+
+  repo-url: "https://github.com/harvard-api209/api209-math-camp"
   
   sidebar:
-    - title: "Classes and readings"
-      style: "docked"
-      search: false
-      background: light
-      contents:
-        - section: "Overview"
-          contents:
-            - content/index.qmd
-        - section: "Data Mastery"
-          contents:
-            - text: "1: Mastering Data Wrangling"
-              file: content/01-content.qmd
-        - section: "Data Visualization"
-          contents:
-            - text: "2: Data Visualization with ggplot2"
-              file: content/02-content.qmd
-        - section: "Modeling"
-          contents:
-            - text: "3: Advanced Statistical Modeling"
-              file: content/03-content.qmd
-        - section: "Streamlining Research"
-          contents:
-            - text: "4: Reproducible Research and Automation"
-              file: content/04-content.qmd
-
-    - title: "Hands-on"
-      contents:
-        - section: "Overview"
-          contents:
-            - handson/index.qmd
-        - section: "Hands-on Sessions"
-          contents:
-            - text: "1: Mastering Data Wrangling"
-              file: handson/01-handson.qmd
-            - text: "2: Data Visualization with ggplot2"
-              file: handson/02-handson.qmd
-            - text: "3: Advanced Statistical Modeling"
-              file: handson/03-handson.qmd
-            - text: "4: Reproducible Research and Automation"
-              file: handson/04-handson.qmd    
-
-    - title: "Labs"
-      contents:
-        - section: "Overview"
-          contents:
-            - labs/index.qmd
-        - section: "Labs"
-          contents:
-            - text: "1: Mastering Data Wrangling"
-              file: labs/01-labs.qmd
-            - text: "2: Data Visualization with ggplot2"
-              file: labs/02-labs.qmd
-            - text: "3: Advanced Statistical Modeling"
-              file: labs/03-labs.qmd
-            - text: "4: Reproducible Research and Automation"
-              file: labs/04-labs.qmd
-
     - title: "Resources"
       contents:
         - section: "Resources"
           contents:
             - resource/index.qmd
-            - resource/colors.qmd
-            - resource/design.qmd
-            - resource/graphics-editors.qmd
             - resource/visualization.qmd
             - resource/r.qmd
             - resource/style.qmd
             - resource/data.qmd
-            - resource/citations.qmd
         - section: "Guides"
           contents:
             - resource/install.qmd
             - resource/markdown.qmd
             - resource/quarto.qmd
-            - resource/pipes.qmd         
+
+    - title: "Tutorials"
+      contents:
+        - section: "Overview"
+          contents:
+            - href: tutorial/index.qmd
+              text: "🏠 Home"
+        - section: "Tutorials"
+          contents:
+            - href: tutorial/01-content.qmd
+              text: "1. Introduction to R and Basic Data Types"
+            - href: tutorial/02-content.qmd
+              text: "2. Data Structures"
+            - href: tutorial/03-content.qmd
+              text: "3. Introduction to Tidyverse"
+            - href: tutorial/04-content.qmd
+              text: "4. Data Analysis"
+            - href: tutorial/05-content.qmd
+              text: "5. Visualization with ggplot2"
+            - href: tutorial/06-content.qmd
+              text: "6. Advanced Data Wrangling"
+            - href: tutorial/07-content.qmd
+              text: "7. Applied Examples in Economics of Education"
   
+    - title: "2024 Math Camp"
+      collapse-level: 3
+      contents:
+        - section: "Overview"
+          contents:
+            - href: 2024/index.qmd
+              text: "🏠 Home"
+        - section: "🗓️ Weeks"
+          contents:
+          - text: Week 01
+            href: 2024/weeks/week01/page.qmd
+            contents:
+              - href: 2024/weeks/week01/page.qmd
+                text: 👨‍🏫 Lesson
+              - href: 2024/weeks/week01/hands-on.qmd
+                text: 💻 Hands-on Session
+              - href: 2024/weeks/week01/lab.qmd
+                text: 🧪 Lab
+          - text: Week 02
+            href: 2024/weeks/week02/page.qmd
+            contents:
+              - href: 2024/weeks/week02/page.qmd
+                text: 👨‍🏫 Lesson
+              - href: 2024/weeks/week02/hands-on.qmd
+                text: 💻 Hands-on Session
+              - href: 2024/weeks/week02/lab.qmd
+                text: 🧪 Lab    
+          - text: Week 03
+            href: 2024/weeks/week03/page.qmd
+            contents:
+              - href: 2024/weeks/week03/page.qmd
+                text: 👨‍🏫 Lesson
+              - href: 2024/weeks/week03/hands-on.qmd
+                text: 💻 Hands-on Session
+              - href: 2024/weeks/week03/lab.qmd
+                text: 🧪 Lab                              
+
+  navbar:
+    background: primary
+    right:
+      - text: "Math Camp 2024" # Every term or semester this should point to the correct one.
+        file: 2024/index.qmd
+      - text: "Schedule"
+        file: schedule.qmd        
+      - text: "Resources"
+        file: resource/index.qmd
+      - text: "Tutorials"
+        file: tutorial/index.qmd
+      - icon: slack
+        href: https://mpa-id-math-camp-w8y.slack.com/ssb/redirect
+
   page-footer:
     left: |
-      Original content {{< fa brands creative-commons >}} {{< var course.copyright_year >}} by [{{< var attribution.name_no_title >}}]({{< var attribution.url >}}) <br>
-      Additional content {{< fa brands creative-commons >}} {{< var course.copyright_year >}} by [{{< var instructor.name_no_title >}}]({{< var instructor.url >}}) <br>
+      Original content {{< fa brands creative-commons >}} {{< now year >}} by [{{< var attribution.name_no_title >}}]({{< var attribution.url >}}), [{{< var attribution.name_no_title3 >}}]({{< var attribution.url3 >}}), and [{{< var attribution.name_no_title2 >}}]({{< var attribution.url2 >}}) <br>
+      Additional content {{< fa brands creative-commons >}} {{< now year >}} by [{{< var instructor.name_no_title >}}]({{< var instructor.url >}}) <br>
       All content licensed under a {{< fa brands creative-commons >}}
       {{< fa brands creative-commons-by >}} {{< fa brands creative-commons-nc >}}
       [Creative Commons Attribution-NonCommercial 4.0 International license (CC BY-NC 4.0)](https://creativecommons.org/licenses/by-nc/4.0/)
     right: |
       Made with {{< fa brands r-project >}} and [Quarto](https://quarto.org/)<br>
       [View the source at {{< fa brands github >}} GitHub]({{< var course.github >}})
-      
+
+bibliography: references/references.bib
+csl: references/chicago-author-date.csl
+
 format:
   html:
+    author: Rony Rodriguez-Ramirez
+    author-meta: Rony
+    date-format: "DD MMMM YYYY"
+
+    email-obfuscation: javascript
+    link-external-newwindow: true
+    link-external-icon: true
+    link-external-filter: ^(?:http:|https:)\/\/(?:lse-dsi\.github\.io\/|localhost)
+
     theme:
-      - cosmo
-      - html/custom.scss
+      light: 
+        - journal
+        - css/custom.scss
+    css: 
+      - css/custom_style.css
+      - css/syllabus.css
     toc: true
-    highlight-style: monokai

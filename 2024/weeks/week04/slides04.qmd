@@ -1,0 +1,18 @@
+---
+title: "<font style='font-size:1em;'>Week 03<br/>Intro to Reproducible Research</font>"
+subtitle: "API209: Summer Math Camp"
+format: 
+  clean-api-revealjs:
+    self-contained: true
+    highlight-style: breeze
+html-math-method:
+  method: mathjax
+  url: "https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"
+author:
+  - name: Rony Rodrigo Maximiliano Rodriguez-Ramirez
+    email: rrodriguezramirez@g.harvard.edu
+    affiliations: "Harvard University"
+date: 26 August 2024 
+---
+
+## To Complete

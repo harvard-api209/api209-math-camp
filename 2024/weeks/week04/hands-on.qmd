@@ -1,0 +1,6 @@
+---
+title: "Hands-On Session: Statistical Modeling"
+author: "Instructor Name"
+date: "2024-09-04"
+---
+

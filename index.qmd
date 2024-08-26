@@ -1,5 +1,5 @@
 ---
-title: "Advanced Quantitative Methods: Description and Prediction <br> Summer Math Camp"
+title: "Advanced Quantitative Methods:<br>Description and Prediction<br>Summer Math Camp"
 subtitle: "Conceptual mastery of statistical methods for public policy, focusing on application rather than mechanics"
 details: |
   API 209 • Summer 2024<br>**Prof**: Dan Levy | **Summer TF**: Rony Rodriguez<br>Harvard University
@@ -8,20 +8,28 @@ toc: false
 page-layout: full
 format:
   html:
-    template-partials:
-      - html/home/title-block.html
-course-logo: /files/course-icon.png
+    # include-before-body: helpers/remove-nav.html
+    # include-after-body: helpers/remove-title.html
+    template-partials: helpers/title-block.html
+course-logo: /figures/icons/course-icon.png
 ---
 
-```{r set-dependencies, include=FALSE}
-# # Site-wide targets dependencies
-# withr::with_dir(here::here(), {
-#   targets::tar_load(all_zipped_projects)
-#   targets::tar_load(all_slides)
-# })
-```
 
 ::: {.home}
+
+**Select Academic Term/Year:**
+
+<div style="display: flex; gap: 30px;">
+  <a href="2024/index.qmd">
+    <button class="button-61">Fall 2024</button>
+  </a>
+
+  <a href="2025/index.qmd">
+    <button class="button-61">Fall 2025</button>
+  </a>
+</div>
+
+-----------------
 
 :::: {.grid .course-details}
 
@@ -33,7 +41,6 @@ course-logo: /files/course-icon.png
 - [{{< fa university >}}]{.fa-li} {{< var instructor.office >}}
 - [{{< fa envelope >}}]{.fa-li} <a href='mailto:{{< var instructor.email >}}'>{{< var instructor.email >}}</a>
 - [{{< iconify ph butterfly-bold size=1.2em title='Bluesky' >}}]{.fa-li} [Bluesky]({{< var instructor.bluesky >}})
-- [{{< fa twitter >}}]{.fa-li} [Twitter]({{< var instructor.twitter >}})
 :::
 
 ::: {.g-col-12 .g-col-sm-6 .g-col-md-4}
@@ -57,3 +64,35 @@ course-logo: /files/course-icon.png
 ::::
 
 :::
+
+# 📑 Course Overview
+
+This summer camp focuses on advanced R programming, specifically on four key areas of data manipulation using the tidyverse. This is a continuation of the pre-summer assignment you completed, where you started using Posit Cloud. There is no formal syllabus for this course, as it is designed to be hands-on and interactive, emphasizing practical application over traditional lecture formats.
+
+# 🎯 Learning Objectives
+
+By the end of this summer camp, you will be able to:
+
+- **Master Advanced Data Manipulation Techniques:** Apply complex filtering, selection, and data reshaping operations using the tidyverse.
+- **Create Elegant Data Visualizations:** Utilize advanced ggplot2 features to produce publication-quality visuals and interactive plots.
+- **Build and Interpret Statistical Models:** Develop and diagnose statistical models, including regression and mixed models, to analyze real-world data.
+- **Automate and Reproduce Research Workflows:** Use RMarkdown and workflow automation tools to create reproducible, efficient research workflows.
+
+**Focus:** 
+
+The course centers on applying advanced R programming concepts to solve practical data problems. Emphasis is placed on mastering the tidyverse, creating high-quality data visualizations, constructing robust statistical models, and automating research processes for efficiency and reproducibility.
+
+**How:** 
+
+- **Hands-On Learning**: The course is designed around interactive coding sessions where you’ll actively engage with datasets, applying techniques as you learn them.
+- **Real-World Applications**: Each lesson is tied to a real-world problem or dataset, ensuring that what you learn is immediately relevant and applicable.
+- **Collaborative Projects**: You will work on collaborative projects that simulate actual research scenarios, allowing you to practice and refine your skills in a team setting.
+- **Feedback and Iteration**: Regular feedback loops and peer reviews will help you iteratively improve your code and understanding, promoting deeper learning.
+
+Throughout the camp, you will:
+
+- Discover how to solve complex data problems using advanced R techniques.
+- Distinguish between different methods for data manipulation and visualization, understanding when and why to use each.
+- Learn to automate repetitive tasks and create workflows that enhance the efficiency and reproducibility of your research.
+
+This camp is about not just learning the concepts but mastering their application to become a better R programmer before the semester starts.

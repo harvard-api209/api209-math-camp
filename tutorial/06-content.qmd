@@ -1,0 +1,284 @@
+---
+title: "Tutorial 6: Advanced Data Wrangling with Tidyverse"
+format: html
+---
+
+```{r}
+#| echo: false
+#| warning: false
+library(tidyverse)
+```
+
+# Advanced Data Wrangling in the Economics of Education
+
+In this tutorial, we will explore advanced data wrangling techniques using the Tidyverse, with examples related to the economics of education. We will cover tasks such as merging datasets, reshaping data, handling missing values, and analyzing educational data. These techniques will help you efficiently prepare and analyze complex datasets in educational economics research. First, load the `tidyverse` package.
+
+```{r}
+#| eval: false
+library(tidyverse)
+```
+
+## 6.1 Merging Datasets in Education Research
+
+Educational datasets often come from multiple sources, such as student assessments, school funding records, and demographic surveys. Combining these datasets is a crucial step in analysis.
+
+### 6.1.1 Inner Join: Combining Student Test Scores with School Funding
+
+An **inner join** merges two datasets, keeping only rows with matching values in both. For instance, you may want to combine student test scores with school funding data.
+
+```{r}
+# Example data frames
+test_scores_df <- data.frame(
+  StudentID = c(1, 2, 3, 4, 5),
+  Math_Score = c(85, 90, 78, 88, 92),
+  Reading_Score = c(82, 88, 80, 85, 91)
+)
+
+school_funding_df <- data.frame(
+  SchoolID = c(1, 1, 2, 2, 3),
+  StudentID = c(1, 2, 3, 4, 5),
+  Funding_Per_Student = c(10000, 10000, 8000, 8000, 9000)
+)
+
+# Performing an inner join on StudentID
+combined_df <- test_scores_df |> inner_join(school_funding_df, by = "StudentID")
+combined_df
+```
+
+**Explanation:**
+- `inner_join()` merges `test_scores_df` and `school_funding_df` by matching the `StudentID` column. Only students present in both datasets are included in the result.
+
+### 6.1.2 Left Join: Linking Student Performance with Demographics
+
+A **left join** includes all rows from the left dataset (e.g., student performance) and adds matching rows from the right dataset (e.g., demographics). Missing values are filled with `NA`.
+
+```{r}
+# Example data frames
+demographics_df <- data.frame(
+  StudentID = c(1, 2, 3, 6),
+  Gender = c("F", "M", "F", "M"),
+  SES = c("High", "Low", "Medium", "Low")
+)
+
+# Performing a left join on StudentID
+combined_left_df <- test_scores_df |> left_join(demographics_df, by = "StudentID")
+combined_left_df
+```
+
+**Explanation:**
+- `left_join()` includes all students from `test_scores_df` and adds corresponding demographic information where available. Students without demographic data have `NA` in those columns.
+
+### 6.1.3 Full Join: Comprehensive Analysis of Multiple Datasets
+
+A **full join** merges all rows from both datasets, filling unmatched areas with `NA`.
+
+```{r}
+# Performing a full join on StudentID
+full_combined_df <- test_scores_df |> full_join(demographics_df, by = "StudentID")
+full_combined_df
+```
+
+**Explanation:**
+- `full_join()` combines all rows from `test_scores_df` and `demographics_df`, retaining all students and filling in missing values with `NA`.
+
+## 6.2 Reshaping Educational Data
+
+Reshaping data is often necessary to perform certain types of analyses, such as tracking student performance across subjects or years.
+
+### 6.2.1 pivot_longer(): Analyzing Subject Performance Over Time
+
+`pivot_longer()` is useful for converting wide data (where each subject is a column) into long data, which is more suitable for longitudinal analysis.
+
+```{r}
+# Example wide data frame
+subject_scores_df <- data.frame(
+  StudentID = c(1, 2, 3),
+  Math_2019 = c(85, 88, 90),
+  Math_2020 = c(87, 85, 92),
+  Reading_2019 = c(82, 80, 88),
+  Reading_2020 = c(85, 83, 90)
+)
+
+# Converting to long format
+long_scores_df <- subject_scores_df |> 
+  pivot_longer(cols = -StudentID, names_to = c("Subject", "Year"), names_sep = "_", values_to = "Score")
+long_scores_df
+```
+
+**Explanation:**
+- `pivot_longer()` reshapes the dataset so that each subject's scores across different years are in their own rows. The `names_to` and `names_sep` arguments split the column names into `Subject` and `Year`.
+
+### 6.2.2 pivot_wider(): Comparing Yearly Performance by Subject
+
+`pivot_wider()` converts long-format data back to wide format, which is useful for comparing scores across subjects or years side by side.
+
+```{r}
+# Converting back to wide format
+wide_scores_df <- long_scores_df |> 
+  pivot_wider(names_from = c("Subject", "Year"), values_from = "Score")
+wide_scores_df
+```
+
+**Explanation:**
+- `pivot_wider()` rearranges the data so that each subject and year combination becomes a separate column, allowing for easy comparison across different time points.
+
+## 6.3 Handling Missing Data in Educational Datasets
+
+Educational datasets often contain missing values due to various reasons, such as incomplete surveys or missing records. Proper handling of missing data is crucial for accurate analysis.
+
+### 6.3.1 Identifying and Summarizing Missing Data
+
+You can use `is.na()` to identify missing values and `summarise()` to count them.
+
+```{r}
+# Identifying missing values in the combined dataset
+missing_summary <- combined_left_df |> 
+  summarise(across(everything(), ~sum(is.na(.))))
+missing_summary
+```
+
+**Explanation:**
+- This code counts the number of missing values (`NA`) in each column of the `combined_left_df` dataset, providing a summary of data completeness.
+
+### 6.3.2 Replacing Missing Values: Imputation
+
+Imputation involves replacing missing values with substituted values. A common approach in educational data is to use the mean or median.
+
+```{r}
+# Replacing missing SES values with "Unknown"
+filled_df <- combined_left_df |> 
+  mutate(SES = replace_na(SES, "Unknown"))
+filled_df
+```
+
+**Explanation:**
+- `replace_na()` replaces `NA` values in the `SES` column with `"Unknown"`, which is useful when the socioeconomic status is missing.
+
+### 6.3.3 Removing Rows with Missing Values
+
+In some cases, it may be necessary to remove rows with missing data to ensure the integrity of the analysis.
+
+```{r}
+# Removing rows with missing Math scores
+cleaned_scores_df <- combined_df |> drop_na(Math_Score)
+cleaned_scores_df
+```
+
+**Explanation:**
+- `drop_na()` removes rows where the `Math_Score` is missing, ensuring that only complete cases are used in the analysis.
+
+## Exercises and Solutions
+
+### Exercise 1: Merging Student and Teacher Data
+
+1. Create two data frames, `student_scores_df` with columns `StudentID`, `Math_Score`, and `Reading_Score`, and `teacher_info_df` with columns `TeacherID`, `StudentID`, and `TeacherExperience`. Perform a left join to combine these datasets.
+
+**Solution:**
+```{r}
+# Creating the data frames
+student_scores_df <- data.frame(
+  StudentID = c(1, 2, 3, 4),
+  Math_Score = c(85, 90, 78, 88),
+  Reading_Score = c(82, 88, 80, 85)
+)
+
+teacher_info_df <- data.frame(
+  TeacherID = c(101, 102, 101, 103),
+  StudentID = c(1, 2, 3, 4),
+  TeacherExperience = c(5, 10, 5, 7)
+)
+
+# Performing the left join
+combined_teacher_df <- student_scores_df |> left_join(teacher_info_df, by = "StudentID")
+combined_teacher_df
+```
+
+### Exercise 2: Reshaping Data for Cohort Analysis
+
+1. Start with a wide data frame `cohort_scores_df` with columns `StudentID`, `Cohort_2019_Math`, `Cohort_2019_Reading`, `Cohort_2020_Math`, and `Cohort_2020_Reading`. Convert this data frame to a long format, separating cohort year and subject.
+
+**Solution:**
+```{r}
+# Creating the wide data frame
+cohort_scores_df <- data.frame(
+  StudentID = c(1, 2, 3),
+  Cohort_2019_Math = c(85, 88, 90),
+  Cohort_2019_Reading = c(82, 80, 88),
+  Cohort_2020_Math = c(87, 85, 92),
+  Cohort_2020_Reading = c(85, 83, 90)
+)
+
+# Converting to long format
+long_cohort_df <- cohort_scores_df |> 
+  pivot_longer(
+    cols = -StudentID, 
+    names_to = c("Cohort_Year", "Subject"), names_sep = "_", values_to = "Score"
+  )
+long_cohort_df
+```
+
+### Exercise 3: Handling Missing Data in School Surveys
+
+1. Create a data frame `school_survey_df` with columns `SchoolID`, `StudentSatisfaction`, and `TeacherTurnover`. Introduce missing values into the `StudentSatisfaction` column. Replace these missing values with the median of the available satisfaction scores.
+
+**Solution:**
+```{r}
+# Creating the data frame with missing values
+school_survey_df <- data.frame(
+  SchoolID = c(1, 2, 3, 4),
+  StudentSatisfaction = c(85, NA, 78, 90),
+  TeacherTurnover = c(10, 15, 8, 12)
+)
+
+# Replacing missing values with the median
+school_survey_df <- school_survey_df |> 
+  mutate(StudentSatisfaction = replace_na(StudentSatisfaction, median(StudentSatisfaction, na.rm = TRUE)))
+school_survey_df
+```
+
+### Exercise 4: Combining Data with Different Keys
+
+1. Create two data frames, `school_expenditure_df` with columns `SchoolID`, `Expenditure_Per_Student`, and `Total_Expenditure`, and `student_scores_df` with `SchoolID`, `Math_Score`, and `Reading_Score`. Perform a full join on `SchoolID` to combine these datasets, then filter to keep only schools with available expenditure data.
+
+**Solution:**
+```{r}
+# Creating the data frames
+school_expenditure_df <- data.frame(
+  SchoolID = c(1, 2, 3),
+  Expenditure_Per_Student = c(10000, 8000, 9000),
+  Total_Expenditure = c(500000, 400000, 450000)
+)
+
+student_scores_df <- data.frame(
+  SchoolID = c(1, 2, 4),
+  Math_Score = c(85, 90, 78),
+  Reading_Score = c(82, 88, 80)
+)
+
+# Performing the full join
+combined_expenditure_df <- school_expenditure_df |> full_join(student_scores_df, by = "SchoolID")
+
+# Filtering to keep only schools with expenditure data
+filtered_expenditure_df <- combined_expenditure_df |> filter(!is.na(Expenditure_Per_Student))
+filtered_expenditure_df
+```
+
+### Exercise 5: Reshaping Data for Trend Analysis
+
+1. Using a data frame `annual_scores_df` with columns `Year`, `SchoolID`, `Average_Math_Score`, and `Average_Reading_Score`, convert the data from wide to long format to analyze trends in average scores over time.
+
+**Solution:**
+```{r}
+# Creating the wide data frame
+annual_scores_df <- data.frame(
+  Year = c(2019, 2020, 2021),
+  SchoolID = c(1, 1, 1),
+  Average_Math_Score = c(78, 80, 82),
+  Average_Reading_Score = c(75, 77, 79)
+)
+
+# Converting to long format
+long_annual_scores_df <- annual_scores_df |> 
+  pivot_longer(cols = starts_with("Average"), names_to = "Subject", names_prefix = "Average_", values_to = "Score")
+long_annual_scores_df
+```

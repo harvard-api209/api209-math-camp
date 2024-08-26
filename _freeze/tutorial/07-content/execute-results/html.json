@@ -1,0 +1,15 @@
+{
+  "hash": "f221ae058fbe0385efa38d7a3026f4c1",
+  "result": {
+    "engine": "knitr",
+    "markdown": "---\ntitle: \"Tutorial 7: Applied Examples in Economics of Education\"\nformat: html\n---\n\n::: {.cell}\n\n:::\n\n\n\n\n::: {.callout-note}\nUnfortunately, I haven't been able to finish this tutorial.\n:::\n\n# Advanced Analysis and Visualization in the Economics of Education\n\nIn this final tutorial, we will explore advanced data analysis and visualization techniques using the Tidyverse, tailored to the field of economics of education. We will cover topics such as regression analysis, creating complex visualizations, and interpreting the results of these analyses. These skills are crucial for conducting in-depth research and effectively communicating your findings.\nFirst, load the `tidyverse` package.\n\n\n\n\n::: {.cell}\n\n```{.r .cell-code}\nlibrary(tidyverse)\n```\n:::\n\n\n\n\n## 7.1 Regression Analysis in Education Research\n\nRegression analysis is a powerful statistical tool used to examine the relationships between variables. In the context of education economics, it can be used to explore factors affecting student performance, school funding, and other key outcomes.\n\n### 7.1.1 Simple Linear Regression: Analyzing the Impact of Study Hours on Test Scores\n\nA simple linear regression can be used to assess the relationship between a student's study hours and their test scores.\n\n\n\n\n::: {.cell}\n\n```{.r .cell-code}\n# Example data frame\nstudy_data_df <- data.frame(\n  StudentID = c(1, 2, 3, 4, 5),\n  Study_Hours = c(10, 12, 8, 15, 9),\n  Test_Score = c(85, 88, 78, 92, 80)\n)\n\n# Performing simple linear regression\nstudy_regression <- lm(Test_Score ~ Study_Hours, data = study_data_df)\n\n# Summary of the regression model\nsummary(study_regression)\n```\n\n::: {.cell-output .cell-output-stdout}\n\n```\n\nCall:\nlm(formula = Test_Score ~ Study_Hours, data = study_data_df)\n\nResiduals:\n 1  2  3  4  5 \n 2  1 -1 -1 -1 \n\nCoefficients:\n            Estimate Std. Error t value Pr(>|t|)    \n(Intercept)  63.0000     3.2607  19.321 0.000303 ***\nStudy_Hours   2.0000     0.2942   6.797 0.006511 ** \n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\nResidual standard error: 1.633 on 3 degrees of freedom\nMultiple R-squared:  0.939,\tAdjusted R-squared:  0.9187 \nF-statistic:  46.2 on 1 and 3 DF,  p-value: 0.006511\n```\n\n\n:::\n:::\n\n\n\n\n**Explanation:**\n\n- `lm()` fits a linear regression model to the data, with `Test_Score` as the dependent variable and `Study_Hours` as the independent variable.\n- `summary()` provides detailed statistics about the regression model, including coefficients, R-squared, and p-values.\n",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

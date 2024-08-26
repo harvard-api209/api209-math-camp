@@ -1,0 +1,38 @@
+---
+title: "🗓️ Week 04 - Intro to Statistical Modeling in R"
+---
+
+```{r slides-videos, echo=FALSE, include=FALSE}
+source(here::here("R", "slide-things.R"))
+```
+
+## Overview
+
+In Construction!
+
+## Guiding Questions
+
+::: {.callout-warning}
+#### These are optional!
+You don't need to answer all of these—or even any of them! They are here to help guide your thinking and reflection on the content. Feel free to explore whatever aspects you find most interesting.
+:::
+
+- Question 1
+- Question 2
+
+## Readings
+
+- No readings for this session.
+
+## 👨‍🏫 Lesson Slides 
+
+Either click on the slide area below or click [here](slides.qmd) to view it in fullscreen.
+Use your keypad to navigate the slides.
+
+```{r show-slide-tabs, echo=FALSE, results="asis"}
+slide_buttons("slides04")
+```
+
+<div class="container" style="position: relative;overflow: hidden;width: 100%;min-height:600px;">
+<iframe src="slides04.html" style="position=absolute;top: 0;left: 0;bottom: 0;right: 0;width: 100%;min-height:600px;"></iframe>
+</div>

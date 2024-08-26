@@ -1,0 +1,15 @@
+{
+  "hash": "8c96cc45eb46e0965ca9770dfbb59694",
+  "result": {
+    "engine": "knitr",
+    "markdown": "---\ntitle: \"🗓️ Week 02 - Tidy Data and Visualization\"\ndate: \"2024-08-20\"\n---\n\n\n\n\n\n\n## Overview\n\nIn this week, we dive into the concepts of tidy data and data visualization. You'll learn how to organize your data in a format that is easy to manipulate and visualize. We will focus on transforming data into a \"tidy\" format where each variable is a column, each observation is a row, and each type of observational unit forms a table. Additionally, we'll cover essential visualization techniques using `ggplot2` to explore and communicate your findings effectively.\n\n## Guiding Questions\n\n::: {.callout-warning}\n#### These are optional!\nYou don't need to answer all of these—or even any of them! They are here to help guide your thinking and reflection on the content. Feel free to explore whatever aspects you find most interesting.\n:::\n\n- What are the key principles of tidy data, and why are they important?\n- How does the structure of your data impact the type of visualizations you can create?\n- In what ways can data visualization help in uncovering trends and patterns?\n\n## Readings\n\n- No readings for this session.\n\n## 👨‍🏫 Lesson Slides \n\nEither click on the slide area below or click [here](slides.qmd) to view it in fullscreen.\nUse your keypad to navigate the slides.\n\n\n\n\n<p class=\"text-center buttons\"><a class=\"btn btn-danger\" target=\"_blank\" href=\"slides02.html\"><i class=\"fa-solid fa-arrow-up-right-from-square\"></i> View all slides in new window</a> <a class=\"btn btn-danger\" target=\"_blank\" href=\"slides02.pdf\" role=\"button\"><i class=\"fa-solid fa-file-pdf\"></i> Download PDF of all slides</a></p>\n\n\n\n\n<div class=\"container\" style=\"position: relative;overflow: hidden;width: 100%;min-height:600px;\">\n<iframe src=\"slides02.html\" style=\"position=absolute;top: 0;left: 0;bottom: 0;right: 0;width: 100%;min-height:600px;\"></iframe>\n</div>\n```\n",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

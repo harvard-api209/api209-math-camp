@@ -1,0 +1,15 @@
+{
+  "hash": "9b527e0a72aa239d9eb96e605326ac78",
+  "result": {
+    "engine": "knitr",
+    "markdown": "---\ntitle: \"🗓️ Week 03 - Reproducibility in Research\"\n---\n\n\n\n\n\n## Overview\n\nThis week, we focus on the importance of reproducibility in research, particularly in the social sciences. We'll discuss the challenges posed by the replication crisis and how adopting reproducible practices can help mitigate these issues. You’ll learn how tools like Quarto can be used to create reproducible reports, ensuring that your research is transparent, credible, and easy for others to replicate.\n\n## Guiding Questions\n\n::: {.callout-warning}\n#### These are optional!\nYou don't need to answer all of these—or even any of them! They are here to help guide your thinking and reflection on the content. Feel free to explore whatever aspects you find most interesting.\n:::\n\n- What is the replication crisis, and how does it affect the credibility of social science research?\n- Why is reproducibility essential for building trust in research?\n- How can tools like Quarto support reproducibility in your own research and problem sets?\n\n## Readings\n\n- No readings for this session.\n\n## 👨‍🏫 Lesson Slides \n\nEither click on the slide area below or click [here](slides.qmd) to view it in fullscreen.\nUse your keypad to navigate the slides.\n\n\n\n<p class=\"text-center buttons\"><a class=\"btn btn-danger\" target=\"_blank\" href=\"slides03.html\"><i class=\"fa-solid fa-arrow-up-right-from-square\"></i> View all slides in new window</a> <a class=\"btn btn-danger\" target=\"_blank\" href=\"slides03.pdf\" role=\"button\"><i class=\"fa-solid fa-file-pdf\"></i> Download PDF of all slides</a></p>\n\n\n\n<div class=\"container\" style=\"position: relative;overflow: hidden;width: 100%;min-height:600px;\">\n<iframe src=\"slides03.html\" style=\"position=absolute;top: 0;left: 0;bottom: 0;right: 0;width: 100%;min-height:600px;\"></iframe>\n</div>\n",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

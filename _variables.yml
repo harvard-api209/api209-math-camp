@@ -10,9 +10,9 @@ instructor:
   twitter: rrmaximiliano
   office: "Wexner 436. HKS"
   contact_policy: >-
-    E-mail and Slack are the best ways to get in contact with me. Sometimes, life happens so bear with me if I don't respond quickly!
+      The best way to reach me is through email or Slack. I'll do my best to respond as quickly as possible, but please understand if there's a bit of a delay—sometimes things get busy! Looking forward to helping out with any questions you have.
   appointment_url: https://calendly.com/rrmaximiliano/
-
+  
 attribution:
   name: Dr. Andrew Heiss
   name_no_title: Andrew Heiss
@@ -20,23 +20,24 @@ attribution:
   url: "https://www.andrewheiss.com/"
   twitter: andrewheiss
   github: andrewheiss
-
+  name2: Dr. Jon Cardoso-Silva
+  name_no_title2: Jon Cardoso-Silva
+  email2: J.Cardoso-Silva@lse.ac.uk
+  url2: https://jonjoncardoso.github.io/
+  github2: https://github.com/jonjoncardoso  
+  name3: Dr. Kieran Healy
+  name_no_title3: Kieran Healy
+  url3: https://kieranhealy.org/
+  github3: https://github.com/kjhealy
+  
 course:
   number: "API 209"
   semester: "Summer 2024"
   days: "Check schedule page"
-  time: "Check schedule page"
-  location: "Anywhere"
+  time: "Time: Varies"
+  location: "Wexner 436. HKS"
   dates: "August 15-August 28, 2024"
   github: "https://github.com/harvard-api209/api209-math-camp"
   url: "https://harvard-api209.github.io/api209-math-camp/"
   copyright_year: "2024"
   slack: "https://harvard.enterprise.slack.com"
-
-university:
-  name: Harvard University
-  url: "https://www.harvard.edu"
-
-school:
-  name: Harvard Kennedy School
-  url: "https://www.hks.harvard.edu/"

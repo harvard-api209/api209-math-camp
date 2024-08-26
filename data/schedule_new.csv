@@ -1,0 +1,9 @@
+group,session,date,end_date,title,flag,deadline,content,handson,labs,assignment,note
+Week 1,Session 1,8/15/2024,8/15/2024,Intro to Data Wrangling,,,content/01-content,content/01-content,content/01-content,,
+Week 1,Session 2,8/16/2024,8/16/2024,Analyzing Olympic Data,,,content/02-content,content/02-content,content/02-content,,
+Week 2,Session 3,8/20/2024,8/20/2024,Tidy Data and Visualization,,,content/01-content,content/01-content,content/01-content,,
+Week 2,Session 4,8/21/2024,8/21/2024,Visualizing PISA Data,,,content/01-content,content/01-content,content/01-content,,
+Week 3,Session 5,8/26/2024,8/26/2024,Reproducible Research and Automation,,,content/02-content,content/02-content,content/02-content,,
+Week 3,Session 6,8/28/2024,8/28/2024,Your Quarto Projects,,,content/01-content,content/01-content,content/01-content,,
+Week 4,Session 7,9/2/2024,9/2/2024,Intro to Statistical Modeling in R,,,content/02-content,content/02-content,content/02-content,,
+Week 4,Session 8,9/4/2024,9/4/2024,Math Camp Recap,,,content/04-content,content/04-content,content/04-content,,

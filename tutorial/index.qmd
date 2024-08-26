@@ -1,0 +1,34 @@
+---
+title: "Intro to R -- Tutorials"
+---
+
+Welcome to the *Tutorials* section! This is your go-to resource for fully annotated R code, detailed explanations, and supplementary materials that will be indispensable as you work through the problem sets and final project.
+
+### Overview
+
+These tutorials are designed to build your skills in data analysis and visualization using R. Each tutorial builds on the previous one, guiding you from basic concepts to advanced techniques. By the end, you'll have the tools you need to conduct your own comprehensive analysis in the field of education.
+
+### How to Use These Tutorials
+
+- **Follow the Sequence:** The tutorials are structured to build your knowledge step by step. Start with the first tutorial and progress sequentially.
+- **Live Coding Examples:** Many sections include videos where you can watch live coding examples. These will help you see the process of working with R in real time. You’ll notice that making mistakes is *totally normal*—everyone does it, and it’s part of the learning process!
+- **Practice Makes Perfect:** After each tutorial, try to complete the exercises. These are designed to reinforce your understanding and help you apply what you’ve learned to real-world data.
+- **My Recommendation:** Start a new R Project in RStudio and create R scripts that follow each of the tutorials.
+
+### Tutorials Included
+
+1. **Tutorial 1:** Introduction to R and Basic Data Type
+2. **Tutorial 2:** Data Structures
+3. **Tutorial 3:** Introduction to Tidyverse
+4. **Tutorial 4:** Data Analysis 
+5. **Tutorial 5:** Visualization with ggplot2
+6. **Tutorial 6:** Advanced Data Wrangling
+7. **Tutorial 7:** Applied Economics of Education Examples
+
+<!-- ### Final Project
+
+After completing the tutorials, you will undertake a comprehensive final project that synthesizes everything you’ve learned. This project will involve data wrangling, analysis, and visualization, culminating in a report that analyzes educational inequality across different regions.
+
+Use this section as a reference as you progress through your coursework. Each tutorial contains essential code examples and explanations that will aid in your understanding of the material and prepare you for tackling complex problems in the field of education economics.
+
+Good luck, and remember—practice is key! -->

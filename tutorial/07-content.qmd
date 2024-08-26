@@ -1,0 +1,52 @@
+---
+title: "Tutorial 7: Applied Examples in Economics of Education"
+format: html
+---
+
+```{r}
+#| echo: false
+#| warning: false
+library(tidyverse)
+```
+
+::: {.callout-note}
+Unfortunately, I haven't been able to finish this tutorial.
+:::
+
+# Advanced Analysis and Visualization in the Economics of Education
+
+In this final tutorial, we will explore advanced data analysis and visualization techniques using the Tidyverse, tailored to the field of economics of education. We will cover topics such as regression analysis, creating complex visualizations, and interpreting the results of these analyses. These skills are crucial for conducting in-depth research and effectively communicating your findings.
+First, load the `tidyverse` package.
+
+```{r}
+#| eval: false
+library(tidyverse)
+```
+
+## 7.1 Regression Analysis in Education Research
+
+Regression analysis is a powerful statistical tool used to examine the relationships between variables. In the context of education economics, it can be used to explore factors affecting student performance, school funding, and other key outcomes.
+
+### 7.1.1 Simple Linear Regression: Analyzing the Impact of Study Hours on Test Scores
+
+A simple linear regression can be used to assess the relationship between a student's study hours and their test scores.
+
+```{r}
+# Example data frame
+study_data_df <- data.frame(
+  StudentID = c(1, 2, 3, 4, 5),
+  Study_Hours = c(10, 12, 8, 15, 9),
+  Test_Score = c(85, 88, 78, 92, 80)
+)
+
+# Performing simple linear regression
+study_regression <- lm(Test_Score ~ Study_Hours, data = study_data_df)
+
+# Summary of the regression model
+summary(study_regression)
+```
+
+**Explanation:**
+
+- `lm()` fits a linear regression model to the data, with `Test_Score` as the dependent variable and `Study_Hours` as the independent variable.
+- `summary()` provides detailed statistics about the regression model, including coefficients, R-squared, and p-values.

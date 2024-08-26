@@ -1,1 +1,9 @@
-*.rds filter=lfs diff=lfs merge=lfs -text
+# Ignore .bib file
+*.bib -linguist-detectable
+
+# Here Markdown is not documentation
+*.md linguist-detectable
+*.qmd linguist-detectable
+
+# Associate Quarto with Markdown language
+*.qmd linguist-language=Markdown

@@ -2,12 +2,13 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.5.56">
+<meta name="generator" content="quarto-1.6.6">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="author" content="Rony">
 
-<title>Advanced Quantitative Methods: Description and Prediction   Summer Math Camp – API-209 R-Programming (Math Camp) 2024</title>
+<title>Advanced Quantitative Methods: Description and Prediction Summer Math Camp – 🏠 API209: Summer Math Camp</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -24,12 +25,13 @@ ul.task-list li input[type="checkbox"] {
 
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
 <script src="site_libs/clipboard/clipboard.min.js"></script>
 <script src="site_libs/quarto-search/autocomplete.umd.js"></script>
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href=".//files/favicon-512.png" rel="icon" type="image/png">
+<link href="./figures/icons/favicon-512.png" rel="icon" type="image/png">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -47,14 +49,13 @@ ul.task-list li input[type="checkbox"] {
   "copy-button": false,
   "collapse-after": 3,
   "panel-placement": "end",
-  "type": "overlay",
+  "type": "textbox",
   "limit": 50,
   "keyboard-shortcut": [
     "f",
     "/",
     "s"
   ],
-  "show-item-context": false,
   "language": {
     "search-no-results-text": "No results",
     "search-matching-documents-text": "matching documents",
@@ -71,6 +72,11 @@ ul.task-list li input[type="checkbox"] {
 }</script>
 
 
+<link rel="stylesheet" href="css/custom_style.css">
+<link rel="stylesheet" href="css/syllabus.css">
+<meta property="og:title" content="Advanced Quantitative Methods:Description and PredictionSummer Math Camp – 🏠 API209: Summer Math Camp">
+<meta property="og:description" content="Conceptual mastery of statistical methods for public policy, focusing on application rather than mechanics">
+<meta property="og:site_name" content="🏠 API209: Summer Math Camp">
 </head>
 
 <body class="nav-fixed">
@@ -81,7 +87,7 @@ ul.task-list li input[type="checkbox"] {
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
     <a class="navbar-brand" href="./index.html">
-    <span class="navbar-title">API-209 R-Programming (Math Camp) 2024</span>
+    <span class="navbar-title">🏠 API209: Summer Math Camp</span>
     </a>
   </div>
             <div id="quarto-search" class="" title="Search"></div>
@@ -91,42 +97,34 @@ ul.task-list li input[type="checkbox"] {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item">
-    <a class="nav-link" href="./syllabus.html"> 
-<span class="menu-text">Syllabus</span></a>
+    <a class="nav-link" href="./2024/index.html"> 
+<span class="menu-text">Math Camp 2024</span></a>
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="./schedule.html"> 
 <span class="menu-text">Schedule</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./content/index.html"> 
-<span class="menu-text">Lessons</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="./handson/index.html"> 
-<span class="menu-text">Hands-on</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="./labs/index.html"> 
-<span class="menu-text">Labs</span></a>
-  </li>  
-  <li class="nav-item">
     <a class="nav-link" href="./resource/index.html"> 
 <span class="menu-text">Resources</span></a>
   </li>  
-  <li class="nav-item compact">
-    <a class="nav-link" href="https://harvard.enterprise.slack.com"> <i class="bi bi-slack" role="img" aria-label="Slack">
-</i> 
-<span class="menu-text"></span></a>
+  <li class="nav-item">
+    <a class="nav-link" href="./tutorial/index.html"> 
+<span class="menu-text">Tutorials</span></a>
   </li>  
   <li class="nav-item compact">
-    <a class="nav-link" href="https://posit.cloud"> <i class="bi bi-cloud-fill" role="img" aria-label="Posit.cloud">
+    <a class="nav-link" href="https://mpa-id-math-camp-w8y.slack.com/ssb/redirect"> <i class="bi bi-slack" role="img">
 </i> 
 <span class="menu-text"></span></a>
   </li>  
 </ul>
           </div> <!-- /navcollapse -->
             <div class="quarto-navbar-tools">
+  <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
+  <div class="quarto-reader-toggle-btn">
+  <i class="bi"></i>
+  </div>
+</a>
 </div>
       </div> <!-- /container-fluid -->
     </nav>
@@ -142,7 +140,7 @@ ul.task-list li input[type="checkbox"] {
 <div class="grid title-block">
     <div class="course-details-title-block g-col-12 g-col-sm-8 order-2 order-sm-1 text-center text-sm-start">
         <h1 class="course-title">
-            Advanced Quantitative Methods: Description and Prediction <br> Summer Math Camp
+            Advanced Quantitative Methods:<br>Description and Prediction<br>Summer Math Camp
         </h1>
         <div class="course-subtitle">
             <p>Conceptual mastery of statistical methods for public policy, focusing on application rather than mechanics</p>
@@ -154,7 +152,7 @@ ul.task-list li input[type="checkbox"] {
     <div class="g-col-12 g-col-sm-4 order-1 order-sm-2">
       <div class="grid" style="--bs-columns: 5;">
         <div class="g-col-1 g-col-sm-0"></div>
-        <div class="g-col-3 g-col-sm-5"><img src="./files/course-icon.png" class="img-fluid"></div>
+        <div class="g-col-3 g-col-sm-5"><img src="./figures/icons/course-icon.png" class="img-fluid"></div>
         <div class="g-col-1 g-col-sm-0"></div>
       </div>
     </div>
@@ -162,6 +160,12 @@ ul.task-list li input[type="checkbox"] {
 
 
 <div class="home">
+<p><strong>Select Academic Term/Year:</strong></p>
+<div style="display: flex; gap: 30px;">
+<p><a href="./2024/index.html"> <button class="button-61">Fall 2024</button> </a></p>
+<p><a href="./2025/index.html"> <button class="button-61">Fall 2025</button> </a></p>
+</div>
+<hr>
 <div class="grid course-details">
 <section id="summer-tf" class="level3 g-col-12 g-col-sm-6 g-col-md-4">
 <h3 class="anchored" data-anchor-id="summer-tf">Summer TF</h3>
@@ -170,7 +174,6 @@ ul.task-list li input[type="checkbox"] {
 <li><span class="fa-li"><i class="fa-solid fa-university" aria-label="university"></i></span> Wexner 436. HKS</li>
 <li><span class="fa-li"><i class="fa-solid fa-envelope" aria-label="envelope"></i></span> <a href="mailto:rrodriguezramirez@g.harvard.edu">rrodriguezramirez@g.harvard.edu</a></li>
 <li><span class="fa-li"><iconify-icon inline="" icon="ph:butterfly-bold" style="font-size: 1.2em;" aria-label="Icon butterfly-bold from ph Iconify.design set." title="Bluesky"></iconify-icon></span> <a href="https://bsky.app/profile/rrmaximiliano.bsky.social">Bluesky</a></li>
-<li><span class="fa-li"><i class="fa-solid fa-twitter" aria-label="twitter"></i></span> <a href="rrmaximiliano">Twitter</a></li>
 </ul>
 </section>
 <section id="course-details" class="level3 g-col-12 g-col-sm-6 g-col-md-4">
@@ -178,8 +181,8 @@ ul.task-list li input[type="checkbox"] {
 <ul>
 <li><span class="fa-li"><i class="fa-solid fa-calendar" aria-label="calendar"></i></span> Check schedule page</li>
 <li><span class="fa-li"><i class="fa-solid fa-calendar-alt" aria-label="calendar-alt"></i></span> August 15-August 28, 2024</li>
-<li><span class="fa-li"><i class="fa-solid fa-clock" aria-label="clock"></i></span> Check schedule page</li>
-<li><span class="fa-li"><i class="fa-solid fa-location-dot" aria-label="location-dot"></i></span> Anywhere</li>
+<li><span class="fa-li"><i class="fa-solid fa-clock" aria-label="clock"></i></span> Time: Varies</li>
+<li><span class="fa-li"><i class="fa-solid fa-location-dot" aria-label="location-dot"></i></span> Wexner 436. HKS</li>
 </ul>
 </section>
 <section id="contacting-me" class="level3 g-col-12 g-col-md-4 contact-policy">
@@ -188,12 +191,42 @@ ul.task-list li input[type="checkbox"] {
 <li><span class="fa-li"><i class="fa-solid fa-calendar-check" aria-label="calendar-check"></i></span> <a href="https://calendly.com/rrmaximiliano/">Schedule an appointment</a></li>
 <li><span class="fa-li"><i class="fa-brands fa-slack" aria-label="slack"></i></span> <a href="https://harvard.enterprise.slack.com">Slack</a></li>
 </ul>
-<p>E-mail and Slack are the best ways to get in contact with me. Sometimes, life happens so bear with me if I don’t respond quickly!</p>
+<p>The best way to reach me is through email or Slack. I’ll do my best to respond as quickly as possible, but please understand if there’s a bit of a delay—sometimes things get busy! Looking forward to helping out with any questions you have.</p>
 </section>
 </div>
 </div>
+<section id="course-overview" class="level1">
+<h1>📑 Course Overview</h1>
+<p>This summer camp focuses on advanced R programming, specifically on four key areas of data manipulation using the tidyverse. This is a continuation of the pre-summer assignment you completed, where you started using Posit Cloud. There is no formal syllabus for this course, as it is designed to be hands-on and interactive, emphasizing practical application over traditional lecture formats.</p>
+</section>
+<section id="learning-objectives" class="level1">
+<h1>🎯 Learning Objectives</h1>
+<p>By the end of this summer camp, you will be able to:</p>
+<ul>
+<li><strong>Master Advanced Data Manipulation Techniques:</strong> Apply complex filtering, selection, and data reshaping operations using the tidyverse.</li>
+<li><strong>Create Elegant Data Visualizations:</strong> Utilize advanced ggplot2 features to produce publication-quality visuals and interactive plots.</li>
+<li><strong>Build and Interpret Statistical Models:</strong> Develop and diagnose statistical models, including regression and mixed models, to analyze real-world data.</li>
+<li><strong>Automate and Reproduce Research Workflows:</strong> Use RMarkdown and workflow automation tools to create reproducible, efficient research workflows.</li>
+</ul>
+<p><strong>Focus:</strong></p>
+<p>The course centers on applying advanced R programming concepts to solve practical data problems. Emphasis is placed on mastering the tidyverse, creating high-quality data visualizations, constructing robust statistical models, and automating research processes for efficiency and reproducibility.</p>
+<p><strong>How:</strong></p>
+<ul>
+<li><strong>Hands-On Learning</strong>: The course is designed around interactive coding sessions where you’ll actively engage with datasets, applying techniques as you learn them.</li>
+<li><strong>Real-World Applications</strong>: Each lesson is tied to a real-world problem or dataset, ensuring that what you learn is immediately relevant and applicable.</li>
+<li><strong>Collaborative Projects</strong>: You will work on collaborative projects that simulate actual research scenarios, allowing you to practice and refine your skills in a team setting.</li>
+<li><strong>Feedback and Iteration</strong>: Regular feedback loops and peer reviews will help you iteratively improve your code and understanding, promoting deeper learning.</li>
+</ul>
+<p>Throughout the camp, you will:</p>
+<ul>
+<li>Discover how to solve complex data problems using advanced R techniques.</li>
+<li>Distinguish between different methods for data manipulation and visualization, understanding when and why to use each.</li>
+<li>Learn to automate repetitive tasks and create workflows that enhance the efficiency and reproducibility of your research.</li>
+</ul>
+<p>This camp is about not just learning the concepts but mastering their application to become a better R programmer before the semester starts.</p>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -288,7 +321,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
     var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
     var mailtoRegex = new RegExp(/^mailto:/);
-      var filterRegex = new RegExp("https:\/\/harvard-api209\.github\.io\/api209-math-camp\/");
+      var filterRegex = new RegExp("^(?:http:|https:)\/\/(?:lse-dsi\.github\.io\/|localhost)");
     var isInternal = (href) => {
         return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
     }
@@ -302,6 +335,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         if (link.dataset.originalHref !== undefined) {
           link.href = link.dataset.originalHref;
         }
+          // target, if specified
+          link.setAttribute("target", "_blank");
+          if (link.getAttribute("rel") === null) {
+            link.setAttribute("rel", "noopener");
+          }
+          // default icon
+          link.classList.add("external");
       }
     }
   function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
@@ -620,11 +660,11 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <footer class="footer">
   <div class="nav-footer">
     <div class="nav-footer-left">
-<p>Original content <i class="fa-brands fa-creative-commons" aria-label="creative-commons"></i> 2024 by <a href="https://www.andrewheiss.com/">Andrew Heiss</a> <br> Additional content <i class="fa-brands fa-creative-commons" aria-label="creative-commons"></i> 2024 by <a href="https://www.rrmaximiliano.github.io">Rony Rodriguez-Ramirez</a> <br> All content licensed under a <i class="fa-brands fa-creative-commons" aria-label="creative-commons"></i> <i class="fa-brands fa-creative-commons-by" aria-label="creative-commons-by"></i> <i class="fa-brands fa-creative-commons-nc" aria-label="creative-commons-nc"></i> <a href="https://creativecommons.org/licenses/by-nc/4.0/">Creative Commons Attribution-NonCommercial 4.0 International license (CC BY-NC 4.0)</a></p>
+<p>Original content <i class="fa-brands fa-creative-commons" aria-label="creative-commons"></i> 2024 by <a href="https://www.andrewheiss.com/">Andrew Heiss</a>, <a href="https://kieranhealy.org/">Kieran Healy</a>, and <a href="https://jonjoncardoso.github.io/">Jon Cardoso-Silva</a> <br> Additional content <i class="fa-brands fa-creative-commons" aria-label="creative-commons"></i> 2024 by <a href="https://www.rrmaximiliano.github.io">Rony Rodriguez-Ramirez</a> <br> All content licensed under a <i class="fa-brands fa-creative-commons" aria-label="creative-commons"></i> <i class="fa-brands fa-creative-commons-by" aria-label="creative-commons-by"></i> <i class="fa-brands fa-creative-commons-nc" aria-label="creative-commons-nc"></i> <a href="https://creativecommons.org/licenses/by-nc/4.0/">Creative Commons Attribution-NonCommercial 4.0 International license (CC BY-NC 4.0)</a></p>
 </div>   
     <div class="nav-footer-center">
       &nbsp;
-    <div class="toc-actions"><ul><li><a href="https://github.com/harvard-api209/api209-math-camp/edit/main/index.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/harvard-api209/api209-math-camp/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
+    </div>
     <div class="nav-footer-right">
 <p>Made with <i class="fa-brands fa-r-project" aria-label="r-project"></i> and <a href="https://quarto.org/">Quarto</a><br> <a href="https://github.com/harvard-api209/api209-math-camp">View the source at <i class="fa-brands fa-github" aria-label="github"></i> GitHub</a></p>
 </div>

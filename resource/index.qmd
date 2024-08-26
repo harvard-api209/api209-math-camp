@@ -1,5 +1,7 @@
 ---
-title: Helpful resources
+title: Helpful Resources
+author: ""
+format: html
 ---
 
-I have included a bunch of extra resources and guides related to graphic design, visualization, R, data, and other relevant topics. Enjoy!
+Here are some resources and guides on graphic design, data visualization, R programming, and related topics. Most of these resources are coming from Prof. Andrew Heiss' website.

@@ -1,0 +1,6 @@
+---
+title: "Lab 4: Statiscal Modeling"
+date: "2024-09-04"
+---
+
+# Introduction

@@ -1,5 +1,9 @@
-group,session,date,end_date,title,flag,deadline,content,handson,labs,assignment,note
-Math Camp (R Programming),Session 1-2,8/15/2024,8/19/2024,Data Wrangling,,11:59 PM,content/01-content,handson/01-handson,labs/01-labs,,
-Math Camp (R Programming),Session 3-4,8/20/2024,8/26/2024,Elegant Data Visualization with ggplot2,,11:59 PM,content/02-content,handson/02-handson,labs/02-labs,,
-Math Camp (R Programming),Session 5-6,8/26/2024,8/28/2024,Advanced Statistical Modeling in R,,11:59 PM,content/03-content,handson/03-handson,labs/03-labs,,
-Math Camp (R Programming),Session 7-8,9/2/2024,9/4/2024,Reproducible Research and Automation,,11:59 PM,content/04-content,handson/04-handson,labs/04-labs,,
+group,subgroup,date,title,deadline,lesson,handson,lab,note
+Math Camp,Week 1,8/15/2024,Intro to Data Wrangling,,2024/weeks/week01/page,2024/weeks/week01/hands-on,,
+Math Camp,Week 1,8/16/2024,Analyzing Olympic Data,,,,2024/weeks/week01/lab,
+Math Camp,Week 2,8/20/2024,Tidy Data and Visualization,,2024/weeks/week02/page,2024/weeks/week02/hands-on,,
+Math Camp,Week 2,8/21/2024,Visualizing PISA Data,,,,2024/weeks/week01/lab,
+Math Camp,Week 3,8/26/2024,Reproducible Research and Automation,,2024/weeks/week03/page,2024/weeks/week03/hands-on,,
+Math Camp,Week 3,8/28/2024,Your Quarto Projects,,,,2024/weeks/week01/lab,
+Math Camp,Week 4,9/2/2024,Intro to Statistical Modeling in R,,2024/weeks/week04/page,2024/weeks/week02/hands-on,,
+Math Camp,Week 4,9/4/2024,Math Camp Recap,,,,2024/weeks/week01/lab,

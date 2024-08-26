@@ -1,0 +1,202 @@
+---
+title: "Tutorial 8: Project Work and Integration"
+format: 
+  html:
+    code-fold: true
+---
+
+# Project Work and Integration
+
+In this final tutorial, we will bring together all the concepts and techniques you have learned throughout this course by working on a comprehensive project. This project will involve data wrangling, analysis, and visualization, focusing on a real-world problem in the economics of education. The project will guide you through the process of conducting a full analysis from start to finish, providing a holistic understanding of how to apply these skills in practice.
+
+## 8.1 Final Project: Analyzing Educational Inequality Across Regions
+
+### Project Overview
+
+In this project, you will perform a comprehensive analysis of educational inequality across different regions. You will work with a dataset that includes information on student performance, school funding, socioeconomic status, and other relevant factors. The goal is to understand how these variables contribute to educational inequality and to visualize these differences across regions.
+
+### 8.1.1 Data Preparation
+
+First, we need to prepare and clean the dataset. This step involves loading the data, handling missing values, and possibly merging multiple datasets.
+
+#### Step 1: Load the Dataset
+
+```r
+# Loading the dataset
+education_inequality_df <- read.csv("education_inequality.csv")
+
+# Previewing the dataset
+head(education_inequality_df)
+```
+
+**Explanation:**
+- The dataset `education_inequality.csv` contains data on student performance, school funding, socioeconomic status (SES), and regional information. This data will be the foundation of our analysis.
+
+#### Step 2: Handle Missing Values
+
+Identify and handle any missing data that may affect our analysis.
+
+```r
+# Summarizing missing values in the dataset
+missing_summary <- education_inequality_df |> 
+  summarise(across(everything(), ~sum(is.na(.))))
+
+# Handling missing values: Example replacing missing SES values with "Unknown"
+education_inequality_df <- education_inequality_df |> 
+  mutate(SES = replace_na(SES, "Unknown"))
+```
+
+**Explanation:**
+- We summarize the missing values to understand where they occur and then replace missing values in the `SES` column with `"Unknown"`.
+
+### 8.1.2 Data Wrangling and Integration
+
+Next, we will reshape and merge the data as needed to facilitate our analysis.
+
+#### Step 3: Merge Datasets
+
+If the data is split into multiple files or sources (e.g., student performance data and school funding data), we need to merge them.
+
+```r
+# Example merging datasets by SchoolID and RegionID
+school_funding_df <- read.csv("school_funding.csv")
+
+# Merging with the main dataset
+education_inequality_df <- education_inequality_df |> 
+  left_join(school_funding_df, by = c("SchoolID", "RegionID"))
+```
+
+**Explanation:**
+- We perform a left join to merge school funding data with the main dataset, ensuring that all schools in the performance data are retained.
+
+#### Step 4: Reshape Data for Analysis
+
+We might need to reshape the data from wide to long format to analyze trends or comparisons across regions.
+
+```r
+# Reshaping data to long format for analysis
+long_education_df <- education_inequality_df |> 
+  pivot_longer(cols = starts_with("Score"), names_to = "Subject", values_to = "Score")
+```
+
+**Explanation:**
+- `pivot_longer()` is used to reshape the data so that each subject’s scores are in a single column, making it easier to analyze performance across different subjects.
+
+### 8.1.3 Exploratory Data Analysis (EDA)
+
+Before diving into complex analyses, it's important to perform EDA to understand the distributions, relationships, and potential patterns in the data.
+
+#### Step 5: Descriptive Statistics
+
+Generate descriptive statistics to summarize the key variables.
+
+```r
+# Descriptive statistics for key variables
+summary_stats <- education_inequality_df |> 
+  summarise(
+    Avg_Funding = mean(Funding_Per_Student, na.rm = TRUE),
+    Avg_Score = mean(Score, na.rm = TRUE),
+    Avg_SES = mean(as.numeric(SES), na.rm = TRUE)
+  )
+summary_stats
+```
+
+**Explanation:**
+- We calculate the average funding per student, average score, and average socioeconomic status (SES) across all regions.
+
+#### Step 6: Visualize Distributions and Relationships
+
+Visualize the distribution of student scores and the relationship between funding and scores across regions.
+
+```r
+# Histogram of student scores
+ggplot(data = education_inequality_df, aes(x = Score)) +
+  geom_histogram(binwidth = 5, fill = "blue", color = "black") +
+  labs(title = "Distribution of Student Scores", x = "Score", y = "Frequency")
+
+# Scatter plot of Funding vs. Scores by Region
+ggplot(data = education_inequality_df, aes(x = Funding_Per_Student, y = Score, color = RegionID)) +
+  geom_point() +
+  geom_smooth(method = "lm", se = FALSE) +
+  labs(title = "Funding vs. Scores by Region", x = "Funding Per Student", y = "Score")
+```
+
+**Explanation:**
+- The histogram provides insight into the distribution of student scores.
+- The scatter plot shows the relationship between school funding and student performance, with different colors representing different regions.
+
+### 8.1.4 Advanced Analysis
+
+Now, we move on to more complex analyses, such as regression analysis and comparisons across regions.
+
+#### Step 7: Multiple Regression Analysis
+
+Perform a multiple regression analysis to assess the impact of funding, SES, and region on student performance.
+
+```r
+# Multiple regression analysis
+regression_model <- lm(Score ~ Funding_Per_Student + SES + RegionID, data = education_inequality_df)
+
+# Summary of the regression model
+summary(regression_model)
+```
+
+**Explanation:**
+- This regression model includes funding, SES, and region as predictors of student performance (score). The results help identify key factors driving educational inequality.
+
+#### Step 8: Compare Regional Differences
+
+Use faceted plots to compare the relationship between funding and scores across different regions.
+
+```r
+# Faceted scatter plot by Region
+ggplot(data = education_inequality_df, aes(x = Funding_Per_Student, y = Score)) +
+  geom_point() +
+  geom_smooth(method = "lm", se = FALSE) +
+  facet_wrap(~ RegionID) +
+  labs(title = "Funding vs. Scores Across Regions", x = "Funding Per Student", y = "Score")
+```
+
+**Explanation:**
+- This faceted plot allows for direct comparison of the funding-performance relationship across different regions, helping to identify regions with greater inequality.
+
+### 8.1.5 Interpretation and Reporting
+
+Finally, we interpret the results of our analyses and prepare a report that communicates our findings effectively.
+
+#### Step 9: Interpretation of Results
+
+- **Regression Results**: Discuss which variables (e.g., funding, SES) have the most significant impact on student performance and how these effects vary by region.
+- **Visual Insights**: Highlight key patterns observed in the visualizations, such as regions where funding has a stronger correlation with student scores.
+
+#### Step 10: Reporting Findings
+
+Prepare a summary report that includes:
+- **Introduction**: Contextualize the problem of educational inequality and outline the goals of the analysis.
+- **Methodology**: Describe the data sources, variables used, and the analytical methods applied.
+- **Results**: Present the results of the regression analysis and visualizations, interpreting their implications.
+- **Conclusion**: Discuss the broader implications of your findings for policy and practice in addressing educational inequality.
+
+```r
+# Example summary report outline (in Markdown)
+# 
+# # Analysis of Educational Inequality Across Regions
+# 
+# ## Introduction
+# Educational inequality remains a significant challenge, with disparities in funding, socioeconomic status, and other factors contributing to uneven student outcomes across regions. This analysis aims to explore the relationships between these variables and student performance, providing insights into the drivers of inequality.
+# 
+# ## Methodology
+# The analysis combines data on student performance, school funding, and socioeconomic status across multiple regions. We employ data wrangling techniques to clean and prepare the data, followed by regression analysis and visualization to uncover key patterns.
+# 
+# ## Results
+# - **Regression Analysis**: Funding per student and SES are significant predictors of student performance, with notable variations across regions.
+# - **Visual Analysis**: Regions with higher funding show a stronger correlation between funding and performance, highlighting areas where investment may be more impactful.
+# 
+# ## Conclusion
+# The findings suggest that targeted funding increases in underperforming regions could help mitigate educational inequality. Policymakers should consider these insights when designing interventions to improve educational outcomes across the board.
+```
+
+### Final Thoughts
+
+This project has guided you through the entire process of conducting an in-depth analysis in the field of economics of education, from data preparation and analysis to interpretation and reporting. By integrating the skills you’ve learned throughout this course, you are now well-equipped to tackle complex research questions and contribute meaningful insights to the field of educational economics.
+

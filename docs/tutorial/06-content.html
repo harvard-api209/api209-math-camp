@@ -1,0 +1,1158 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.6.6">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Rony">
+
+<title>Tutorial 6: Advanced Data Wrangling with Tidyverse – 🏠 API209: Summer Math Camp</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../tutorial/07-content.html" rel="next">
+<link href="../tutorial/05-content.html" rel="prev">
+<link href="../figures/icons/favicon-512.png" rel="icon" type="image/png">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/quarto-contrib/fontawesome6-0.1.0/all.css" rel="stylesheet">
+<link href="../site_libs/quarto-contrib/fontawesome6-0.1.0/latex-fontsize.css" rel="stylesheet">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="../css/custom_style.css">
+<link rel="stylesheet" href="../css/syllabus.css">
+<meta property="og:title" content="Tutorial 6: Advanced Data Wrangling with Tidyverse – 🏠 API209: Summer Math Camp">
+<meta property="og:description" content="">
+<meta property="og:site_name" content="🏠 API209: Summer Math Camp">
+</head>
+
+<body class="nav-sidebar floating nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">🏠 API209: Summer Math Camp</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../2024/index.html"> 
+<span class="menu-text">Math Camp 2024</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../schedule.html"> 
+<span class="menu-text">Schedule</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../resource/index.html"> 
+<span class="menu-text">Resources</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link active" href="../tutorial/index.html" aria-current="page"> 
+<span class="menu-text">Tutorials</span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://mpa-id-math-camp-w8y.slack.com/ssb/redirect"> <i class="bi bi-slack" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+  <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
+  <div class="quarto-reader-toggle-btn">
+  <i class="bi"></i>
+  </div>
+</a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../tutorial/01-content.html">Tutorials</a></li><li class="breadcrumb-item"><a href="../tutorial/06-content.html">6. Advanced Data Wrangling</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Overview</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../tutorial/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">🏠 Home</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">Tutorials</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../tutorial/01-content.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">1. Introduction to R and Basic Data Types</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../tutorial/02-content.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">2. Data Structures</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../tutorial/03-content.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">3. Introduction to Tidyverse</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../tutorial/04-content.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">4. Data Analysis</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../tutorial/05-content.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">5. Visualization with ggplot2</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../tutorial/06-content.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">6. Advanced Data Wrangling</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../tutorial/07-content.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">7. Applied Examples in Economics of Education</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#advanced-data-wrangling-in-the-economics-of-education" id="toc-advanced-data-wrangling-in-the-economics-of-education" class="nav-link active" data-scroll-target="#advanced-data-wrangling-in-the-economics-of-education">Advanced Data Wrangling in the Economics of Education</a>
+  <ul class="collapse">
+  <li><a href="#merging-datasets-in-education-research" id="toc-merging-datasets-in-education-research" class="nav-link" data-scroll-target="#merging-datasets-in-education-research">6.1 Merging Datasets in Education Research</a>
+  <ul class="collapse">
+  <li><a href="#inner-join-combining-student-test-scores-with-school-funding" id="toc-inner-join-combining-student-test-scores-with-school-funding" class="nav-link" data-scroll-target="#inner-join-combining-student-test-scores-with-school-funding">6.1.1 Inner Join: Combining Student Test Scores with School Funding</a></li>
+  <li><a href="#left-join-linking-student-performance-with-demographics" id="toc-left-join-linking-student-performance-with-demographics" class="nav-link" data-scroll-target="#left-join-linking-student-performance-with-demographics">6.1.2 Left Join: Linking Student Performance with Demographics</a></li>
+  <li><a href="#full-join-comprehensive-analysis-of-multiple-datasets" id="toc-full-join-comprehensive-analysis-of-multiple-datasets" class="nav-link" data-scroll-target="#full-join-comprehensive-analysis-of-multiple-datasets">6.1.3 Full Join: Comprehensive Analysis of Multiple Datasets</a></li>
+  </ul></li>
+  <li><a href="#reshaping-educational-data" id="toc-reshaping-educational-data" class="nav-link" data-scroll-target="#reshaping-educational-data">6.2 Reshaping Educational Data</a>
+  <ul class="collapse">
+  <li><a href="#pivot_longer-analyzing-subject-performance-over-time" id="toc-pivot_longer-analyzing-subject-performance-over-time" class="nav-link" data-scroll-target="#pivot_longer-analyzing-subject-performance-over-time">6.2.1 pivot_longer(): Analyzing Subject Performance Over Time</a></li>
+  <li><a href="#pivot_wider-comparing-yearly-performance-by-subject" id="toc-pivot_wider-comparing-yearly-performance-by-subject" class="nav-link" data-scroll-target="#pivot_wider-comparing-yearly-performance-by-subject">6.2.2 pivot_wider(): Comparing Yearly Performance by Subject</a></li>
+  </ul></li>
+  <li><a href="#handling-missing-data-in-educational-datasets" id="toc-handling-missing-data-in-educational-datasets" class="nav-link" data-scroll-target="#handling-missing-data-in-educational-datasets">6.3 Handling Missing Data in Educational Datasets</a>
+  <ul class="collapse">
+  <li><a href="#identifying-and-summarizing-missing-data" id="toc-identifying-and-summarizing-missing-data" class="nav-link" data-scroll-target="#identifying-and-summarizing-missing-data">6.3.1 Identifying and Summarizing Missing Data</a></li>
+  <li><a href="#replacing-missing-values-imputation" id="toc-replacing-missing-values-imputation" class="nav-link" data-scroll-target="#replacing-missing-values-imputation">6.3.2 Replacing Missing Values: Imputation</a></li>
+  <li><a href="#removing-rows-with-missing-values" id="toc-removing-rows-with-missing-values" class="nav-link" data-scroll-target="#removing-rows-with-missing-values">6.3.3 Removing Rows with Missing Values</a></li>
+  </ul></li>
+  <li><a href="#exercises-and-solutions" id="toc-exercises-and-solutions" class="nav-link" data-scroll-target="#exercises-and-solutions">Exercises and Solutions</a>
+  <ul class="collapse">
+  <li><a href="#exercise-1-merging-student-and-teacher-data" id="toc-exercise-1-merging-student-and-teacher-data" class="nav-link" data-scroll-target="#exercise-1-merging-student-and-teacher-data">Exercise 1: Merging Student and Teacher Data</a></li>
+  <li><a href="#exercise-2-reshaping-data-for-cohort-analysis" id="toc-exercise-2-reshaping-data-for-cohort-analysis" class="nav-link" data-scroll-target="#exercise-2-reshaping-data-for-cohort-analysis">Exercise 2: Reshaping Data for Cohort Analysis</a></li>
+  <li><a href="#exercise-3-handling-missing-data-in-school-surveys" id="toc-exercise-3-handling-missing-data-in-school-surveys" class="nav-link" data-scroll-target="#exercise-3-handling-missing-data-in-school-surveys">Exercise 3: Handling Missing Data in School Surveys</a></li>
+  <li><a href="#exercise-4-combining-data-with-different-keys" id="toc-exercise-4-combining-data-with-different-keys" class="nav-link" data-scroll-target="#exercise-4-combining-data-with-different-keys">Exercise 4: Combining Data with Different Keys</a></li>
+  <li><a href="#exercise-5-reshaping-data-for-trend-analysis" id="toc-exercise-5-reshaping-data-for-trend-analysis" class="nav-link" data-scroll-target="#exercise-5-reshaping-data-for-trend-analysis">Exercise 5: Reshaping Data for Trend Analysis</a></li>
+  </ul></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../tutorial/01-content.html">Tutorials</a></li><li class="breadcrumb-item"><a href="../tutorial/06-content.html">6. Advanced Data Wrangling</a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title">Tutorial 6: Advanced Data Wrangling with Tidyverse</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Rony Rodriguez-Ramirez </p>
+          </div>
+  </div>
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="advanced-data-wrangling-in-the-economics-of-education" class="level1">
+<h1>Advanced Data Wrangling in the Economics of Education</h1>
+<p>In this tutorial, we will explore advanced data wrangling techniques using the Tidyverse, with examples related to the economics of education. We will cover tasks such as merging datasets, reshaping data, handling missing values, and analyzing educational data. These techniques will help you efficiently prepare and analyze complex datasets in educational economics research. First, load the <code>tidyverse</code> package.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<section id="merging-datasets-in-education-research" class="level2">
+<h2 class="anchored" data-anchor-id="merging-datasets-in-education-research">6.1 Merging Datasets in Education Research</h2>
+<p>Educational datasets often come from multiple sources, such as student assessments, school funding records, and demographic surveys. Combining these datasets is a crucial step in analysis.</p>
+<section id="inner-join-combining-student-test-scores-with-school-funding" class="level3">
+<h3 class="anchored" data-anchor-id="inner-join-combining-student-test-scores-with-school-funding">6.1.1 Inner Join: Combining Student Test Scores with School Funding</h3>
+<p>An <strong>inner join</strong> merges two datasets, keeping only rows with matching values in both. For instance, you may want to combine student test scores with school funding data.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Example data frames</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>test_scores_df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">StudentID =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>),</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">Math_Score =</span> <span class="fu">c</span>(<span class="dv">85</span>, <span class="dv">90</span>, <span class="dv">78</span>, <span class="dv">88</span>, <span class="dv">92</span>),</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">Reading_Score =</span> <span class="fu">c</span>(<span class="dv">82</span>, <span class="dv">88</span>, <span class="dv">80</span>, <span class="dv">85</span>, <span class="dv">91</span>)</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>school_funding_df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">SchoolID =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">3</span>),</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">StudentID =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>),</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">Funding_Per_Student =</span> <span class="fu">c</span>(<span class="dv">10000</span>, <span class="dv">10000</span>, <span class="dv">8000</span>, <span class="dv">8000</span>, <span class="dv">9000</span>)</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Performing an inner join on StudentID</span></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>combined_df <span class="ot">&lt;-</span> test_scores_df <span class="sc">|&gt;</span> <span class="fu">inner_join</span>(school_funding_df, <span class="at">by =</span> <span class="st">"StudentID"</span>)</span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>combined_df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  StudentID Math_Score Reading_Score SchoolID Funding_Per_Student
+1         1         85            82        1               10000
+2         2         90            88        1               10000
+3         3         78            80        2                8000
+4         4         88            85        2                8000
+5         5         92            91        3                9000</code></pre>
+</div>
+</div>
+<p><strong>Explanation:</strong> - <code>inner_join()</code> merges <code>test_scores_df</code> and <code>school_funding_df</code> by matching the <code>StudentID</code> column. Only students present in both datasets are included in the result.</p>
+</section>
+<section id="left-join-linking-student-performance-with-demographics" class="level3">
+<h3 class="anchored" data-anchor-id="left-join-linking-student-performance-with-demographics">6.1.2 Left Join: Linking Student Performance with Demographics</h3>
+<p>A <strong>left join</strong> includes all rows from the left dataset (e.g., student performance) and adds matching rows from the right dataset (e.g., demographics). Missing values are filled with <code>NA</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Example data frames</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>demographics_df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">StudentID =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">6</span>),</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">Gender =</span> <span class="fu">c</span>(<span class="st">"F"</span>, <span class="st">"M"</span>, <span class="st">"F"</span>, <span class="st">"M"</span>),</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">SES =</span> <span class="fu">c</span>(<span class="st">"High"</span>, <span class="st">"Low"</span>, <span class="st">"Medium"</span>, <span class="st">"Low"</span>)</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Performing a left join on StudentID</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>combined_left_df <span class="ot">&lt;-</span> test_scores_df <span class="sc">|&gt;</span> <span class="fu">left_join</span>(demographics_df, <span class="at">by =</span> <span class="st">"StudentID"</span>)</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>combined_left_df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  StudentID Math_Score Reading_Score Gender    SES
+1         1         85            82      F   High
+2         2         90            88      M    Low
+3         3         78            80      F Medium
+4         4         88            85   &lt;NA&gt;   &lt;NA&gt;
+5         5         92            91   &lt;NA&gt;   &lt;NA&gt;</code></pre>
+</div>
+</div>
+<p><strong>Explanation:</strong> - <code>left_join()</code> includes all students from <code>test_scores_df</code> and adds corresponding demographic information where available. Students without demographic data have <code>NA</code> in those columns.</p>
+</section>
+<section id="full-join-comprehensive-analysis-of-multiple-datasets" class="level3">
+<h3 class="anchored" data-anchor-id="full-join-comprehensive-analysis-of-multiple-datasets">6.1.3 Full Join: Comprehensive Analysis of Multiple Datasets</h3>
+<p>A <strong>full join</strong> merges all rows from both datasets, filling unmatched areas with <code>NA</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Performing a full join on StudentID</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>full_combined_df <span class="ot">&lt;-</span> test_scores_df <span class="sc">|&gt;</span> <span class="fu">full_join</span>(demographics_df, <span class="at">by =</span> <span class="st">"StudentID"</span>)</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>full_combined_df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  StudentID Math_Score Reading_Score Gender    SES
+1         1         85            82      F   High
+2         2         90            88      M    Low
+3         3         78            80      F Medium
+4         4         88            85   &lt;NA&gt;   &lt;NA&gt;
+5         5         92            91   &lt;NA&gt;   &lt;NA&gt;
+6         6         NA            NA      M    Low</code></pre>
+</div>
+</div>
+<p><strong>Explanation:</strong> - <code>full_join()</code> combines all rows from <code>test_scores_df</code> and <code>demographics_df</code>, retaining all students and filling in missing values with <code>NA</code>.</p>
+</section>
+</section>
+<section id="reshaping-educational-data" class="level2">
+<h2 class="anchored" data-anchor-id="reshaping-educational-data">6.2 Reshaping Educational Data</h2>
+<p>Reshaping data is often necessary to perform certain types of analyses, such as tracking student performance across subjects or years.</p>
+<section id="pivot_longer-analyzing-subject-performance-over-time" class="level3">
+<h3 class="anchored" data-anchor-id="pivot_longer-analyzing-subject-performance-over-time">6.2.1 pivot_longer(): Analyzing Subject Performance Over Time</h3>
+<p><code>pivot_longer()</code> is useful for converting wide data (where each subject is a column) into long data, which is more suitable for longitudinal analysis.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Example wide data frame</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>subject_scores_df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">StudentID =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>),</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">Math_2019 =</span> <span class="fu">c</span>(<span class="dv">85</span>, <span class="dv">88</span>, <span class="dv">90</span>),</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">Math_2020 =</span> <span class="fu">c</span>(<span class="dv">87</span>, <span class="dv">85</span>, <span class="dv">92</span>),</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">Reading_2019 =</span> <span class="fu">c</span>(<span class="dv">82</span>, <span class="dv">80</span>, <span class="dv">88</span>),</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">Reading_2020 =</span> <span class="fu">c</span>(<span class="dv">85</span>, <span class="dv">83</span>, <span class="dv">90</span>)</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Converting to long format</span></span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>long_scores_df <span class="ot">&lt;-</span> subject_scores_df <span class="sc">|&gt;</span> </span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="sc">-</span>StudentID, <span class="at">names_to =</span> <span class="fu">c</span>(<span class="st">"Subject"</span>, <span class="st">"Year"</span>), <span class="at">names_sep =</span> <span class="st">"_"</span>, <span class="at">values_to =</span> <span class="st">"Score"</span>)</span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>long_scores_df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 12 × 4
+   StudentID Subject Year  Score
+       &lt;dbl&gt; &lt;chr&gt;   &lt;chr&gt; &lt;dbl&gt;
+ 1         1 Math    2019     85
+ 2         1 Math    2020     87
+ 3         1 Reading 2019     82
+ 4         1 Reading 2020     85
+ 5         2 Math    2019     88
+ 6         2 Math    2020     85
+ 7         2 Reading 2019     80
+ 8         2 Reading 2020     83
+ 9         3 Math    2019     90
+10         3 Math    2020     92
+11         3 Reading 2019     88
+12         3 Reading 2020     90</code></pre>
+</div>
+</div>
+<p><strong>Explanation:</strong> - <code>pivot_longer()</code> reshapes the dataset so that each subject’s scores across different years are in their own rows. The <code>names_to</code> and <code>names_sep</code> arguments split the column names into <code>Subject</code> and <code>Year</code>.</p>
+</section>
+<section id="pivot_wider-comparing-yearly-performance-by-subject" class="level3">
+<h3 class="anchored" data-anchor-id="pivot_wider-comparing-yearly-performance-by-subject">6.2.2 pivot_wider(): Comparing Yearly Performance by Subject</h3>
+<p><code>pivot_wider()</code> converts long-format data back to wide format, which is useful for comparing scores across subjects or years side by side.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Converting back to wide format</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>wide_scores_df <span class="ot">&lt;-</span> long_scores_df <span class="sc">|&gt;</span> </span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_wider</span>(<span class="at">names_from =</span> <span class="fu">c</span>(<span class="st">"Subject"</span>, <span class="st">"Year"</span>), <span class="at">values_from =</span> <span class="st">"Score"</span>)</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>wide_scores_df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 3 × 5
+  StudentID Math_2019 Math_2020 Reading_2019 Reading_2020
+      &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;        &lt;dbl&gt;        &lt;dbl&gt;
+1         1        85        87           82           85
+2         2        88        85           80           83
+3         3        90        92           88           90</code></pre>
+</div>
+</div>
+<p><strong>Explanation:</strong> - <code>pivot_wider()</code> rearranges the data so that each subject and year combination becomes a separate column, allowing for easy comparison across different time points.</p>
+</section>
+</section>
+<section id="handling-missing-data-in-educational-datasets" class="level2">
+<h2 class="anchored" data-anchor-id="handling-missing-data-in-educational-datasets">6.3 Handling Missing Data in Educational Datasets</h2>
+<p>Educational datasets often contain missing values due to various reasons, such as incomplete surveys or missing records. Proper handling of missing data is crucial for accurate analysis.</p>
+<section id="identifying-and-summarizing-missing-data" class="level3">
+<h3 class="anchored" data-anchor-id="identifying-and-summarizing-missing-data">6.3.1 Identifying and Summarizing Missing Data</h3>
+<p>You can use <code>is.na()</code> to identify missing values and <code>summarise()</code> to count them.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Identifying missing values in the combined dataset</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>missing_summary <span class="ot">&lt;-</span> combined_left_df <span class="sc">|&gt;</span> </span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="fu">across</span>(<span class="fu">everything</span>(), <span class="sc">~</span><span class="fu">sum</span>(<span class="fu">is.na</span>(.))))</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>missing_summary</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  StudentID Math_Score Reading_Score Gender SES
+1         0          0             0      2   2</code></pre>
+</div>
+</div>
+<p><strong>Explanation:</strong> - This code counts the number of missing values (<code>NA</code>) in each column of the <code>combined_left_df</code> dataset, providing a summary of data completeness.</p>
+</section>
+<section id="replacing-missing-values-imputation" class="level3">
+<h3 class="anchored" data-anchor-id="replacing-missing-values-imputation">6.3.2 Replacing Missing Values: Imputation</h3>
+<p>Imputation involves replacing missing values with substituted values. A common approach in educational data is to use the mean or median.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Replacing missing SES values with "Unknown"</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>filled_df <span class="ot">&lt;-</span> combined_left_df <span class="sc">|&gt;</span> </span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">SES =</span> <span class="fu">replace_na</span>(SES, <span class="st">"Unknown"</span>))</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>filled_df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  StudentID Math_Score Reading_Score Gender     SES
+1         1         85            82      F    High
+2         2         90            88      M     Low
+3         3         78            80      F  Medium
+4         4         88            85   &lt;NA&gt; Unknown
+5         5         92            91   &lt;NA&gt; Unknown</code></pre>
+</div>
+</div>
+<p><strong>Explanation:</strong> - <code>replace_na()</code> replaces <code>NA</code> values in the <code>SES</code> column with <code>"Unknown"</code>, which is useful when the socioeconomic status is missing.</p>
+</section>
+<section id="removing-rows-with-missing-values" class="level3">
+<h3 class="anchored" data-anchor-id="removing-rows-with-missing-values">6.3.3 Removing Rows with Missing Values</h3>
+<p>In some cases, it may be necessary to remove rows with missing data to ensure the integrity of the analysis.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Removing rows with missing Math scores</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>cleaned_scores_df <span class="ot">&lt;-</span> combined_df <span class="sc">|&gt;</span> <span class="fu">drop_na</span>(Math_Score)</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>cleaned_scores_df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  StudentID Math_Score Reading_Score SchoolID Funding_Per_Student
+1         1         85            82        1               10000
+2         2         90            88        1               10000
+3         3         78            80        2                8000
+4         4         88            85        2                8000
+5         5         92            91        3                9000</code></pre>
+</div>
+</div>
+<p><strong>Explanation:</strong> - <code>drop_na()</code> removes rows where the <code>Math_Score</code> is missing, ensuring that only complete cases are used in the analysis.</p>
+</section>
+</section>
+<section id="exercises-and-solutions" class="level2">
+<h2 class="anchored" data-anchor-id="exercises-and-solutions">Exercises and Solutions</h2>
+<section id="exercise-1-merging-student-and-teacher-data" class="level3">
+<h3 class="anchored" data-anchor-id="exercise-1-merging-student-and-teacher-data">Exercise 1: Merging Student and Teacher Data</h3>
+<ol type="1">
+<li>Create two data frames, <code>student_scores_df</code> with columns <code>StudentID</code>, <code>Math_Score</code>, and <code>Reading_Score</code>, and <code>teacher_info_df</code> with columns <code>TeacherID</code>, <code>StudentID</code>, and <code>TeacherExperience</code>. Perform a left join to combine these datasets.</li>
+</ol>
+<p><strong>Solution:</strong></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Creating the data frames</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>student_scores_df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">StudentID =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>),</span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">Math_Score =</span> <span class="fu">c</span>(<span class="dv">85</span>, <span class="dv">90</span>, <span class="dv">78</span>, <span class="dv">88</span>),</span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">Reading_Score =</span> <span class="fu">c</span>(<span class="dv">82</span>, <span class="dv">88</span>, <span class="dv">80</span>, <span class="dv">85</span>)</span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>teacher_info_df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">TeacherID =</span> <span class="fu">c</span>(<span class="dv">101</span>, <span class="dv">102</span>, <span class="dv">101</span>, <span class="dv">103</span>),</span>
+<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">StudentID =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>),</span>
+<span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">TeacherExperience =</span> <span class="fu">c</span>(<span class="dv">5</span>, <span class="dv">10</span>, <span class="dv">5</span>, <span class="dv">7</span>)</span>
+<span id="cb18-12"><a href="#cb18-12" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb18-13"><a href="#cb18-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-14"><a href="#cb18-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Performing the left join</span></span>
+<span id="cb18-15"><a href="#cb18-15" aria-hidden="true" tabindex="-1"></a>combined_teacher_df <span class="ot">&lt;-</span> student_scores_df <span class="sc">|&gt;</span> <span class="fu">left_join</span>(teacher_info_df, <span class="at">by =</span> <span class="st">"StudentID"</span>)</span>
+<span id="cb18-16"><a href="#cb18-16" aria-hidden="true" tabindex="-1"></a>combined_teacher_df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  StudentID Math_Score Reading_Score TeacherID TeacherExperience
+1         1         85            82       101                 5
+2         2         90            88       102                10
+3         3         78            80       101                 5
+4         4         88            85       103                 7</code></pre>
+</div>
+</div>
+</section>
+<section id="exercise-2-reshaping-data-for-cohort-analysis" class="level3">
+<h3 class="anchored" data-anchor-id="exercise-2-reshaping-data-for-cohort-analysis">Exercise 2: Reshaping Data for Cohort Analysis</h3>
+<ol type="1">
+<li>Start with a wide data frame <code>cohort_scores_df</code> with columns <code>StudentID</code>, <code>Cohort_2019_Math</code>, <code>Cohort_2019_Reading</code>, <code>Cohort_2020_Math</code>, and <code>Cohort_2020_Reading</code>. Convert this data frame to a long format, separating cohort year and subject.</li>
+</ol>
+<p><strong>Solution:</strong></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Creating the wide data frame</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>cohort_scores_df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">StudentID =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>),</span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">Cohort_2019_Math =</span> <span class="fu">c</span>(<span class="dv">85</span>, <span class="dv">88</span>, <span class="dv">90</span>),</span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">Cohort_2019_Reading =</span> <span class="fu">c</span>(<span class="dv">82</span>, <span class="dv">80</span>, <span class="dv">88</span>),</span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">Cohort_2020_Math =</span> <span class="fu">c</span>(<span class="dv">87</span>, <span class="dv">85</span>, <span class="dv">92</span>),</span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">Cohort_2020_Reading =</span> <span class="fu">c</span>(<span class="dv">85</span>, <span class="dv">83</span>, <span class="dv">90</span>)</span>
+<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-10"><a href="#cb20-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Converting to long format</span></span>
+<span id="cb20-11"><a href="#cb20-11" aria-hidden="true" tabindex="-1"></a>long_cohort_df <span class="ot">&lt;-</span> cohort_scores_df <span class="sc">|&gt;</span> </span>
+<span id="cb20-12"><a href="#cb20-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(</span>
+<span id="cb20-13"><a href="#cb20-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">cols =</span> <span class="sc">-</span>StudentID, </span>
+<span id="cb20-14"><a href="#cb20-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">names_to =</span> <span class="fu">c</span>(<span class="st">"Cohort_Year"</span>, <span class="st">"Subject"</span>), <span class="at">names_sep =</span> <span class="st">"_"</span>, <span class="at">values_to =</span> <span class="st">"Score"</span></span>
+<span id="cb20-15"><a href="#cb20-15" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Expected 2 pieces. Additional pieces discarded in 4 rows [1, 2, 3, 4].</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>long_cohort_df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 12 × 4
+   StudentID Cohort_Year Subject Score
+       &lt;dbl&gt; &lt;chr&gt;       &lt;chr&gt;   &lt;dbl&gt;
+ 1         1 Cohort      2019       85
+ 2         1 Cohort      2019       82
+ 3         1 Cohort      2020       87
+ 4         1 Cohort      2020       85
+ 5         2 Cohort      2019       88
+ 6         2 Cohort      2019       80
+ 7         2 Cohort      2020       85
+ 8         2 Cohort      2020       83
+ 9         3 Cohort      2019       90
+10         3 Cohort      2019       88
+11         3 Cohort      2020       92
+12         3 Cohort      2020       90</code></pre>
+</div>
+</div>
+</section>
+<section id="exercise-3-handling-missing-data-in-school-surveys" class="level3">
+<h3 class="anchored" data-anchor-id="exercise-3-handling-missing-data-in-school-surveys">Exercise 3: Handling Missing Data in School Surveys</h3>
+<ol type="1">
+<li>Create a data frame <code>school_survey_df</code> with columns <code>SchoolID</code>, <code>StudentSatisfaction</code>, and <code>TeacherTurnover</code>. Introduce missing values into the <code>StudentSatisfaction</code> column. Replace these missing values with the median of the available satisfaction scores.</li>
+</ol>
+<p><strong>Solution:</strong></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Creating the data frame with missing values</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>school_survey_df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">SchoolID =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>),</span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">StudentSatisfaction =</span> <span class="fu">c</span>(<span class="dv">85</span>, <span class="cn">NA</span>, <span class="dv">78</span>, <span class="dv">90</span>),</span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">TeacherTurnover =</span> <span class="fu">c</span>(<span class="dv">10</span>, <span class="dv">15</span>, <span class="dv">8</span>, <span class="dv">12</span>)</span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Replacing missing values with the median</span></span>
+<span id="cb24-9"><a href="#cb24-9" aria-hidden="true" tabindex="-1"></a>school_survey_df <span class="ot">&lt;-</span> school_survey_df <span class="sc">|&gt;</span> </span>
+<span id="cb24-10"><a href="#cb24-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">StudentSatisfaction =</span> <span class="fu">replace_na</span>(StudentSatisfaction, <span class="fu">median</span>(StudentSatisfaction, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)))</span>
+<span id="cb24-11"><a href="#cb24-11" aria-hidden="true" tabindex="-1"></a>school_survey_df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  SchoolID StudentSatisfaction TeacherTurnover
+1        1                  85              10
+2        2                  85              15
+3        3                  78               8
+4        4                  90              12</code></pre>
+</div>
+</div>
+</section>
+<section id="exercise-4-combining-data-with-different-keys" class="level3">
+<h3 class="anchored" data-anchor-id="exercise-4-combining-data-with-different-keys">Exercise 4: Combining Data with Different Keys</h3>
+<ol type="1">
+<li>Create two data frames, <code>school_expenditure_df</code> with columns <code>SchoolID</code>, <code>Expenditure_Per_Student</code>, and <code>Total_Expenditure</code>, and <code>student_scores_df</code> with <code>SchoolID</code>, <code>Math_Score</code>, and <code>Reading_Score</code>. Perform a full join on <code>SchoolID</code> to combine these datasets, then filter to keep only schools with available expenditure data.</li>
+</ol>
+<p><strong>Solution:</strong></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Creating the data frames</span></span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>school_expenditure_df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">SchoolID =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>),</span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">Expenditure_Per_Student =</span> <span class="fu">c</span>(<span class="dv">10000</span>, <span class="dv">8000</span>, <span class="dv">9000</span>),</span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">Total_Expenditure =</span> <span class="fu">c</span>(<span class="dv">500000</span>, <span class="dv">400000</span>, <span class="dv">450000</span>)</span>
+<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a>student_scores_df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb26-9"><a href="#cb26-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">SchoolID =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">4</span>),</span>
+<span id="cb26-10"><a href="#cb26-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">Math_Score =</span> <span class="fu">c</span>(<span class="dv">85</span>, <span class="dv">90</span>, <span class="dv">78</span>),</span>
+<span id="cb26-11"><a href="#cb26-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">Reading_Score =</span> <span class="fu">c</span>(<span class="dv">82</span>, <span class="dv">88</span>, <span class="dv">80</span>)</span>
+<span id="cb26-12"><a href="#cb26-12" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb26-13"><a href="#cb26-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-14"><a href="#cb26-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Performing the full join</span></span>
+<span id="cb26-15"><a href="#cb26-15" aria-hidden="true" tabindex="-1"></a>combined_expenditure_df <span class="ot">&lt;-</span> school_expenditure_df <span class="sc">|&gt;</span> <span class="fu">full_join</span>(student_scores_df, <span class="at">by =</span> <span class="st">"SchoolID"</span>)</span>
+<span id="cb26-16"><a href="#cb26-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-17"><a href="#cb26-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Filtering to keep only schools with expenditure data</span></span>
+<span id="cb26-18"><a href="#cb26-18" aria-hidden="true" tabindex="-1"></a>filtered_expenditure_df <span class="ot">&lt;-</span> combined_expenditure_df <span class="sc">|&gt;</span> <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(Expenditure_Per_Student))</span>
+<span id="cb26-19"><a href="#cb26-19" aria-hidden="true" tabindex="-1"></a>filtered_expenditure_df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  SchoolID Expenditure_Per_Student Total_Expenditure Math_Score Reading_Score
+1        1                   10000            500000         85            82
+2        2                    8000            400000         90            88
+3        3                    9000            450000         NA            NA</code></pre>
+</div>
+</div>
+</section>
+<section id="exercise-5-reshaping-data-for-trend-analysis" class="level3">
+<h3 class="anchored" data-anchor-id="exercise-5-reshaping-data-for-trend-analysis">Exercise 5: Reshaping Data for Trend Analysis</h3>
+<ol type="1">
+<li>Using a data frame <code>annual_scores_df</code> with columns <code>Year</code>, <code>SchoolID</code>, <code>Average_Math_Score</code>, and <code>Average_Reading_Score</code>, convert the data from wide to long format to analyze trends in average scores over time.</li>
+</ol>
+<p><strong>Solution:</strong></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Creating the wide data frame</span></span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>annual_scores_df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">Year =</span> <span class="fu">c</span>(<span class="dv">2019</span>, <span class="dv">2020</span>, <span class="dv">2021</span>),</span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">SchoolID =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>),</span>
+<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">Average_Math_Score =</span> <span class="fu">c</span>(<span class="dv">78</span>, <span class="dv">80</span>, <span class="dv">82</span>),</span>
+<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">Average_Reading_Score =</span> <span class="fu">c</span>(<span class="dv">75</span>, <span class="dv">77</span>, <span class="dv">79</span>)</span>
+<span id="cb28-7"><a href="#cb28-7" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb28-8"><a href="#cb28-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-9"><a href="#cb28-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Converting to long format</span></span>
+<span id="cb28-10"><a href="#cb28-10" aria-hidden="true" tabindex="-1"></a>long_annual_scores_df <span class="ot">&lt;-</span> annual_scores_df <span class="sc">|&gt;</span> </span>
+<span id="cb28-11"><a href="#cb28-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="fu">starts_with</span>(<span class="st">"Average"</span>), <span class="at">names_to =</span> <span class="st">"Subject"</span>, <span class="at">names_prefix =</span> <span class="st">"Average_"</span>, <span class="at">values_to =</span> <span class="st">"Score"</span>)</span>
+<span id="cb28-12"><a href="#cb28-12" aria-hidden="true" tabindex="-1"></a>long_annual_scores_df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 4
+   Year SchoolID Subject       Score
+  &lt;dbl&gt;    &lt;dbl&gt; &lt;chr&gt;         &lt;dbl&gt;
+1  2019        1 Math_Score       78
+2  2019        1 Reading_Score    75
+3  2020        1 Math_Score       80
+4  2020        1 Reading_Score    77
+5  2021        1 Math_Score       82
+6  2021        1 Reading_Score    79</code></pre>
+</div>
+</div>
+
+
+</section>
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp("^(?:http:|https:)\/\/(?:lse-dsi\.github\.io\/|localhost)");
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+          // target, if specified
+          link.setAttribute("target", "_blank");
+          if (link.getAttribute("rel") === null) {
+            link.setAttribute("rel", "noopener");
+          }
+          // default icon
+          link.classList.add("external");
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../tutorial/05-content.html" class="pagination-link" aria-label="5. Visualization with ggplot2">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">5. Visualization with ggplot2</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../tutorial/07-content.html" class="pagination-link" aria-label="7. Applied Examples in Economics of Education">
+        <span class="nav-page-text">7. Applied Examples in Economics of Education</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>Original content <i class="fa-brands fa-creative-commons" aria-label="creative-commons"></i> 2024 by <a href="https://www.andrewheiss.com/">Andrew Heiss</a>, <a href="https://kieranhealy.org/">Kieran Healy</a>, and <a href="https://jonjoncardoso.github.io/">Jon Cardoso-Silva</a> <br> Additional content <i class="fa-brands fa-creative-commons" aria-label="creative-commons"></i> 2024 by <a href="https://www.rrmaximiliano.github.io">Rony Rodriguez-Ramirez</a> <br> All content licensed under a <i class="fa-brands fa-creative-commons" aria-label="creative-commons"></i> <i class="fa-brands fa-creative-commons-by" aria-label="creative-commons-by"></i> <i class="fa-brands fa-creative-commons-nc" aria-label="creative-commons-nc"></i> <a href="https://creativecommons.org/licenses/by-nc/4.0/">Creative Commons Attribution-NonCommercial 4.0 International license (CC BY-NC 4.0)</a></p>
+</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
+    <div class="nav-footer-right">
+<p>Made with <i class="fa-brands fa-r-project" aria-label="r-project"></i> and <a href="https://quarto.org/">Quarto</a><br> <a href="https://github.com/harvard-api209/api209-math-camp">View the source at <i class="fa-brands fa-github" aria-label="github"></i> GitHub</a></p>
+</div>
+  </div>
+</footer>
+
+
+
+
+</body></html>

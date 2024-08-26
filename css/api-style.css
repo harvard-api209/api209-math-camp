@@ -1,0 +1,116 @@
+/*-- scss:defaults --*/
+
+body {
+  font-size: 1rem;
+}
+
+/* SCSS HEX */
+.api-crimson {
+  color: #A51C30;
+}
+
+/*
+Typography
+*/
+.remark-slide-content {
+  font-size: 28px;
+  /* Base font size */
+  padding: 1em 1em 1em 1em;
+  background-color: #f6f6f6;
+  color: #333333;
+}
+
+.remark-slide-content p {
+  margin: 0.5em 0;
+}
+
+.remark-slide-content h1 {
+  font-weight: bold;
+  font-size: 1.7em;
+  line-height: 1;
+  margin-top: 0;
+  text-align: center;
+}
+
+.huge {
+  font-size: 2.2em;
+  font-weight: 800;
+}
+
+.large {
+  font-size: 1.6em;
+}
+
+.normal {
+  font-size: 1em;
+}
+
+.medium {
+  font-size: 1.3em;
+}
+
+.less-medium {
+  font-size: 1.1em;
+}
+
+.SMALL {
+  /* CURSE YOU LATEX */
+  font-size: 0.9em;
+}
+
+.small {
+  font-size: 0.7em;
+}
+
+.smaller {
+  font-size: 0.6em;
+  line-height: 0.4;
+}
+
+.smaller2 {
+  font-size: 0.6em;
+}
+
+.tiny {
+  font-size: 0.4em;
+}
+
+.light {
+  font-weight: 300;
+}
+
+.full-width {
+  width: 100%;
+}
+
+.remark-slide-number {
+  font-size: 15px;
+}
+
+figure {
+  margin: 15px;
+}
+
+figcaption {
+  font-size: 0.5em;
+}
+
+.pull-left h2,
+.pull-right h2,
+.pull-left-3 h2,
+.pull-middle-3 h2,
+.pull-right-3 h2 {
+  margin-top: 0.3em;
+}
+
+.cell-left {
+  text-align: left;
+}
+
+.cell-right {
+  text-align: right;
+}
+
+.cell-center {
+  text-align: center;
+}

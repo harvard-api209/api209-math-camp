@@ -2,12 +2,13 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.5.56">
+<meta name="generator" content="quarto-1.6.6">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="author" content="Rony">
 
-<title>Using Markdown – API-209 R-Programming (Math Camp) 2024</title>
+<title>Using Markdown – 🏠 API209: Summer Math Camp</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -58,6 +59,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 <script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
 <script src="../site_libs/clipboard/clipboard.min.js"></script>
 <script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
@@ -65,7 +67,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <meta name="quarto:offset" content="../">
 <link href="../resource/quarto.html" rel="next">
 <link href="../resource/install.html" rel="prev">
-<link href="..//files/favicon-512.png" rel="icon" type="image/png">
+<link href="../figures/icons/favicon-512.png" rel="icon" type="image/png">
 <script src="../site_libs/quarto-html/quarto.js"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -82,14 +84,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   "copy-button": false,
   "collapse-after": 3,
   "panel-placement": "end",
-  "type": "overlay",
+  "type": "textbox",
   "limit": 50,
   "keyboard-shortcut": [
     "f",
     "/",
     "s"
   ],
-  "show-item-context": false,
   "language": {
     "search-no-results-text": "No results",
     "search-matching-documents-text": "matching documents",
@@ -135,9 +136,14 @@ window.Quarto = {
 };
 </script>
 
+<link rel="stylesheet" href="../css/custom_style.css">
+<link rel="stylesheet" href="../css/syllabus.css">
+<meta property="og:title" content="Using Markdown – 🏠 API209: Summer Math Camp">
+<meta property="og:description" content="">
+<meta property="og:site_name" content="🏠 API209: Summer Math Camp">
 </head>
 
-<body class="nav-sidebar docked nav-fixed">
+<body class="nav-sidebar floating nav-fixed">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -145,7 +151,7 @@ window.Quarto = {
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
     <a class="navbar-brand" href="../index.html">
-    <span class="navbar-title">API-209 R-Programming (Math Camp) 2024</span>
+    <span class="navbar-title">🏠 API209: Summer Math Camp</span>
     </a>
   </div>
             <div id="quarto-search" class="" title="Search"></div>
@@ -155,42 +161,34 @@ window.Quarto = {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item">
-    <a class="nav-link" href="../syllabus.html"> 
-<span class="menu-text">Syllabus</span></a>
+    <a class="nav-link" href="../2024/index.html"> 
+<span class="menu-text">Math Camp 2024</span></a>
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="../schedule.html"> 
 <span class="menu-text">Schedule</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../content/index.html"> 
-<span class="menu-text">Lessons</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../handson/index.html"> 
-<span class="menu-text">Hands-on</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../labs/index.html"> 
-<span class="menu-text">Labs</span></a>
-  </li>  
-  <li class="nav-item">
     <a class="nav-link active" href="../resource/index.html" aria-current="page"> 
 <span class="menu-text">Resources</span></a>
   </li>  
-  <li class="nav-item compact">
-    <a class="nav-link" href="https://harvard.enterprise.slack.com"> <i class="bi bi-slack" role="img" aria-label="Slack">
-</i> 
-<span class="menu-text"></span></a>
+  <li class="nav-item">
+    <a class="nav-link" href="../tutorial/index.html"> 
+<span class="menu-text">Tutorials</span></a>
   </li>  
   <li class="nav-item compact">
-    <a class="nav-link" href="https://posit.cloud"> <i class="bi bi-cloud-fill" role="img" aria-label="Posit.cloud">
+    <a class="nav-link" href="https://mpa-id-math-camp-w8y.slack.com/ssb/redirect"> <i class="bi bi-slack" role="img">
 </i> 
 <span class="menu-text"></span></a>
   </li>  
 </ul>
           </div> <!-- /navcollapse -->
             <div class="quarto-navbar-tools">
+  <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
+  <div class="quarto-reader-toggle-btn">
+  <i class="bi"></i>
+  </div>
+</a>
 </div>
       </div> <!-- /container-fluid -->
     </nav>
@@ -208,7 +206,7 @@ window.Quarto = {
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item sidebar-item-section">
@@ -223,24 +221,9 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../resource/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Helpful resources</span></a>
+ <span class="menu-text">Helpful Resources</span></a>
   </div>
 </li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../resource/colors.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Color palettes</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../resource/design.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Design</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
- <span class="menu-text">resource/graphics-editors.qmd</span>
-  </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../resource/visualization.html" class="sidebar-item-text sidebar-link">
@@ -263,12 +246,6 @@ window.Quarto = {
   <div class="sidebar-item-container"> 
   <a href="../resource/data.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Data</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../resource/citations.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Citations and bibliography</span></a>
   </div>
 </li>
       </ul>
@@ -300,12 +277,6 @@ window.Quarto = {
  <span class="menu-text">Using Quarto</span></a>
   </div>
 </li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../resource/pipes.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Pipes</span></a>
-  </div>
-</li>
       </ul>
   </li>
     </ul>
@@ -332,7 +303,7 @@ window.Quarto = {
   <li><a href="#citations" id="toc-citations" class="nav-link" data-scroll-target="#citations">Citations</a></li>
   <li><a href="#other-references" id="toc-other-references" class="nav-link" data-scroll-target="#other-references">Other references</a></li>
   </ul>
-<div class="toc-actions"><ul><li><a href="https://github.com/harvard-api209/api209-math-camp/edit/main/resource/markdown.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/harvard-api209/api209-math-camp/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -346,6 +317,12 @@ window.Quarto = {
 
 <div class="quarto-title-meta">
 
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Rony Rodriguez-Ramirez </p>
+          </div>
+  </div>
     
   
     
@@ -512,23 +489,23 @@ window.Quarto = {
 <p>Markdown uses LaTeX to create fancy mathematical equations. There are like a billion little options and features available for math equations—you can find <a href="http://www.malinc.se/math/latex/basiccodeen.php">helpful examples of the the most common basic commands here</a>. In this class, these will be the most common things you’ll use:</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="zzdioisiut" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#zzdioisiut table {
+<div id="qwvzsyrdnc" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#qwvzsyrdnc table {
   font-family: Barlow, serif, system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#zzdioisiut thead, #zzdioisiut tbody, #zzdioisiut tfoot, #zzdioisiut tr, #zzdioisiut td, #zzdioisiut th {
+#qwvzsyrdnc thead, #qwvzsyrdnc tbody, #qwvzsyrdnc tfoot, #qwvzsyrdnc tr, #qwvzsyrdnc td, #qwvzsyrdnc th {
   border-style: none;
 }
 
-#zzdioisiut p {
+#qwvzsyrdnc p {
   margin: 0;
   padding: 0;
 }
 
-#zzdioisiut .gt_table {
+#qwvzsyrdnc .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -554,12 +531,12 @@ window.Quarto = {
   border-left-color: #D3D3D3;
 }
 
-#zzdioisiut .gt_caption {
+#qwvzsyrdnc .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#zzdioisiut .gt_title {
+#qwvzsyrdnc .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -571,7 +548,7 @@ window.Quarto = {
   border-bottom-width: 0;
 }
 
-#zzdioisiut .gt_subtitle {
+#qwvzsyrdnc .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -583,7 +560,7 @@ window.Quarto = {
   border-top-width: 0;
 }
 
-#zzdioisiut .gt_heading {
+#qwvzsyrdnc .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -595,13 +572,13 @@ window.Quarto = {
   border-right-color: #D3D3D3;
 }
 
-#zzdioisiut .gt_bottom_border {
+#qwvzsyrdnc .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#zzdioisiut .gt_col_headings {
+#qwvzsyrdnc .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -616,7 +593,7 @@ window.Quarto = {
   border-right-color: #D3D3D3;
 }
 
-#zzdioisiut .gt_col_heading {
+#qwvzsyrdnc .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -636,7 +613,7 @@ window.Quarto = {
   overflow-x: hidden;
 }
 
-#zzdioisiut .gt_column_spanner_outer {
+#qwvzsyrdnc .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -648,15 +625,15 @@ window.Quarto = {
   padding-right: 4px;
 }
 
-#zzdioisiut .gt_column_spanner_outer:first-child {
+#qwvzsyrdnc .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#zzdioisiut .gt_column_spanner_outer:last-child {
+#qwvzsyrdnc .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#zzdioisiut .gt_column_spanner {
+#qwvzsyrdnc .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -668,11 +645,11 @@ window.Quarto = {
   width: 100%;
 }
 
-#zzdioisiut .gt_spanner_row {
+#qwvzsyrdnc .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#zzdioisiut .gt_group_heading {
+#qwvzsyrdnc .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -698,7 +675,7 @@ window.Quarto = {
   text-align: left;
 }
 
-#zzdioisiut .gt_empty_group_heading {
+#qwvzsyrdnc .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -713,15 +690,15 @@ window.Quarto = {
   vertical-align: middle;
 }
 
-#zzdioisiut .gt_from_md > :first-child {
+#qwvzsyrdnc .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#zzdioisiut .gt_from_md > :last-child {
+#qwvzsyrdnc .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#zzdioisiut .gt_row {
+#qwvzsyrdnc .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -740,7 +717,7 @@ window.Quarto = {
   overflow-x: hidden;
 }
 
-#zzdioisiut .gt_stub {
+#qwvzsyrdnc .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -753,7 +730,7 @@ window.Quarto = {
   padding-right: 5px;
 }
 
-#zzdioisiut .gt_stub_row_group {
+#qwvzsyrdnc .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -767,15 +744,15 @@ window.Quarto = {
   vertical-align: top;
 }
 
-#zzdioisiut .gt_row_group_first td {
+#qwvzsyrdnc .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#zzdioisiut .gt_row_group_first th {
+#qwvzsyrdnc .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#zzdioisiut .gt_summary_row {
+#qwvzsyrdnc .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -785,16 +762,16 @@ window.Quarto = {
   padding-right: 5px;
 }
 
-#zzdioisiut .gt_first_summary_row {
+#qwvzsyrdnc .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#zzdioisiut .gt_first_summary_row.thick {
+#qwvzsyrdnc .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#zzdioisiut .gt_last_summary_row {
+#qwvzsyrdnc .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -804,7 +781,7 @@ window.Quarto = {
   border-bottom-color: #D3D3D3;
 }
 
-#zzdioisiut .gt_grand_summary_row {
+#qwvzsyrdnc .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -814,7 +791,7 @@ window.Quarto = {
   padding-right: 5px;
 }
 
-#zzdioisiut .gt_first_grand_summary_row {
+#qwvzsyrdnc .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -824,7 +801,7 @@ window.Quarto = {
   border-top-color: #D3D3D3;
 }
 
-#zzdioisiut .gt_last_grand_summary_row_top {
+#qwvzsyrdnc .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -834,11 +811,11 @@ window.Quarto = {
   border-bottom-color: #D3D3D3;
 }
 
-#zzdioisiut .gt_striped {
+#qwvzsyrdnc .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#zzdioisiut .gt_table_body {
+#qwvzsyrdnc .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -847,7 +824,7 @@ window.Quarto = {
   border-bottom-color: #D3D3D3;
 }
 
-#zzdioisiut .gt_footnotes {
+#qwvzsyrdnc .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -861,7 +838,7 @@ window.Quarto = {
   border-right-color: #D3D3D3;
 }
 
-#zzdioisiut .gt_footnote {
+#qwvzsyrdnc .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -870,7 +847,7 @@ window.Quarto = {
   padding-right: 5px;
 }
 
-#zzdioisiut .gt_sourcenotes {
+#qwvzsyrdnc .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -884,7 +861,7 @@ window.Quarto = {
   border-right-color: #D3D3D3;
 }
 
-#zzdioisiut .gt_sourcenote {
+#qwvzsyrdnc .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -892,72 +869,72 @@ window.Quarto = {
   padding-right: 5px;
 }
 
-#zzdioisiut .gt_left {
+#qwvzsyrdnc .gt_left {
   text-align: left;
 }
 
-#zzdioisiut .gt_center {
+#qwvzsyrdnc .gt_center {
   text-align: center;
 }
 
-#zzdioisiut .gt_right {
+#qwvzsyrdnc .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#zzdioisiut .gt_font_normal {
+#qwvzsyrdnc .gt_font_normal {
   font-weight: normal;
 }
 
-#zzdioisiut .gt_font_bold {
+#qwvzsyrdnc .gt_font_bold {
   font-weight: bold;
 }
 
-#zzdioisiut .gt_font_italic {
+#qwvzsyrdnc .gt_font_italic {
   font-style: italic;
 }
 
-#zzdioisiut .gt_super {
+#qwvzsyrdnc .gt_super {
   font-size: 65%;
 }
 
-#zzdioisiut .gt_footnote_marks {
+#qwvzsyrdnc .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#zzdioisiut .gt_asterisk {
+#qwvzsyrdnc .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#zzdioisiut .gt_indent_1 {
+#qwvzsyrdnc .gt_indent_1 {
   text-indent: 5px;
 }
 
-#zzdioisiut .gt_indent_2 {
+#qwvzsyrdnc .gt_indent_2 {
   text-indent: 10px;
 }
 
-#zzdioisiut .gt_indent_3 {
+#qwvzsyrdnc .gt_indent_3 {
   text-indent: 15px;
 }
 
-#zzdioisiut .gt_indent_4 {
+#qwvzsyrdnc .gt_indent_4 {
   text-indent: 20px;
 }
 
-#zzdioisiut .gt_indent_5 {
+#qwvzsyrdnc .gt_indent_5 {
   text-indent: 25px;
 }
 
-#zzdioisiut .katex-display {
+#qwvzsyrdnc .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#zzdioisiut div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#qwvzsyrdnc div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
@@ -1429,7 +1406,7 @@ But it can be hard too!<a href="#fnref3" class="footnote-back">↩︎</a>
 </section>
 <section id="citations" class="level2">
 <h2 class="anchored" data-anchor-id="citations">Citations</h2>
-<p>One of the most powerful features of Markdown + pandoc is the ability to automatically cite things and generate bibliographies. to use citations, you need to create a <a href="http://www.bibtex.org/">BibTeX file</a> (ends in <code>.bib</code>) that contains a database of the things you want to cite. You can do this with bibliography managers designed to work with BibTeX directly (like <a href="https://bibdesk.sourceforge.io/">BibDesk</a> on macOS), or you can use <a href="https://www.zotero.org/">Zotero</a> (macOS and Windows) to export a <code>.bib</code> file. You can <a href="../resource/citations.html">download an example <code>.bib</code> file of all the readings from this class here</a>.</p>
+<p>One of the most powerful features of Markdown + pandoc is the ability to automatically cite things and generate bibliographies. to use citations, you need to create a <a href="http://www.bibtex.org/">BibTeX file</a> (ends in <code>.bib</code>) that contains a database of the things you want to cite. You can do this with bibliography managers designed to work with BibTeX directly (like <a href="https://bibdesk.sourceforge.io/">BibDesk</a> on macOS), or you can use <a href="https://www.zotero.org/">Zotero</a> (macOS and Windows) to export a <code>.bib</code> file. You can <a href="..\resource/citations.qmd">download an example <code>.bib</code> file of all the readings from this class here</a>.</p>
 <p><a href="https://quarto.org/docs/authoring/footnotes-and-citations.html">Complete details for using citations can be found here</a>. In brief, you need to do three things:</p>
 <ol type="1">
 <li><p>Add a <code>bibliography:</code> entry to the YAML metadata:</p>
@@ -1603,7 +1580,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
     var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
     var mailtoRegex = new RegExp(/^mailto:/);
-      var filterRegex = new RegExp("https:\/\/harvard-api209\.github\.io\/api209-math-camp\/");
+      var filterRegex = new RegExp("^(?:http:|https:)\/\/(?:lse-dsi\.github\.io\/|localhost)");
     var isInternal = (href) => {
         return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
     }
@@ -1617,6 +1594,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         if (link.dataset.originalHref !== undefined) {
           link.href = link.dataset.originalHref;
         }
+          // target, if specified
+          link.setAttribute("target", "_blank");
+          if (link.getAttribute("rel") === null) {
+            link.setAttribute("rel", "noopener");
+          }
+          // default icon
+          link.classList.add("external");
       }
     }
   function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
@@ -1947,11 +1931,11 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <footer class="footer">
   <div class="nav-footer">
     <div class="nav-footer-left">
-<p>Original content <i class="fa-brands fa-creative-commons" aria-label="creative-commons"></i> 2024 by <a href="https://www.andrewheiss.com/">Andrew Heiss</a> <br> Additional content <i class="fa-brands fa-creative-commons" aria-label="creative-commons"></i> 2024 by <a href="https://www.rrmaximiliano.github.io">Rony Rodriguez-Ramirez</a> <br> All content licensed under a <i class="fa-brands fa-creative-commons" aria-label="creative-commons"></i> <i class="fa-brands fa-creative-commons-by" aria-label="creative-commons-by"></i> <i class="fa-brands fa-creative-commons-nc" aria-label="creative-commons-nc"></i> <a href="https://creativecommons.org/licenses/by-nc/4.0/">Creative Commons Attribution-NonCommercial 4.0 International license (CC BY-NC 4.0)</a></p>
+<p>Original content <i class="fa-brands fa-creative-commons" aria-label="creative-commons"></i> 2024 by <a href="https://www.andrewheiss.com/">Andrew Heiss</a>, <a href="https://kieranhealy.org/">Kieran Healy</a>, and <a href="https://jonjoncardoso.github.io/">Jon Cardoso-Silva</a> <br> Additional content <i class="fa-brands fa-creative-commons" aria-label="creative-commons"></i> 2024 by <a href="https://www.rrmaximiliano.github.io">Rony Rodriguez-Ramirez</a> <br> All content licensed under a <i class="fa-brands fa-creative-commons" aria-label="creative-commons"></i> <i class="fa-brands fa-creative-commons-by" aria-label="creative-commons-by"></i> <i class="fa-brands fa-creative-commons-nc" aria-label="creative-commons-nc"></i> <a href="https://creativecommons.org/licenses/by-nc/4.0/">Creative Commons Attribution-NonCommercial 4.0 International license (CC BY-NC 4.0)</a></p>
 </div>   
     <div class="nav-footer-center">
       &nbsp;
-    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/harvard-api209/api209-math-camp/edit/main/resource/markdown.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/harvard-api209/api209-math-camp/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
+    </div>
     <div class="nav-footer-right">
 <p>Made with <i class="fa-brands fa-r-project" aria-label="r-project"></i> and <a href="https://quarto.org/">Quarto</a><br> <a href="https://github.com/harvard-api209/api209-math-camp">View the source at <i class="fa-brands fa-github" aria-label="github"></i> GitHub</a></p>
 </div>

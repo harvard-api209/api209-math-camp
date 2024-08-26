@@ -1,0 +1,445 @@
+---
+title: "<font style='font-size:1em;'>Week 01<br/>Introduction<br/>Data Wrangling</font>"
+subtitle: "API209: Summer Math Camp"
+format: 
+  clean-api-revealjs:
+    self-contained: true
+html-math-method:
+  method: mathjax
+  url: "https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"
+author:
+  - name: Rony Rodrigo Maximiliano Rodriguez-Ramirez
+    email: rrodriguezramirez@g.harvard.edu
+    affiliations: "Harvard University"
+date: 15 August 2024    
+---
+
+# Welcome
+
+## Plan for today
+
+1. Getting to know each other
+2. The layout of this summer camp (just the R part)
+3. Why R, RStudio, Positron?
+4. Data manipulation in R
+
+## Who am I? 
+
+::: {.fragment}
+::: {.v-center}
+[Rony Rodriguez-Ramirez (G2)]{.box-inv-crimson}
+:::
+:::
+
+::: {.fragment}
+::: {.v-center}
+[Ed Policy (Economics of Education) Program]{.box-inv-crimson}
+:::
+:::
+
+::: {.fragment}
+::: {.v-center}
+[Previous exp: The World Bank (DIME; DECRG), IPA]{.box-inv-crimson}
+:::
+:::
+
+::: {.fragment}
+::: {.v-center}
+[Like coding!]{.box-inv-crimson}
+:::
+:::
+
+## My role
+
+**What should you expect from me?**
+
+::: {.fragment}
+1. My job if that you feel confident in R.
+2. I should be there if you have any questions.
+3. Reply to your emails or slack messages.
+:::
+
+**At the end of this summer camp?**
+
+::: {.fragment}
+1. You should be ready for the semester.
+2. Know enough about R.
+3. Know how to craft questions and where to look for answers.
+4. Be happy (?)
+:::
+
+## Course assistants for Math Camp
+
+::: {.pull-left-3}
+:::{.center-txt}
+
+**Shan**
+  <figure>
+  <img src="img/Shan.jpeg" style="border-radius: 50%; width: 300px; border: 5px solid black;"/>
+  </figure>
+
+:::
+:::
+
+:::{.pull-middle-3}
+:::{.center-txt}
+
+**Ayush**
+  <figure>
+  <img src="https://indiaconferenceharvard.com/assets/team/Ayush_Shukla.jpg" style="border-radius: 50%; width: 300px; border: 5px solid black;"/>
+  </figure>
+
+:::
+:::
+
+
+:::{.pull-right-3}
+:::{.center-txt}
+
+**Sara**
+  <figure>
+  <img src="img/sara.jpeg" style="border-radius: 50%; width: 300px; border: 5px solid black;"/>
+  </figure>
+
+:::
+:::
+
+# The layout
+
+## The layout
+
+**What are we going during math camp (R Part)?**
+
+8 sessions over the next weeks:
+
+1. 4 Lessons (2 hours)
+    - I will discuss about coding, strategies, and implementation
+2. 4 Labs (1.5 hours)
+    - It will be a hands-on session. I will provide you with exercises and we will solve them together.
+3. Optional: Office hours
+
+## The layout
+
+There is a website for this summer camp:
+
+:::{.center-txt}
+[[WEBSITE](https://harvard-api209.github.io/api209-math-camp/)]{.box-inv-crimson}
+:::
+
+It is not up-to-date; but every week, you will have the materials for that respective week, i.e., you should have already your lab for tomorrow.
+
+## Coding
+
+:::{.center-txt}
+Coding is a *Skill*
+
+
+[**It is most fun to practice a skill with people you know.**]{.box-inv-crimson}
+:::
+
+## Discussion Activity: Archetypes
+
+:::: {.columns}
+
+::: {.column width="60%"}
+```{r,  fig.dim=c(4.8, 3.75), out.width="100%"}
+#| echo: false
+#| label: plot-archetype
+
+library(ggplot2)
+
+# Example data for student archetypes
+student_data <- data.frame(
+  name = c("Alice", "Bob", "Charlie", "Dana", "Ethan"),
+  excitement = c(4, 2, 3, 5, 1),  # scale of 1-5
+  experience = c(2, 4, 2, 5, 1)   # scale of 1-5
+)
+
+crimson <- "#A51C30"
+
+# Create the scatter plot
+student_data |> 
+  ggplot(aes(x = experience, y = excitement, label = name)) +
+  geom_vline(xintercept = 3, linetype = "dashed", color = crimson) +
+  geom_hline(yintercept = 3, linetype = "dashed", color = crimson) +
+  geom_point(size = 5, pch = 21, fill = crimson, color = "black") +
+  geom_text(size = 5, vjust = -1, hjust = "inward", family = "Fira Sans Condensed Light") +
+  labs(
+    title = "Student Archetypes:", 
+    subtitle = "Excitement vs Experience",
+    x = "Experience with R (1-5)",
+    y = "Excitement about R (1-5)",
+    caption = "Credit: @Dom | Former TF."
+  ) +
+  scale_x_continuous(limits = c(1,5), expand = expansion(mult = 0.1)) +
+  scale_y_continuous(limits = c(1,5), expand = expansion(mult = 0.1)) +
+  coord_cartesian(clip = "off") + 
+  theme_minimal(base_family = "Fira Sans Condensed Light") +
+  theme(
+    panel.grid = element_blank(),
+    axis.line = element_line(color = "black"),
+    axis.title = element_text(family = "Fira Sans Condensed", face = "bold"),
+    axis.title.y = element_text(angle = 90, vjust = 0.5),
+    plot.title = element_text(family = "Fira Sans Condensed", face = "bold", size = rel(1.7)),
+    plot.subtitle = element_text(size = rel(1.2), color = "grey50"),
+    plot.caption = element_text(color = "grey50")
+  )
+
+```
+:::
+
+::: {.column width="40%"}
+- **Intros**: Name, where you’re from, favorite midday snack or superhero.
+- **Experience**: With statistics, programming, and/or R? (Yes/No)
+- **Which quadrant describes you?**
+:::
+
+::::
+
+## Classroom Norms
+
+**Class is a collective enterprise!**
+
+:::{.small}
+- Allow everyone the chance to speak.
+- Be mindful of thoughts and actions.
+- Understand differing levels of knowledge and experience.
+- Help others in your group!
+- Don’t be afraid to ask questions!
+- Respect others’ opinions and suggestions.
+- Try questions on your own first, then come together.
+- Take breaks and have fun!
+:::
+
+## Using AI for Code Troubleshooting
+
+- **AI assistants like ChatGPT and Claude can help debug code**
+- **Steps to use AI for troubleshooting:**
+  1. [Paste your code snippet and error message]{.small}
+  2. [Ask for help identifying and fixing the issue]{.small}
+  3. [Review AI's suggestions critically]{.small}
+  4. [Test proposed solutions in your environment]{.small}
+
+- **Benefits:**
+  - [Quick identification of common errors]{.small}
+  - [Explanations of underlying issues]{.small}
+  - [Suggestions for best practices]{.small}
+
+<!-- ## 
+
+<div>
+```{=html}
+<iframe src="https://embed.polleverywhere.com/multiple_choice_polls/rjGrLtq2xnzTicvBvI8Fm?controls=none&short_poll=true" width="100%" height="100%" frameBorder="0" allowFullScreen style="max-width: 1600px; max-height: 1600px; margin: 0 auto; display: block;"></iframe>
+```
+</div>
+ 
+## Let the AI do it 
+
+<iframe src="https://giphy.com/embed/0lGd2OXXHe4tFhb7Wh" width="480" height="480" style="" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>  -->
+
+# Why R, RStudio, Positron?
+
+## Why R, RStudio, and Positron?
+
+**Why R?**
+
+- Open-source and free.
+- Extensive ecosystem for statistical analysis.
+- Wide range of packages for data manipulation and visualization.
+- Active and supportive community.
+
+
+## RStudio and Positron: The IDEs for R
+
+**Why RStudio?**
+
+:::{.small}
+- Integrated development environment (IDE) that simplifies coding in R.
+- Built-in tools for code development, debugging, and collaboration.
+- Seamless integration with RMarkdown for dynamic report generation.
+- Powerful tools for data visualization and manipulation.
+:::
+
+**Why Positron?**
+
+:::{.small}
+- New, modern IDE designed to enhance the R programming experience.
+- Sleeker interface with enhanced performance and features.
+- Supports the latest R packages and workflows.
+- Focuses on integrating modern development tools and practices.
+:::
+
+## Which IDE Should You Use? {.small}
+
+**RStudio vs. Positron**
+
+- **RStudio** is well-established with a large user base and extensive support.
+- **Positron** offers cutting-edge features for those looking to adopt the latest tools.
+- Consider trying both to see which fits your workflow best.
+- During the pre-summer assignment, we used **Posit Cloud**.
+  - For those who haven't installed, either RStudio nor Positron in your computer, there is a Posit Cloud Project [here]()
+
+
+## The tidyverse
+
+![](img/tidyverse.png){fig-align="center"}
+
+## Original Plot
+
+![](img/Fig-economist-olympics-original.png){fig-align="center"}
+
+## Using ggplot
+
+![](img/Fig-economist-olympics.png){fig-align="center"}
+
+# Data wrangling
+
+## Data Manipulation vs Data Wrangling
+
+:::: {.columns}
+
+::: {.column width="50%"}
+
+### Data Manipulation
+
+:::{.small}
+- Focused on changing data structure
+- Often uses specific functions or methods
+- Usually works with structured data
+- Examples: sorting, filtering, aggregating
+- Typically a part of data wrangling
+- More straightforward, less time-consuming
+:::
+
+:::
+
+::: {.column width="50%"}
+### Data Wrangling
+
+:::{.small}
+- Broader process including cleaning and transformation
+- May involve multiple tools and techniques
+- Handles both structured and unstructured data
+- Examples: merging datasets, handling missing values, format conversion
+- Encompasses the entire data preparation process
+- Can be complex and time-intensive
+:::
+:::
+
+::::
+
+## Advanced Data Wrangling
+
+**Mastering Data Manipulation in R**
+
+:::{.small}
+- **Advanced Filtering and Selection**: 
+    - Use of conditional filtering and dynamic column selection.
+- **Complex Mutate Operations**:
+    - Creating conditional columns, using lag and lead.
+- **Data Reshaping**:
+    - Pivoting data, advanced grouping.
+- **Efficient Data Handling**:
+    - Joining datasets, parallel processing.
+:::
+
+## Recap: The Tidyverse
+
+**The tidyverse is a collection of R packages designed for data science.**  
+They share an underlying design philosophy, grammar, and data structures.
+
+
+**Core Packages:**
+
+:::{.small}
+- `ggplot2` - Data visualization
+- `dplyr` - Data manipulation
+- `tidyr` - Data tidying
+- `readr` - Data import
+- `purrr` - Functional programming
+- `tibble` - Modern data frames
+- `stringr` - String manipulation
+- `forcats` - Categorical data
+:::
+
+## dplyr: Key Functions
+
+**Commonly Used Functions:**
+
+:::{.small}
+- `filter()` - Subset rows based on conditions
+- `select()` - Choose columns by names
+- `mutate()` - Create new columns or modify existing ones
+- `arrange()` - Reorder rows
+- `summarize()` - Aggregate data
+- `group_by()` - Group data for summary operations
+:::
+
+## dplyr: Example
+
+```{r}
+#| output-location: column
+#| echo: true
+library(dplyr)
+
+# Filter and select
+filtered_data <- starwars |> 
+  filter(height > 180) |> 
+  select(name, height, hair_color)
+
+filtered_data
+```
+
+## dplyr: Example
+
+```{r}
+#| output-location: column
+#| echo: true
+# Mutate
+starwars |>
+  mutate(
+    tatooine = ifelse(  #<<
+      homeworld == "Tatooine",  #<<
+      "Tatooine",  #<<
+      "Others"  #<<
+    ) #<<
+  ) |> 
+  group_by(tatooine) |> 
+  summarize(
+    mean = mean(height)
+  )
+```
+
+## Are we good here?
+
+As of now, you should have the tools to understand the last code. More resources are available in our website. Now, it's time to make some mistakes! 
+
+::: {style="text-align:center;"}
+![Artwork by \@allison_horst](img/r-learners.png){width="70%"}
+:::
+
+# Takeaways
+
+## Sucking 
+### Originally from: Dr. Andrew Heiss
+
+::: {.center-txt}
+["There is no way of knowing nothing about a subject to knowing something about a subject without going through a period of much frustration and suckiness."]{.box-inv-crimson-med}
+
+[**"Push through. You’ll suck less."**]{.box-inv-crimson-med}
+ 
+[Hadley Wickham, author of {ggplot2}]{.box-inv-crimson-sma}
+
+:::
+
+## Sucking
+
+::: {style="text-align:center;"}
+![](img/sucking-first-step.jpg){width="70%"}
+:::
+
+## Sucking
+
+::: {style="text-align:center;"}
+![Artwork by \@allison_horst](img/r-know.png){width="70%"}
+:::

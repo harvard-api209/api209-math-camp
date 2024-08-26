@@ -1,0 +1,39 @@
+---
+title: "🗓️ Week 03 - Reproducibility in Research"
+---
+
+```{r slides-videos, echo=FALSE, include=FALSE}
+source(here::here("R", "slide-things.R"))
+```
+
+## Overview
+
+This week, we focus on the importance of reproducibility in research, particularly in the social sciences. We'll discuss the challenges posed by the replication crisis and how adopting reproducible practices can help mitigate these issues. You’ll learn how tools like Quarto can be used to create reproducible reports, ensuring that your research is transparent, credible, and easy for others to replicate.
+
+## Guiding Questions
+
+::: {.callout-warning}
+#### These are optional!
+You don't need to answer all of these—or even any of them! They are here to help guide your thinking and reflection on the content. Feel free to explore whatever aspects you find most interesting.
+:::
+
+- What is the replication crisis, and how does it affect the credibility of social science research?
+- Why is reproducibility essential for building trust in research?
+- How can tools like Quarto support reproducibility in your own research and problem sets?
+
+## Readings
+
+- No readings for this session.
+
+## 👨‍🏫 Lesson Slides 
+
+Either click on the slide area below or click [here](slides.qmd) to view it in fullscreen.
+Use your keypad to navigate the slides.
+
+```{r show-slide-tabs, echo=FALSE, results="asis"}
+slide_buttons("slides03")
+```
+
+<div class="container" style="position: relative;overflow: hidden;width: 100%;min-height:600px;">
+<iframe src="slides03.html" style="position=absolute;top: 0;left: 0;bottom: 0;right: 0;width: 100%;min-height:600px;"></iframe>
+</div>
