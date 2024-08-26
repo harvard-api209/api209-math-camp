@@ -278,7 +278,7 @@
     "href": "2024/weeks/week03/hands-on.html#instructions",
     "title": "Hands-On Session: Creating a Quarto Report",
     "section": "Instructions",
-    "text": "Instructions\n\nCreate a New Quarto Document:\n\nOpen RStudio (or your preferred editor).\nGo to File &gt; New File &gt; Quarto Document.\nChoose “HTML” as the output format.\n\nAdd Document Metadata:\n\nGive your document a title, author, and date.\nExample:\n---\ntitle: \"PISA Data Analysis Report\"\nauthor: \"Your Name\"\ndate: \"2024-08-25\"\nformat: html\n---\n\nSave Your Document:\n\nSave the file with a descriptive name, like pisa_report.qmd.",
+    "text": "Instructions\n\nCreate a New Quarto Document:\n\nOpen RStudio (or your preferred editor).\nGo to File &gt; New File &gt; Quarto Document.\nChoose “HTML” as the output format.\n\nAdd Document Metadata:\n\nGive your document a title, author, and date.\nExample:\n---\ntitle: \"TITLE\"\nauthor: \"Your Name\"\ndate: \"2024-08-25\"\nformat: html\n---\n\nSave Your Document:\n\nSave the file with a descriptive name, like ps_test.qmd.",
     "crumbs": [
       "Math Camp 2024",
       "🗓️ Weeks",
@@ -356,7 +356,7 @@
     "href": "2024/weeks/week03/hands-on.html#instructions-3",
     "title": "Hands-On Session: Creating a Quarto Report",
     "section": "Instructions",
-    "text": "Instructions\n\nFilter the Data:\n\nFocus on Canada, the United States, and Mexico.\nExample:\n\npisa_filtered &lt;- pisa_data %&gt;%\n  filter(country %in% c(\"CAN\", \"USA\", \"MEX\"))\n\n\nSummarize the Data:\n\nCalculate the mean scores in mathematics, reading, and science for each country by year.\nExample:\n\npisa_summary &lt;- pisa_filtered %&gt;%\n  group_by(country, year) %&gt;%\n  summarise(\n    mean_math = mean(math, na.rm = TRUE),\n    mean_read = mean(read, na.rm = TRUE),\n    mean_science = mean(science, na.rm = TRUE)\n  )\npisa_summary\n\n\nWrite a Summary Section:\n\nDescribe the summary statistics and what they reveal about the data.\nExample:\n# Data Summary\n\nThe summary statistics show that over the years, the average scores in mathematics, reading, and science have varied significantly across the three countries. Notably, there are consistent trends in the relative performance of each country in these subjects.",
+    "text": "Instructions\n\nFilter the Data:\n\nFocus on Canada, the United States, and Mexico.\nExample:\n\npisa_filtered &lt;- pisa_data %&gt;%\n  filter(country %in% c(\"CAN\", \"USA\", \"MEX\"))\n\n\nSummarize the Data:\n\nCalculate the mean scores in mathematics, reading, and science for each country by year.\nExample:\n\npisa_summary &lt;- pisa_filtered %&gt;%\n  group_by(country, year) %&gt;%\n  summarise(\n    mean_math = mean(math, na.rm = TRUE),\n    mean_read = mean(read, na.rm = TRUE),\n    mean_science = mean(science, na.rm = TRUE)\n  )\npisa_summary\n\n\nWrite a Summary Section:\n\nDescribe the summary statistics and what they reveal about the data.\nExample:\n# Data Summary\n\nThe summary statistics show that over the years, the average scores in mathematics, reading, and science have varied significantly across the three countries. Notably, there are consistent trends in the relative performance of each country in these subjects.\nExercise 5: Data Visualization",
     "crumbs": [
       "Math Camp 2024",
       "🗓️ Weeks",
@@ -916,6 +916,27 @@
     "text": "How Can We Improve Reproducibility?\nAdopting Best Practices\n\nPre-registration: Outlining the study design and analysis plan before data collection.\nOpen Data and Code: Sharing data and analysis scripts for others to verify and use.\nReproducible Workflows: Using tools like Quarto to create dynamic documents that combine analysis and narrative."
   },
   {
+    "objectID": "2024/weeks/week03/slides03.html#reproducibility-the-basics",
+    "href": "2024/weeks/week03/slides03.html#reproducibility-the-basics",
+    "title": "Week 03Intro to Reproducible Research",
+    "section": "Reproducibility: The Basics",
+    "text": "Reproducibility: The Basics\n\n\nReproducibility refers to the ability to duplicate the results of a prior study using the same materials and procedures as the original investigator.\nThis may involve using the same computer code or reimplementing statistical procedures in a different software package.\nIn essence, reproducibility is analogous to a ‘unit test’ in software engineering, ensuring that the study’s results can be consistently obtained under the same conditions."
+  },
+  {
+    "objectID": "2024/weeks/week03/slides03.html#replicability-expanding-the-horizon",
+    "href": "2024/weeks/week03/slides03.html#replicability-expanding-the-horizon",
+    "title": "Week 03Intro to Reproducible Research",
+    "section": "Replicability: Expanding the Horizon",
+    "text": "Replicability: Expanding the Horizon\n\n\nReplicability involves duplicating the results of a prior study by following the same procedures but using new data.\nThis concept extends beyond mere reproduction and tests whether the findings hold true across different datasets or slightly altered conditions.\nSometimes referred to as “scientific replication,” replicability is critical for validating the robustness and generalizability of research findings."
+  },
+  {
+    "objectID": "2024/weeks/week03/slides03.html#reproducibility-vs.-replicability",
+    "href": "2024/weeks/week03/slides03.html#reproducibility-vs.-replicability",
+    "title": "Week 03Intro to Reproducible Research",
+    "section": "Reproducibility vs. Replicability",
+    "text": "Reproducibility vs. Replicability\n\n\n\nReproducibility:\n\nduplication with the same data and procedures;\nensuring accuracy and precision.\n\n\n\n\nReplicability:\n\ntests the findings using new data but the same methods;’\nemphasizing robustness and generalization.\n\n\n\nBoth concepts are crucial for ensuring the credibility and reliability of research, but they serve different purposes within the scientific process."
+  },
+  {
     "objectID": "2024/weeks/week03/slides03.html#quarto-a-tool-for-reproducible-research",
     "href": "2024/weeks/week03/slides03.html#quarto-a-tool-for-reproducible-research",
     "title": "Week 03Intro to Reproducible Research",
@@ -927,7 +948,21 @@
     "href": "2024/weeks/week03/slides03.html#why-quarto",
     "title": "Week 03Intro to Reproducible Research",
     "section": "Why Quarto?",
-    "text": "Why Quarto?\nThe Need for Reproducible Research\n\nReproducibility is a cornerstone of scientific research.\nQuarto ensures that your analysis and outputs (tables, figures, etc.) can be reproduced by others, enhancing the credibility of your work.\nIntegrated with R, Python, Julia, and Observable: Quarto supports multiple languages, making it versatile for various research needs."
+    "text": "Why Quarto?\nThe Need for Reproducible Research\n\nQuarto ensures that your analysis and outputs (tables, figures, etc.) can be reproduced by others, enhancing the credibility of your work.\nIntegrated with R, Python, Julia, etc.: Quarto supports multiple languages, making it versatile for various research needs."
+  },
+  {
+    "objectID": "2024/weeks/week03/slides03.html#why-quarto-1",
+    "href": "2024/weeks/week03/slides03.html#why-quarto-1",
+    "title": "Week 03Intro to Reproducible Research",
+    "section": "Why Quarto?",
+    "text": "Why Quarto?"
+  },
+  {
+    "objectID": "2024/weeks/week03/slides03.html#quarto-for-literate-programming",
+    "href": "2024/weeks/week03/slides03.html#quarto-for-literate-programming",
+    "title": "Week 03Intro to Reproducible Research",
+    "section": "Quarto for literate programming",
+    "text": "Quarto for literate programming"
   },
   {
     "objectID": "2024/weeks/week03/slides03.html#key-features-of-quarto",
@@ -944,60 +979,11 @@
     "text": "Why Use Quarto for Your Problem Sets?\nConsistency and Organization\n\nQuarto helps you organize your code, analysis, and narrative in a single document.\nIt ensures that your problem sets are well-documented and easily understandable."
   },
   {
-    "objectID": "2024/weeks/week03/slides03.html#hands-on-practice",
-    "href": "2024/weeks/week03/slides03.html#hands-on-practice",
+    "objectID": "2024/weeks/week03/slides03.html#why-the-name-quarto1",
+    "href": "2024/weeks/week03/slides03.html#why-the-name-quarto1",
     "title": "Week 03Intro to Reproducible Research",
-    "section": "Hands-On Practice",
-    "text": "Hands-On Practice\nWhat We’ll Do This Week\n\nSet up Quarto: Install and configure Quarto on your systems.\nCreate Your First Quarto Document: Practice by creating a simple document that integrates text, code, and visualizations.\nReproducible Problem Sets: Learn how to structure your problem sets to be fully reproducible."
-  },
-  {
-    "objectID": "2024/weeks/week03/slides03.html#getting-started-with-quarto",
-    "href": "2024/weeks/week03/slides03.html#getting-started-with-quarto",
-    "title": "Week 03Intro to Reproducible Research",
-    "section": "Getting Started with Quarto",
-    "text": "Getting Started with Quarto\nInstalling Quarto\n\nDownload and Install: Visit quarto.org and download the latest version for your operating system.\nSetting Up in RStudio: Quarto integrates directly into RStudio. Once installed, you can start creating Quarto documents right from the IDE."
-  },
-  {
-    "objectID": "2024/weeks/week03/slides03.html#creating-your-first-quarto-document",
-    "href": "2024/weeks/week03/slides03.html#creating-your-first-quarto-document",
-    "title": "Week 03Intro to Reproducible Research",
-    "section": "Creating Your First Quarto Document",
-    "text": "Creating Your First Quarto Document\nA Quick Demo\n\nOpen RStudio (or your preferred editor).\nNew Quarto Document: Go to File &gt; New File &gt; Quarto Document.\nChoose Format: Decide between HTML, PDF, Word, or a presentation format like Reveal.js.\nAdd Content: Start writing text, and insert code chunks to see how Quarto integrates code and narrative."
-  },
-  {
-    "objectID": "2024/weeks/week03/slides03.html#reproducible-research-with-quarto",
-    "href": "2024/weeks/week03/slides03.html#reproducible-research-with-quarto",
-    "title": "Week 03Intro to Reproducible Research",
-    "section": "Reproducible Research with Quarto",
-    "text": "Reproducible Research with Quarto\nIntegrating Code and Narrative\n\nCode Chunks: Embed your analysis directly in the document.\nAutomatic Updates: Quarto will automatically re-run code and update results when the data changes.\nEasy Collaboration: Share your Quarto files with others, and they can re-run the entire analysis with a single command."
-  },
-  {
-    "objectID": "2024/weeks/week03/slides03.html#best-practices-for-quarto-documents",
-    "href": "2024/weeks/week03/slides03.html#best-practices-for-quarto-documents",
-    "title": "Week 03Intro to Reproducible Research",
-    "section": "Best Practices for Quarto Documents",
-    "text": "Best Practices for Quarto Documents\nStructuring Your Document\n\nUse Sections: Organize your content into clear sections and subsections.\nComment Your Code: Make sure that each code chunk is well-commented for clarity.\nVersion Control: Regularly commit changes to your Quarto documents using Git."
-  },
-  {
-    "objectID": "2024/weeks/week03/slides03.html#quarto-in-action",
-    "href": "2024/weeks/week03/slides03.html#quarto-in-action",
-    "title": "Week 03Intro to Reproducible Research",
-    "section": "Quarto in Action",
-    "text": "Quarto in Action\nReal-World Examples\n\nResearch Papers: Automate the creation of research papers with Quarto, ensuring all analysis and plots are reproducible.\nPresentations: Create dynamic presentations like this one, where code can be executed live during the talk.\nBlogs and Websites: Share your research with the world by publishing Quarto documents as websites or blogs."
-  },
-  {
-    "objectID": "2024/weeks/week03/slides03.html#summary-and-next-steps",
-    "href": "2024/weeks/week03/slides03.html#summary-and-next-steps",
-    "title": "Week 03Intro to Reproducible Research",
-    "section": "Summary and Next Steps",
-    "text": "Summary and Next Steps\nWhy Quarto is Essential\n\nEnsures reproducibility, consistency, and clarity in your research.\nSimplifies the creation of dynamic documents and presentations.\nHelps you produce high-quality, professional outputs that can be shared and reproduced.\n\nLet’s Practice!\n\nLab Activity: In our lab sessions this week, we’ll apply what we’ve learned by creating and refining Quarto documents for your problem sets."
-  },
-  {
-    "objectID": "2024/weeks/week03/slides03.html#questions",
-    "href": "2024/weeks/week03/slides03.html#questions",
-    "title": "Week 03Intro to Reproducible Research",
-    "section": "Questions?",
-    "text": "Questions?\nFeel free to ask any questions as we dive into Quarto this week!"
+    "section": "Why the name “Quarto”?1",
+    "text": "Why the name “Quarto”?1\n\n\n\n\n\n\n\n\n\n\n\n\nWhy Quarto? From Posit “We wanted to use a name that had meaning in the history of publishing and landed on Quarto, which is the format of a book or pamphlet produced from full sheets printed with eight pages of text, four to a side, then folded twice to produce four leaves. The earliest known European printed book is a Quarto, the Sibyllenbuch, believed to have been printed by Johannes Gutenberg in 1452–53.”"
   },
   {
     "objectID": "2024/index.html",

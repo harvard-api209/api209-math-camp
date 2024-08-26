@@ -326,9 +326,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul class="collapse">
   <li><a href="#objective-3" id="toc-objective-3" class="nav-link" data-scroll-target="#objective-3">Objective</a></li>
   <li><a href="#instructions-3" id="toc-instructions-3" class="nav-link" data-scroll-target="#instructions-3">Instructions</a></li>
-  </ul></li>
-  <li><a href="#exercise-5-data-visualization" id="toc-exercise-5-data-visualization" class="nav-link" data-scroll-target="#exercise-5-data-visualization">Exercise 5: Data Visualization</a>
-  <ul class="collapse">
   <li><a href="#objective-4" id="toc-objective-4" class="nav-link" data-scroll-target="#objective-4">Objective</a></li>
   <li><a href="#instructions-4" id="toc-instructions-4" class="nav-link" data-scroll-target="#instructions-4">Instructions</a></li>
   </ul></li>
@@ -366,7 +363,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div>
     <div class="quarto-title-meta-heading">Author</div>
     <div class="quarto-title-meta-contents">
-             <p>Instructor Name </p>
+             <p>Rony Rodriguez-Ramirez </p>
           </div>
   </div>
     
@@ -388,7 +385,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="introduction" class="level1">
 <h1>Introduction</h1>
 <p>In this hands-on session, you will create a Quarto document that simulates a report. You’ll learn how to structure your report, integrate R code for analysis, and generate visualizations using the tidyverse. By the end of this session, you’ll have a fully reproducible report that you can apply to your problem sets.</p>
-<hr>
 </section>
 <section id="exercise-1-setting-up-your-quarto-document" class="level1">
 <h1>Exercise 1: Setting Up Your Quarto Document</h1>
@@ -410,7 +406,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p>Give your document a title, author, and date.</p></li>
 <li><p>Example:</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">title</span><span class="kw">:</span><span class="at"> </span><span class="st">"PISA Data Analysis Report"</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">title</span><span class="kw">:</span><span class="at"> </span><span class="st">"TITLE"</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">author</span><span class="kw">:</span><span class="at"> </span><span class="st">"Your Name"</span></span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">date</span><span class="kw">:</span><span class="at"> </span><span class="st">"2024-08-25"</span></span>
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">format</span><span class="kw">:</span><span class="at"> html</span></span>
@@ -418,10 +414,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul></li>
 <li><strong>Save Your Document</strong>:
 <ul>
-<li>Save the file with a descriptive name, like <code>pisa_report.qmd</code>.</li>
+<li>Save the file with a descriptive name, like <code>ps_test.qmd</code>.</li>
 </ul></li>
 </ol>
-<hr>
 </section>
 </section>
 <section id="exercise-2-writing-an-introduction" class="level1">
@@ -446,7 +441,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Briefly mention the different sections that will be included in the report (e.g., Data Exploration, Analysis, Visualization, Conclusion).</li>
 </ul></li>
 </ol>
-<hr>
 </section>
 </section>
 <section id="exercise-3-loading-and-exploring-the-data" class="level1">
@@ -505,7 +499,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>The PISA dataset includes information on students' performance in mathematics, reading, and science across various countries. Key variables include year, country, gender, and socioeconomic indicators such as access to resources at home.</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
 </ul></li>
 </ol>
-<hr>
 </section>
 </section>
 <section id="exercise-4-data-filtering-and-summarizing" class="level1">
@@ -547,14 +540,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p>Example:</p>
 <div class="sourceCode" id="cb10"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu"># Data Summary</span></span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>The summary statistics show that over the years, the average scores in mathematics, reading, and science have varied significantly across the three countries. Notably, there are consistent trends in the relative performance of each country in these subjects.</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>The summary statistics show that over the years, the average scores in mathematics, reading, and science have varied significantly across the three countries. Notably, there are consistent trends in the relative performance of each country in these subjects.</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<h1 id="exercise-5-data-visualization">Exercise 5: Data Visualization</h1></li>
 </ul></li>
 </ol>
-<hr>
 </section>
-</section>
-<section id="exercise-5-data-visualization" class="level1">
-<h1>Exercise 5: Data Visualization</h1>
 <section id="objective-4" class="level2">
 <h2 class="anchored" data-anchor-id="objective-4">Objective</h2>
 <p>Create visualizations to explore the trends in PISA scores across the selected countries.</p>
@@ -607,7 +597,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>The plots below illustrate the trends in PISA scores over time for Canada, the United States, and Mexico. Each plot is faceted by subject (mathematics, reading, and science) to allow for a clear comparison of trends across different areas of academic performance.</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
 </ul></li>
 </ol>
-<hr>
 </section>
 </section>
 <section id="exercise-6-writing-a-conclusion" class="level1">
@@ -632,7 +621,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Mention any additional questions or analyses that could be explored in future work.</li>
 </ul></li>
 </ol>
-<hr>
 </section>
 </section>
 <section id="final-steps-rendering-and-sharing-your-report" class="level1">
@@ -657,7 +645,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Save the rendered HTML file and share it with your peers or instructor.</li>
 </ul></li>
 </ol>
-<hr>
 </section>
 </section>
 <section id="summary-and-next-steps" class="level1">

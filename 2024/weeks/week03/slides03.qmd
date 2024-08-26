@@ -23,8 +23,6 @@ date: 26 August 2024
 - Many high-profile studies have failed to replicate, raising concerns about the **reliability** of published results.
 - The crisis has prompted a call for greater **transparency** and **rigor** in research practices.
 
----
-
 ## The Replication Crisis
 
 ### What Went Wrong?
@@ -32,8 +30,6 @@ date: 26 August 2024
 - **Selective Reporting**: Only significant findings get published, leading to publication bias.
 - **P-Hacking**: Manipulating data and analyses until nonsignificant results become significant.
 - **Lack of Transparency**: Opaque methodologies that others cannot replicate or verify.
-
----
 
 ## The Importance of Reproducibility
 
@@ -43,8 +39,6 @@ date: 26 August 2024
 - It allows others to **verify results** and build upon them, fostering cumulative knowledge.
 - **Transparent reporting** of data and methods strengthens the credibility and utility of research.
 
----
-
 ## How Can We Improve Reproducibility?
 
 ### Adopting Best Practices
@@ -53,7 +47,41 @@ date: 26 August 2024
 - **Open Data and Code**: Sharing data and analysis scripts for others to verify and use.
 - **Reproducible Workflows**: Using tools like Quarto to create dynamic documents that combine analysis and narrative.
 
----
+## Reproducibility: The Basics
+
+:::{.incremental}
+- **Reproducibility** refers to the ability to duplicate the results of a prior study using the same materials and procedures as the original investigator.
+- This may involve using the same computer code or reimplementing statistical procedures in a different software package.
+- In essence, reproducibility is analogous to a 'unit test' in software engineering, ensuring that the study’s results can be consistently obtained under the same conditions.
+:::
+
+## Replicability: Expanding the Horizon
+
+:::{.incremental}
+- **Replicability** involves duplicating the results of a prior study by following the same procedures but using new data.
+- This concept extends beyond mere reproduction and tests whether the findings hold true across different datasets or slightly altered conditions.
+- Sometimes referred to as “scientific replication,” replicability is critical for validating the robustness and generalizability of research findings.
+:::
+
+## Reproducibility vs. Replicability
+
+::::{.columns}
+:::{.column}
+- [**Reproducibility**]{.box-crimson .fg-offwhite}: 
+    - duplication with the same data and procedures;
+    - ensuring accuracy and precision.
+:::
+
+:::{.column}
+- [**Replicability**]{.box-crimson .fg-offwhite}: 
+    - tests the findings using new data *but the same methods*;'
+    - emphasizing robustness and generalization.
+:::
+::::
+
+Both concepts are crucial for ensuring the credibility and reliability of research, but they serve different purposes within the scientific process.
+
+# enter Quarto
 
 ## Quarto: A Tool for Reproducible Research
 
@@ -61,26 +89,36 @@ date: 26 August 2024
 
 Quarto is an open-source scientific and technical publishing system that enables researchers to create dynamic documents, reports, presentations, and websites.
 
----
 
 ## Why Quarto?
 
 ### The Need for Reproducible Research
 
-- **Reproducibility** is a cornerstone of scientific research.
 - Quarto ensures that your analysis and outputs (tables, figures, etc.) can be reproduced by others, enhancing the credibility of your work.
-- **Integrated with R, Python, Julia, and Observable**: Quarto supports multiple languages, making it versatile for various research needs.
+- **Integrated with R, Python, Julia, etc.**: Quarto supports multiple languages, making it versatile for various research needs.
 
----
+## Why Quarto?
+
+<center>
+  <image src="img/standards.png" alt="Why Quarto" width="800px"></image>
+</center>
+
+## Quarto for literate programming
+
+<center>
+  <image src="img/qmd-knitr.jpeg" width="1200px" alt="diagram of converting a Qmd document via knitr/pandoc into markdown and then into output formats"></image>
+</center>
 
 ## Key Features of Quarto
 
-1. **Dynamic Documents**: Create documents that are automatically updated with the latest data and analysis.
-2. **Multiple Outputs**: Generate reports, presentations, blogs, and books from a single source.
-3. **Version Control**: Integrates seamlessly with Git for version control, tracking changes, and collaboration.
-4. **Cross-Platform**: Works with RStudio, VSCode, or directly from the command line.
-
----
+1. **Dynamic Documents**: 
+  Create documents that are automatically updated with the latest data and analysis.
+2. **Multiple Outputs**: 
+  Generate reports, presentations, blogs, and books from a single source.
+3. **Version Control**: 
+  Integrates seamlessly with Git for version control, tracking changes, and collaboration.
+4. **Cross-Platform**: 
+  Works with RStudio, VSCode, or directly from the command line.
 
 ## Why Use Quarto for Your Problem Sets?
 
@@ -89,82 +127,16 @@ Quarto is an open-source scientific and technical publishing system that enables
 - Quarto helps you **organize your code, analysis, and narrative** in a single document.
 - It ensures that your problem sets are **well-documented** and **easily understandable**.
 
----
+## Why the name "Quarto"?[^1]
 
-## Hands-On Practice
+[^1]: [Why Quarto?](https://quarto.org/docs/faq/#why-the-name-quarto) From Posit "We wanted to use a name that had meaning in the history of publishing and landed on Quarto, which is the format of a book or pamphlet produced from full sheets printed with eight pages of text, four to a side, then folded twice to produce four leaves. The earliest known European printed book is a Quarto, the [Sibyllenbuch](https://en.wikipedia.org/wiki/Sibyllenbuch_fragment), believed to have been printed by [Johannes Gutenberg](https://en.wikipedia.org/wiki/Johannes_Gutenberg) in 1452–53."
 
-### What We’ll Do This Week
+::: columns
+::: {.column width="50%"}
+![](img/quarto-hamlet-1.jpeg){alt-text="A quarto folded book, where each of the pages can be folded to align the text." width="350px"}
+:::
 
-- **Set up Quarto**: Install and configure Quarto on your systems.
-- **Create Your First Quarto Document**: Practice by creating a simple document that integrates text, code, and visualizations.
-- **Reproducible Problem Sets**: Learn how to structure your problem sets to be fully reproducible.
-
----
-
-## Getting Started with Quarto
-
-### Installing Quarto
-
-1. **Download and Install**: Visit [quarto.org](https://quarto.org) and download the latest version for your operating system.
-2. **Setting Up in RStudio**: Quarto integrates directly into RStudio. Once installed, you can start creating Quarto documents right from the IDE.
-
----
-
-## Creating Your First Quarto Document
-
-### A Quick Demo
-
-- **Open RStudio** (or your preferred editor).
-- **New Quarto Document**: Go to File > New File > Quarto Document.
-- **Choose Format**: Decide between HTML, PDF, Word, or a presentation format like Reveal.js.
-- **Add Content**: Start writing text, and insert code chunks to see how Quarto integrates code and narrative.
-
----
-
-## Reproducible Research with Quarto
-
-### Integrating Code and Narrative
-
-- **Code Chunks**: Embed your analysis directly in the document.
-- **Automatic Updates**: Quarto will automatically re-run code and update results when the data changes.
-- **Easy Collaboration**: Share your Quarto files with others, and they can re-run the entire analysis with a single command.
-
----
-
-## Best Practices for Quarto Documents
-
-### Structuring Your Document
-
-1. **Use Sections**: Organize your content into clear sections and subsections.
-2. **Comment Your Code**: Make sure that each code chunk is well-commented for clarity.
-3. **Version Control**: Regularly commit changes to your Quarto documents using Git.
-
----
-
-## Quarto in Action
-
-### Real-World Examples
-
-- **Research Papers**: Automate the creation of research papers with Quarto, ensuring all analysis and plots are reproducible.
-- **Presentations**: Create dynamic presentations like this one, where code can be executed live during the talk.
-- **Blogs and Websites**: Share your research with the world by publishing Quarto documents as websites or blogs.
-
----
-
-## Summary and Next Steps
-
-### Why Quarto is Essential
-
-- Ensures reproducibility, consistency, and clarity in your research.
-- Simplifies the creation of dynamic documents and presentations.
-- Helps you produce high-quality, professional outputs that can be shared and reproduced.
-
-### Let's Practice!
-
-- **Lab Activity**: In our lab sessions this week, we'll apply what we've learned by creating and refining Quarto documents for your problem sets.
-
----
-
-## Questions?
-
-Feel free to ask any questions as we dive into Quarto this week!
+::: {.column width="50%"}
+![](img/quarto-hamlet-2.jpeg){alt-text="A quarto folded book, where each of the pages can be folded to align the text." width="350px"}
+:::
+:::

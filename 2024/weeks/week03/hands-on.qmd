@@ -1,14 +1,11 @@
 ---
 title: "Hands-On Session: Creating a Quarto Report"
-author: "Instructor Name"
 date: "2024-08-26"
 ---
 
 # Introduction
 
 In this hands-on session, you will create a Quarto document that simulates a report. You'll learn how to structure your report, integrate R code for analysis, and generate visualizations using the tidyverse. By the end of this session, you'll have a fully reproducible report that you can apply to your problem sets.
-
----
 
 # Exercise 1: Setting Up Your Quarto Document
 
@@ -29,7 +26,7 @@ Set up a Quarto document that will serve as the foundation for your report.
    
      ```yaml
      ---
-     title: "PISA Data Analysis Report"
+     title: "TITLE"
      author: "Your Name"
      date: "2024-08-25"
      format: html
@@ -37,9 +34,7 @@ Set up a Quarto document that will serve as the foundation for your report.
      ```
 
 3. **Save Your Document**:
-   - Save the file with a descriptive name, like `pisa_report.qmd`.
-
----
+   - Save the file with a descriptive name, like `ps_test.qmd`.
 
 # Exercise 2: Writing an Introduction
 
@@ -61,8 +56,6 @@ Introduce the purpose of your report and the dataset you will be analyzing.
 
 2. **Outline the Structure of the Report**:
    - Briefly mention the different sections that will be included in the report (e.g., Data Exploration, Analysis, Visualization, Conclusion).
-
----
 
 # Exercise 3: Loading and Exploring the Data
 
@@ -110,8 +103,6 @@ Load the PISA dataset and explore its structure to understand the variables and 
      The PISA dataset includes information on students' performance in mathematics, reading, and science across various countries. Key variables include year, country, gender, and socioeconomic indicators such as access to resources at home.
      ```
 
----
-
 # Exercise 4: Data Filtering and Summarizing
 
 ## Objective
@@ -155,8 +146,6 @@ Filter the dataset to focus on specific countries and summarize the data to unde
 
      The summary statistics show that over the years, the average scores in mathematics, reading, and science have varied significantly across the three countries. Notably, there are consistent trends in the relative performance of each country in these subjects.
      ```
-
----
 
 # Exercise 5: Data Visualization
 
@@ -214,8 +203,6 @@ Create visualizations to explore the trends in PISA scores across the selected c
      The plots below illustrate the trends in PISA scores over time for Canada, the United States, and Mexico. Each plot is faceted by subject (mathematics, reading, and science) to allow for a clear comparison of trends across different areas of academic performance.
      ```
 
----
-
 # Exercise 6: Writing a Conclusion
 
 ## Objective
@@ -237,7 +224,6 @@ Summarize your findings and discuss any patterns or trends observed in the data.
 2. **Suggest Further Analysis**:
    - Mention any additional questions or analyses that could be explored in future work.
 
----
 
 # Final Steps: Rendering and Sharing Your Report
 
@@ -255,8 +241,6 @@ Render your Quarto document to HTML and share your results.
 
 3. **Share Your Report**:
    - Save the rendered HTML file and share it with your peers or instructor.
-
----
 
 # Summary and Next Steps
 
