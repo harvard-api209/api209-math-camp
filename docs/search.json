@@ -250,9 +250,9 @@
   {
     "objectID": "2024/weeks/week03/hands-on.html",
     "href": "2024/weeks/week03/hands-on.html",
-    "title": "Hands-On Session: Creating a Quarto Report",
+    "title": "Hands-On Session: Introduction to Quarto for Problem Sets",
     "section": "",
-    "text": "In this hands-on session, you will create a Quarto document that simulates a report. You’ll learn how to structure your report, integrate R code for analysis, and generate visualizations using the tidyverse. By the end of this session, you’ll have a fully reproducible report that you can apply to your problem sets.",
+    "text": "In this hands-on session, you will learn how to create a Quarto document that you can use for your problem sets. The goal is to familiarize you with the basic structure of a Quarto project, how to format text, and how to integrate R code for data analysis. By the end of this session, you’ll be able to create a fully reproducible report that you can apply to future problem sets.",
     "crumbs": [
       "Math Camp 2024",
       "🗓️ Weeks",
@@ -356,7 +356,7 @@
     "href": "2024/weeks/week03/hands-on.html#instructions-3",
     "title": "Hands-On Session: Creating a Quarto Report",
     "section": "Instructions",
-    "text": "Instructions\n\nFilter the Data:\n\nFocus on Canada, the United States, and Mexico.\nExample:\n\npisa_filtered &lt;- pisa_data %&gt;%\n  filter(country %in% c(\"CAN\", \"USA\", \"MEX\"))\n\n\nSummarize the Data:\n\nCalculate the mean scores in mathematics, reading, and science for each country by year.\nExample:\n\npisa_summary &lt;- pisa_filtered %&gt;%\n  group_by(country, year) %&gt;%\n  summarise(\n    mean_math = mean(math, na.rm = TRUE),\n    mean_read = mean(read, na.rm = TRUE),\n    mean_science = mean(science, na.rm = TRUE)\n  )\npisa_summary\n\n\nWrite a Summary Section:\n\nDescribe the summary statistics and what they reveal about the data.\nExample:\n# Data Summary\n\nThe summary statistics show that over the years, the average scores in mathematics, reading, and science have varied significantly across the three countries. Notably, there are consistent trends in the relative performance of each country in these subjects.\nExercise 5: Data Visualization",
+    "text": "Instructions\n\nFilter the Data:\n\nFocus on Canada, the United States, and Mexico.\nExample:\n\npisa_filtered &lt;- pisa_data %&gt;%\n  filter(country %in% c(\"CAN\", \"USA\", \"MEX\"))\n\n\nSummarize the Data:\n\nCalculate the mean scores in mathematics, reading, and science for each country by year.\nExample:\n\npisa_summary &lt;- pisa_filtered %&gt;%\n  group_by(country, year) %&gt;%\n  summarise(\n    mean_math = mean(math, na.rm = TRUE),\n    mean_read = mean(read, na.rm = TRUE),\n    mean_science = mean(science, na.rm = TRUE)\n  )\npisa_summary\n\n\nWrite a Summary Section:\n\nDescribe the summary statistics and what they reveal about the data.\nExample:\n# Data Summary\n\nThe summary statistics show that over the years, the average scores in mathematics, reading, and science have varied significantly across the three countries. Notably, there are consistent trends in the relative performance of each country in these subjects.",
     "crumbs": [
       "Math Camp 2024",
       "🗓️ Weeks",
@@ -393,9 +393,9 @@
   {
     "objectID": "2024/weeks/week03/hands-on.html#objective-5",
     "href": "2024/weeks/week03/hands-on.html#objective-5",
-    "title": "Hands-On Session: Creating a Quarto Report",
+    "title": "Hands-On Session: Introduction to Quarto for Problem Sets",
     "section": "Objective",
-    "text": "Objective\nSummarize your findings and discuss any patterns or trends observed in the data.",
+    "text": "Objective\nRender your Quarto document to HTML and share your results.",
     "crumbs": [
       "Math Camp 2024",
       "🗓️ Weeks",
@@ -406,9 +406,9 @@
   {
     "objectID": "2024/weeks/week03/hands-on.html#instructions-5",
     "href": "2024/weeks/week03/hands-on.html#instructions-5",
-    "title": "Hands-On Session: Creating a Quarto Report",
+    "title": "Hands-On Session: Introduction to Quarto for Problem Sets",
     "section": "Instructions",
-    "text": "Instructions\n\nWrite a Conclusion Section:\n\nDiscuss the key insights gained from your analysis and visualizations.\nExample:\n# Conclusion\n\nThis analysis of the PISA dataset reveals several important trends. For instance, Canada's performance in mathematics has consistently been strong relative to the United States and Mexico. The visualizations also highlight how socioeconomic factors may influence academic performance, as seen in the varying trends across different countries.\n\nSuggest Further Analysis:\n\nMention any additional questions or analyses that could be explored in future work.",
+    "text": "Instructions\n\nRender the Document:\n\nClick the “Render” button in RStudio to generate the HTML output.\n\nReview the Report:\n\nCheck the output for any errors or formatting issues.\n\nShare Your Report:\n\nSave the rendered HTML file and share it with your peers or instructor.",
     "crumbs": [
       "Math Camp 2024",
       "🗓️ Weeks",
@@ -2074,5 +2074,96 @@
     "title": "Week 02Tidy Data and Visualization",
     "section": "Our goal",
     "text": "Our goal"
+  },
+  {
+    "objectID": "2024/weeks/week03/hands-on.html#exercise-1-setting-up-your-quarto-project",
+    "href": "2024/weeks/week03/hands-on.html#exercise-1-setting-up-your-quarto-project",
+    "title": "Hands-On Session: Introduction to Quarto for Problem Sets",
+    "section": "Exercise 1: Setting Up Your Quarto Project",
+    "text": "Exercise 1: Setting Up Your Quarto Project\n\nObjective\nSet up a Quarto project and create a Quarto document that will serve as the foundation for your report.\n\n\nInstructions\n\nCreate a New Quarto Project:\n\nOpen RStudio.\nGo to File &gt; New Project &gt; New Directory &gt; Quarto Project.\nName your project (e.g., ProblemSet1) and choose a location on your computer.\nClick “Create Project.”\n\nCreate a New Quarto Document:\n\nInside your project, go to File &gt; New File &gt; Quarto Document.\nChoose “HTML” as the output format.\n\nAdd Document Metadata:\n\nIn the new document, add a title, your name as the author, and the date.\nExample:\n---\ntitle: \"Problem Set 1\"\nauthor: \"Your Name\"\ndate: \"2024-08-26\"\nformat: html\n---\n\nSave Your Document:\n\nSave the file with a descriptive name, like PS00.qmd.\n\n\n\n\nExercise 2: Formatting Your Document\n\nObjective\nLearn how to format text and structure your Quarto document.\n\n\nInstructions\n\nCreate Headings:\n\nHeadings help to organize your document into sections and subsections. In Quarto, you can create headings using the # symbol. The number of # symbols indicates the level of the heading:\n\n# for the main heading\n## for a subheading\n### for a sub-subheading\n\n\nExample:\n# Main Heading\n\n## Subheading\n\n### Sub-subheading\n\nThis hierarchical structure helps in navigating your document and making it more readable.\n\nWrite an Introduction Section:\n\nStart by introducing the problem set and the dataset you will be using. Use a main heading for the introduction:\n# Introduction\n\nIn this problem set, we will analyze primary school enrollment data from various countries. The objective is to explore trends and identify key insights from the data.\n\nFormat Text:\n\nYou can format your text to emphasize important parts or create lists for better organization.\nBold text: Use double asterisks (**) or double underscores (__) around your text.\nItalic text: Use single asterisk (*) or single underscore (_) around your text.\nLists: Create a list using - for unordered lists or 1. for ordered lists.\n\nExample:\n**Bold Text** and *Italic Text*\n\n- Item 1\n- Item 2\n\n1. First item\n2. Second item\nInclude Links and Other Formatting:\n\nYou can include links in your document by wrapping the link text in square brackets [] and the URL in parentheses ():\nYou can find more about Quarto basics on this [page](https://quarto.org/docs/authoring/markdown-basics.html).\n\nYou can find more about Quarto basics on this page.\n\nTo create block quotes, use the &gt; symbol at the beginning of a line:\n&gt; This is a block quote, often used to highlight important information or quotes.\n\nAnd it should render as:\n\nThis is a block quote, often used to highlight important information or quotes.",
+    "crumbs": [
+      "Math Camp 2024",
+      "🗓️ Weeks",
+      "Week 03",
+      "💻 Hands-on Session"
+    ]
+  },
+  {
+    "objectID": "2024/weeks/week03/hands-on.html#exercise-2-formatting-your-document",
+    "href": "2024/weeks/week03/hands-on.html#exercise-2-formatting-your-document",
+    "title": "Hands-On Session: Introduction to Quarto for Problem Sets",
+    "section": "",
+    "text": "Learn how to format text in your Quarto document.\n\n\n\n\nWrite an Introduction Section:\n\nStart by introducing the problem set and the dataset you will be using.\n# Introduction\n\nIn this problem set, we will analyze primary school enrollment data from various countries. The objective is to explore trends and identify key insights from the data.\n\nFormat Text:\n\nBold text: Use double asterisks (**) or double underscores (__) around your text.\nItalic text: Use single asterisk (*) or single underscore (_) around your text.\nLists: Create a list using - for unordered lists or 1. for ordered lists.\n\nExample:\n**Bold Text** and *Italic Text*\n\n- Item 1\n- Item 2\n\n1. First item\n2. Second item\n\nYou can find more about quarto basics in this page",
+    "crumbs": [
+      "Math Camp 2024",
+      "🗓️ Weeks",
+      "Week 03",
+      "💻 Hands-on Session"
+    ]
+  },
+  {
+    "objectID": "2024/weeks/week03/hands-on.html#exercise-3-loading-and-exploring-the-data",
+    "href": "2024/weeks/week03/hands-on.html#exercise-3-loading-and-exploring-the-data",
+    "title": "Hands-On Session: Introduction to Quarto for Problem Sets",
+    "section": "Exercise 3: Loading and Exploring the Data",
+    "text": "Exercise 3: Loading and Exploring the Data\n\nObjective\nLoad the dataset and explore its structure to understand the variables.\n\n\nInstructions\n\nLoad the Required Libraries:\n\nAdd a code chunk at the top of your document to load the tidyverse package.\n\n```{r}\nlibrary(tidyverse)\n```\n\n── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──\n✔ dplyr     1.1.4     ✔ readr     2.1.5\n✔ forcats   1.0.0     ✔ stringr   1.5.1\n✔ ggplot2   3.5.1     ✔ tibble    3.2.1\n✔ lubridate 1.9.3     ✔ tidyr     1.3.1\n✔ purrr     1.0.2     \n── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──\n✖ dplyr::filter() masks stats::filter()\n✖ dplyr::lag()    masks stats::lag()\nℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors\n\n\nTo prevent the code from being displayed in the final report, you can use the echo option to hide the code. Using #| echo: false in the first line of your code chunk.\n\nLoad the Dataset:\n\nUse the read_csv() function to load the dataset from this link.\n\n# Load the dataset\nenrollment_data &lt;- read_csv(\"https://www.dropbox.com/scl/fi/pbkj0my9trhu0truqjezw/primary-enrollment-selected-countries.csv?rlkey=nty93tu3hykel4bpx1102xwj9&dl=1\")\n\nRows: 7838 Columns: 4\n── Column specification ────────────────────────────────────────────────────────\nDelimiter: \",\"\nchr (2): Entity, Code\ndbl (2): Year, Combined total net enrolment rate, primary, both sexes\n\nℹ Use `spec()` to retrieve the full column specification for this data.\nℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.\n\n\n\nExplore the Data:\n\nUse functions like head(), and glimpse() to get an overview of the dataset.\n\nhead(enrollment_data)\nglimpse(enrollment_data)\n\n\nWrite a Data Description Section:\n\nDescribe the dataset, including the key variables.\n# Data Description\n\nThe dataset includes information on the primary school \nenrollment rate in various countries from 1820 to 2018. \nKey variables include the country name, country code, \nyear, and the combined total net enrollment rate for both sexes.\nYou can also use inline code in the description if you want to reference specific values from the data. For example:\nThe data includes enrollment rates from the earliest \nrecorded year, 1820, to the \nmost recent year, 2019.",
+    "crumbs": [
+      "Math Camp 2024",
+      "🗓️ Weeks",
+      "Week 03",
+      "💻 Hands-on Session"
+    ]
+  },
+  {
+    "objectID": "2024/weeks/week03/hands-on.html#exercise-5-conclusion",
+    "href": "2024/weeks/week03/hands-on.html#exercise-5-conclusion",
+    "title": "Hands-On Session: Introduction to Quarto for Problem Sets",
+    "section": "Exercise 5: Conclusion",
+    "text": "Exercise 5: Conclusion\n\nObjective\nSummarize your findings from the analysis.\n\n\nInstructions\n\nWrite a Conclusion Section:\n\nDiscuss the key insights gained from the data analysis.\n# Conclusion\n\nThis analysis of primary school enrollment data revealed significant trends over time...\n\nSuggest Further Analysis:\n\nMention additional questions or analyses that could be explored.",
+    "crumbs": [
+      "Math Camp 2024",
+      "🗓️ Weeks",
+      "Week 03",
+      "💻 Hands-on Session"
+    ]
+  },
+  {
+    "objectID": "2024/weeks/week03/hands-on.html#exercise-4-data-analysis",
+    "href": "2024/weeks/week03/hands-on.html#exercise-4-data-analysis",
+    "title": "Hands-On Session: Introduction to Quarto for Problem Sets",
+    "section": "Exercise 4: Data Analysis",
+    "text": "Exercise 4: Data Analysis\n\nObjective\nPerform basic data analysis to answer specific questions about the dataset.\n\n\nInstructions\nNow, your turn:\n\nQuestion 1: Which country has the maximum enrollment rate in 1990?\n\nThe country with the max enrollment in 1990 is France\n\nQuestion 2: Which country has the lowest enrollment rate in 1990?\n\nThe country with the min enrollment in 1990 is Niger\n\nQuestion 3: How many countries had an enrollment rate greater than 50% in 1950?\nQuestion 5: What was the trend of enrollment rates in 4 selected countries from 1990 to their last year?\n\nChoose four countries and create a line plot, facets. You should get a plot similar as the one below:\n\n\n\n\n\n\n\n\n\n\n\nThis exercise was inspired by Our World in Data:",
+    "crumbs": [
+      "Math Camp 2024",
+      "🗓️ Weeks",
+      "Week 03",
+      "💻 Hands-on Session"
+    ]
+  },
+  {
+    "objectID": "2024/weeks/week03/hands-on.html#introduction",
+    "href": "2024/weeks/week03/hands-on.html#introduction",
+    "title": "Hands-On Session: Introduction to Quarto for Problem Sets",
+    "section": "",
+    "text": "In this hands-on session, you will learn how to create a Quarto document that you can use for your problem sets. The goal is to familiarize you with the basic structure of a Quarto project, how to format text, and how to integrate R code for data analysis. By the end of this session, you’ll be able to create a fully reproducible report that you can apply to future problem sets.",
+    "crumbs": [
+      "Math Camp 2024",
+      "🗓️ Weeks",
+      "Week 03",
+      "💻 Hands-on Session"
+    ]
+  },
+  {
+    "objectID": "2024/weeks/week03/hands-on.html#final-steps-rendering-and-sharing-your-report",
+    "href": "2024/weeks/week03/hands-on.html#final-steps-rendering-and-sharing-your-report",
+    "title": "Hands-On Session: Introduction to Quarto for Problem Sets",
+    "section": "Final Steps: Rendering and Sharing Your Report",
+    "text": "Final Steps: Rendering and Sharing Your Report",
+    "crumbs": [
+      "Math Camp 2024",
+      "🗓️ Weeks",
+      "Week 03",
+      "💻 Hands-on Session"
+    ]
   }
 ]

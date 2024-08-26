@@ -9,7 +9,7 @@
 <meta name="author" content="Rony">
 <meta name="dcterms.date" content="2024-08-26">
 
-<title>Hands-On Session: Creating a Quarto Report – 🏠 API209: Summer Math Camp</title>
+<title>Hands-On Session: Introduction to Quarto for Problem Sets – 🏠 API209: Summer Math Camp</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -307,44 +307,26 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
    
   <ul>
   <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">Introduction</a></li>
-  <li><a href="#exercise-1-setting-up-your-quarto-document" id="toc-exercise-1-setting-up-your-quarto-document" class="nav-link" data-scroll-target="#exercise-1-setting-up-your-quarto-document">Exercise 1: Setting Up Your Quarto Document</a>
+  <li><a href="#exercise-1-setting-up-your-quarto-project" id="toc-exercise-1-setting-up-your-quarto-project" class="nav-link" data-scroll-target="#exercise-1-setting-up-your-quarto-project">Exercise 1: Setting Up Your Quarto Project</a>
   <ul class="collapse">
   <li><a href="#objective" id="toc-objective" class="nav-link" data-scroll-target="#objective">Objective</a></li>
   <li><a href="#instructions" id="toc-instructions" class="nav-link" data-scroll-target="#instructions">Instructions</a></li>
+  <li><a href="#exercise-2-formatting-your-document" id="toc-exercise-2-formatting-your-document" class="nav-link" data-scroll-target="#exercise-2-formatting-your-document">Exercise 2: Formatting Your Document</a></li>
   </ul></li>
-  <li><a href="#exercise-2-writing-an-introduction" id="toc-exercise-2-writing-an-introduction" class="nav-link" data-scroll-target="#exercise-2-writing-an-introduction">Exercise 2: Writing an Introduction</a>
-  <ul class="collapse">
-  <li><a href="#objective-1" id="toc-objective-1" class="nav-link" data-scroll-target="#objective-1">Objective</a></li>
-  <li><a href="#instructions-1" id="toc-instructions-1" class="nav-link" data-scroll-target="#instructions-1">Instructions</a></li>
-  </ul></li>
-  <li><a href="#exercise-3-loading-and-exploring-the-data" id="toc-exercise-3-loading-and-exploring-the-data" class="nav-link" data-scroll-target="#exercise-3-loading-and-exploring-the-data">Exercise 3: Loading and Exploring the Data</a>
-  <ul class="collapse">
-  <li><a href="#objective-2" id="toc-objective-2" class="nav-link" data-scroll-target="#objective-2">Objective</a></li>
-  <li><a href="#instructions-2" id="toc-instructions-2" class="nav-link" data-scroll-target="#instructions-2">Instructions</a></li>
-  </ul></li>
-  <li><a href="#exercise-4-data-filtering-and-summarizing" id="toc-exercise-4-data-filtering-and-summarizing" class="nav-link" data-scroll-target="#exercise-4-data-filtering-and-summarizing">Exercise 4: Data Filtering and Summarizing</a>
+  <li><a href="#exercise-3-loading-and-exploring-the-data" id="toc-exercise-3-loading-and-exploring-the-data" class="nav-link" data-scroll-target="#exercise-3-loading-and-exploring-the-data">Exercise 3: Loading and Exploring the Data</a></li>
+  <li><a href="#exercise-4-data-analysis" id="toc-exercise-4-data-analysis" class="nav-link" data-scroll-target="#exercise-4-data-analysis">Exercise 4: Data Analysis</a>
   <ul class="collapse">
   <li><a href="#objective-3" id="toc-objective-3" class="nav-link" data-scroll-target="#objective-3">Objective</a></li>
   <li><a href="#instructions-3" id="toc-instructions-3" class="nav-link" data-scroll-target="#instructions-3">Instructions</a></li>
+  </ul></li>
+  <li><a href="#exercise-5-conclusion" id="toc-exercise-5-conclusion" class="nav-link" data-scroll-target="#exercise-5-conclusion">Exercise 5: Conclusion</a>
+  <ul class="collapse">
   <li><a href="#objective-4" id="toc-objective-4" class="nav-link" data-scroll-target="#objective-4">Objective</a></li>
   <li><a href="#instructions-4" id="toc-instructions-4" class="nav-link" data-scroll-target="#instructions-4">Instructions</a></li>
   </ul></li>
-  <li><a href="#exercise-6-writing-a-conclusion" id="toc-exercise-6-writing-a-conclusion" class="nav-link" data-scroll-target="#exercise-6-writing-a-conclusion">Exercise 6: Writing a Conclusion</a>
-  <ul class="collapse">
+  <li><a href="#final-steps-rendering-and-sharing-your-report" id="toc-final-steps-rendering-and-sharing-your-report" class="nav-link" data-scroll-target="#final-steps-rendering-and-sharing-your-report">Final Steps: Rendering and Sharing Your Report</a></li>
   <li><a href="#objective-5" id="toc-objective-5" class="nav-link" data-scroll-target="#objective-5">Objective</a></li>
   <li><a href="#instructions-5" id="toc-instructions-5" class="nav-link" data-scroll-target="#instructions-5">Instructions</a></li>
-  </ul></li>
-  <li><a href="#final-steps-rendering-and-sharing-your-report" id="toc-final-steps-rendering-and-sharing-your-report" class="nav-link" data-scroll-target="#final-steps-rendering-and-sharing-your-report">Final Steps: Rendering and Sharing Your Report</a>
-  <ul class="collapse">
-  <li><a href="#objective-6" id="toc-objective-6" class="nav-link" data-scroll-target="#objective-6">Objective</a></li>
-  <li><a href="#instructions-6" id="toc-instructions-6" class="nav-link" data-scroll-target="#instructions-6">Instructions</a></li>
-  </ul></li>
-  <li><a href="#summary-and-next-steps" id="toc-summary-and-next-steps" class="nav-link" data-scroll-target="#summary-and-next-steps">Summary and Next Steps</a>
-  <ul class="collapse">
-  <li><a href="#what-youve-learned" id="toc-what-youve-learned" class="nav-link" data-scroll-target="#what-youve-learned">What You’ve Learned</a></li>
-  <li><a href="#next-steps" id="toc-next-steps" class="nav-link" data-scroll-target="#next-steps">Next Steps</a></li>
-  </ul></li>
-  <li><a href="#questions" id="toc-questions" class="nav-link" data-scroll-target="#questions">Questions?</a></li>
   </ul>
 </nav>
     </div>
@@ -353,7 +335,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../2024/weeks/week01/page.html">🗓️ Weeks</a></li><li class="breadcrumb-item"><a href="../../../2024/weeks/week03/page.html">Week 03</a></li><li class="breadcrumb-item"><a href="../../../2024/weeks/week03/hands-on.html">💻 Hands-on Session</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Hands-On Session: Creating a Quarto Report</h1>
+<h1 class="title">Hands-On Session: Introduction to Quarto for Problem Sets</h1>
 </div>
 
 
@@ -382,82 +364,131 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="introduction" class="level1">
-<h1>Introduction</h1>
-<p>In this hands-on session, you will create a Quarto document that simulates a report. You’ll learn how to structure your report, integrate R code for analysis, and generate visualizations using the tidyverse. By the end of this session, you’ll have a fully reproducible report that you can apply to your problem sets.</p>
+<section id="introduction" class="level2">
+<h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
+<p>In this hands-on session, you will learn how to create a Quarto document that you can use for your problem sets. The goal is to familiarize you with the basic structure of a Quarto project, how to format text, and how to integrate R code for data analysis. By the end of this session, you’ll be able to create a fully reproducible report that you can apply to future problem sets.</p>
 </section>
-<section id="exercise-1-setting-up-your-quarto-document" class="level1">
-<h1>Exercise 1: Setting Up Your Quarto Document</h1>
-<section id="objective" class="level2">
-<h2 class="anchored" data-anchor-id="objective">Objective</h2>
-<p>Set up a Quarto document that will serve as the foundation for your report.</p>
+<section id="exercise-1-setting-up-your-quarto-project" class="level2">
+<h2 class="anchored" data-anchor-id="exercise-1-setting-up-your-quarto-project">Exercise 1: Setting Up Your Quarto Project</h2>
+<section id="objective" class="level3">
+<h3 class="anchored" data-anchor-id="objective">Objective</h3>
+<p>Set up a Quarto project and create a Quarto document that will serve as the foundation for your report.</p>
 </section>
-<section id="instructions" class="level2">
-<h2 class="anchored" data-anchor-id="instructions">Instructions</h2>
+<section id="instructions" class="level3">
+<h3 class="anchored" data-anchor-id="instructions">Instructions</h3>
 <ol type="1">
+<li><strong>Create a New Quarto Project</strong>:
+<ul>
+<li>Open RStudio.</li>
+<li>Go to File &gt; New Project &gt; New Directory &gt; Quarto Project.</li>
+<li>Name your project (e.g., <code>ProblemSet1</code>) and choose a location on your computer.</li>
+<li>Click “Create Project.”</li>
+</ul></li>
 <li><strong>Create a New Quarto Document</strong>:
 <ul>
-<li>Open RStudio (or your preferred editor).</li>
-<li>Go to File &gt; New File &gt; Quarto Document.</li>
+<li>Inside your project, go to File &gt; New File &gt; Quarto Document.</li>
 <li>Choose “HTML” as the output format.</li>
 </ul></li>
 <li><strong>Add Document Metadata</strong>:
 <ul>
-<li><p>Give your document a title, author, and date.</p></li>
+<li><p>In the new document, add a title, your name as the author, and the date.</p></li>
 <li><p>Example:</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">title</span><span class="kw">:</span><span class="at"> </span><span class="st">"TITLE"</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">title</span><span class="kw">:</span><span class="at"> </span><span class="st">"Problem Set 1"</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">author</span><span class="kw">:</span><span class="at"> </span><span class="st">"Your Name"</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">date</span><span class="kw">:</span><span class="at"> </span><span class="st">"2024-08-25"</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">date</span><span class="kw">:</span><span class="at"> </span><span class="st">"2024-08-26"</span></span>
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">format</span><span class="kw">:</span><span class="at"> html</span></span>
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
 </ul></li>
 <li><strong>Save Your Document</strong>:
 <ul>
-<li>Save the file with a descriptive name, like <code>ps_test.qmd</code>.</li>
+<li>Save the file with a descriptive name, like <code>PS00.qmd</code>.</li>
 </ul></li>
 </ol>
 </section>
+<section id="exercise-2-formatting-your-document" class="level3">
+<h3 class="anchored" data-anchor-id="exercise-2-formatting-your-document">Exercise 2: Formatting Your Document</h3>
+<section id="objective-1" class="level4">
+<h4 class="anchored" data-anchor-id="objective-1">Objective</h4>
+<p>Learn how to format text and structure your Quarto document.</p>
 </section>
-<section id="exercise-2-writing-an-introduction" class="level1">
-<h1>Exercise 2: Writing an Introduction</h1>
-<section id="objective-1" class="level2">
-<h2 class="anchored" data-anchor-id="objective-1">Objective</h2>
-<p>Introduce the purpose of your report and the dataset you will be analyzing.</p>
-</section>
-<section id="instructions-1" class="level2">
-<h2 class="anchored" data-anchor-id="instructions-1">Instructions</h2>
+<section id="instructions-1" class="level4">
+<h4 class="anchored" data-anchor-id="instructions-1">Instructions</h4>
 <ol type="1">
-<li><strong>Write an Introduction Section</strong>:
+<li><p><strong>Create Headings</strong>:</p>
 <ul>
-<li><p>Describe the PISA dataset and the focus of your analysis.</p></li>
-<li><p>Example:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu"># Introduction</span></span>
+<li>Headings help to organize your document into sections and subsections. In Quarto, you can create headings using the <code>#</code> symbol. The number of <code>#</code> symbols indicates the level of the heading:
+<ul>
+<li><code>#</code> for the main heading</li>
+<li><code>##</code> for a subheading</li>
+<li><code>###</code> for a sub-subheading</li>
+</ul></li>
+</ul>
+<p>Example:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu"># Main Heading</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>This report analyzes data from the PISA dataset to explore the relationship between students' socioeconomic status and their academic performance in mathematics, reading, and science. The goal is to identify trends and disparities across different countries and years.</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
-</ul></li>
-<li><strong>Outline the Structure of the Report</strong>:
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">## Subheading</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="fu">### Sub-subheading</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ul>
-<li>Briefly mention the different sections that will be included in the report (e.g., Data Exploration, Analysis, Visualization, Conclusion).</li>
+<li>This hierarchical structure helps in navigating your document and making it more readable.</li>
 </ul></li>
+<li><p><strong>Write an Introduction Section</strong>:</p>
+<ul>
+<li><p>Start by introducing the problem set and the dataset you will be using. Use a main heading for the introduction:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu"># Introduction</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>In this problem set, we will analyze primary school enrollment data from various countries. The objective is to explore trends and identify key insights from the data.</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+</ul></li>
+<li><p><strong>Format Text</strong>:</p>
+<ul>
+<li>You can format your text to emphasize important parts or create lists for better organization.</li>
+<li><strong>Bold text</strong>: Use double asterisks (<code>**</code>) or double underscores (<code>__</code>) around your text.</li>
+<li><strong>Italic text</strong>: Use single asterisk (<code>*</code>) or single underscore (<code>_</code>) around your text.</li>
+<li><strong>Lists</strong>: Create a list using <code>-</code> for unordered lists or <code>1.</code> for ordered lists.</li>
+</ul>
+<p>Example:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>**Bold Text** and *Italic Text*</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Item 1</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Item 2</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>First item</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>Second item</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<li><p><strong>Include Links and Other Formatting</strong>:</p>
+<ul>
+<li><p>You can include links in your document by wrapping the link text in square brackets <code>[]</code> and the URL in parentheses <code>()</code>:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>You can find more about Quarto basics on this <span class="co">[</span><span class="ot">page</span><span class="co">](https://quarto.org/docs/authoring/markdown-basics.html)</span>.</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+</ul>
+<p>You can find more about Quarto basics on this <a href="https://quarto.org/docs/authoring/markdown-basics.html">page</a>.</p>
+<ul>
+<li><p>To create block quotes, use the <code>&gt;</code> symbol at the beginning of a line:</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; This is a block quote, often used to highlight important information or quotes.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+</ul>
+<p>And it should render as:</p>
+<blockquote class="blockquote">
+<p>This is a block quote, often used to highlight important information or quotes.</p>
+</blockquote></li>
 </ol>
 </section>
 </section>
-<section id="exercise-3-loading-and-exploring-the-data" class="level1">
-<h1>Exercise 3: Loading and Exploring the Data</h1>
-<section id="objective-2" class="level2">
-<h2 class="anchored" data-anchor-id="objective-2">Objective</h2>
-<p>Load the PISA dataset and explore its structure to understand the variables and data types.</p>
 </section>
-<section id="instructions-2" class="level2">
-<h2 class="anchored" data-anchor-id="instructions-2">Instructions</h2>
+<section id="exercise-3-loading-and-exploring-the-data" class="level2">
+<h2 class="anchored" data-anchor-id="exercise-3-loading-and-exploring-the-data">Exercise 3: Loading and Exploring the Data</h2>
+<section id="objective-2" class="level4">
+<h4 class="anchored" data-anchor-id="objective-2">Objective</h4>
+<p>Load the dataset and explore its structure to understand the variables.</p>
+</section>
+<section id="instructions-2" class="level4">
+<h4 class="anchored" data-anchor-id="instructions-2">Instructions</h4>
 <ol type="1">
 <li><strong>Load the Required Libraries</strong>:
 <ul>
-<li><p>At the top of your document, add a code chunk to load the tidyverse package.</p></li>
-<li><p>Example:</p>
+<li><p>Add a code chunk at the top of your document to load the <code>tidyverse</code> package.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="in">library(tidyverse)</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
 ✔ dplyr     1.1.4     ✔ readr     2.1.5
@@ -471,166 +502,121 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 ℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors</code></pre>
 </div>
 </div></li>
+<li><p>To prevent the code from being displayed in the final report, you can use the <code>echo</code> option to hide the code. Using <code>#| echo: false</code> in the first line of your code chunk.</p></li>
 </ul></li>
 <li><strong>Load the Dataset</strong>:
 <ul>
-<li><p>Use <code>read_csv()</code> to load the PISA dataset.</p></li>
-<li><p>Example:</p>
+<li><p>Use the <code>read_csv()</code> function to load the dataset from this <a href="https://www.dropbox.com/scl/fi/pbkj0my9trhu0truqjezw/primary-enrollment-selected-countries.csv?rlkey=nty93tu3hykel4bpx1102xwj9&amp;dl=1">link</a>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>pisa_data <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"path_to_your_data/pisa.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load the dataset</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>enrollment_data <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"https://www.dropbox.com/scl/fi/pbkj0my9trhu0truqjezw/primary-enrollment-selected-countries.csv?rlkey=nty93tu3hykel4bpx1102xwj9&amp;dl=1"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Rows: 7838 Columns: 4
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+chr (2): Entity, Code
+dbl (2): Year, Combined total net enrolment rate, primary, both sexes
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
+</div>
 </div></li>
 </ul></li>
 <li><strong>Explore the Data</strong>:
 <ul>
-<li><p>Use functions like <code>head()</code>, <code>glimpse()</code>, and <code>summary()</code> to get an overview of the dataset.</p></li>
-<li><p>Example:</p>
+<li><p>Use functions like <code>head()</code>, and <code>glimpse()</code> to get an overview of the dataset.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(pisa_data)</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(pisa_data)</span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(pisa_data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(enrollment_data)</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(enrollment_data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div></li>
 </ul></li>
 <li><strong>Write a Data Description Section</strong>:
 <ul>
-<li><p>Describe the dataset, including the key variables and their types.</p></li>
-<li><p>Example:</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu"># Data Description</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>The PISA dataset includes information on students' performance in mathematics, reading, and science across various countries. Key variables include year, country, gender, and socioeconomic indicators such as access to resources at home.</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<li><p>Describe the dataset, including the key variables.</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu"># Data Description</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>The dataset includes information on the primary school </span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>enrollment rate in various countries from 1820 to 2018. </span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>Key variables include the country name, country code, </span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>year, and the combined total net enrollment rate for both sexes.</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<li><p>You can also use inline code in the description if you want to reference specific values from the data. For example:</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>The data includes enrollment rates from the earliest </span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>recorded year, 1820, to the </span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>most recent year, 2019.</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
 </ul></li>
 </ol>
 </section>
 </section>
-<section id="exercise-4-data-filtering-and-summarizing" class="level1">
-<h1>Exercise 4: Data Filtering and Summarizing</h1>
-<section id="objective-3" class="level2">
-<h2 class="anchored" data-anchor-id="objective-3">Objective</h2>
-<p>Filter the dataset to focus on specific countries and summarize the data to understand trends over time.</p>
+<section id="exercise-4-data-analysis" class="level2">
+<h2 class="anchored" data-anchor-id="exercise-4-data-analysis">Exercise 4: Data Analysis</h2>
+<section id="objective-3" class="level3">
+<h3 class="anchored" data-anchor-id="objective-3">Objective</h3>
+<p>Perform basic data analysis to answer specific questions about the dataset.</p>
 </section>
-<section id="instructions-3" class="level2">
-<h2 class="anchored" data-anchor-id="instructions-3">Instructions</h2>
+<section id="instructions-3" class="level3">
+<h3 class="anchored" data-anchor-id="instructions-3">Instructions</h3>
+<p>Now, your turn:</p>
 <ol type="1">
-<li><strong>Filter the Data</strong>:
+<li><p><strong>Question 1: Which country has the maximum enrollment rate in 1990?</strong></p></li>
+</ol>
+<p>The country with the max enrollment in 1990 is France</p>
+<ol start="2" type="1">
+<li><p><strong>Question 2: Which country has the lowest enrollment rate in 1990?</strong></p></li>
+</ol>
+<p>The country with the min enrollment in 1990 is Niger</p>
+<ol start="3" type="1">
+<li><p><strong>Question 3: How many countries had an enrollment rate greater than 50% in 1950?</strong></p></li>
+<li><p><strong>Question 5: What was the trend of enrollment rates in 4 selected countries from 1990 to their last year?</strong></p>
 <ul>
-<li><p>Focus on Canada, the United States, and Mexico.</p></li>
-<li><p>Example:</p>
+<li><p>Choose four countries and create a line plot, facets. You should get a plot similar as the one below:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>pisa_filtered <span class="ot">&lt;-</span> pisa_data <span class="sc">%&gt;%</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(country <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"CAN"</span>, <span class="st">"USA"</span>, <span class="st">"MEX"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="hands-on_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
 </div></li>
-</ul></li>
-<li><strong>Summarize the Data</strong>:
-<ul>
-<li><p>Calculate the mean scores in mathematics, reading, and science for each country by year.</p></li>
-<li><p>Example:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>pisa_summary <span class="ot">&lt;-</span> pisa_filtered <span class="sc">%&gt;%</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(country, year) <span class="sc">%&gt;%</span></span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">mean_math =</span> <span class="fu">mean</span>(math, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">mean_read =</span> <span class="fu">mean</span>(read, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">mean_science =</span> <span class="fu">mean</span>(science, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>pisa_summary</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div></li>
-</ul></li>
-<li><strong>Write a Summary Section</strong>:
-<ul>
-<li><p>Describe the summary statistics and what they reveal about the data.</p></li>
-<li><p>Example:</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu"># Data Summary</span></span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>The summary statistics show that over the years, the average scores in mathematics, reading, and science have varied significantly across the three countries. Notably, there are consistent trends in the relative performance of each country in these subjects.</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<h1 id="exercise-5-data-visualization">Exercise 5: Data Visualization</h1></li>
 </ul></li>
 </ol>
-</section>
-<section id="objective-4" class="level2">
-<h2 class="anchored" data-anchor-id="objective-4">Objective</h2>
-<p>Create visualizations to explore the trends in PISA scores across the selected countries.</p>
-</section>
-<section id="instructions-4" class="level2">
-<h2 class="anchored" data-anchor-id="instructions-4">Instructions</h2>
-<ol type="1">
-<li><strong>Create a Line Plot for Math Scores</strong>:
-<ul>
-<li><p>Use <code>ggplot2</code> to visualize the average math scores over time for each country.</p></li>
-<li><p>Example:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(pisa_summary, <span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> mean_math, <span class="at">color =</span> country)) <span class="sc">+</span></span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
-<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Average PISA Math Scores Over Time"</span>,</span>
-<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Year"</span>,</span>
-<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Average Math Score"</span></span>
-<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div></li>
-</ul></li>
-<li><strong>Create Faceted Plots</strong>:
-<ul>
-<li><p>Create faceted plots for math, reading, and science scores.</p></li>
-<li><p>Example:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>pisa_long <span class="ot">&lt;-</span> pisa_summary <span class="sc">%&gt;%</span></span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="fu">starts_with</span>(<span class="st">"mean_"</span>), <span class="at">names_to =</span> <span class="st">"subject"</span>, <span class="at">values_to =</span> <span class="st">"score"</span>)</span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(pisa_long, <span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> score, <span class="at">color =</span> country)) <span class="sc">+</span></span>
-<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
-<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span> subject) <span class="sc">+</span></span>
-<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
-<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Average PISA Scores Over Time by Subject"</span>,</span>
-<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Year"</span>,</span>
-<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Average Score"</span></span>
-<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div></li>
-</ul></li>
-<li><strong>Write a Visualization Section</strong>:
-<ul>
-<li><p>Include the plots and describe the trends they reveal.</p></li>
-<li><p>Example:</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu"># Data Visualization</span></span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>The plots below illustrate the trends in PISA scores over time for Canada, the United States, and Mexico. Each plot is faceted by subject (mathematics, reading, and science) to allow for a clear comparison of trends across different areas of academic performance.</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
-</ul></li>
-</ol>
+<p>This exercise was inspired by Our World in Data:</p>
+<iframe src="https://ourworldindata.org/grapher/primary-enrollment-selected-countries?tab=chart" loading="lazy" style="width: 100%; height: 600px; border: 0px none;" allow="web-share; clipboard-write">
+</iframe>
 </section>
 </section>
-<section id="exercise-6-writing-a-conclusion" class="level1">
-<h1>Exercise 6: Writing a Conclusion</h1>
-<section id="objective-5" class="level2">
-<h2 class="anchored" data-anchor-id="objective-5">Objective</h2>
-<p>Summarize your findings and discuss any patterns or trends observed in the data.</p>
+<section id="exercise-5-conclusion" class="level2">
+<h2 class="anchored" data-anchor-id="exercise-5-conclusion">Exercise 5: Conclusion</h2>
+<section id="objective-4" class="level3">
+<h3 class="anchored" data-anchor-id="objective-4">Objective</h3>
+<p>Summarize your findings from the analysis.</p>
 </section>
-<section id="instructions-5" class="level2">
-<h2 class="anchored" data-anchor-id="instructions-5">Instructions</h2>
+<section id="instructions-4" class="level3">
+<h3 class="anchored" data-anchor-id="instructions-4">Instructions</h3>
 <ol type="1">
 <li><strong>Write a Conclusion Section</strong>:
 <ul>
-<li><p>Discuss the key insights gained from your analysis and visualizations.</p></li>
-<li><p>Example:</p>
+<li><p>Discuss the key insights gained from the data analysis.</p>
 <div class="sourceCode" id="cb14"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu"># Conclusion</span></span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>This analysis of the PISA dataset reveals several important trends. For instance, Canada's performance in mathematics has consistently been strong relative to the United States and Mexico. The visualizations also highlight how socioeconomic factors may influence academic performance, as seen in the varying trends across different countries.</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>This analysis of primary school enrollment data revealed significant trends over time...</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
 </ul></li>
 <li><strong>Suggest Further Analysis</strong>:
 <ul>
-<li>Mention any additional questions or analyses that could be explored in future work.</li>
+<li>Mention additional questions or analyses that could be explored.</li>
 </ul></li>
 </ol>
 </section>
 </section>
-<section id="final-steps-rendering-and-sharing-your-report" class="level1">
-<h1>Final Steps: Rendering and Sharing Your Report</h1>
-<section id="objective-6" class="level2">
-<h2 class="anchored" data-anchor-id="objective-6">Objective</h2>
+<section id="final-steps-rendering-and-sharing-your-report" class="level2">
+<h2 class="anchored" data-anchor-id="final-steps-rendering-and-sharing-your-report">Final Steps: Rendering and Sharing Your Report</h2>
+</section>
+<section id="objective-5" class="level2">
+<h2 class="anchored" data-anchor-id="objective-5">Objective</h2>
 <p>Render your Quarto document to HTML and share your results.</p>
 </section>
-<section id="instructions-6" class="level2">
-<h2 class="anchored" data-anchor-id="instructions-6">Instructions</h2>
+<section id="instructions-5" class="level2">
+<h2 class="anchored" data-anchor-id="instructions-5">Instructions</h2>
 <ol type="1">
 <li><strong>Render the Document</strong>:
 <ul>
@@ -645,31 +631,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Save the rendered HTML file and share it with your peers or instructor.</li>
 </ul></li>
 </ol>
-</section>
-</section>
-<section id="summary-and-next-steps" class="level1">
-<h1>Summary and Next Steps</h1>
-<section id="what-youve-learned" class="level2">
-<h2 class="anchored" data-anchor-id="what-youve-learned">What You’ve Learned</h2>
-<ul>
-<li>How to set up a Quarto document and structure it like a report.</li>
-<li>How to integrate R code and perform data analysis using the tidyverse.</li>
-<li>How to create and interpret visualizations.</li>
-<li>How to produce a reproducible report that can be shared with others.</li>
-</ul>
-</section>
-<section id="next-steps" class="level2">
-<h2 class="anchored" data-anchor-id="next-steps">Next Steps</h2>
-<ul>
-<li><strong>Practice</strong>: Apply these skills to your problem sets and other projects.</li>
-<li><strong>Explore More</strong>: Look into advanced Quarto features, such as creating PDFs, Word documents, or interactive websites.</li>
-</ul>
-<hr>
-</section>
-</section>
-<section id="questions" class="level1">
-<h1>Questions?</h1>
-<p>If you have any questions or need further clarification, feel free to ask! ```</p>
 
 
 </section>

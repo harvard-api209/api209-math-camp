@@ -1,231 +1,267 @@
 ---
-title: "Hands-On Session: Creating a Quarto Report"
+title: "Hands-On Session: Introduction to Quarto for Problem Sets"
 date: "2024-08-26"
 ---
 
-# Introduction
+## Introduction
 
-In this hands-on session, you will create a Quarto document that simulates a report. You'll learn how to structure your report, integrate R code for analysis, and generate visualizations using the tidyverse. By the end of this session, you'll have a fully reproducible report that you can apply to your problem sets.
+In this hands-on session, you will learn how to create a Quarto document that you can use for your problem sets. The goal is to familiarize you with the basic structure of a Quarto project, how to format text, and how to integrate R code for data analysis. By the end of this session, you'll be able to create a fully reproducible report that you can apply to future problem sets.
 
-# Exercise 1: Setting Up Your Quarto Document
+## Exercise 1: Setting Up Your Quarto Project
 
-## Objective
+### Objective
 
-Set up a Quarto document that will serve as the foundation for your report.
+Set up a Quarto project and create a Quarto document that will serve as the foundation for your report.
 
-## Instructions
+### Instructions
 
-1. **Create a New Quarto Document**:
-   - Open RStudio (or your preferred editor).
-   - Go to File > New File > Quarto Document.
+1. **Create a New Quarto Project**:
+   - Open RStudio.
+   - Go to File > New Project > New Directory > Quarto Project.
+   - Name your project (e.g., `ProblemSet1`) and choose a location on your computer.
+   - Click "Create Project."
+
+2. **Create a New Quarto Document**:
+   - Inside your project, go to File > New File > Quarto Document.
    - Choose "HTML" as the output format.
 
-2. **Add Document Metadata**:
-   - Give your document a title, author, and date.
+3. **Add Document Metadata**:
+   - In the new document, add a title, your name as the author, and the date.
    - Example:
-   
+
      ```yaml
      ---
-     title: "TITLE"
+     title: "Problem Set 1"
      author: "Your Name"
-     date: "2024-08-25"
+     date: "2024-08-26"
      format: html
      ---
      ```
 
-3. **Save Your Document**:
-   - Save the file with a descriptive name, like `ps_test.qmd`.
+4. **Save Your Document**:
+   - Save the file with a descriptive name, like `PS00.qmd`.
 
-# Exercise 2: Writing an Introduction
+### Exercise 2: Formatting Your Document
 
-## Objective
+#### Objective
 
-Introduce the purpose of your report and the dataset you will be analyzing.
+Learn how to format text and structure your Quarto document.
 
-## Instructions
+#### Instructions
 
-1. **Write an Introduction Section**:
-   - Describe the PISA dataset and the focus of your analysis.
-   - Example:
+1. **Create Headings**:
+   - Headings help to organize your document into sections and subsections. In Quarto, you can create headings using the `#` symbol. The number of `#` symbols indicates the level of the heading:
+     - `#` for the main heading
+     - `##` for a subheading
+     - `###` for a sub-subheading
+
+   Example:
+
+   ```markdown
+   # Main Heading
+
+   ## Subheading
+
+   ### Sub-subheading
+   ```
+
+   - This hierarchical structure helps in navigating your document and making it more readable.
+
+2. **Write an Introduction Section**:
+   - Start by introducing the problem set and the dataset you will be using. Use a main heading for the introduction:
 
      ```markdown
      # Introduction
 
-     This report analyzes data from the PISA dataset to explore the relationship between students' socioeconomic status and their academic performance in mathematics, reading, and science. The goal is to identify trends and disparities across different countries and years.
+     In this problem set, we will analyze primary school enrollment data from various countries. The objective is to explore trends and identify key insights from the data.
      ```
 
-2. **Outline the Structure of the Report**:
-   - Briefly mention the different sections that will be included in the report (e.g., Data Exploration, Analysis, Visualization, Conclusion).
+3. **Format Text**:
+   - You can format your text to emphasize important parts or create lists for better organization.
+   - **Bold text**: Use double asterisks (`**`) or double underscores (`__`) around your text.
+   - **Italic text**: Use single asterisk (`*`) or single underscore (`_`) around your text.
+   - **Lists**: Create a list using `-` for unordered lists or `1.` for ordered lists.
 
-# Exercise 3: Loading and Exploring the Data
+   Example:
 
-## Objective
+   ```markdown
+   **Bold Text** and *Italic Text*
 
-Load the PISA dataset and explore its structure to understand the variables and data types.
+   - Item 1
+   - Item 2
 
-## Instructions
+   1. First item
+   2. Second item
+   ```
+
+4. **Include Links and Other Formatting**:
+   - You can include links in your document by wrapping the link text in square brackets `[]` and the URL in parentheses `()`:
+
+     ```markdown
+     You can find more about Quarto basics on this [page](https://quarto.org/docs/authoring/markdown-basics.html).
+     ```
+
+   You can find more about Quarto basics on this [page](https://quarto.org/docs/authoring/markdown-basics.html).
+
+   - To create block quotes, use the `>` symbol at the beginning of a line:
+
+     ```markdown
+     > This is a block quote, often used to highlight important information or quotes.
+     ```
+
+   And it should render as: 
+
+   > This is a block quote, often used to highlight important information or quotes.
+
+## Exercise 3: Loading and Exploring the Data
+
+#### Objective
+
+Load the dataset and explore its structure to understand the variables.
+
+#### Instructions
 
 1. **Load the Required Libraries**:
-   - At the top of your document, add a code chunk to load the tidyverse package.
-   - Example:
-   
+   - Add a code chunk at the top of your document to load the `tidyverse` package.
+
      ```{r}
+     #| echo: fenced
      library(tidyverse)
      ```
 
+   - To prevent the code from being displayed in the final report, you can use the `echo` option to hide the code. Using `#| echo: false` in the first line of your code chunk.
+
 2. **Load the Dataset**:
-   - Use `read_csv()` to load the PISA dataset.
-   - Example:
-   
+   - Use the `read_csv()` function to load the dataset from this [link](https://www.dropbox.com/scl/fi/pbkj0my9trhu0truqjezw/primary-enrollment-selected-countries.csv?rlkey=nty93tu3hykel4bpx1102xwj9&dl=1).
+
      ```{r}
-     #| eval: false
-     pisa_data <- read_csv("path_to_your_data/pisa.csv")
+     # Load the dataset
+     enrollment_data <- read_csv("https://www.dropbox.com/scl/fi/pbkj0my9trhu0truqjezw/primary-enrollment-selected-countries.csv?rlkey=nty93tu3hykel4bpx1102xwj9&dl=1")
      ```
 
 3. **Explore the Data**:
-   - Use functions like `head()`, `glimpse()`, and `summary()` to get an overview of the dataset.
-   - Example:
-   
+   - Use functions like `head()`, and `glimpse()` to get an overview of the dataset.
+
      ```{r}
-     #| eval: false
-     head(pisa_data)
-     glimpse(pisa_data)
-     summary(pisa_data)
+     #| eval: false 
+     head(enrollment_data)
+     glimpse(enrollment_data)
      ```
 
 4. **Write a Data Description Section**:
-   - Describe the dataset, including the key variables and their types.
-   - Example:
+   - Describe the dataset, including the key variables.
 
      ```markdown
      # Data Description
 
-     The PISA dataset includes information on students' performance in mathematics, reading, and science across various countries. Key variables include year, country, gender, and socioeconomic indicators such as access to resources at home.
+     The dataset includes information on the primary school 
+     enrollment rate in various countries from 1820 to 2018. 
+     Key variables include the country name, country code, 
+     year, and the combined total net enrollment rate for both sexes.
      ```
 
-# Exercise 4: Data Filtering and Summarizing
-
-## Objective
-
-Filter the dataset to focus on specific countries and summarize the data to understand trends over time.
-
-## Instructions
-
-1. **Filter the Data**:
-   - Focus on Canada, the United States, and Mexico.
-   - Example:
-   
-     ```{r}
-     #| eval: false
-     pisa_filtered <- pisa_data %>%
-       filter(country %in% c("CAN", "USA", "MEX"))
-     ```
-
-2. **Summarize the Data**:
-   - Calculate the mean scores in mathematics, reading, and science for each country by year.
-   - Example:
-   
-     ```{r}
-     #| eval: false
-     pisa_summary <- pisa_filtered %>%
-       group_by(country, year) %>%
-       summarise(
-         mean_math = mean(math, na.rm = TRUE),
-         mean_read = mean(read, na.rm = TRUE),
-         mean_science = mean(science, na.rm = TRUE)
-       )
-     pisa_summary
-     ```
-
-3. **Write a Summary Section**:
-   - Describe the summary statistics and what they reveal about the data.
-   - Example:
+   - You can also use inline code in the description if you want to reference specific values from the data. For example:
 
      ```markdown
-     # Data Summary
-
-     The summary statistics show that over the years, the average scores in mathematics, reading, and science have varied significantly across the three countries. Notably, there are consistent trends in the relative performance of each country in these subjects.
+     The data includes enrollment rates from the earliest 
+     recorded year, `r min(enrollment_data$Year)`, to the 
+     most recent year, `r max(enrollment_data$Year)`.
      ```
 
-# Exercise 5: Data Visualization
+## Exercise 4: Data Analysis
 
-## Objective
+### Objective
 
-Create visualizations to explore the trends in PISA scores across the selected countries.
+Perform basic data analysis to answer specific questions about the dataset.
 
-## Instructions
+### Instructions
 
-1. **Create a Line Plot for Math Scores**:
-   - Use `ggplot2` to visualize the average math scores over time for each country.
-   - Example:
-   
+Now, your turn:
+
+1. **Question 1: Which country has the maximum enrollment rate in 1990?**
+
+   ```{r}
+   #| echo: false
+   max_enrollment_1990 <- enrollment_data |>
+     filter(Year == 1990) |> 
+     arrange(desc(`Combined total net enrolment rate, primary, both sexes`)) |> 
+     slice(1) |> 
+     pull(Entity)
+   ```
+  The country with the max enrollment in 1990 is `r max_enrollment_1990`    
+
+2. **Question 2: Which country has the lowest enrollment rate in 1990?**
+
+   ```{r}
+   #| echo: false
+   min_enrollment_1990 <- enrollment_data |>
+     filter(Year == 1990) |>
+     arrange(`Combined total net enrolment rate, primary, both sexes`) |>
+     slice(1) |> 
+     pull(Entity)
+   ```
+
+  The country with the min enrollment in 1990 is `r min_enrollment_1990`     
+
+3. **Question 3: How many countries had an enrollment rate greater than 50% in 1950?**
+
+   ```{r}
+   #| echo: false
+   countries_above_50 <- enrollment_data |>
+     filter(Year == 1950 & `Combined total net enrolment rate, primary, both sexes` > 50) |>
+     count()
+   ```
+
+4. **Question 5: What was the trend of enrollment rates in 4 selected countries from 1990 to their last year?**
+
+   - Choose four countries and create a line plot, facets. You should get a plot similar as the one below:
+
      ```{r}
-     #| eval: false
-     ggplot(pisa_summary, aes(x = year, y = mean_math, color = country)) +
-       geom_line() +
-       geom_point() +
-       labs(
-         title = "Average PISA Math Scores Over Time",
-         x = "Year",
-         y = "Average Math Score"
-       ) +
-       theme_minimal()
+     #| echo: false
+     selected_countries <- enrollment_data |>
+       filter(Entity %in% c("United States", "India", "China", "Brazil") & Year >= 1900)
+
+     selected_countries |> 
+      ggplot(aes(x = Year, y = `Combined total net enrolment rate, primary, both sexes`, color = Entity)) +
+      geom_line() +
+      labs(
+        title = "Primary Enrollment Rates (1900-2000)",
+        x = "Year",
+        y = "Enrollment Rate (%)"
+      ) +
+      facet_wrap(~ Entity) +
+      theme_minimal() +
+      theme(
+        legend.position = "none"
+      )
+
      ```
 
-2. **Create Faceted Plots**:
-   - Create faceted plots for math, reading, and science scores.
-   - Example:
-   
-     ```{r}
-     #| eval: false
-     pisa_long <- pisa_summary %>%
-       pivot_longer(cols = starts_with("mean_"), names_to = "subject", values_to = "score")
+This exercise was inspired by Our World in Data:
 
-     ggplot(pisa_long, aes(x = year, y = score, color = country)) +
-       geom_line() +
-       geom_point() +
-       facet_wrap(~ subject) +
-       labs(
-         title = "Average PISA Scores Over Time by Subject",
-         x = "Year",
-         y = "Average Score"
-       ) +
-       theme_minimal()
-     ```
+<iframe src="https://ourworldindata.org/grapher/primary-enrollment-selected-countries?tab=chart" loading="lazy" style="width: 100%; height: 600px; border: 0px none;" allow="web-share; clipboard-write"></iframe>
 
-3. **Write a Visualization Section**:
-   - Include the plots and describe the trends they reveal.
-   - Example:
+## Exercise 5: Conclusion
 
-     ```markdown
-     # Data Visualization
+### Objective
 
-     The plots below illustrate the trends in PISA scores over time for Canada, the United States, and Mexico. Each plot is faceted by subject (mathematics, reading, and science) to allow for a clear comparison of trends across different areas of academic performance.
-     ```
+Summarize your findings from the analysis.
 
-# Exercise 6: Writing a Conclusion
-
-## Objective
-
-Summarize your findings and discuss any patterns or trends observed in the data.
-
-## Instructions
+### Instructions
 
 1. **Write a Conclusion Section**:
-   - Discuss the key insights gained from your analysis and visualizations.
-   - Example:
+   - Discuss the key insights gained from the data analysis.
 
      ```markdown
      # Conclusion
 
-     This analysis of the PISA dataset reveals several important trends. For instance, Canada's performance in mathematics has consistently been strong relative to the United States and Mexico. The visualizations also highlight how socioeconomic factors may influence academic performance, as seen in the varying trends across different countries.
+     This analysis of primary school enrollment data revealed significant trends over time...
      ```
 
 2. **Suggest Further Analysis**:
-   - Mention any additional questions or analyses that could be explored in future work.
+   - Mention additional questions or analyses that could be explored.
 
-
-# Final Steps: Rendering and Sharing Your Report
+## Final Steps: Rendering and Sharing Your Report
 
 ## Objective
 
@@ -235,31 +271,10 @@ Render your Quarto document to HTML and share your results.
 
 1. **Render the Document**:
    - Click the "Render" button in RStudio to generate the HTML output.
-   
+
 2. **Review the Report**:
    - Check the output for any errors or formatting issues.
 
 3. **Share Your Report**:
    - Save the rendered HTML file and share it with your peers or instructor.
-
-# Summary and Next Steps
-
-## What You've Learned
-
-- How to set up a Quarto document and structure it like a report.
-- How to integrate R code and perform data analysis using the tidyverse.
-- How to create and interpret visualizations.
-- How to produce a reproducible report that can be shared with others.
-
-## Next Steps
-
-- **Practice**: Apply these skills to your problem sets and other projects.
-- **Explore More**: Look into advanced Quarto features, such as creating PDFs, Word documents, or interactive websites.
-
----
-
-# Questions?
-
-If you have any questions or need further clarification, feel free to ask!
-```
 

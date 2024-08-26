@@ -31,13 +31,27 @@ website:
 
   repo-url: "https://github.com/harvard-api209/api209-math-camp"
   
+  navbar:
+    background: primary
+    right:
+      - text: "Math Camp 2024" # Every term or semester this should point to the correct one.
+        file: 2024/index.qmd
+      - text: "Schedule"
+        file: schedule.qmd        
+      - text: "Resources"
+        file: resource/index.qmd
+      - text: "Tutorials"
+        file: tutorial/index.qmd
+      - icon: slack
+        href: https://mpa-id-math-camp-w8y.slack.com/ssb/redirect
+          
   sidebar:
     - title: "Resources"
       contents:
         - section: "Resources"
           contents:
             - resource/index.qmd
-            - resource/visualization.qmd
+            - resource/visualization.qmdli
             - resource/r.qmd
             - resource/style.qmd
             - resource/data.qmd
@@ -106,20 +120,6 @@ website:
                 text: 💻 Hands-on Session
               - href: 2024/weeks/week03/lab.qmd
                 text: 🧪 Lab                              
-
-  navbar:
-    background: primary
-    right:
-      - text: "Math Camp 2024" # Every term or semester this should point to the correct one.
-        file: 2024/index.qmd
-      - text: "Schedule"
-        file: schedule.qmd        
-      - text: "Resources"
-        file: resource/index.qmd
-      - text: "Tutorials"
-        file: tutorial/index.qmd
-      - icon: slack
-        href: https://mpa-id-math-camp-w8y.slack.com/ssb/redirect
 
   page-footer:
     left: |
