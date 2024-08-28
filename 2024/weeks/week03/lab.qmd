@@ -1,6 +1,5 @@
 ---
-title: "Lab 3: Your Quarto Projects"
+title: "Lab 3: Simulating a Problem Set for Fall Semester"
 date: "2024-08-28"
 ---
 
-# Introduction
