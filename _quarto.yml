@@ -58,6 +58,7 @@ website:
         - section: "Guides"
           contents:
             - resource/install.qmd
+            - resource/tidyverse.qmd
             - resource/markdown.qmd
             - resource/quarto.qmd
 

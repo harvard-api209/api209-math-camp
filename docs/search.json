@@ -773,43 +773,102 @@
     "text": "Visualization in Tableau\nBecause it is focused entirely on visualization (and because it’s a well-supported commercial product), Tableau has a phenomenal library of tutorials and training videos. There’s a helpful collections of videos here, as well."
   },
   {
-    "objectID": "resource/index.html",
-    "href": "resource/index.html",
-    "title": "Helpful Resources",
+    "objectID": "resource/r.html",
+    "href": "resource/r.html",
+    "title": "R",
     "section": "",
-    "text": "Here are some resources and guides on graphic design, data visualization, R programming, and related topics. Most of these resources are coming from Prof. Andrew Heiss’ website.",
+    "text": "I highly recommend subscribing to the R Weekly newsletter. This e-mail is sent every Monday and is full of helpful tutorials about how to do stuff with R.\nSearching for help with R on Google can sometimes be tricky because the program name is a single letter. Google is generally smart enough to figure out what you mean when you search for “r scatterplot”, but if it does struggle, try searching for “rstats” instead (e.g. “rstats scatterplot”). Also, since most of your R work in this class will deal with {ggplot2}, it’s often easier to just search for that instead of the letter “r” (e.g. “ggplot scatterplot”).\nIf you use Twitter, post R-related questions and content with #rstats. The community there is exceptionally generous and helpful. Also check out StackOverflow (a Q&A site with hundreds of thousands of answers to all sorts of programming questions) and RStudio Community (a forum specifically designed for people using RStudio and the tidyverse (i.e. you)).\nThese resources are also really really helpful:\n\nR for Data Science: A free online book for learning the basics of R and the tidyverse.\nR and RStudio cheat sheets: A large collection of simple cheat sheets for RStudio, {ggplot2}, and other R-related things.\nStat 545: Dr. Jenny Bryan at RStudio has an entire introductory course in R, visualization, and data analysis online.\nSTA 112FS: Data Science: Dr. Mine Çetinkaya-Rundel at the University of Edinburgh / Duke University has an entire introductory course in R, visualization, and data science online.\nCSE 631: Principles & Practice of Data Visualization: Yet another introductory course for R and ggplot2 by Dr. Alison Presmanes Hill at RStudio.",
     "crumbs": [
       "Resources",
-      "Helpful Resources"
+      "R"
     ]
   },
   {
-    "objectID": "2025/weeks/week01/slides.html#your-lecturer",
-    "href": "2025/weeks/week01/slides.html#your-lecturer",
-    "title": "🗓️ Week 01 Introduction",
-    "section": "Your lecturer",
-    "text": "Your lecturer\n\n\n\n\n\nProf. Octopian Professor of Octopus Issues Head of the Python vs R Debate Society\n\n\n\n\nPhD in Octopi Engineering\nBackground: Engineering of Deep Ocean constructions\nFormer Lead Data Scientist\n\ndeep ocean  engineering  octopus"
-  },
-  {
-    "objectID": "2025/weeks/week01/slides.html#teaching-assistants",
-    "href": "2025/weeks/week01/slides.html#teaching-assistants",
-    "title": "🗓️ Week 01 Introduction",
-    "section": "Teaching Assistants",
-    "text": "Teaching Assistants\n\n\n\n\n\nOctopnuian Arveda  PhD Candidate at OctopusLab, OUN  MSc in Octopus Transportation 📧 \n\n\n\n\n\n\nOctopnuian Arveda  PhD Candidate at OctopusLab, UOS  MSc in Octopus Transportation 📧 \n\n\n\n\n\n\n\nMY_COURSE_CODE – MY_COURSE_NAME"
-  },
-  {
-    "objectID": "2025/index.html",
-    "href": "2025/index.html",
-    "title": "MY_COURSE_CODE - MY_COURSE_NAME",
+    "objectID": "resource/r.html#learning-r",
+    "href": "resource/r.html#learning-r",
+    "title": "R",
     "section": "",
-    "text": "🧑🏻‍🏫 Our Team\n\nCourse ConvenorTeaching Staff\n\n\n\nMY_NAME  MY_JOB_TITLE  MY_INSTITUTION 📧 MY_EMAIL ( at )\nOffice Hours:\n\nWhen:\nWhere:\nHow to book:\n\n\n\n\nTA_NAME  PhD Candidate at PLACE  📧 EMAIL ( at )\n\nTA_NAME  PhD Candidate at PLACE  📧 EMAIL ( at )\n\n\n\n\n\n📍 Lecture\nFridays 2pm-4pm at PLACE\n\n\n💻 Class Groups\n\nGroup 01\n\n📆 Mondays\n⌚ 09:00 - 10:30\n📍\n🧑‍🏫 TA_NAME\n\n\n\nGroup 02\n\n📆 Mondays\n⌚ 10:30 - 12:00\n📍\n🧑‍🏫 TA_NAME\n\n\n\nGroup 03\n\n📆 Fridays\n⌚ 16:00 - 17:30\n📍\n🧑‍🏫 TA_NAME"
+    "text": "I highly recommend subscribing to the R Weekly newsletter. This e-mail is sent every Monday and is full of helpful tutorials about how to do stuff with R.\nSearching for help with R on Google can sometimes be tricky because the program name is a single letter. Google is generally smart enough to figure out what you mean when you search for “r scatterplot”, but if it does struggle, try searching for “rstats” instead (e.g. “rstats scatterplot”). Also, since most of your R work in this class will deal with {ggplot2}, it’s often easier to just search for that instead of the letter “r” (e.g. “ggplot scatterplot”).\nIf you use Twitter, post R-related questions and content with #rstats. The community there is exceptionally generous and helpful. Also check out StackOverflow (a Q&A site with hundreds of thousands of answers to all sorts of programming questions) and RStudio Community (a forum specifically designed for people using RStudio and the tidyverse (i.e. you)).\nThese resources are also really really helpful:\n\nR for Data Science: A free online book for learning the basics of R and the tidyverse.\nR and RStudio cheat sheets: A large collection of simple cheat sheets for RStudio, {ggplot2}, and other R-related things.\nStat 545: Dr. Jenny Bryan at RStudio has an entire introductory course in R, visualization, and data analysis online.\nSTA 112FS: Data Science: Dr. Mine Çetinkaya-Rundel at the University of Edinburgh / Duke University has an entire introductory course in R, visualization, and data science online.\nCSE 631: Principles & Practice of Data Visualization: Yet another introductory course for R and ggplot2 by Dr. Alison Presmanes Hill at RStudio.",
+    "crumbs": [
+      "Resources",
+      "R"
+    ]
   },
   {
-    "objectID": "2024/weeks/week04/lab.html",
-    "href": "2024/weeks/week04/lab.html",
-    "title": "Lab 4: Statiscal Modeling",
+    "objectID": "resource/r.html#r-in-the-wild",
+    "href": "resource/r.html#r-in-the-wild",
+    "title": "R",
+    "section": "R in the wild",
+    "text": "R in the wild\nA popular (and increasingly standard) way for sharing your analyses and visualizations is to post an annotated explanation of your process somewhere online. RStudio allows you to publish rendered HTML files directly to RPubs, but you can also post your output to a blog or other type of website. Reading these kinds of posts is one of the best ways to learn R, since they walk you through each step of the process and show the code and output.\nHere are some of the best examples I’ve come across:\n\nText analysis of Trump’s tweets confirms he writes only the (angrier) Android half (with a follow-up)\nBob Ross - Joy of Painting\nBechdel analysis using the tidyverse: There are also a bunch of other examples using data from FiveThirtyEight.\nSexism on the Silver Screen: Exploring film’s gender divide\nComparison of Quentin Tarantino Movies by Box Office and the Bechdel Test\nWho came to vote in Utah’s caucuses?\nHealth care indicators in Utah counties\nSong lyrics across the United States\nA decade (ish) of listening to Sigur Rós\nWhen is Tom peeping these days?: There are a also bunch of final projects from other R and data visualization classes here and here.\nMapping Fall Foliage\nGeneral (Attys) Distributions\nDisproving Approval",
+    "crumbs": [
+      "Resources",
+      "R"
+    ]
+  },
+  {
+    "objectID": "resource/data.html",
+    "href": "resource/data.html",
+    "title": "Data",
     "section": "",
-    "text": "Introduction"
+    "text": "There are a ton of places to find data related to public policy and administration (as well as data on pretty much any topic you want) online:\n\nData is Plural newsletter: Jeremy Singer-Vine sends a weekly newsletter of the most interesting public datasets he’s found. You should subscribe to it. He also has an archive of all the datasets he’s highlighted.\nGoogle Dataset Search: Google indexes thousands of public datasets; search for them here.\nKaggle: Kaggle hosts machine learning competitions where people compete to create the fastest, most efficient, most predictive algorithms. A byproduct of these competitions is a host of fascinating datasets that are generally free and open to the public. See, for example, the European Soccer Database, the Salem Witchcraft Dataset or results from an Oreo flavors taste test.\n360Giving: Dozens of British foundations follow a standard file format for sharing grant data and have made that data available online.\nUS City Open Data Census: More than 100 US cities have committed to sharing dozens of types of data, including data about crime, budgets, campaign finance, lobbying, transit, and zoning. This site from the Sunlight Foundation and Code for America collects this data and rates cities by how well they’re doing.\nPolitical science and economics datasets: There’s a wealth of data available for political science- and economics-related topics:\n\nFrançois Briatte’s extensive curated lists: Includes data from/about intergovernmental organizations (IGOs), nongovernmental organizations (NGOs), public opinion surveys, parliaments and legislatures, wars, human rights, elections, and municipalities.\nThomas Leeper’s list of political science datasets: Good short list of useful datasets, divided by type of data (country-level data, survey data, social media data, event data, text data, etc.).\nErik Gahner’s list of political science datasets: Huge list of useful datasets, divided by topic (governance, elections, policy, political elites, etc.)",
+    "crumbs": [
+      "Resources",
+      "Data"
+    ]
+  },
+  {
+    "objectID": "2025/weeks/week01/page.html",
+    "href": "2025/weeks/week01/page.html",
+    "title": "🗓️ Week 01 - Introduction, Context & Key Concepts",
+    "section": "",
+    "text": "In this first week, we will cover what you can expect to learn from this course and the course logistics: all you need to know about the structure of the lectures, classes, assessments, and how we will interact throughout this course."
+  },
+  {
+    "objectID": "2025/weeks/week01/page.html#lecture-slides",
+    "href": "2025/weeks/week01/page.html#lecture-slides",
+    "title": "🗓️ Week 01 - Introduction, Context & Key Concepts",
+    "section": "👨‍🏫 Lecture Slides",
+    "text": "👨‍🏫 Lecture Slides\nEither click on the slide area below or click here to view it in fullscreen. Use your keypad to navigate the slides.\n\n\n\n\n🎥 Looking for lecture recordings? You can only find those on Moodle."
+  },
+  {
+    "objectID": "2025/weeks/week01/page.html#coursework",
+    "href": "2025/weeks/week01/page.html#coursework",
+    "title": "🗓️ Week 01 - Introduction, Context & Key Concepts",
+    "section": "✍️ Coursework",
+    "text": "✍️ Coursework\n🚧 Come back after the lecture to read the coursework instructions for the week 🚧"
+  },
+  {
+    "objectID": "2025/weeks/week01/page.html#recommended-reading",
+    "href": "2025/weeks/week01/page.html#recommended-reading",
+    "title": "🗓️ Week 01 - Introduction, Context & Key Concepts",
+    "section": "📚 Recommended Reading",
+    "text": "📚 Recommended Reading\n\nCheck the end of slides for the list of references cited in the lecture."
+  },
+  {
+    "objectID": "2025/weeks/week01/page.html#communication",
+    "href": "2025/weeks/week01/page.html#communication",
+    "title": "🗓️ Week 01 - Introduction, Context & Key Concepts",
+    "section": "📟 Communication",
+    "text": "📟 Communication\n\nIf you feel like it, introduce yourself in the #introductions channel on Slack"
+  },
+  {
+    "objectID": "2024/weeks/week04/slides04.html#to-complete",
+    "href": "2024/weeks/week04/slides04.html#to-complete",
+    "title": "Week 03Intro to Reproducible Research",
+    "section": "To Complete",
+    "text": "To Complete"
+  },
+  {
+    "objectID": "2024/index.html",
+    "href": "2024/index.html",
+    "title": "API209Summer Math Camp",
+    "section": "",
+    "text": "📢 Important\n\n\n\n\n\n(28/03/2024)\n\n🗓️ Week 03 lab material is now available!\n\n\n\n\n\n🧑🏻‍🏫 Our Team\n\nCourse ConvenorCourse Assistants\n\n\n\n\n\n\n\nProf. Dan Levy Harvard Kennedy School 📧 dan_levy at hks dot harvard dot edu\n\n\n\n\n\n\nTF Rony Rodriguez-Ramirez Harvard University 📧 rrodriguezramirez at g dot harvard dot edu\n\n\nOffice Hours (TF):\nHow to book:\n\n Schedule an appointment using Calendly\n\nWhere: Zoom\n\n\n\n\n\nAyush Shukla  MPA/ID Candidate 2025  📧 ayushshukla at hks dot harvard dot edu\n\nSara Wong Becerra  MPA/ID Candidate 2025  📧 EMAIL (swongbecerra at hks dot harvard dot edu)\n\nHussaini Shan-e-Abba  MPA/ID Candidate 2025  📧 hshaneabbas at hks dot harvard dot edu\n\n\n\n\n\n📍 Lessons/Hands-on Sessions/Labs\n\n Wexner 436. HKS",
+    "crumbs": [
+      "Math Camp 2024",
+      "Overview",
+      "🏠 Home"
+    ]
   },
   {
     "objectID": "2024/weeks/week03/slides03.html#why-reproducibility",
@@ -910,101 +969,54 @@
     "text": "Why the name “Quarto”?1\n\n\n\n\n\n\n\n\n\n\n\n\nWhy Quarto? From Posit “We wanted to use a name that had meaning in the history of publishing and landed on Quarto, which is the format of a book or pamphlet produced from full sheets printed with eight pages of text, four to a side, then folded twice to produce four leaves. The earliest known European printed book is a Quarto, the Sibyllenbuch, believed to have been printed by Johannes Gutenberg in 1452–53.”"
   },
   {
-    "objectID": "2024/index.html",
-    "href": "2024/index.html",
-    "title": "API209Summer Math Camp",
+    "objectID": "2024/weeks/week04/lab.html",
+    "href": "2024/weeks/week04/lab.html",
+    "title": "Lab 4: Statiscal Modeling",
     "section": "",
-    "text": "📢 Important\n\n\n\n\n\n(28/03/2024)\n\n🗓️ Week 03 lab material is now available!\n\n\n\n\n\n🧑🏻‍🏫 Our Team\n\nCourse ConvenorCourse Assistants\n\n\n\n\n\n\n\nProf. Dan Levy Harvard Kennedy School 📧 dan_levy at hks dot harvard dot edu\n\n\n\n\n\n\nTF Rony Rodriguez-Ramirez Harvard University 📧 rrodriguezramirez at g dot harvard dot edu\n\n\nOffice Hours (TF):\nHow to book:\n\n Schedule an appointment using Calendly\n\nWhere: Zoom\n\n\n\n\n\nAyush Shukla  MPA/ID Candidate 2025  📧 ayushshukla at hks dot harvard dot edu\n\nSara Wong Becerra  MPA/ID Candidate 2025  📧 EMAIL (swongbecerra at hks dot harvard dot edu)\n\nHussaini Shan-e-Abba  MPA/ID Candidate 2025  📧 hshaneabbas at hks dot harvard dot edu\n\n\n\n\n\n📍 Lessons/Hands-on Sessions/Labs\n\n Wexner 436. HKS",
+    "text": "Introduction"
+  },
+  {
+    "objectID": "2025/index.html",
+    "href": "2025/index.html",
+    "title": "MY_COURSE_CODE - MY_COURSE_NAME",
+    "section": "",
+    "text": "🧑🏻‍🏫 Our Team\n\nCourse ConvenorTeaching Staff\n\n\n\nMY_NAME  MY_JOB_TITLE  MY_INSTITUTION 📧 MY_EMAIL ( at )\nOffice Hours:\n\nWhen:\nWhere:\nHow to book:\n\n\n\n\nTA_NAME  PhD Candidate at PLACE  📧 EMAIL ( at )\n\nTA_NAME  PhD Candidate at PLACE  📧 EMAIL ( at )\n\n\n\n\n\n📍 Lecture\nFridays 2pm-4pm at PLACE\n\n\n💻 Class Groups\n\nGroup 01\n\n📆 Mondays\n⌚ 09:00 - 10:30\n📍\n🧑‍🏫 TA_NAME\n\n\n\nGroup 02\n\n📆 Mondays\n⌚ 10:30 - 12:00\n📍\n🧑‍🏫 TA_NAME\n\n\n\nGroup 03\n\n📆 Fridays\n⌚ 16:00 - 17:30\n📍\n🧑‍🏫 TA_NAME"
+  },
+  {
+    "objectID": "2025/weeks/week01/slides.html#your-lecturer",
+    "href": "2025/weeks/week01/slides.html#your-lecturer",
+    "title": "🗓️ Week 01 Introduction",
+    "section": "Your lecturer",
+    "text": "Your lecturer\n\n\n\n\n\nProf. Octopian Professor of Octopus Issues Head of the Python vs R Debate Society\n\n\n\n\nPhD in Octopi Engineering\nBackground: Engineering of Deep Ocean constructions\nFormer Lead Data Scientist\n\ndeep ocean  engineering  octopus"
+  },
+  {
+    "objectID": "2025/weeks/week01/slides.html#teaching-assistants",
+    "href": "2025/weeks/week01/slides.html#teaching-assistants",
+    "title": "🗓️ Week 01 Introduction",
+    "section": "Teaching Assistants",
+    "text": "Teaching Assistants\n\n\n\n\n\nOctopnuian Arveda  PhD Candidate at OctopusLab, OUN  MSc in Octopus Transportation 📧 \n\n\n\n\n\n\nOctopnuian Arveda  PhD Candidate at OctopusLab, UOS  MSc in Octopus Transportation 📧 \n\n\n\n\n\n\n\nMY_COURSE_CODE – MY_COURSE_NAME"
+  },
+  {
+    "objectID": "resource/index.html",
+    "href": "resource/index.html",
+    "title": "Helpful Resources",
+    "section": "",
+    "text": "Here are some resources and guides on graphic design, data visualization, R programming, and related topics. Most of these resources are coming from Prof. Andrew Heiss’ website.",
     "crumbs": [
-      "Math Camp 2024",
-      "Overview",
-      "🏠 Home"
+      "Resources",
+      "Helpful Resources"
     ]
   },
   {
-    "objectID": "2024/weeks/week04/slides04.html#to-complete",
-    "href": "2024/weeks/week04/slides04.html#to-complete",
-    "title": "Week 03Intro to Reproducible Research",
-    "section": "To Complete",
-    "text": "To Complete"
-  },
-  {
-    "objectID": "2025/weeks/week01/page.html",
-    "href": "2025/weeks/week01/page.html",
-    "title": "🗓️ Week 01 - Introduction, Context & Key Concepts",
+    "objectID": "resource/tidyverse.html",
+    "href": "resource/tidyverse.html",
+    "title": "Guide to Tidyverse Functions",
     "section": "",
-    "text": "In this first week, we will cover what you can expect to learn from this course and the course logistics: all you need to know about the structure of the lectures, classes, assessments, and how we will interact throughout this course."
-  },
-  {
-    "objectID": "2025/weeks/week01/page.html#lecture-slides",
-    "href": "2025/weeks/week01/page.html#lecture-slides",
-    "title": "🗓️ Week 01 - Introduction, Context & Key Concepts",
-    "section": "👨‍🏫 Lecture Slides",
-    "text": "👨‍🏫 Lecture Slides\nEither click on the slide area below or click here to view it in fullscreen. Use your keypad to navigate the slides.\n\n\n\n\n🎥 Looking for lecture recordings? You can only find those on Moodle."
-  },
-  {
-    "objectID": "2025/weeks/week01/page.html#coursework",
-    "href": "2025/weeks/week01/page.html#coursework",
-    "title": "🗓️ Week 01 - Introduction, Context & Key Concepts",
-    "section": "✍️ Coursework",
-    "text": "✍️ Coursework\n🚧 Come back after the lecture to read the coursework instructions for the week 🚧"
-  },
-  {
-    "objectID": "2025/weeks/week01/page.html#recommended-reading",
-    "href": "2025/weeks/week01/page.html#recommended-reading",
-    "title": "🗓️ Week 01 - Introduction, Context & Key Concepts",
-    "section": "📚 Recommended Reading",
-    "text": "📚 Recommended Reading\n\nCheck the end of slides for the list of references cited in the lecture."
-  },
-  {
-    "objectID": "2025/weeks/week01/page.html#communication",
-    "href": "2025/weeks/week01/page.html#communication",
-    "title": "🗓️ Week 01 - Introduction, Context & Key Concepts",
-    "section": "📟 Communication",
-    "text": "📟 Communication\n\nIf you feel like it, introduce yourself in the #introductions channel on Slack"
-  },
-  {
-    "objectID": "resource/data.html",
-    "href": "resource/data.html",
-    "title": "Data",
-    "section": "",
-    "text": "There are a ton of places to find data related to public policy and administration (as well as data on pretty much any topic you want) online:\n\nData is Plural newsletter: Jeremy Singer-Vine sends a weekly newsletter of the most interesting public datasets he’s found. You should subscribe to it. He also has an archive of all the datasets he’s highlighted.\nGoogle Dataset Search: Google indexes thousands of public datasets; search for them here.\nKaggle: Kaggle hosts machine learning competitions where people compete to create the fastest, most efficient, most predictive algorithms. A byproduct of these competitions is a host of fascinating datasets that are generally free and open to the public. See, for example, the European Soccer Database, the Salem Witchcraft Dataset or results from an Oreo flavors taste test.\n360Giving: Dozens of British foundations follow a standard file format for sharing grant data and have made that data available online.\nUS City Open Data Census: More than 100 US cities have committed to sharing dozens of types of data, including data about crime, budgets, campaign finance, lobbying, transit, and zoning. This site from the Sunlight Foundation and Code for America collects this data and rates cities by how well they’re doing.\nPolitical science and economics datasets: There’s a wealth of data available for political science- and economics-related topics:\n\nFrançois Briatte’s extensive curated lists: Includes data from/about intergovernmental organizations (IGOs), nongovernmental organizations (NGOs), public opinion surveys, parliaments and legislatures, wars, human rights, elections, and municipalities.\nThomas Leeper’s list of political science datasets: Good short list of useful datasets, divided by type of data (country-level data, survey data, social media data, event data, text data, etc.).\nErik Gahner’s list of political science datasets: Huge list of useful datasets, divided by topic (governance, elections, policy, political elites, etc.)",
+    "text": "Introduction\nThe Tidyverse is a collection of R packages designed for data science, offering powerful tools for data manipulation, exploration, and visualization. The functions within the Tidyverse are well-documented, and you can easily access detailed information by using ?function_name in the R console, or help(function_name). For instance, typing ?mutate will bring up the documentation for the mutate function.\n\n\nTidyverse Functions\n\n\n\n\n\n\n\n\nFunction\nExample Usage\nDescription\n\n\n\n\nfilter\nfilter(df, condition)\nSubsets rows in a data frame based on a condition.\n\n\nselect\nselect(df, column1, column2)\nSelects specific columns from a data frame.\n\n\nmutate\nmutate(df, new_column = expression)\nAdds new variables or transforms existing ones based on an expression.\n\n\narrange\narrange(df, column)\nReorders rows of a data frame according to one or more columns.\n\n\nsummarize\nsummarize(df, new_column = summary_func)\nReduces multiple values down to a single summary (e.g., mean, sum) for each group.\n\n\ngroup_by\ngroup_by(df, column)\nGroups the data by one or more variables to perform summary functions or operations by group.\n\n\nleft_join\nleft_join(df1, df2, by = \"column\")\nJoins two data frames by a common column, keeping all rows from the first data frame.\n\n\nright_join\nright_join(df1, df2, by = \"column\")\nJoins two data frames by a common column, keeping all rows from the second data frame.\n\n\ninner_join\ninner_join(df1, df2, by = \"column\")\nJoins two data frames by a common column, keeping only rows with matches in both data frames.\n\n\nfull_join\nfull_join(df1, df2, by = \"column\")\nJoins two data frames by a common column, keeping all rows from both data frames.\n\n\nanti_join\nanti_join(df1, df2, by = \"column\")\nReturns rows from the first data frame that do not have matches in the second data frame.\n\n\nsemi_join\nsemi_join(df1, df2, by = \"column\")\nReturns rows from the first data frame that have matches in the second data frame.\n\n\nbind_rows\nbind_rows(df1, df2)\nCombines multiple data frames by rows.\n\n\nbind_cols\nbind_cols(df1, df2)\nCombines multiple data frames by columns.\n\n\npivot_longer\npivot_longer(df, cols, names_to, values_to)\nConverts data from wide to long format.\n\n\npivot_wider\npivot_wider(df, names_from, values_from)\nConverts data from long to wide format.\n\n\nrename\nrename(df, new_name = old_name)\nRenames columns in a data frame.\n\n\nrename_with\nrename_with(df, .fn, .cols = everything())\nRenames columns using a function.\n\n\ndistinct\ndistinct(df, column)\nReturns distinct rows of a data frame based on one or more columns.\n\n\nslice\nslice(df, n)\nSelects rows by position.\n\n\nslice_head\nslice_head(df, n = 5)\nSelects the first n rows of a data frame.\n\n\nslice_tail\nslice_tail(df, n = 5)\nSelects the last n rows of a data frame.\n\n\nslice_sample\nslice_sample(df, n = 10)\nRandomly selects n rows from a data frame.\n\n\nslice_min\nslice_min(df, column)\nSelects the rows with the minimum value of a column.\n\n\nslice_max\nslice_max(df, column)\nSelects the rows with the maximum value of a column.\n\n\npull\npull(df, column)\nExtracts a single column from a data frame as a vector.\n\n\ncount\ncount(df, column)\nCounts the number of occurrences for each unique value of a column.\n\n\nn\nsummarize(df, count = n())\nReturns the number of rows in each group.\n\n\nn_distinct\nsummarize(df, unique_count = n_distinct(column))\nCounts the number of distinct values in a column.\n\n\nif_else\nmutate(df, new_column = if_else(condition, true, false))\nVectorized conditional operation.\n\n\ncase_when\nmutate(df, new_column = case_when(condition1 ~ result1, condition2 ~ result2))\nMultiple conditional operations, similar to if_else, but with more flexibility.\n\n\ncoalesce\nmutate(df, new_column = coalesce(column1, column2))\nReturns the first non-missing value in a set of columns.\n\n\nbetween\nfilter(df, between(column, lower, upper))\nFilters rows where a column value falls between two boundaries.\n\n\nall_of\nselect(df, all_of(c(\"column1\", \"column2\")))\nSelects columns by name from a vector of names.\n\n\nany_of\nselect(df, any_of(c(\"column1\", \"column2\")))\nSelects columns by name from a vector of names, ignoring missing columns.\n\n\neverything\nselect(df, everything())\nSelects all columns in a data frame.\n\n\nrelocate\nrelocate(df, column1, .before = column2)\nChanges the order of columns in a data frame.\n\n\nseparate\nseparate(df, column, into = c(\"col1\", \"col2\"), sep = \"-\")\nSplits a single column into multiple columns based on a separator.\n\n\nunite\nunite(df, new_column, col1, col2, sep = \"-\")\nCombines multiple columns into a single column.\n\n\ncrossing\ncrossing(df1, df2)\nCreates a data frame with all combinations of rows from the input data frames.\n\n\nexpand_grid\nexpand_grid(col1 = 1:3, col2 = letters[1:3])\nCreates a data frame with all combinations of values in the input vectors.\n\n\nnest\nnest(df, data = c(column1, column2))\nConverts a data frame into a nested data frame, where columns are combined into a list-column.\n\n\nunnest\nunnest(df, data)\nExpands a list-column back into regular columns.\n\n\nmap\nmap(vector, function)\nApplies a function to each element of a list or vector.\n\n\nmap_df\nmap_df(vector, function)\nApplies a function to each element of a list or vector and returns the results as a data frame.\n\n\nreduce\nreduce(list, function)\nCombines elements of a list using a binary function (e.g., sum, union).\n\n\naccumulate\naccumulate(vector, function)\nSequentially applies a binary function to the elements of a vector, returning all intermediate results.\n\n\n\n\n\nggplot2 Components\nggplot2 is a powerful and flexible package for creating data visualizations in R. It is part of the Tidyverse and is based on the grammar of graphics, which allows you to build complex plots layer by layer. The core function in ggplot2 is ggplot(), which initializes a plot object that can be built upon using various components like geoms, scales, aesthetics, and labels.\nTo learn more about each function, you can use ?function_name or help(function_name) in the R console.\n\n\n\n\n\n\n\n\nComponent\nExample Usage\nDescription\n\n\n\n\nggplot\nggplot(data, aes(x = var1, y = var2))\nInitializes a ggplot object with data and mappings for aesthetics.\n\n\naes\naes(x = var1, y = var2, color = var3)\nSpecifies the aesthetic mappings (e.g., x and y axes, colors, sizes).\n\n\ngeom_point\ngeom_point()\nAdds a scatter plot layer to the plot.\n\n\ngeom_line\ngeom_line()\nAdds a line plot layer to the plot.\n\n\ngeom_bar\ngeom_bar(stat = \"identity\")\nAdds a bar plot layer to the plot. The stat = \"identity\" argument tells ggplot to use actual values.\n\n\ngeom_histogram\ngeom_histogram(binwidth = 1)\nAdds a histogram layer to the plot, with a specified bin width.\n\n\ngeom_boxplot\ngeom_boxplot()\nAdds a boxplot layer to the plot.\n\n\ngeom_smooth\ngeom_smooth(method = \"lm\")\nAdds a smoothed line (e.g., regression line) to the plot. The method = \"lm\" argument fits a linear model.\n\n\ngeom_col\ngeom_col()\nAdds a bar plot layer to the plot, similar to geom_bar() but without a default stat.\n\n\ngeom_density\ngeom_density()\nAdds a density plot layer to the plot, showing the distribution of a continuous variable.\n\n\ngeom_jitter\ngeom_jitter(width = 0.1, height = 0.1)\nAdds a jittered scatter plot layer, useful for avoiding overplotting by adding small random noise.\n\n\nscale_x_continuous\nscale_x_continuous(limits = c(0, 100))\nAdjusts the x-axis scale for continuous data, with specified limits.\n\n\nscale_y_continuous\nscale_y_continuous(limits = c(0, 100))\nAdjusts the y-axis scale for continuous data, with specified limits.\n\n\nscale_fill_manual\nscale_fill_manual(values = c(\"red\", \"blue\"))\nManually sets the fill colors for a plot, typically used with discrete variables.\n\n\nscale_color_manual\nscale_color_manual(values = c(\"red\", \"blue\"))\nManually sets the colors for lines, points, etc., typically used with discrete variables.\n\n\nscale_x_date\nscale_x_date(date_labels = \"%b %Y\")\nAdjusts the x-axis scale for date data, with custom date labels.\n\n\nscale_x_log10\nscale_x_log10()\nSets the x-axis scale to a logarithmic scale (base 10).\n\n\nlabs\nlabs(title = \"Title\", x = \"X-axis label\", y = \"Y-axis label\")\nAdds or customizes titles and axis labels for the plot.\n\n\ntheme\ntheme(axis.text.x = element_text(angle = 45))\nCustomizes the appearance of the plot, including text, axis labels, legends, and more.\n\n\ntheme_minimal\ntheme_minimal()\nApplies a minimalistic theme to the plot, with fewer gridlines and a clean look.\n\n\ntheme_classic\ntheme_classic()\nApplies a classic theme with a simple, clean appearance, similar to base R plots.\n\n\nfacet_wrap\nfacet_wrap(~ variable)\nCreates a grid of plots, with each plot representing a subset of the data based on a variable.\n\n\nfacet_grid\nfacet_grid(rows ~ cols)\nCreates a grid of plots, with rows and columns determined by two different variables.\n\n\ncoord_flip\ncoord_flip()\nFlips the x and y axes, useful for horizontal bar plots.\n\n\ncoord_cartesian\ncoord_cartesian(xlim = c(0, 100), ylim = c(0, 50))\nZooms in on a specific area of the plot by setting limits on the x and y axes.\n\n\ncoord_polar\ncoord_polar(theta = \"x\")\nConverts a plot into polar coordinates, useful for creating pie charts or circular bar plots.\n\n\nannotate\nannotate(\"text\", x = 5, y = 10, label = \"Note\")\nAdds annotations such as text, shapes, or arrows to the plot.\n\n\nggsave\nggsave(\"plot.png\", plot = last_plot())\nSaves the last plot created to a file, with options for file type, size, and resolution.\n\n\n\n\n\nConclusion\nThe Tidyverse provides a comprehensive set of functions for data manipulation, making it easier to work with data in R. This guide covers many of the core functions you’ll use in your data analysis tasks. Always refer to the documentation to explore additional arguments and use cases for each function.",
     "crumbs": [
       "Resources",
-      "Data"
-    ]
-  },
-  {
-    "objectID": "resource/r.html",
-    "href": "resource/r.html",
-    "title": "R",
-    "section": "",
-    "text": "I highly recommend subscribing to the R Weekly newsletter. This e-mail is sent every Monday and is full of helpful tutorials about how to do stuff with R.\nSearching for help with R on Google can sometimes be tricky because the program name is a single letter. Google is generally smart enough to figure out what you mean when you search for “r scatterplot”, but if it does struggle, try searching for “rstats” instead (e.g. “rstats scatterplot”). Also, since most of your R work in this class will deal with {ggplot2}, it’s often easier to just search for that instead of the letter “r” (e.g. “ggplot scatterplot”).\nIf you use Twitter, post R-related questions and content with #rstats. The community there is exceptionally generous and helpful. Also check out StackOverflow (a Q&A site with hundreds of thousands of answers to all sorts of programming questions) and RStudio Community (a forum specifically designed for people using RStudio and the tidyverse (i.e. you)).\nThese resources are also really really helpful:\n\nR for Data Science: A free online book for learning the basics of R and the tidyverse.\nR and RStudio cheat sheets: A large collection of simple cheat sheets for RStudio, {ggplot2}, and other R-related things.\nStat 545: Dr. Jenny Bryan at RStudio has an entire introductory course in R, visualization, and data analysis online.\nSTA 112FS: Data Science: Dr. Mine Çetinkaya-Rundel at the University of Edinburgh / Duke University has an entire introductory course in R, visualization, and data science online.\nCSE 631: Principles & Practice of Data Visualization: Yet another introductory course for R and ggplot2 by Dr. Alison Presmanes Hill at RStudio.",
-    "crumbs": [
-      "Resources",
-      "R"
-    ]
-  },
-  {
-    "objectID": "resource/r.html#learning-r",
-    "href": "resource/r.html#learning-r",
-    "title": "R",
-    "section": "",
-    "text": "I highly recommend subscribing to the R Weekly newsletter. This e-mail is sent every Monday and is full of helpful tutorials about how to do stuff with R.\nSearching for help with R on Google can sometimes be tricky because the program name is a single letter. Google is generally smart enough to figure out what you mean when you search for “r scatterplot”, but if it does struggle, try searching for “rstats” instead (e.g. “rstats scatterplot”). Also, since most of your R work in this class will deal with {ggplot2}, it’s often easier to just search for that instead of the letter “r” (e.g. “ggplot scatterplot”).\nIf you use Twitter, post R-related questions and content with #rstats. The community there is exceptionally generous and helpful. Also check out StackOverflow (a Q&A site with hundreds of thousands of answers to all sorts of programming questions) and RStudio Community (a forum specifically designed for people using RStudio and the tidyverse (i.e. you)).\nThese resources are also really really helpful:\n\nR for Data Science: A free online book for learning the basics of R and the tidyverse.\nR and RStudio cheat sheets: A large collection of simple cheat sheets for RStudio, {ggplot2}, and other R-related things.\nStat 545: Dr. Jenny Bryan at RStudio has an entire introductory course in R, visualization, and data analysis online.\nSTA 112FS: Data Science: Dr. Mine Çetinkaya-Rundel at the University of Edinburgh / Duke University has an entire introductory course in R, visualization, and data science online.\nCSE 631: Principles & Practice of Data Visualization: Yet another introductory course for R and ggplot2 by Dr. Alison Presmanes Hill at RStudio.",
-    "crumbs": [
-      "Resources",
-      "R"
-    ]
-  },
-  {
-    "objectID": "resource/r.html#r-in-the-wild",
-    "href": "resource/r.html#r-in-the-wild",
-    "title": "R",
-    "section": "R in the wild",
-    "text": "R in the wild\nA popular (and increasingly standard) way for sharing your analyses and visualizations is to post an annotated explanation of your process somewhere online. RStudio allows you to publish rendered HTML files directly to RPubs, but you can also post your output to a blog or other type of website. Reading these kinds of posts is one of the best ways to learn R, since they walk you through each step of the process and show the code and output.\nHere are some of the best examples I’ve come across:\n\nText analysis of Trump’s tweets confirms he writes only the (angrier) Android half (with a follow-up)\nBob Ross - Joy of Painting\nBechdel analysis using the tidyverse: There are also a bunch of other examples using data from FiveThirtyEight.\nSexism on the Silver Screen: Exploring film’s gender divide\nComparison of Quentin Tarantino Movies by Box Office and the Bechdel Test\nWho came to vote in Utah’s caucuses?\nHealth care indicators in Utah counties\nSong lyrics across the United States\nA decade (ish) of listening to Sigur Rós\nWhen is Tom peeping these days?: There are a also bunch of final projects from other R and data visualization classes here and here.\nMapping Fall Foliage\nGeneral (Attys) Distributions\nDisproving Approval",
-    "crumbs": [
-      "Resources",
-      "R"
+      "Guides",
+      "Comprehensive Guide to Tidyverse Functions"
     ]
   },
   {
