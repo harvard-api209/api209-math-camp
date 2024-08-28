@@ -1,5 +1,151 @@
 ---
 title: "Lab 3: Simulating a Problem Set for Fall Semester"
-date: "2024-08-28"
+date: "2024-08-27"
+output: html_document
 ---
+
+
+# Introduction
+
+In this lab, we aim to verify the information presented in an article by *The Economist* titled ["Donald Trump is now the oldest candidate to run for president"](https://www.economist.com/graphic-detail/2024/07/25/donald-trump-is-now-the-oldest-candidate-to-run-for-president). The article discusses the age of legislators across various OECD countries, comparing it to the average age of the population. Our task is to analyze the data, clean it, and generate visualizations that compare the average age of elected legislators with the median age of the population in selected countries. This exercise will also help you develop skills that are essential for your problem sets in the upcoming fall semester. Please follow the instructions carefully, and remember to comment your code where necessary.
+
+## Setup
+
+Before you begin, make sure you have the following packages installed. If any of them are not installed, you can install them using `install.packages()`.
+
+```{r}
+#| message: false
+#| warning: false
+# YOUR CODE HERE:
+# Load necessary packages
+```
+
+## PART A: Data Cleaning
+
+1. **Load the Data**
+Start by loading the data from a CSV file. Use the `clean_names()` function from the `janitor` package to clean the column names.
+
+```{r}
+# YOUR CODE HERE:
+```
+
+2. **Explore the Data**
+
+Use the `glimpse()` function to get an overview of the dataset.
+
+```{r}
+# YOUR CODE HERE:
+```
+
+3. **Filter the Data**
+
+We are interested in a subset of countries. I am providing you with a list of countries based on a visualization done by The Economists. 
+Select the countries provided and filter the data based on `chamber_type` and `structure_of_parliament`. Keep only the upper chambers for bicameral countries and the unicameral countries. Assign the result to the object `parliament_filtered`.
+
+```{r}
+# Countries Vector
+countries <- c(
+ "United States of America", "Japan", "South Korea", 
+ "Greece", "France", "Israel", "Spain", 
+ "Australia", "Italy", "Canada", "United Kingdom", 
+ "Slovenia", "Switzerland", "Chile", "Mexico", 
+ "New Zealand", "Slovakia", "Germany", "Ireland", 
+ "Austria", "Finland", "Norway", "Colombia", 
+ "Belgium", "Denmark"
+)
+
+# YOUR CODE HERE:
+```
+
+4. **Convert Date and Extract Year**
+
+You need to convert the last_election column from character to date format using the mdy() function from lubridate, and then extract the year using the year() function. After converting the date, check the year range in your dataset using the range() function to ensure the dates were correctly processed. Re-assign (or Update) the `parliament_filtered` object. Why do you get some warnings?
+
+```{r}
+# YOUR CODE HERE:
+```
+
+5. **Identify Missing Data**
+
+   Some countries have missing `last_election` data. Use the filter function and the pull function to identify these countries. Assign the result to the object `missing_data`
+
+```{r}
+# YOUR CODE HERE:
+```
+
+*Optional:* Use the `glue::glue_collapse()` function to display the missing data inline. You will need to install the glue package.
+
+6. **Count Chamber Types**
+
+Count the occurrences of each `chamber` type and arrange them in descending order.
+
+```{r}
+# YOUR CODE HERE:
+```
+
+## PART B: Data Visualization
+
+1. **Plot the Data**
+
+   We are going to plot our data. Our goal is to get as close as possible to the original plot from the Economist that looks like this:
+
+   ![](https://raw.githubusercontent.com/harvard-api209/api209-math-camp/826db07fb4c6eca6575d047565bd9329cf4714d2/2024/weeks/week03/img/econplot.png)
+
+   Start by ensuring the `average_age` column is numeric. Then, create a scatter plot with `average_age` on the x-axis and `country` on the y-axis, ordering the countries from top to bottom by average age. Use `scale_x_continous` with the following arguments `limits = c(30,90, breks = seq(30,90,10))`.
+
+```{r}
+# YOUR CODE HERE:
+```
+
+2. **Compare with Population Data**
+
+We are going to use data from UN. First, you will need to load and clean the var names of the data, filter it for the selected countries, and keep only the 2023 data.
+
+*Careful*: "United States of America" appears as United States in this dataset. So, be careful when you use filter. The country variable in this dataset is called `entity` you can use `select()` to select entity and median_age while also renaming entity as country as follows: `select(country = entity, median_age)`. Finally, use the `ifelse()` in a `mutate()` function to change "United States" to "United States of America."
+
+```{r}
+# YOUR CODE HERE:
+```
+
+3. **Merge Datasets**
+
+Merge the filtered parliament data with the median age data using a left join. You should merge it by using "country" as our key variable.
+
+```{r}
+# YOUR CODE HERE:
+```
+
+4. **Create a Comparative Plot** (DIFFICULT)
+
+Create a Comparative Plot
+
+In this exercise, you will be creating a complex and informative plot that compares the average age of legislators and the population across different countries. This exercise involves multiple steps, and while it may be challenging, it will reinforce your skills in data manipulation and visualization using R.
+
+- Step 1: Start by converting the `average_age` variable to a numeric format. This is crucial because the data needs to be in numeric format for plotting and further manipulation.
+
+- Step 2: Use the `pivot_longer()` function to reshape the data from a wide format to a long format. This transformation is necessary to facilitate plotting both the legislators' and the population's average ages on the same graph.
+
+- Step 3: Group the data by country using `group_by()`. This grouping allows you to perform operations within each country separately. After grouping, modify the name column to clearly label the values as either "Legislators" or "Population". This is done using the `ifelse()` function.
+
+- Step 4: Calculate the order_value for each country, which will be the maximum age value for legislators. This value is used to order the countries on the y-axis of the plot, ensuring that the plot is organized by the average age of legislators. This part is difficult, so here it is code you need to include inside the `mutate()` function: 
+
+```
+order_value = max(value[name == "Legislators"])
+```
+
+- Step 5: Ungroup the data using ungroup(). Ungrouping ensures that the subsequent operations, like reordering the countries, are applied to the entire dataset, not within the grouped subsets.
+
+- Step 6: Reorder the countries on the y-axis based on the order_value calculated earlier. This step will ensure that the countries are displayed in order of the legislators' average age.
+
+- Step 7: Create the plot using ggplot(). Map the x-axis to value, the y-axis to country, and color the points based on name (Legislators vs Population). The plot will visually compare the ages of legislators and the population across countries, with countries ordered by legislators' average age.
+
+- Step 8: Customize the plot for better clarity and aesthetics. Set the x-axis limits and breaks using `scale_x_continuous()` and customize the color scheme using `scale_colour_manual()`. Add labels for the plot title, subtitle, and caption, and adjust the legend and other theme elements for a polished final appearance.
+
+```{r}
+# YOUR CODE HERE:
+```
+
+# Conclusion
+
+In this lab, we explored how to clean and visualize data using R. By following these steps, you should have a good understanding of how to approach similar problem sets in your fall semester.
 
