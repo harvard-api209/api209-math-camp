@@ -1,18 +1,482 @@
 ---
-title: "<font style='font-size:1em;'>Week 03<br/>Intro to Reproducible Research</font>"
+title: "<font style='font-size:1em;'>Week 04<br/>RECAP & Quarto</font>"
 subtitle: "API209: Summer Math Camp"
 format: 
   clean-api-revealjs:
-    self-contained: true
     highlight-style: breeze
-html-math-method:
-  method: mathjax
-  url: "https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"
+    transition: fade
 author:
   - name: Rony Rodrigo Maximiliano Rodriguez-Ramirez
     email: rrodriguezramirez@g.harvard.edu
     affiliations: "Harvard University"
-date: 26 August 2024 
+date: last-modified
+engine: knitr
+filters:
+  - naquiz
 ---
 
-## To Complete
+```{r}
+library(tidyverse)
+library(countdown)
+library(gapminder)
+```
+
+```{r font-awesome-color}
+# fill for font awesome icons
+fa_fill <- "#C90016"
+```  
+  
+# RECAP
+
+## First week!
+
+<center>
+![](img/meme.jpg)
+</center>
+
+## From the top! 
+
+* I am aiming to cover the *essentials.* 
+  - Recap about *essential* functions. (1 hour)
+  - Recap about *Quarto* document. (1 hour)
+  - Q&A (Rest of the session)
+
+## Checklist
+
+`r fontawesome::fa("check", fill = fa_fill)` R installed?
+
+     Current version 4.4.1
+
+`r fontawesome::fa("check", fill = fa_fill)` RStudio installed?
+
+     I'm on RStudio 2024.04.2+764 -- This one has Quarto already installed.
+
+`r fontawesome::fa("check", fill = fa_fill)` Have these packages?
+
+     `tidyverse`. For the PSet, you may use the `sf` package for maps.
+
+## Full Hands-on
+
+- Today, we are going 1 by 1. 
+- I am going to present you with direct tips (and, maybe, hints) and; 
+- We are going to organize our scripts and/or quarto documents at the same time.
+
+## Tips for the Recap Session
+
+- Follow along: Try running the code as we go through each example.
+- Ask questions: There’s no such thing as a bad question—this is a learning space!
+- Take notes: Writing down key points will help solidify your understanding.
+
+## Loading Packages and Data
+
+- What do we do first?
+- We, *always*, begin by loading the necessary packages. 
+- For this set of exercises, we are going to use the starwars dataset. 
+- It should be already preloaded since it is part of the tidyverse package.
+
+## Loading packages and data
+
+So our first chunk (or lines of code) should look like this:
+
+```{r}
+countdown(
+  minutes = 0,
+  seconds = 30,
+  font_size = "1em",
+  bottom = 0,
+  warn_when = 5, 
+  blink_colon = TRUE
+  )
+```
+
+. . .
+
+```{r}
+#| echo: true
+library(tidyverse)
+```
+
+. . .
+
+We can call the `starwars` dataset by its name. 
+
+. . .
+
+```{r}
+#| echo: true
+starwars
+```
+
+You know already some functions to check the data. 
+
+## Which option would get the you total height?
+
+:::::{.question}
+
+::::{.choices}
+
+:::{.choice}
+`sum(var)`
+:::  
+
+:::{.choice .correct-choice}
+`sum(dataset$var, na.rm = TRUE`)
+:::
+
+:::{.choice}
+`starwars |> sum(height)`
+:::
+
+:::{.choice}
+`starwars |> sum(height, na.rm = TRUE)` 
+:::
+
+::::
+:::::
+
+```{r}
+countdown(
+  minutes = 0,
+  seconds = 30,
+  font_size = "1em",
+  bottom = 0,
+  warn_when = 5, 
+  blink_colon = TRUE
+  )
+```
+
+## Similarly, which option would get you the average height?
+
+:::::{.question}
+
+::::{.choices}
+
+:::{.choice}
+`mean(var)`
+:::  
+
+:::{.choice .correct-choice}
+`mean(dataset$var, na.rm = TRUE`)
+:::
+
+:::{.choice}
+`starwars |> mean(height)`
+:::
+
+:::{.choice}
+`starwars |> mean(height, na.rm = TRUE)` 
+:::
+
+::::
+:::::
+
+```{r}
+countdown(
+  minutes = 0,
+  seconds = 30,
+  font_size = "1em",
+  bottom = 0,
+  warn_when = 5, 
+  blink_colon = TRUE
+  )
+```
+
+## Summing Values
+
+```{r}
+#| echo: true
+# Sum of height for all characters
+total_height <- sum(starwars$height, na.rm = TRUE)
+total_height
+```
+
+- We use the `sum()` function to calculate the total height of all characters in the dataset. The `na.rm = TRUE` option ensures missing values are ignored.
+- Notice that in this case I am assigning (`<-`) the result to an object.
+
+. . .
+
+In this specific exercise, we don't really care about the result since there is no actual meaning. 
+
+---
+
+## Creating New Variables 
+
+What do we use if we want to create new variables?
+
+. . .
+
+`mutate`. Let's use `mass` and `height` from the dataset to create a `bmi` variable. You can google the formula if you don't know how to estimate the bmi.
+
+```{r}
+countdown(
+  minutes = 1,
+  seconds = 30,
+  font_size = "1em",
+  bottom = 0,
+  warn_when = 5, 
+  blink_colon = TRUE
+  )
+```
+
+. . .
+
+```{r}
+#| echo: true
+starwars <- starwars |> 
+  mutate(bmi = mass / (height / 100)^2)
+
+```
+
+Using `mutate()`, we create a new column `bmi`, which calculates the Body Mass Index (BMI) for each character based on their mass and height.
+
+---
+
+## Subseting our data
+
+Which function we use to subset our dataset (from the `tidyverse` package)?
+
+. . .
+
+- `filter` 
+- Imaging that you would like to get only the characters that are tall (i.e., > 200). How do we do it? Assign it to the object `tall_characters`.
+
+
+```{r}
+countdown(
+  minutes = 1,
+  seconds = 30,
+  font_size = "1em",
+  bottom = 0,
+  warn_when = 5, 
+  blink_colon = TRUE
+  )
+```
+
+. . .
+
+```{r}
+#| echo: true
+# Filter characters with height greater than 200
+tall_characters <- starwars |> 
+  filter(height > 200)
+tall_characters
+```
+
+The `filter()` function is used to select characters whose height is greater than 200 cm.
+
+## Sorting
+
+Use the same object, i.e., `tall_characters` to sort the characters. Number 1 should be the tallest chracter.
+
+
+```{r}
+countdown(
+  minutes = 1,
+  seconds = 30,
+  font_size = "1em",
+  bottom = 0,
+  warn_when = 5, 
+  blink_colon = TRUE
+  )
+```
+
+. . .
+
+```{r}
+#| echo: true
+tall_characters |> 
+  arrange(desc(height)) |> 
+  select(name, height)
+```
+
+. . .
+
+Extra optional question: 
+
+What's the difference between `select` and `filter`?
+
+## Grouping and Summarizing Data
+
+Now, imagine we would like to know the average height by species in this universe. How do we do it?
+
+```{r}
+countdown(
+  minutes = 1,
+  seconds = 30,
+  font_size = "1em",
+  bottom = 0,
+  warn_when = 5, 
+  blink_colon = TRUE
+  )
+```
+
+. . .
+
+```{r}
+#| echo: true
+#| eval: false
+# Think in steps.
+avg_height <- starwars |> 
+  func(___) |> 
+  func(___ = ___(___, na.rm = TRUE))
+
+avg_height
+```
+
+## Grouping and Summarizing Data
+
+Now, imagine we would like to know the average height by species in this universe. How do we do it?
+
+. . .
+
+```{r}
+#| echo: true
+#| eval: true
+# Group by species and summarize average height
+avg_height <- starwars |> 
+  group_by(species) |> 
+  summarise(avg_height = mean(height, na.rm = TRUE))
+avg_height
+```
+
+## Which spicies has the largest average height?
+
+. . .
+
+```{r}
+countdown(
+  minutes = 1,
+  seconds = 30,
+  font_size = "1em",
+  bottom = 0,
+  warn_when = 5, 
+  blink_colon = TRUE
+  )
+```
+
+```{r}
+#| echo: true
+
+avg_height |> 
+  arrange(desc(avg_height)) |> 
+  head(1) |> 
+  pull(species)
+```
+
+
+## The Quermian
+
+<center>
+![](https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/c6c29bd6-d988-4414-94da-81adb5898a8b/d482x31-342ae217-4fde-4600-ac57-bf6f0b761d86.jpg/v1/fill/w_761,h_1050,q_70,strp/xexto_and_quermian_by_ryan_rhodes_d482x31-pre.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7ImhlaWdodCI6Ijw9MTI0MiIsInBhdGgiOiJcL2ZcL2M2YzI5YmQ2LWQ5ODgtNDQxNC05NGRhLTgxYWRiNTg5OGE4YlwvZDQ4MngzMS0zNDJhZTIxNy00ZmRlLTQ2MDAtYWM1Ny1iZjZmMGI3NjFkODYuanBnIiwid2lkdGgiOiI8PTkwMCJ9XV0sImF1ZCI6WyJ1cm46c2VydmljZTppbWFnZS5vcGVyYXRpb25zIl19.-W9KfQH5COQFuMuGoNkFhooY5KDrfsvkSMrZbnYldsw){width=500}
+</center>
+
+
+## Visualization with `ggplot2`
+
+Let's visualize the tallest characters. use the object `tall_characters` to create a plot of the character name (categorical, y axis) vs their height (x axis).
+
+```{r}
+countdown(
+  minutes = 5,
+  seconds = 0,
+  font_size = "1em",
+  bottom = 0,
+  blink_colon = TRUE
+)
+```
+
+. . .
+
+
+```{r}
+#| echo: true
+#| output-location: slide
+tall_characters |> 
+  ggplot(
+    aes(
+      x = height,
+      y = name
+    )
+  ) +
+  geom_col(color = "black", fill = "grey") +
+  labs(title = "Top 10 tallest characters in this dataset") +
+  theme_minimal()
+```
+
+## How do we arrange the plot? 
+
+You can use google. Hint: `factor()`
+
+```{r}
+countdown(
+  minutes = 5,
+  seconds = 0,
+  font_size = "1em",
+  bottom = 0,
+  blink_colon = TRUE
+)
+```
+
+. . .
+
+```{r}
+#| echo: true
+#| output-location: slide
+tall_characters |> 
+  arrange(height) |> 
+  mutate(name = factor(name, levels = name)) |> 
+  ggplot(
+    aes(
+      x = height,
+      y = name
+    )
+  ) +
+  geom_col(color = "black", fill = "grey") +
+  labs(title = "Top 10 tallest characters in this dataset") +
+  theme_minimal()
+```
+
+
+# Quarto
+
+## Quarto Tip 1: Always Render Your Document
+
+- **Render frequently**: Make sure to render your Quarto document often to catch issues early.
+- Use the **Render button** in RStudio or type `Ctrl + Shift + K` on your keyboard. `Cmd + Shift + K` on Mac.
+- Rendering ensures your code works and produces the correct output before you submit or share your document.
+
+## Quarto Tip 2: Loading Packages Correctly
+
+- **Load your packages at the top of the document**. This makes sure that all the functions you need are available when you run your code.
+  
+Example:
+
+```r
+library(tidyverse)
+```
+
+- If a package isn’t loaded, the functions from that package won’t work, leading to errors in your document.
+
+
+## Quarto Tip 3: Code and Answer Boxes
+
+- In your problem set, you'll often see two boxes:
+  - **Your code here**: This is where you’ll write and run your R code.
+  - **Your answer here**: This is where you’ll explain your results or interpretations in plain text.
+  
+Example:
+```{r}
+#| echo: true
+# Your code here
+starwars |> 
+  select(name, height)
+```
+
+## Quarto Tip 4: Using the Visual Editor
+
+- Quarto provides a **visual editor** to make writing markdown easier. 
+- You can access it by clicking the **Visual** button at the top of your document.
+- The visual editor helps format your text, add headings, lists, and code chunks without needing to remember the exact markdown syntax.
+
+# That's it! Good Luck!
+

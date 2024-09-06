@@ -51,7 +51,7 @@ website:
         - section: "Resources"
           contents:
             - resource/index.qmd
-            - resource/visualization.qmdli
+            - resource/visualization.qmd
             - resource/r.qmd
             - resource/style.qmd
             - resource/data.qmd
@@ -120,7 +120,12 @@ website:
               - href: 2024/weeks/week03/hands-on.qmd
                 text: 💻 Hands-on Session
               - href: 2024/weeks/week03/lab.qmd
-                text: 🧪 Lab                              
+                text: 🧪 Lab  
+          - text: Week 04
+            href: 2024/weeks/week04/page.qmd
+            contents:
+              - href: 2024/weeks/week04/page.qmd
+                text: 👨‍🏫 Lesson
 
   page-footer:
     left: |

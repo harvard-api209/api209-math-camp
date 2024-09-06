@@ -1,28 +1,11 @@
 ---
-title: "🗓️ Week 04 - Intro to Statistical Modeling in R"
+title: "🗓️ Week 04 - Recap"
 ---
+
 
 ```{r slides-videos, echo=FALSE, include=FALSE}
 source(here::here("R", "slide-things.R"))
 ```
-
-## Overview
-
-In Construction!
-
-## Guiding Questions
-
-::: {.callout-warning}
-#### These are optional!
-You don't need to answer all of these—or even any of them! They are here to help guide your thinking and reflection on the content. Feel free to explore whatever aspects you find most interesting.
-:::
-
-- Question 1
-- Question 2
-
-## Readings
-
-- No readings for this session.
 
 ## 👨‍🏫 Lesson Slides 
 
