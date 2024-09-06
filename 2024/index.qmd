@@ -10,7 +10,7 @@ format: html
 
 (28/03/2024)
 
-- [🗓️ Week 03 lab material](/2024/weeks/week03/lab.qmd) is now available!
+- [🗓️ Week 04 lab material](/2024/weeks/week04/lab.qmd) is now available!
 
 :::
 
