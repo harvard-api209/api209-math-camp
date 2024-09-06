@@ -3,6 +3,7 @@ title: "<font style='font-size:1em;'>Week 04<br/>RECAP & Quarto</font>"
 subtitle: "API209: Summer Math Camp"
 format: 
   clean-api-revealjs:
+    self-contained: true
     highlight-style: breeze
     transition: fade
 author:
