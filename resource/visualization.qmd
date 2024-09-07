@@ -1,6 +1,9 @@
 ---
 title: Visualization
+author: ""
 ---
+
+**Original Content**: [Prof. Andrew Heiss](https://datavizf24.classes.andrewheiss.com/)
 
 ## Interesting and excellent real world examples
 

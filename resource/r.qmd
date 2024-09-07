@@ -1,6 +1,9 @@
 ---
 title: R
+author: ""
 ---
+
+**Original Content**: [Prof. Andrew Heiss](https://datavizf24.classes.andrewheiss.com/)
 
 ## Learning R
 

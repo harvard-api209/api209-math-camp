@@ -1,6 +1,133 @@
 ---
-title: "Hands-On Session: Statistical Modeling"
-author: "Instructor Name"
+title: "Hands-On Session: Math Camp Recap"
+author: "Rony Rodriguez-Ramirez"
 date: "2024-09-04"
 ---
 
+In this detailed hands-on session, we will walk through some fundamental data manipulation tasks in R using the **`starwars`** dataset from the `dplyr` package, covering essential functions for summarizing, filtering, arranging, and visualizing data. Throughout the session, we will practice different ways to compute summary statistics, filter data, and generate plots, focusing on applying both base R and tidyverse syntax. The goal is to consolidate what you learned during Math Camp while expanding on the key techniques for data analysis.
+
+We start by loading the necessary libraries, specifically `tidyverse`, which offers a collection of R packages designed for data science. This package will allow us to manipulate and visualize data in a clear and concise manner.
+
+```{r}
+#| message: false
+#| warning: false
+library(tidyverse)
+```
+ 
+Next, Let's calculate the **total height** of all characters in the dataset. We use the base R function `sum` to compute the sum of the `height` variable. This calculation includes the `na.rm = TRUE` argument to exclude missing values from the summation. Don't worry thinking whether there is an intrinsic meaning or not to the output. We are doing this just for instructional purposes.
+
+```{r}
+total_height <- sum(starwars$height, na.rm = TRUE)
+total_height
+```
+
+After obtaining the total height, we move to calculating the **average height** using the base R function `mean`. Again, the `na.rm = TRUE` argument ensures that missing values do not affect the calculation.
+
+```{r}
+avg_height <- mean(starwars$height, na.rm = TRUE)
+avg_height
+```
+
+Now, we introduce the `tidyverse` syntax to achieve the same result, using the `summarize` function within a pipeline to calculate the **average height**. This approach is more readable and scalable for complex operations.
+
+```{r}
+starwars |> 
+  summarize(
+    avg_height = mean(height, na.rm = TRUE)
+  )
+```
+
+Next, let's compute the **Body Mass Index (BMI)** for each character by applying a transformation to the data. We use the `mutate` function to create a new variable, `bmi`, which is derived from the `mass` and `height` variables. Then, we select the characters' names and their respective BMI values for display.
+
+```{r}
+starwars <- starwars |> 
+  mutate(bmi = mass / (height / 100)^2)
+
+starwars |> 
+  select(name, bmi)
+```
+
+We can filter the dataset to identify **tall characters** whose height exceeds 200 cm. The `filter` function allows us to subset the data based on this condition.
+
+```{r}
+tall_characters <- starwars |> 
+  filter(height > 200)
+
+tall_characters
+```
+
+Once we have the subset of tall characters, we sort them in descending order of height using the `arrange` function, and then display only their names and heights. The `desc` function ensures that the tallest characters appear at the top.
+
+```{r}
+tall_characters |> 
+  arrange(desc(height)) |> 
+  select(name, height)
+```
+
+We then perform **grouping and summarizing** to calculate the average height for each species in the dataset. The `group_by` function groups the data by species, and `summarise` computes the average height within each group.
+
+```{r}
+avg_height <- starwars |> 
+  group_by(species) |> 
+  summarise(
+    avg_height = mean(height, na.rm = TRUE)
+  )
+
+avg_height
+```
+
+In another example, we use `group_by` and `mutate` to create a new column `mean_grouped`, which stores the average height for each species directly within the dataset. This doesn't modify the *level* of the dataset.
+
+```{r}
+starwars |> 
+  group_by(species) |> 
+  mutate(
+    mean_grouped = mean(height, na.rm = TRUE)
+  )
+```
+
+To find the **tallest species**, we can arrange the summarized dataset by average height in descending order, extract the top entry, and use the `pull` function to display only the species name.
+
+```{r}
+avg_height |> 
+  arrange(desc(avg_height)) |> 
+  head(1) |> 
+  pull(species)
+```
+
+Finally, let's use **ggplot2** for visualization. First, we create a bar chart to display the tallest characters by height. The `ggplot` function initializes the plot, and `geom_col` adds the bars, with black borders and gray fill. We also use `labs` to label the axes and add a title to the plot, and `theme_minimal` to apply a clean, minimalistic theme.
+
+```{r}
+tall_characters |> 
+  ggplot(
+    aes(
+      x = height,
+      y = name
+    )
+  ) + 
+  geom_col(color = "black", fill = "grey") +
+  labs(
+    x = "Height",
+    y = NULL, 
+    title = "Tallest characters in Starwars"
+  ) +
+  theme_minimal()
+```
+
+In another visualization, we reorder the character names by height using `fct_reorder` from the `forcats` package, ensuring that the tallest characters are displayed at the top of the plot. The structure is similar to the previous plot, but here we include reordering to enhance clarity.
+
+```{r}
+tall_characters |> 
+  mutate(name = fct_reorder(name, height)) |> 
+  ggplot(
+    aes(
+      x = height,
+      y = name
+    )
+  ) +
+  geom_col(color = "black", fill = "grey") +
+  labs(title = "Top 10 tallest characters in this dataset") +
+  theme_minimal()
+``` 
+
+All the best with your first Problem Set!

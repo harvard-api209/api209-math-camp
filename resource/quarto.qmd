@@ -1,10 +1,13 @@
 ---
 title: "Using Quarto"
+author: ""
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(fig.align = "center")
 ```
+
+**Original Content**: [Prof. Andrew Heiss](https://datavizf24.classes.andrewheiss.com/)
 
 [Quarto Markdown](https://quarto.org/) is [regular Markdown](/resource/markdown.qmd) with R code and output sprinkled in. You can do everything you can with [regular Markdown](/resource/markdown.qmd), but you can incorporate graphs, tables, and other code output directly in your document. You can create HTML, PDF, and Word documents, PowerPoint and HTML presentations, websites, books, and even interactive dashboards with Quarto. This whole course website is created with Quarto.
 
