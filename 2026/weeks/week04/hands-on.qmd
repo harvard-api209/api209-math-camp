@@ -1,0 +1,73 @@
+---
+title: "Hands-On Session: AI-Assisted Analysis"
+author: "Rony Rodriguez-Ramirez"
+date: "2026-09-02"
+execute:
+  eval: false
+---
+
+This hands-on session is about using AI as a disciplined research assistant. The goal is to build habits that will still be useful in the fall semester when your tasks become more open-ended and your standards need to be higher.
+
+## Exercise 1: Prompt for a bounded task
+
+Choose a dataset from the camp and ask an AI tool for one narrow task. If you have access to Codex or Claude Code, use one of those. Otherwise, use any reliable LLM interface and keep the task scoped:
+
+- a missingness check,
+- a grouped summary,
+- a plotting function,
+- a cleaner variable-label description,
+- a first-pass model formula.
+
+Write the prompt so it specifies the language, object names, and desired output.
+
+## Exercise 2: Turn the output into real analysis code
+
+Take the best AI-generated answer and:
+
+1. run every line yourself;
+2. rename unclear objects;
+3. remove unnecessary code;
+4. add one comment before each major block;
+5. add a short `verification` section where you manually check an important result.
+
+## Exercise 3: Structured extraction
+
+Ask the model to transform messy text into a fixed table. For example:
+
+> Return a table with exactly these columns: `unit`, `measure`, `time_period`, `source_note`.
+
+Then inspect what was extracted correctly, what was ambiguous, and what was invented.
+
+## Exercise 4: Compare tools for the same task
+
+Give the same prompt to two different tools if you can, ideally Codex and Claude Code.
+
+Compare:
+
+- which one asked better follow-up questions;
+- which one produced cleaner code;
+- which one made more assumptions;
+- which one was easier to verify.
+
+If you only have one tool, rewrite your prompt twice and compare the two outputs instead.
+
+## Exercise 5: AI for critique
+
+Take a plot or model result you created and ask the AI tool to:
+
+- explain it in plain language,
+- suggest a robustness check,
+- point out threats to validity,
+- propose a clearer visualization.
+
+Your task is not to accept the advice automatically. Your task is to evaluate it.
+
+## Deliverable
+
+By the end of the session, you should have:
+
+- one improved prompt,
+- one short comparison of two AI responses or two prompt versions,
+- one reproducible script or Quarto section,
+- one manually verified result,
+- one short note on where AI helped and where it misled.

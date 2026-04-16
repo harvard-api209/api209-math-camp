@@ -1,0 +1,60 @@
+---
+title: "Lab 4: Auditing an AI-Assisted Workflow"
+date: "2026-09-04"
+execute:
+  eval: false
+---
+
+# Introduction
+
+In this lab, you will complete a small end-to-end analysis where AI is allowed to help but every meaningful result must still be checked, justified, and documented by you.
+
+## Part 1: Define the task first
+
+Before using any AI tool, write down:
+
+- your research question,
+- the unit of analysis,
+- the main outcome,
+- at least two predictors or grouping variables,
+- one likely data-quality problem.
+
+## Part 2: Use AI for one scoped coding task
+
+Ask for help with one bounded task such as:
+
+- cleaning the data,
+- building a missingness summary,
+- generating grouped statistics,
+- drafting a plotting function,
+- proposing a simple model specification.
+
+## Part 3: Audit the generated output
+
+Answer these questions:
+
+1. Did the code run without modification?
+2. What did you have to fix?
+3. Did the tool make assumptions you did not ask for?
+4. Would you trust this output without reading it carefully?
+
+## Part 4: Produce one verified result
+
+Create one output:
+
+- a summary table,
+- a visualization,
+- a simple model,
+- or a coded text table.
+
+Then verify it manually by recomputing one number, checking raw rows, or comparing the result to a simpler baseline.
+
+## Part 5: Reflection
+
+Write a short reflection on:
+
+- where AI saved time,
+- where it created extra checking work,
+- which prompt style worked best,
+- which fall-semester task you would use AI for again,
+- which task you would approach more cautiously.

@@ -1,0 +1,72 @@
+---
+title: "Hands-On Session: Quarto for Fall Problem Sets"
+date: "2026-08-26"
+execute:
+  eval: false
+---
+
+## Introduction
+
+This hands-on session is designed to help you build a reproducible workflow for the fall semester. The focus is not on advanced formatting tricks. The focus is on building one clean document structure that you can reuse for problem sets, short memos, and exploratory writeups.
+
+## Exercise 1: Create a problem set template
+
+Set up a Quarto document with:
+
+- a title,
+- your name,
+- the date,
+- an introduction section,
+- a data section,
+- an analysis section,
+- a conclusion or takeaway section.
+
+Your goal is to create a structure you could realistically reuse during the semester.
+
+## Exercise 2: Separate setup from analysis
+
+Draft a first chunk that loads packages and sets options. Then create separate chunks for:
+
+- loading data,
+- cleaning data,
+- analysis,
+- visualization,
+- interpretation.
+
+The main habit to practice here is keeping your workflow legible. Fall-semester work gets much easier when each block has a clear purpose.
+
+## Exercise 3: Use inline reporting carefully
+
+Write one short paragraph that reports a result from your analysis and references:
+
+- one number,
+- one comparison,
+- one caveat.
+
+Use inline code only if it helps keep the number tied to your actual analysis output.
+
+## Exercise 4: Add a verification section
+
+Create a final section called `verification` where you note:
+
+- one assumption you made,
+- one data issue you noticed,
+- one result you manually checked.
+
+This section is a good habit for fall-semester work because it forces you to slow down before submitting.
+
+## Deliverable
+
+By the end of this session, you should have a reusable Quarto template for future assignments and a clearer sense of how to organize code, output, and interpretation in one place.
+
+## Optional AI Extension
+
+Ask Codex or Claude Code for a minimal Quarto template for a policy-data problem set.
+
+Then revise it so that it includes:
+
+- your own section names;
+- one verification section;
+- one place to record how AI was used, if at all.
+
+The point is not to accept the template blindly. The point is to make the structure more reusable and more transparent.

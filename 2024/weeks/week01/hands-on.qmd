@@ -47,7 +47,10 @@ Let's begin by loading our data using the `read.csv` function:
 
 ```{webr-r}
 #| label: load-data
-migration <- read.csv("https://raw.githubusercontent.com/harvard-api209/api209-math-camp/main/files/data/external_data/migration.csv") |> 
+migration <- tryCatch(
+  read.csv("../../../files/data/external_data/migration.csv"),
+  error = function(e) read.csv("files/data/external_data/migration.csv")
+) |> 
     as_tibble()
 
 migration  
@@ -57,8 +60,8 @@ migration
 
 #### Note for Web-R Application Users
 
-If you're working on your local computer or in Posit Cloud, you can use the `read_csv()` function instead. The `read.csv()` function is used here due to bugs related to the Web-R application.
-:::
+If you're working on the website, the code above reads from the course site's local `files/` directory. If you're working from the project root in RStudio or Positron, the fallback path will use `files/data/external_data/migration.csv`. The `read.csv()` function is used here due to bugs related to the Web-R application.
+::: 
 
 We can use the `glimpse()` function to check our columns (variables). Now, you realize that probably this dataset contains really nasty names. This is what we will usually called as "raw" data. 
 

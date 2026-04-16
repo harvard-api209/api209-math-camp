@@ -1,6 +1,8 @@
 project:
   type: "website"
   output-dir: docs  
+  resources:
+    - files/data/external_data/migration.csv
   preview: 
     port: 3333
   title: "API209: Summer Math Camp"
@@ -12,6 +14,25 @@ project:
     - "2024/weeks/week02/*.qmd"
     - "2024/weeks/week03/*.qmd"
     - "2024/weeks/week04/*.qmd"    
+    - "2025/*.qmd"
+    - "2025/weeks/week01/*.qmd"
+    - "2026/*.qmd"
+    - "2026/weeks/week01/page.qmd"
+    - "2026/weeks/week01/hands-on.qmd"
+    - "2026/weeks/week01/lab.qmd"
+    - "2026/weeks/week01/slides01.qmd"
+    - "2026/weeks/week02/page.qmd"
+    - "2026/weeks/week02/hands-on.qmd"
+    - "2026/weeks/week02/lab.qmd"
+    - "2026/weeks/week02/slides02.qmd"
+    - "2026/weeks/week03/page.qmd"
+    - "2026/weeks/week03/hands-on.qmd"
+    - "2026/weeks/week03/lab.qmd"
+    - "2026/weeks/week03/slides03.qmd"
+    - "2026/weeks/week04/page.qmd"
+    - "2026/weeks/week04/hands-on.qmd"
+    - "2026/weeks/week04/lab.qmd"
+    - "2026/weeks/week04/slides04.qmd"
     - "resource/*.qmd"
     - "tutorial/*.qmd" 
 
@@ -34,7 +55,11 @@ website:
   navbar:
     background: primary
     right:
-      - text: "Math Camp 2024" # Every term or semester this should point to the correct one.
+      - text: "Math Camp 2026"
+        file: 2026/index.qmd
+      - text: "Archive 2025"
+        file: 2025/index.qmd
+      - text: "Archive 2024"
         file: 2024/index.qmd
       - text: "Schedule"
         file: schedule.qmd        
@@ -46,6 +71,60 @@ website:
         href: https://mpa-id-math-camp-w8y.slack.com/ssb/redirect
           
   sidebar:
+    - title: "2026 Math Camp"
+      collapse-level: 3
+      contents:
+        - section: "Overview"
+          contents:
+            - href: 2026/index.qmd
+              text: "🏠 Home"
+        - section: "🗓️ Weeks"
+          contents:
+          - text: Week 01
+            href: 2026/weeks/week01/page.qmd
+            contents:
+              - href: 2026/weeks/week01/page.qmd
+                text: 👨‍🏫 Lesson
+              - href: 2026/weeks/week01/slides01.qmd
+                text: 🖥️ Slides
+              - href: 2026/weeks/week01/hands-on.qmd
+                text: 💻 Hands-on Session
+              - href: 2026/weeks/week01/lab.qmd
+                text: 🧪 Lab
+          - text: Week 02
+            href: 2026/weeks/week02/page.qmd
+            contents:
+              - href: 2026/weeks/week02/page.qmd
+                text: 👨‍🏫 Lesson
+              - href: 2026/weeks/week02/slides02.qmd
+                text: 🖥️ Slides
+              - href: 2026/weeks/week02/hands-on.qmd
+                text: 💻 Hands-on Session
+              - href: 2026/weeks/week02/lab.qmd
+                text: 🧪 Lab
+          - text: Week 03
+            href: 2026/weeks/week03/page.qmd
+            contents:
+              - href: 2026/weeks/week03/page.qmd
+                text: 👨‍🏫 Lesson
+              - href: 2026/weeks/week03/slides03.qmd
+                text: 🖥️ Slides
+              - href: 2026/weeks/week03/hands-on.qmd
+                text: 💻 Hands-on Session
+              - href: 2026/weeks/week03/lab.qmd
+                text: 🧪 Lab
+          - text: Week 04
+            href: 2026/weeks/week04/page.qmd
+            contents:
+              - href: 2026/weeks/week04/page.qmd
+                text: 👨‍🏫 Lesson
+              - href: 2026/weeks/week04/slides04.qmd
+                text: 🖥️ Slides
+              - href: 2026/weeks/week04/hands-on.qmd
+                text: 💻 Hands-on Session
+              - href: 2026/weeks/week04/lab.qmd
+                text: 🧪 Lab
+
     - title: "Resources"
       contents:
         - section: "Resources"

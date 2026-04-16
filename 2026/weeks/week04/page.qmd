@@ -1,0 +1,67 @@
+---
+title: "🗓️ Week 04 - AI-Assisted Analysis and Research Workflows"
+---
+
+
+```{r slides-videos, echo=FALSE, include=FALSE}
+source(if (file.exists("R/slide-things.R")) "R/slide-things.R" else "../../../R/slide-things.R")
+```
+
+## Overview
+
+This week adds the main 2026 update to math camp: how to use AI tools in a way that actually improves your fall-semester work. We will treat AI as a collaborator for code drafting, exploratory analysis, structured extraction, and interpretation support, while keeping reproducibility and verification at the center of the workflow.
+
+## 👨‍🏫 Lesson Slides
+
+Either click on the slide area below or click [here](slides04.qmd) to view it in fullscreen.
+Use your keypad to navigate the slides.
+
+```{r show-slide-tabs, echo=FALSE, results="asis"}
+slide_buttons("slides04")
+```
+
+<div class="container" style="position: relative;overflow: hidden;width: 100%;min-height:600px;">
+<iframe src="slides04.html" style="position=absolute;top: 0;left: 0;bottom: 0;right: 0;width: 100%;min-height:600px;"></iframe>
+</div>
+
+## Guiding Questions
+
+::: {.callout-warning}
+#### These are optional!
+You do not need to answer all of them. They are here to guide your reading and reflection.
+:::
+
+- Which parts of a policy-data workflow are genuinely faster with AI?
+- What kinds of mistakes do AI tools make in code, interpretation, and data extraction?
+- How can you preserve an audit trail when AI materially shapes your analysis?
+- When should you ask for free-form help, and when should you constrain the output into a checklist, table, or schema?
+
+## 2026 Lesson Notes
+
+### Use AI for bounded tasks
+
+The most useful pattern is to ask AI for something narrow and testable: a missingness check, a plotting function, a set of grouped summaries, a debugging explanation, or a draft Quarto section. Avoid asking for a whole project “done for you.”
+
+### Verification is now part of the workflow
+
+In the fall, the strongest students will not be the ones who use AI the most. They will be the ones who know how to verify AI outputs quickly and systematically. That means rerunning code, checking intermediate objects, comparing claims to actual model output, and documenting what changed.
+
+### AI should strengthen reproducibility, not weaken it
+
+If AI helps you write code or interpretation, the final result should still live in a transparent artifact: an R script, a Quarto document, or a notebook with visible transformations, outputs, and reasoning.
+
+## Readings
+
+- [Positron](https://positron.posit.co/)
+- [Claude Code Overview](https://docs.anthropic.com/en/docs/claude-code/overview)
+- [OpenAI Codex](https://openai.com/codex/)
+- [OpenAI Structured Outputs](https://developers.openai.com/api/docs/guides/structured-outputs)
+- [OpenAI Evals](https://developers.openai.com/api/docs/guides/evals)
+
+## Suggested Session Flow
+
+1. Prompting for data exploration
+2. Turning AI output into reproducible code
+3. Using structured outputs for extraction and classification
+4. Auditing an AI-assisted workflow
+5. Comparing when Codex and Claude Code are helpful versus when plain R or Quarto is enough

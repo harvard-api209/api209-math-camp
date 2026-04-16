@@ -1,0 +1,164 @@
+---
+title: "<font style='font-size:1em;'>Week 03<br/>Intro to Reproducible Research</font>"
+subtitle: "API209: Summer Math Camp"
+format: 
+  clean-api-revealjs:
+    self-contained: true
+    highlight-style: breeze
+execute:
+  eval: false
+html-math-method:
+  method: mathjax
+  url: "https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"
+author:
+  - name: Rony Rodrigo Maximiliano Rodriguez-Ramirez
+    email: rrodriguezramirez@g.harvard.edu
+    affiliations: "Harvard University"
+date: 26 August 2026
+---
+
+# Reproducibility
+
+##
+
+<center>
+![](img/reprod.jpg){width="150px}
+</center>
+
+## Why Reproducibility?
+
+### Are We in a Crisis?
+
+- The **replication crisis** in social sciences has highlighted significant issues in the credibility of research findings.
+- Many high-profile studies have failed to replicate, raising concerns about the **reliability** of published results.
+- The crisis has prompted a call for greater **transparency** and **rigor** in research practices.
+
+## The Replication Crisis
+
+### What Went Wrong?
+
+- **Selective Reporting**: Only significant findings get published, leading to publication bias.
+- **P-Hacking**: Manipulating data and analyses until nonsignificant results become significant.
+- **Lack of Transparency**: Opaque methodologies that others cannot replicate or verify.
+
+## The Importance of Reproducibility
+
+### Building Trust in Research
+
+- Reproducibility ensures that research findings are not just a result of **chance** or **specific conditions**.
+- It allows others to **verify results** and build upon them, fostering cumulative knowledge.
+- **Transparent reporting** of data and methods strengthens the credibility and utility of research.
+
+## How Can We Improve Reproducibility?
+
+### Adopting Best Practices
+
+- **Pre-registration**: Outlining the study design and analysis plan before data collection.
+- **Open Data and Code**: Sharing data and analysis scripts for others to verify and use.
+- **Reproducible Workflows**: Using tools like Quarto to create dynamic documents that combine analysis and narrative.
+
+## Reproducibility: The Basics
+
+:::{.incremental}
+- **Reproducibility** refers to the ability to duplicate the results of a prior study using the same materials and procedures as the original investigator.
+- This may involve using the same computer code or reimplementing statistical procedures in a different software package.
+- In essence, reproducibility is analogous to a 'unit test' in software engineering, ensuring that the study’s results can be consistently obtained under the same conditions.
+:::
+
+## Replicability: Expanding the Horizon
+
+:::{.incremental}
+- **Replicability** involves duplicating the results of a prior study by following the same procedures but using new data.
+- This concept extends beyond mere reproduction and tests whether the findings hold true across different datasets or slightly altered conditions.
+- Sometimes referred to as “scientific replication,” replicability is critical for validating the robustness and generalizability of research findings.
+:::
+
+## Reproducibility vs. Replicability
+
+::::{.columns}
+:::{.column}
+- [**Reproducibility**]{.box-crimson .fg-offwhite}: 
+    - duplication with the same data and procedures;
+    - ensuring accuracy and precision.
+:::
+
+:::{.column}
+- [**Replicability**]{.box-crimson .fg-offwhite}: 
+    - tests the findings using new data *but the same methods*;'
+    - emphasizing robustness and generalization.
+:::
+::::
+
+Both concepts are crucial for ensuring the credibility and reliability of research, but they serve different purposes within the scientific process.
+
+# enter Quarto
+
+## Quarto: A Tool for Reproducible Research
+
+### What is Quarto?
+
+Quarto is an open-source scientific and technical publishing system that enables researchers to create dynamic documents, reports, presentations, and websites.
+
+
+## Why Quarto?
+
+### The Need for Reproducible Research
+
+- Quarto ensures that your analysis and outputs (tables, figures, etc.) can be reproduced by others, enhancing the credibility of your work.
+- **Integrated with R, Python, Julia, etc.**: Quarto supports multiple languages, making it versatile for various research needs.
+
+## Why Quarto?
+
+<center>
+  <image src="img/standards.png" alt="Why Quarto" width="800px"></image>
+</center>
+
+## Quarto for literate programming
+
+<center>
+  <image src="img/qmd-knitr.jpeg" width="1200px" alt="diagram of converting a Qmd document via knitr/pandoc into markdown and then into output formats"></image>
+</center>
+
+## Key Features of Quarto
+
+1. **Dynamic Documents**: 
+  Create documents that are automatically updated with the latest data and analysis.
+2. **Multiple Outputs**: 
+  Generate reports, presentations, blogs, and books from a single source.
+3. **Version Control**: 
+  Integrates seamlessly with Git for version control, tracking changes, and collaboration.
+4. **Cross-Platform**: 
+  Works with RStudio, VSCode, or directly from the command line.
+
+## Reproducibility in the AI era
+
+- AI can accelerate coding and drafting, but it also makes undocumented changes easier to hide.
+- Your protection is a transparent workflow: scripts, Quarto files, clear prompts, and visible outputs.
+- If Codex or Claude Code helped you write code, the final document should still show what you ran and what you concluded.
+
+## A simple rule for fall semester
+
+:::{.center-txt}
+[If AI helped produce it, you should be able to rerun it and explain it.]{.box-inv-crimson-med}
+:::
+
+## Why Use Quarto for Your Problem Sets?
+
+### Consistency and Organization
+
+- Quarto helps you **organize your code, analysis, and narrative** in a single document.
+- It ensures that your problem sets are **well-documented** and **easily understandable**.
+
+## Why the name "Quarto"?[^1]
+
+[^1]: [Why Quarto?](https://quarto.org/docs/faq/#why-the-name-quarto) From Posit "We wanted to use a name that had meaning in the history of publishing and landed on Quarto, which is the format of a book or pamphlet produced from full sheets printed with eight pages of text, four to a side, then folded twice to produce four leaves. The earliest known European printed book is a Quarto, the [Sibyllenbuch](https://en.wikipedia.org/wiki/Sibyllenbuch_fragment), believed to have been printed by [Johannes Gutenberg](https://en.wikipedia.org/wiki/Johannes_Gutenberg) in 1452–53."
+
+::: columns
+::: {.column width="50%"}
+![](img/quarto-hamlet-1.jpeg){alt-text="A quarto folded book, where each of the pages can be folded to align the text." width="350px"}
+:::
+
+::: {.column width="50%"}
+![](img/quarto-hamlet-2.jpeg){alt-text="A quarto folded book, where each of the pages can be folded to align the text." width="350px"}
+:::
+:::

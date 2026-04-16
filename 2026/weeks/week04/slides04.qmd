@@ -1,0 +1,159 @@
+---
+title: "<font style='font-size:1em;'>Week 04<br/>AI-Assisted Analysis</font>"
+subtitle: "API209: Summer Math Camp"
+format:
+  clean-api-revealjs:
+    self-contained: true
+    highlight-style: breeze
+execute:
+  eval: false
+html-math-method:
+  method: mathjax
+  url: "https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"
+author:
+  - name: Rony Rodrigo Maximiliano Rodriguez-Ramirez
+    email: rrodriguezramirez@g.harvard.edu
+    affiliations: "Harvard University"
+date: 2 September 2026
+---
+
+# AI for Fall Semester Work
+
+## The point of this week
+
+:::{.center-txt}
+[Use AI to strengthen judgment, speed, and verification]{.box-inv-crimson}
+:::
+
+:::{.small}
+- faster debugging
+- faster exploration
+- better documentation
+- stronger audit habits
+:::
+
+## What good AI use looks like
+
+1. Define the task before prompting.
+2. Ask for one bounded output.
+3. Run and inspect the result yourself.
+4. Verify one important claim manually.
+5. Document how AI changed your workflow.
+
+## Where AI helps most in API209
+
+:::: {.columns}
+
+::: {.column width="50%"}
+### Good uses
+
+- debugging code
+- translating plain English into `dplyr` steps
+- drafting a plot specification
+- generating a Quarto skeleton
+- extracting structure from messy text
+:::
+
+::: {.column width="50%"}
+### Weak uses
+
+- writing a whole assignment for you
+- inventing citations or sources
+- interpreting a model you have not checked
+- making policy claims from one quick graph
+- hiding sloppy workflow behind fluent prose
+:::
+
+::::
+
+## Two tools to know
+
+### Codex
+
+- OpenAI's coding agent for terminal, IDE, and app workflows
+- useful for repo navigation, code edits, test runs, and debugging
+- strongest when you give it a clear task and verify the output
+
+### Claude Code
+
+- Anthropic's terminal coding tool
+- useful for feature work, bug fixing, code explanation, and automation
+- strongest when you provide context and keep the task scoped
+
+## A practical prompt pattern
+
+```text
+I am working in R on a small policy-data assignment.
+I have a data frame called `pisa_long`.
+Write a short `dplyr` pipeline that computes the weighted mean
+score by country and test, using `stu_wgt`.
+Return only the code and one sentence explaining the logic.
+```
+
+## Prompting for better outputs
+
+:::{.small}
+- name the language
+- name the objects
+- name the expected output
+- name the constraints
+- ask for a table, checklist, or code block when possible
+:::
+
+## Verification is the real skill
+
+:::{.center-txt}
+[The best students are not the ones who trust AI fastest.]{.box-inv-crimson-med}
+
+[They are the ones who can verify AI output quickly.]{.box-inv-crimson-med}
+:::
+
+## Mini exercise 1
+
+You have an error in a `ggplot()` call.
+
+Ask Codex or Claude Code to:
+
+- explain the error,
+- propose the smallest fix,
+- tell you what object to inspect next.
+
+Then test whether the fix actually works.
+
+## Mini exercise 2
+
+Take a rough chart and ask the tool to critique:
+
+- the title,
+- the color choices,
+- the axis labels,
+- the main interpretive risk.
+
+Keep only the advice that improves clarity.
+
+## Mini exercise 3
+
+Ask for a Quarto template that includes:
+
+- setup
+- data section
+- analysis section
+- figure section
+- verification section
+
+Then adapt it to your own assignment rather than using it unchanged.
+
+## Ground rules
+
+:::{.small}
+- AI is allowed for help, not for blind delegation.
+- Every meaningful result still needs human review.
+- If AI materially shaped your work, disclose it.
+- Reproducibility matters more now, not less.
+:::
+
+## Carry this into the fall
+
+:::{.center-txt}
+[plan → ask → run → verify → document]{.box-inv-crimson}
+:::

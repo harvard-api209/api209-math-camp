@@ -2,7 +2,7 @@
 title: "Advanced Quantitative Methods:<br>Description and Prediction<br>Summer Math Camp"
 subtitle: "Conceptual mastery of statistical methods for public policy, focusing on application rather than mechanics"
 details: |
-  API 209 • Summer 2024<br>**Prof**: Dan Levy | **Summer TF**: Rony Rodriguez<br>Harvard University
+  API 209 • Summer 2026<br>**Prof**: Dan Levy | **Summer TF**: Rony Rodriguez<br>Harvard University
 sidebar: false
 toc: false
 page-layout: full
@@ -20,12 +20,16 @@ course-logo: /figures/icons/course-icon.png
 **Select Academic Term/Year:**
 
 <div style="display: flex; gap: 30px;">
-  <a href="2024/index.qmd">
-    <button class="button-61">Fall 2024</button>
+  <a href="2026/index.qmd">
+    <button class="button-61">Summer 2026</button>
   </a>
 
   <a href="2025/index.qmd">
-    <button class="button-61">Fall 2025</button>
+    <button class="button-61">Summer 2025</button>
+  </a>
+
+  <a href="2024/index.qmd">
+    <button class="button-61">Summer 2024</button>
   </a>
 </div>
 
@@ -76,7 +80,8 @@ By the end of this summer camp, you will be able to:
 - **Master Advanced Data Manipulation Techniques:** Apply complex filtering, selection, and data reshaping operations using the tidyverse.
 - **Create Elegant Data Visualizations:** Utilize advanced ggplot2 features to produce publication-quality visuals and interactive plots.
 - **Build and Interpret Statistical Models:** Develop and diagnose statistical models, including regression and mixed models, to analyze real-world data.
-- **Automate and Reproduce Research Workflows:** Use RMarkdown and workflow automation tools to create reproducible, efficient research workflows.
+- **Automate and Reproduce Research Workflows:** Use Quarto and workflow automation tools to create reproducible, efficient research workflows.
+- **Use AI Responsibly in Quantitative Work:** Integrate AI assistants into coding, exploratory analysis, and reporting while documenting prompts, checking outputs, and validating substantive claims.
 
 **Focus:** 
 
