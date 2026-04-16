@@ -120,10 +120,60 @@ website:
                 text: 💻 Hands-on Session
               - href: 2026/weeks/week04/lab.qmd
                 text: 🧪 Lab
-        - section: "Archive"
+
+    - title: "2024 Archive"
+      collapse-level: 3
+      contents:
+        - section: "Overview"
           contents:
             - href: 2024/index.qmd
-              text: "Summer 2024"
+              text: "🏠 Home"
+        - section: "🗓️ Weeks"
+          contents:
+          - text: Week 01
+            href: 2024/weeks/week01/page.qmd
+            contents:
+              - href: 2024/weeks/week01/page.qmd
+                text: 👨‍🏫 Lesson
+              - href: 2024/weeks/week01/slides01.qmd
+                text: 🖥️ Slides
+              - href: 2024/weeks/week01/hands-on.qmd
+                text: 💻 Hands-on Session
+              - href: 2024/weeks/week01/lab.qmd
+                text: 🧪 Lab
+          - text: Week 02
+            href: 2024/weeks/week02/page.qmd
+            contents:
+              - href: 2024/weeks/week02/page.qmd
+                text: 👨‍🏫 Lesson
+              - href: 2024/weeks/week02/slides02.qmd
+                text: 🖥️ Slides
+              - href: 2024/weeks/week02/hands-on.qmd
+                text: 💻 Hands-on Session
+              - href: 2024/weeks/week02/lab.qmd
+                text: 🧪 Lab
+          - text: Week 03
+            href: 2024/weeks/week03/page.qmd
+            contents:
+              - href: 2024/weeks/week03/page.qmd
+                text: 👨‍🏫 Lesson
+              - href: 2024/weeks/week03/slides03.qmd
+                text: 🖥️ Slides
+              - href: 2024/weeks/week03/hands-on.qmd
+                text: 💻 Hands-on Session
+              - href: 2024/weeks/week03/lab.qmd
+                text: 🧪 Lab
+          - text: Week 04
+            href: 2024/weeks/week04/page.qmd
+            contents:
+              - href: 2024/weeks/week04/page.qmd
+                text: 👨‍🏫 Lesson
+              - href: 2024/weeks/week04/slides04.qmd
+                text: 🖥️ Slides
+              - href: 2024/weeks/week04/hands-on.qmd
+                text: 💻 Hands-on Session
+              - href: 2024/weeks/week04/lab.qmd
+                text: 🧪 Lab
 
     - title: "Resources"
       contents:
