@@ -5,97 +5,138 @@ author: ""
 format: html
 ---
 
-::: {.callout-important collapse=false}
-## 📢 New for 2026
+::: {.year-hero}
+<div class="eyebrow">Active Course Version</div>
 
-- Week 4 now focuses on **AI-assisted analysis and research workflows**.
-- The goal is to prepare you for fall-semester problem sets using reproducible, code-first, and verification-oriented workflows.
+## Summer 2026
+
+This version of math camp is organized as a compact working environment for the semester ahead. It is less a static archive and more a weekly operating system: lesson material, slide decks, hands-on pages, labs, and a new module on AI-assisted analysis.
 :::
 
-# 🧑🏻‍🏫 Our Team
+:::: {.grid .home-stats}
+::: {.g-col-12 .g-col-md-4}
+### Core themes
 
-::: {.panel-tabset}
-## Course Convenor
-::: columns
-
-::: {.column style="display:inline-block;width:40%;height:60%;border-radius:1em;margin:1%;padding:1.5%;background-color:#f5f5f5"}
-<figure>
-    <img src="/figures/people/dan.jpg" alt="Photo of Professor Levy" role="presentation" style="object-fit: cover;width:5em;height:5em;border-radius: 50%;font-size:1em;" class="img-responsive atto_image_button_text-bottom">
-    <figcaption>
-        <strong>Prof.&nbsp;<span><a href="https://scholar.harvard.edu/danlevy/home" target="_blank" class="external">Dan Levy</a></span></strong>
-        <br/>Harvard Kennedy School
-        <br/>📧 [dan_levy@hks.harvard.edu](mailto:dan_levy@hks.harvard.edu)
-    </figcaption>
-</figure>
+Wrangling, visualization, modeling, and reproducible reporting.
 :::
 
-::: {.column style="display:inline-block;width:40%;height:60%;border-radius:1em;margin:1%;padding:1.5%;background-color:#f5f5f5"}
-<figure>
-    <img src="/figures/people/rony.jpg" alt="Photo of Teaching Fellow" role="presentation" style="object-fit: cover;width:5em;height:5em;border-radius: 50%;font-size:1em;" class="img-responsive atto_image_button_text-bottom">
-    <figcaption>
-        <strong>TF&nbsp;<span><a href="https://rrmaximiliano.github.io" target="_blank" class="external">Rony Rodriguez-Ramirez</a></span></strong>
-        <br/>Harvard University
-        <br/>📧 [rrodriguezramirez@g.harvard.edu](mailto:rrodriguezramirez@g.harvard.edu)
-    </figcaption>
-</figure>
+::: {.g-col-12 .g-col-md-4}
+### New in 2026
+
+An explicit AI workflow week built around verification, documentation, and fall-semester use cases.
 :::
 
-Office Hours (TF):
+::: {.g-col-12 .g-col-md-4}
+### Design goal
 
-- How to book:
-  - {{< fa calendar-check >}} [Schedule an appointment using Calendly]({{< var instructor.appointment_url >}})
-- Where: Zoom
+Fewer scattered pages, faster navigation, and clearer week-by-week entry points.
+:::
+::::
 
+## Teaching Team
+
+:::: {.grid .team-grid}
+::: {.g-col-12 .g-col-md-6}
+::: {.team-card}
+<img src="/figures/people/dan.jpg" alt="Photo of Professor Levy" class="team-avatar">
+
+### Dan Levy
+
+Professor • Harvard Kennedy School  
+[dan_levy@hks.harvard.edu](mailto:dan_levy@hks.harvard.edu)
+:::
 :::
 
-# 📘 Course Overview
+::: {.g-col-12 .g-col-md-6}
+::: {.team-card}
+<img src="/figures/people/rony.jpg" alt="Photo of Teaching Fellow" class="team-avatar">
 
-This summer math camp prepares you for the quantitative demands of the fall semester. The course combines advanced R programming, data wrangling, visualization, modeling, and reproducible reporting with a new 2026 emphasis on **responsible AI use in quantitative work**.
+### Rony Rodriguez-Ramirez
 
-By the end of the camp, you should be able to:
+Summer TF • Harvard University  
+[rrodriguezramirez@g.harvard.edu](mailto:rrodriguezramirez@g.harvard.edu)
 
-- clean and reshape data efficiently with the tidyverse;
-- create clear visualizations for exploration and communication;
-- interpret statistical models and diagnostics with more confidence;
-- produce reproducible analyses with Quarto;
-- use AI tools to accelerate coding and exploration while preserving judgment, transparency, and verification.
+{{< fa calendar-check >}} [Schedule office hours]({{< var instructor.appointment_url >}})
+:::
+:::
+::::
 
-# 🗓️ 2026 Structure
+## What This Camp Covers
 
-## Week 01
+:::: {.grid .focus-grid}
+::: {.g-col-12 .g-col-md-6}
+### Technical skills
 
-- [👨‍🏫 Lesson](/2026/weeks/week01/page.qmd)
-- [🖥️ Slides](/2026/weeks/week01/slides01.qmd)
-- [💻 Hands-on Session](/2026/weeks/week01/hands-on.qmd)
-- [🧪 Lab](/2026/weeks/week01/lab.qmd)
+- data cleaning and reshaping with the tidyverse
+- clear plots for exploration and communication
+- introductory model interpretation
+- Quarto-based reproducible workflow
+:::
 
-## Week 02
+::: {.g-col-12 .g-col-md-6}
+### Workflow skills
 
-- [👨‍🏫 Lesson](/2026/weeks/week02/page.qmd)
-- [🖥️ Slides](/2026/weeks/week02/slides02.qmd)
-- [💻 Hands-on Session](/2026/weeks/week02/hands-on.qmd)
-- [🧪 Lab](/2026/weeks/week02/lab.qmd)
+- moving from rough code to clean analysis artifacts
+- documenting assumptions and verification
+- using AI tools without surrendering judgment
+- building habits that transfer directly into fall assignments
+:::
+::::
 
-## Week 03
+## Weekly Structure
 
-- [👨‍🏫 Lesson](/2026/weeks/week03/page.qmd)
-- [🖥️ Slides](/2026/weeks/week03/slides03.qmd)
-- [💻 Hands-on Session](/2026/weeks/week03/hands-on.qmd)
-- [🧪 Lab](/2026/weeks/week03/lab.qmd)
+:::: {.grid .week-grid}
+::: {.g-col-12 .g-col-md-6}
+::: {.week-card}
+<div class="week-kicker">Week 01</div>
+### Introduction, Context, and Data Wrangling
 
-## Week 04
+Build the shared baseline: R habits, wrangling logic, and the working structure of the camp.
 
-- [👨‍🏫 Lesson](/2026/weeks/week04/page.qmd)
-- [🖥️ Slides](/2026/weeks/week04/slides04.qmd)
-- [💻 Hands-on Session](/2026/weeks/week04/hands-on.qmd)
-- [🧪 Lab](/2026/weeks/week04/lab.qmd)
+[Lesson](/2026/weeks/week01/page.qmd) · [Slides](/2026/weeks/week01/slides01.qmd) · [Hands-on](/2026/weeks/week01/hands-on.qmd) · [Lab](/2026/weeks/week01/lab.qmd)
+:::
+:::
 
-# 🔍 Why AI Is Included This Year
+::: {.g-col-12 .g-col-md-6}
+::: {.week-card}
+<div class="week-kicker">Week 02</div>
+### Tidy Data and Visualization
 
-In the fall semester, many of you will naturally use AI tools for debugging, drafting code, exploring datasets, and writing up results. The point of this module is not to outsource analysis. The point is to learn a disciplined workflow:
+Learn how data shape affects analysis quality and how plotting choices affect interpretation.
 
-1. define the task clearly;
+[Lesson](/2026/weeks/week02/page.qmd) · [Slides](/2026/weeks/week02/slides02.qmd) · [Hands-on](/2026/weeks/week02/hands-on.qmd) · [Lab](/2026/weeks/week02/lab.qmd)
+:::
+:::
+
+::: {.g-col-12 .g-col-md-6}
+::: {.week-card}
+<div class="week-kicker">Week 03</div>
+### Modeling and Reproducible Research
+
+Move from descriptive analysis to more defensible workflows for the fall semester.
+
+[Lesson](/2026/weeks/week03/page.qmd) · [Slides](/2026/weeks/week03/slides03.qmd) · [Hands-on](/2026/weeks/week03/hands-on.qmd) · [Lab](/2026/weeks/week03/lab.qmd)
+:::
+:::
+
+::: {.g-col-12 .g-col-md-6}
+::: {.week-card .week-card-accent}
+<div class="week-kicker">Week 04</div>
+### AI-Assisted Analysis and Research Workflows
+
+Practice using Codex, Claude Code, and related tools for bounded tasks while preserving reproducibility and verification.
+
+[Lesson](/2026/weeks/week04/page.qmd) · [Slides](/2026/weeks/week04/slides04.qmd) · [Hands-on](/2026/weeks/week04/hands-on.qmd) · [Lab](/2026/weeks/week04/lab.qmd)
+:::
+:::
+::::
+
+## Why AI Is Included
+
+Many students will use AI tools during the fall whether or not the course addresses them directly. The 2026 design treats that as a workflow question, not a novelty topic:
+
+1. define the task before prompting;
 2. ask for bounded help;
-3. run and inspect the code yourself;
-4. verify the result;
-5. document what AI changed in your workflow.
+3. run and inspect the output yourself;
+4. verify one important result manually;
+5. document what changed because of AI.

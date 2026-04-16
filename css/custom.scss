@@ -90,3 +90,230 @@ $font-size-base: 1.1rem !default;
   margin-bottom: 0;
   text-align: center;
 }
+
+.home-shell,
+.year-hero {
+  display: grid;
+  gap: 1.5rem;
+}
+
+.home-hero,
+.year-hero {
+  background:
+    linear-gradient(140deg, rgba(165, 28, 48, 0.08), rgba(165, 28, 48, 0.02)),
+    linear-gradient(180deg, #ffffff, #faf7f7);
+  border: 1px solid rgba(165, 28, 48, 0.12);
+  border-radius: 1.25rem;
+  padding: 1.5rem 1.5rem 1.25rem;
+  box-shadow: 0 18px 45px rgba(165, 28, 48, 0.08);
+}
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  width: fit-content;
+  padding: 0.3rem 0.65rem;
+  border-radius: 999px;
+  background: rgba(165, 28, 48, 0.1);
+  color: $crimson-color;
+  font-family: $font-family-monospace;
+  font-size: 0.82rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.home-hero h2,
+.year-hero h2 {
+  margin: 0;
+  font-size: 2.35rem;
+  line-height: 1.05;
+}
+
+.home-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.9rem;
+}
+
+.button-ghost {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 36px;
+  padding: 0 16px;
+  border-radius: 999px;
+  border: 1px solid rgba(165, 28, 48, 0.2);
+  color: $crimson-color;
+  background: rgba(255, 255, 255, 0.8);
+  text-decoration: none;
+  font-family: $font-family-monospace;
+  font-size: 0.9rem;
+}
+
+.home-stats > div,
+.focus-grid > div {
+  padding: 1.15rem 1.2rem;
+  border-radius: 1rem;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  background: #fff;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
+}
+
+.year-grid,
+.team-grid,
+.week-grid {
+  gap: 1rem 1rem;
+}
+
+.year-card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  height: 100%;
+  padding: 1.2rem;
+  border-radius: 1rem;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  background: #fff;
+  color: $body-color;
+  text-decoration: none;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.04);
+  transition: transform 180ms ease, box-shadow 180ms ease, border-color 180ms ease;
+}
+
+.year-card:hover,
+.week-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.08);
+}
+
+.year-card-current {
+  border-color: rgba(165, 28, 48, 0.25);
+  background: linear-gradient(180deg, rgba(165, 28, 48, 0.06), rgba(255, 255, 255, 1));
+}
+
+.year-label,
+.week-kicker {
+  width: fit-content;
+  padding: 0.2rem 0.55rem;
+  border-radius: 999px;
+  background: rgba(0, 0, 0, 0.05);
+  color: $gray-700;
+  font-family: $font-family-monospace;
+  font-size: 0.78rem;
+  text-transform: uppercase;
+}
+
+.team-card,
+.week-card {
+  height: 100%;
+  padding: 1.2rem;
+  border-radius: 1rem;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  background: #fff;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.04);
+}
+
+.week-card-accent {
+  border-color: rgba(165, 28, 48, 0.25);
+  background: linear-gradient(180deg, rgba(165, 28, 48, 0.05), #fff);
+}
+
+.team-avatar {
+  width: 72px;
+  height: 72px;
+  object-fit: cover;
+  border-radius: 50%;
+  margin-bottom: 0.9rem;
+  border: 3px solid rgba(165, 28, 48, 0.12);
+}
+
+#quarto-sidebar .sidebar-item-text {
+  font-size: 0.96rem;
+}
+
+#quarto-sidebar .sidebar-item-section > .sidebar-item-container {
+  margin-top: 0.35rem;
+}
+
+.lesson-shell {
+  display: grid;
+  gap: 1.25rem;
+}
+
+.lesson-hero {
+  background:
+    radial-gradient(circle at top right, rgba(165, 28, 48, 0.12), transparent 38%),
+    linear-gradient(180deg, #ffffff, #fbf8f8);
+  border: 1px solid rgba(165, 28, 48, 0.14);
+  border-radius: 1.25rem;
+  padding: 1.35rem 1.35rem 1.1rem;
+  box-shadow: 0 18px 45px rgba(165, 28, 48, 0.07);
+}
+
+.lesson-hero > :last-child,
+.lesson-panel > :last-child {
+  margin-bottom: 0;
+}
+
+.lesson-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem;
+  margin-top: 0.8rem;
+}
+
+.lesson-chip {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.3rem 0.65rem;
+  border-radius: 999px;
+  background: rgba(165, 28, 48, 0.08);
+  border: 1px solid rgba(165, 28, 48, 0.12);
+  color: $crimson-color;
+  font-family: $font-family-monospace;
+  font-size: 0.8rem;
+}
+
+.slide-panel,
+.lesson-panel {
+  padding: 1.15rem 1.2rem;
+  border-radius: 1rem;
+  border: 1px solid rgba(0, 0, 0, 0.07);
+  background: #fff;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.04);
+}
+
+.slide-panel .container {
+  margin-top: 0.9rem;
+  border-radius: 0.9rem;
+  background: #f8f6f6;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.65);
+}
+
+.lesson-grid {
+  gap: 1rem 1rem;
+}
+
+@media (max-width: 767px) {
+  .home-hero h2,
+  .year-hero h2,
+  .course-title {
+    font-size: 2rem;
+  }
+
+  .course-subtitle {
+    font-size: 1.25rem;
+  }
+
+  .home-hero,
+  .year-hero,
+  .year-card,
+  .team-card,
+  .week-card,
+  .lesson-hero,
+  .slide-panel,
+  .lesson-panel {
+    padding: 1rem;
+  }
+}

@@ -14,32 +14,64 @@ format:
 course-logo: /figures/icons/course-icon.png
 ---
 
+::: {.home-shell}
 
-::: {.home}
+::: {.home-hero}
+<div class="eyebrow">Summer Preparation for API 209</div>
 
-**Select Academic Term/Year:**
+## A cleaner start to the fall quantitative sequence
 
-<div style="display: flex; gap: 30px;">
-  <a href="2026/index.qmd">
-    <button class="button-61">Summer 2026</button>
-  </a>
+Math camp is designed to make the first weeks of the semester less chaotic. The emphasis is practical: data wrangling, visualization, modeling, reproducible reporting, and disciplined AI-assisted workflows.
 
-  <a href="2025/index.qmd">
-    <button class="button-61">Summer 2025</button>
-  </a>
-
-  <a href="2024/index.qmd">
-    <button class="button-61">Summer 2024</button>
-  </a>
+<div class="home-actions">
+  <a href="2026/index.qmd" class="button-61">Enter Summer 2026</a>
+  <a href="schedule.qmd" class="button-ghost">View Schedule</a>
 </div>
+:::
 
------------------
+:::: {.grid .home-stats}
+::: {.g-col-12 .g-col-md-4}
+### Format
 
-:::: {.grid .course-details}
+Four weeks of lesson material, hands-on sessions, and labs built around real policy-data workflows.
+:::
 
+::: {.g-col-12 .g-col-md-4}
+### Tools
+
+R, tidyverse, ggplot2, Quarto, and selected AI tools used with verification and documentation.
+:::
+
+::: {.g-col-12 .g-col-md-4}
+### Outcome
+
+Students arrive in the fall with a reusable workflow instead of starting from zero.
+:::
+::::
+
+## Select Academic Term/Year
+
+:::: {.grid .year-grid}
+::: {.g-col-12 .g-col-md-4}
+<a href="2026/index.qmd" class="year-card year-card-current">
+  <span class="year-label">Current</span>
+  <strong>Summer 2026</strong>
+  <span>Active math camp with AI integration and updated weekly materials.</span>
+</a>
+:::
+
+::: {.g-col-12 .g-col-md-4}
+<a href="2024/index.qmd" class="year-card">
+  <span class="year-label">Archive</span>
+  <strong>Summer 2024</strong>
+  <span>Earlier course materials preserved as part of the record.</span>
+</a>
+:::
+::::
+
+:::: {.grid .course-details .course-details-smaller}
 ::: {.g-col-12 .g-col-sm-6 .g-col-md-4}
-
-### Summer TF
+### Teaching Team
 
 - [{{< fa user >}}]{.fa-li} [{{< var instructor.name >}}]({{< var instructor.url >}})
 - [{{< fa university >}}]{.fa-li} {{< var instructor.office >}}
@@ -48,7 +80,7 @@ course-logo: /figures/icons/course-icon.png
 :::
 
 ::: {.g-col-12 .g-col-sm-6 .g-col-md-4}
-### Course details
+### Course Details
 
 - [{{< fa calendar >}}]{.fa-li} {{< var course.days >}}
 - [{{< fa calendar-alt >}}]{.fa-li} {{< var course.dates >}}
@@ -57,47 +89,37 @@ course-logo: /figures/icons/course-icon.png
 :::
 
 ::: {.g-col-12 .g-col-md-4 .contact-policy}
-### Contacting me
+### Contact
 
 - [{{< fa calendar-check >}}]{.fa-li} [Schedule an appointment]({{< var instructor.appointment_url >}})
 - [{{< fa brands slack >}}]{.fa-li} [Slack]({{< var course.slack >}})
 
 {{< var instructor.contact_policy >}}
 :::
-
 ::::
 
+## What You Build
+
+:::: {.grid .focus-grid}
+::: {.g-col-12 .g-col-md-6}
+### Quantitative foundations
+
+- data cleaning and reshaping with the tidyverse
+- plots that move from exploration to communication
+- introductory modeling and interpretation
 :::
 
-# 📑 Course Overview
+::: {.g-col-12 .g-col-md-6}
+### Workflow habits
 
-This summer camp focuses on advanced R programming, specifically on four key areas of data manipulation using the tidyverse. This is a continuation of the pre-summer assignment you completed, where you started using Posit Cloud. There is no formal syllabus for this course, as it is designed to be hands-on and interactive, emphasizing practical application over traditional lecture formats.
+- Quarto documents that combine code and explanation
+- reproducible lab and problem-set structure
+- AI use that is scoped, checked, and documented
+:::
+::::
 
-# 🎯 Learning Objectives
+## Why This Version Matters
 
-By the end of this summer camp, you will be able to:
+The 2026 site is the first version that explicitly treats AI as part of quantitative workflow training rather than an afterthought. The aim is not to replace coding fundamentals. The aim is to help students use tools like Codex, Claude Code, and chat-based assistants without weakening verification or reproducibility.
 
-- **Master Advanced Data Manipulation Techniques:** Apply complex filtering, selection, and data reshaping operations using the tidyverse.
-- **Create Elegant Data Visualizations:** Utilize advanced ggplot2 features to produce publication-quality visuals and interactive plots.
-- **Build and Interpret Statistical Models:** Develop and diagnose statistical models, including regression and mixed models, to analyze real-world data.
-- **Automate and Reproduce Research Workflows:** Use Quarto and workflow automation tools to create reproducible, efficient research workflows.
-- **Use AI Responsibly in Quantitative Work:** Integrate AI assistants into coding, exploratory analysis, and reporting while documenting prompts, checking outputs, and validating substantive claims.
-
-**Focus:** 
-
-The course centers on applying advanced R programming concepts to solve practical data problems. Emphasis is placed on mastering the tidyverse, creating high-quality data visualizations, constructing robust statistical models, and automating research processes for efficiency and reproducibility.
-
-**How:** 
-
-- **Hands-On Learning**: The course is designed around interactive coding sessions where you’ll actively engage with datasets, applying techniques as you learn them.
-- **Real-World Applications**: Each lesson is tied to a real-world problem or dataset, ensuring that what you learn is immediately relevant and applicable.
-- **Collaborative Projects**: You will work on collaborative projects that simulate actual research scenarios, allowing you to practice and refine your skills in a team setting.
-- **Feedback and Iteration**: Regular feedback loops and peer reviews will help you iteratively improve your code and understanding, promoting deeper learning.
-
-Throughout the camp, you will:
-
-- Discover how to solve complex data problems using advanced R techniques.
-- Distinguish between different methods for data manipulation and visualization, understanding when and why to use each.
-- Learn to automate repetitive tasks and create workflows that enhance the efficiency and reproducibility of your research.
-
-This camp is about not just learning the concepts but mastering their application to become a better R programmer before the semester starts.
+:::

@@ -2,7 +2,7 @@
   "hash": "da2b66691bc2f0b758a5f5a75edf9ec1",
   "result": {
     "engine": "knitr",
-    "markdown": "---\ntitle: \"🗓️ Week 04 - Recap\"\n---\n\n\n\n\n\n\n## 👨‍🏫 Lesson Slides \n\nEither click on the slide area below or click [here](slides.qmd) to view it in fullscreen.\nUse your keypad to navigate the slides.\n\n\n\n\n<p class=\"text-center buttons\"><a class=\"btn btn-danger\" target=\"_blank\" href=\"slides04.html\"><i class=\"fa-solid fa-arrow-up-right-from-square\"></i> View all slides in new window</a> <a class=\"btn btn-danger\" target=\"_blank\" href=\"slides04.pdf\" role=\"button\"><i class=\"fa-solid fa-file-pdf\"></i> Download PDF of all slides</a></p>\n\n\n\n\n<div class=\"container\" style=\"position: relative;overflow: hidden;width: 100%;min-height:600px;\">\n<iframe src=\"slides04.html\" style=\"position=absolute;top: 0;left: 0;bottom: 0;right: 0;width: 100%;min-height:600px;\"></iframe>\n</div>\n",
+    "markdown": "---\ntitle: \"🗓️ Week 04 - Recap\"\n---\n\n\n\n\n## 👨‍🏫 Lesson Slides \n\nEither click on the slide area below or click [here](slides.qmd) to view it in fullscreen.\nUse your keypad to navigate the slides.\n\n<p class=\"text-center buttons\"><a class=\"btn btn-danger\" target=\"_blank\" href=\"slides04.html\"><i class=\"fa-solid fa-arrow-up-right-from-square\"></i> View all slides in new window</a></p>\n\n<div class=\"container\" style=\"position: relative;overflow: hidden;width: 100%;min-height:600px;\">\n<iframe src=\"slides04.html\" style=\"position=absolute;top: 0;left: 0;bottom: 0;right: 0;width: 100%;min-height:600px;\"></iframe>\n</div>\n",
     "supporting": [],
     "filters": [
       "rmarkdown/pagebreak.lua"

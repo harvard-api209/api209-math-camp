@@ -7,10 +7,21 @@ date: "2026-08-20"
 source(if (file.exists("R/slide-things.R")) "R/slide-things.R" else "../../../R/slide-things.R")
 ```
 
-## Overview
+::: {.lesson-shell}
+
+::: {.lesson-hero}
+<div class="eyebrow">Week 02</div>
 
 In this week, we dive into the concepts of tidy data and data visualization. You'll learn how to organize your data in a format that is easy to manipulate and visualize. We will focus on transforming data into a "tidy" format where each variable is a column, each observation is a row, and each type of observational unit forms a table. Additionally, we'll cover essential visualization techniques using `ggplot2` to explore and communicate your findings effectively.
 
+<div class="lesson-tags">
+  <span class="lesson-chip">tidy data</span>
+  <span class="lesson-chip">visualization</span>
+  <span class="lesson-chip">analytical judgment</span>
+</div>
+:::
+
+::: {.slide-panel}
 ## 👨‍🏫 Lesson Slides
 
 Either click on the slide area below or click [here](slides02.qmd) to view it in fullscreen.
@@ -23,7 +34,10 @@ slide_buttons("slides02")
 <div class="container" style="position: relative;overflow: hidden;width: 100%;min-height:600px;">
 <iframe src="slides02.html" style="position=absolute;top: 0;left: 0;bottom: 0;right: 0;width: 100%;min-height:600px;"></iframe>
 </div>
+:::
 
+:::: {.grid .lesson-grid}
+::: {.g-col-12 .g-col-lg-7 .lesson-panel}
 ## Guiding Questions
 
 ::: {.callout-warning}
@@ -34,7 +48,9 @@ You don't need to answer all of these—or even any of them! They are here to he
 - What are the key principles of tidy data, and why are they important?
 - How does the structure of your data impact the type of visualizations you can create?
 - In what ways can data visualization help in uncovering trends and patterns?
+:::
 
+::: {.g-col-12 .g-col-lg-5 .lesson-panel}
 ## Readings
 
 - No readings for this session.
@@ -47,3 +63,7 @@ This week is less about memorizing syntax and more about building analytical jud
 - how plot choices shape interpretation;
 - how to communicate a pattern clearly without overstating it;
 - how to move from a rough exploratory graphic to a plot that belongs in a memo or problem set.
+:::
+::::
+
+:::

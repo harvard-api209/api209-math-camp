@@ -43,7 +43,7 @@ ul.task-list li input[type="checkbox"] {
 <link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-c1eaca9891dac33ba29148292a256f69.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../../site_libs/bootstrap/bootstrap-aa375abac6ee5080394139f0eb867a54.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../../site_libs/bootstrap/bootstrap-f432caeced8ad60f3034b034595c531e.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <link href="../../../site_libs/quarto-contrib/fontawesome6-0.1.0/all.css" rel="stylesheet">
 <link href="../../../site_libs/quarto-contrib/fontawesome6-0.1.0/latex-fontsize.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
@@ -77,7 +77,6 @@ ul.task-list li input[type="checkbox"] {
 <link rel="stylesheet" href="../../../css/custom_style.css">
 <link rel="stylesheet" href="../../../css/syllabus.css">
 <meta property="og:title" content="🗓️ Week 03 - Statistical Modeling and Reproducible Research – 🏠 API209: Summer Math Camp">
-<meta property="og:description" content="">
 <meta property="og:site_name" content="🏠 API209: Summer Math Camp">
 </head>
 
@@ -101,10 +100,6 @@ ul.task-list li input[type="checkbox"] {
   <li class="nav-item">
     <a class="nav-link active" href="../../../2026/index.html" aria-current="page"> 
 <span class="menu-text">Math Camp 2026</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../../../2025/index.html"> 
-<span class="menu-text">Archive 2025</span></a>
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="../../../2024/index.html"> 
@@ -323,23 +318,30 @@ ul.task-list li input[type="checkbox"] {
   </li>
       </ul>
   </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+ <span class="menu-text">Archive</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../2024/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Summer 2024</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
     </ul>
     </div>
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">On this page</h2>
-   
-  <ul>
-  <li><a href="#overview" id="toc-overview" class="nav-link active" data-scroll-target="#overview">Overview</a></li>
-  <li><a href="#lesson-slides" id="toc-lesson-slides" class="nav-link" data-scroll-target="#lesson-slides">👨‍🏫 Lesson Slides</a></li>
-  <li><a href="#guiding-questions" id="toc-guiding-questions" class="nav-link" data-scroll-target="#guiding-questions">Guiding Questions</a></li>
-  <li><a href="#readings" id="toc-readings" class="nav-link" data-scroll-target="#readings">Readings</a></li>
-  <li><a href="#lesson-focus" id="toc-lesson-focus" class="nav-link" data-scroll-target="#lesson-focus">Lesson Focus</a></li>
-  </ul>
-</nav>
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+        
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -369,22 +371,29 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="overview" class="level2">
-<h2 class="anchored" data-anchor-id="overview">Overview</h2>
+<div class="lesson-shell">
+<div class="lesson-hero">
+<div class="eyebrow">
+Week 03
+</div>
 <p>This week, we connect statistical modeling with reproducible research practices. The goal is to help you bridge the gap between descriptive coding work and the kind of model-based reasoning you will need in the fall semester. We will focus on model interpretation, documentation, and transparent workflows so that your analytical choices remain legible and defensible.</p>
-</section>
-<section id="lesson-slides" class="level2">
+<div class="lesson-tags">
+<p><span class="lesson-chip">modeling</span> <span class="lesson-chip">reproducibility</span> <span class="lesson-chip">Quarto</span></p>
+</div>
+</div>
+<section id="lesson-slides" class="level2 slide-panel">
 <h2 class="anchored" data-anchor-id="lesson-slides">👨‍🏫 Lesson Slides</h2>
 <p>Either click on the slide area below or click <a href="../../../2026/weeks/week03/slides03.html">here</a> to view it in fullscreen. Use your keypad to navigate the slides.</p>
 <p class="text-center buttons">
-<a class="btn btn-danger" target="_blank" href="slides03.html"><i class="fa-solid fa-arrow-up-right-from-square"></i> View all slides in new window</a> <a class="btn btn-danger" target="_blank" href="slides03.pdf" role="button"><i class="fa-solid fa-file-pdf"></i> Download PDF of all slides</a>
+<a class="btn btn-danger" target="_blank" href="slides03.html"><i class="fa-solid fa-arrow-up-right-from-square"></i> View all slides in new window</a>
 </p>
 <div class="container" style="position: relative;overflow: hidden;width: 100%;min-height:600px;">
 <iframe src="slides03.html" style="position=absolute;top: 0;left: 0;bottom: 0;right: 0;width: 100%;min-height:600px;">
 </iframe>
 </div>
 </section>
-<section id="guiding-questions" class="level2">
+<div class="grid lesson-grid">
+<section id="guiding-questions" class="level2 g-col-12 g-col-lg-7 lesson-panel">
 <h2 class="anchored" data-anchor-id="guiding-questions">Guiding Questions</h2>
 <div class="callout callout-style-default callout-warning callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -405,6 +414,7 @@ These are optional!
 <li>How can Quarto help you connect code, output, interpretation, and caveats in one place?</li>
 </ul>
 </section>
+<div class="g-col-12 g-col-lg-5 lesson-panel">
 <section id="readings" class="level2">
 <h2 class="anchored" data-anchor-id="readings">Readings</h2>
 <ul>
@@ -420,9 +430,12 @@ These are optional!
 <li>documenting modeling choices in a way that makes revision easier later;</li>
 <li>using Quarto to keep code, output, and interpretation in one reproducible place.</li>
 </ul>
-
-
 </section>
+</div>
+</div>
+</div>
+
+
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

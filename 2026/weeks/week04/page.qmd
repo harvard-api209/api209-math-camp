@@ -7,10 +7,21 @@ title: "🗓️ Week 04 - AI-Assisted Analysis and Research Workflows"
 source(if (file.exists("R/slide-things.R")) "R/slide-things.R" else "../../../R/slide-things.R")
 ```
 
-## Overview
+::: {.lesson-shell}
+
+::: {.lesson-hero}
+<div class="eyebrow">Week 04</div>
 
 This week adds the main 2026 update to math camp: how to use AI tools in a way that actually improves your fall-semester work. We will treat AI as a collaborator for code drafting, exploratory analysis, structured extraction, and interpretation support, while keeping reproducibility and verification at the center of the workflow.
 
+<div class="lesson-tags">
+  <span class="lesson-chip">AI workflows</span>
+  <span class="lesson-chip">verification</span>
+  <span class="lesson-chip">fall-semester transfer</span>
+</div>
+:::
+
+::: {.slide-panel}
 ## 👨‍🏫 Lesson Slides
 
 Either click on the slide area below or click [here](slides04.qmd) to view it in fullscreen.
@@ -23,7 +34,10 @@ slide_buttons("slides04")
 <div class="container" style="position: relative;overflow: hidden;width: 100%;min-height:600px;">
 <iframe src="slides04.html" style="position=absolute;top: 0;left: 0;bottom: 0;right: 0;width: 100%;min-height:600px;"></iframe>
 </div>
+:::
 
+:::: {.grid .lesson-grid}
+::: {.g-col-12 .g-col-lg-7 .lesson-panel}
 ## Guiding Questions
 
 ::: {.callout-warning}
@@ -35,7 +49,9 @@ You do not need to answer all of them. They are here to guide your reading and r
 - What kinds of mistakes do AI tools make in code, interpretation, and data extraction?
 - How can you preserve an audit trail when AI materially shapes your analysis?
 - When should you ask for free-form help, and when should you constrain the output into a checklist, table, or schema?
+:::
 
+::: {.g-col-12 .g-col-lg-5 .lesson-panel}
 ## 2026 Lesson Notes
 
 ### Use AI for bounded tasks
@@ -65,3 +81,7 @@ If AI helps you write code or interpretation, the final result should still live
 3. Using structured outputs for extraction and classification
 4. Auditing an AI-assisted workflow
 5. Comparing when Codex and Claude Code are helpful versus when plain R or Quarto is enough
+:::
+::::
+
+:::

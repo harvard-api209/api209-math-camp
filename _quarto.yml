@@ -14,8 +14,6 @@ project:
     - "2024/weeks/week02/*.qmd"
     - "2024/weeks/week03/*.qmd"
     - "2024/weeks/week04/*.qmd"    
-    - "2025/*.qmd"
-    - "2025/weeks/week01/*.qmd"
     - "2026/*.qmd"
     - "2026/weeks/week01/page.qmd"
     - "2026/weeks/week01/hands-on.qmd"
@@ -57,8 +55,6 @@ website:
     right:
       - text: "Math Camp 2026"
         file: 2026/index.qmd
-      - text: "Archive 2025"
-        file: 2025/index.qmd
       - text: "Archive 2024"
         file: 2024/index.qmd
       - text: "Schedule"
@@ -124,6 +120,10 @@ website:
                 text: 💻 Hands-on Session
               - href: 2026/weeks/week04/lab.qmd
                 text: 🧪 Lab
+        - section: "Archive"
+          contents:
+            - href: 2024/index.qmd
+              text: "Summer 2024"
 
     - title: "Resources"
       contents:
@@ -163,50 +163,6 @@ website:
               text: "6. Advanced Data Wrangling"
             - href: tutorial/07-content.qmd
               text: "7. Applied Examples in Economics of Education"
-  
-    - title: "2024 Math Camp"
-      collapse-level: 3
-      contents:
-        - section: "Overview"
-          contents:
-            - href: 2024/index.qmd
-              text: "🏠 Home"
-        - section: "🗓️ Weeks"
-          contents:
-          - text: Week 01
-            href: 2024/weeks/week01/page.qmd
-            contents:
-              - href: 2024/weeks/week01/page.qmd
-                text: 👨‍🏫 Lesson
-              - href: 2024/weeks/week01/hands-on.qmd
-                text: 💻 Hands-on Session
-              - href: 2024/weeks/week01/lab.qmd
-                text: 🧪 Lab
-          - text: Week 02
-            href: 2024/weeks/week02/page.qmd
-            contents:
-              - href: 2024/weeks/week02/page.qmd
-                text: 👨‍🏫 Lesson
-              - href: 2024/weeks/week02/hands-on.qmd
-                text: 💻 Hands-on Session
-              - href: 2024/weeks/week02/lab.qmd
-                text: 🧪 Lab    
-          - text: Week 03
-            href: 2024/weeks/week03/page.qmd
-            contents:
-              - href: 2024/weeks/week03/page.qmd
-                text: 👨‍🏫 Lesson
-              - href: 2024/weeks/week03/hands-on.qmd
-                text: 💻 Hands-on Session
-              - href: 2024/weeks/week03/lab.qmd
-                text: 🧪 Lab  
-          - text: Week 04
-            href: 2024/weeks/week04/page.qmd
-            contents:
-              - href: 2024/weeks/week04/page.qmd
-                text: 👨‍🏫 Lesson
-              - href: 2024/weeks/week04/hands-on.qmd
-                text: 💻 Hands-on Session
 
   page-footer:
     left: |

@@ -1,0 +1,15 @@
+{
+  "hash": "96a35aba3660026dda0a3b29126b7e6d",
+  "result": {
+    "engine": "knitr",
+    "markdown": "---\ntitle: \"🗓️ Week 03 - Statistical Modeling and Reproducible Research\"\n---\n\n\n\n::: {.lesson-shell}\n\n::: {.lesson-hero}\n<div class=\"eyebrow\">Week 03</div>\n\nThis week, we connect statistical modeling with reproducible research practices. The goal is to help you bridge the gap between descriptive coding work and the kind of model-based reasoning you will need in the fall semester. We will focus on model interpretation, documentation, and transparent workflows so that your analytical choices remain legible and defensible.\n\n<div class=\"lesson-tags\">\n  <span class=\"lesson-chip\">modeling</span>\n  <span class=\"lesson-chip\">reproducibility</span>\n  <span class=\"lesson-chip\">Quarto</span>\n</div>\n:::\n\n::: {.slide-panel}\n## 👨‍🏫 Lesson Slides\n\nEither click on the slide area below or click [here](slides03.qmd) to view it in fullscreen.\nUse your keypad to navigate the slides.\n\n<p class=\"text-center buttons\"><a class=\"btn btn-danger\" target=\"_blank\" href=\"slides03.html\"><i class=\"fa-solid fa-arrow-up-right-from-square\"></i> View all slides in new window</a></p>\n\n<div class=\"container\" style=\"position: relative;overflow: hidden;width: 100%;min-height:600px;\">\n<iframe src=\"slides03.html\" style=\"position=absolute;top: 0;left: 0;bottom: 0;right: 0;width: 100%;min-height:600px;\"></iframe>\n</div>\n:::\n\n:::: {.grid .lesson-grid}\n::: {.g-col-12 .g-col-lg-7 .lesson-panel}\n## Guiding Questions\n\n::: {.callout-warning}\n#### These are optional!\nYou don't need to answer all of these—or even any of them! They are here to help guide your thinking and reflection on the content. Feel free to explore whatever aspects you find most interesting.\n:::\n\n- How should you move from exploratory analysis to a model that actually answers your question?\n- What makes a modeling workflow reproducible and easy to audit later?\n- How can Quarto help you connect code, output, interpretation, and caveats in one place?\n:::\n\n::: {.g-col-12 .g-col-lg-5 .lesson-panel}\n## Readings\n\n- No readings for this session.\n\n## Lesson Focus\n\nBy the end of this week, you should be more comfortable with:\n\n- choosing a model that matches the question;\n- separating exploratory patterns from inferential claims;\n- documenting modeling choices in a way that makes revision easier later;\n- using Quarto to keep code, output, and interpretation in one reproducible place.\n:::\n::::\n\n:::\n",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

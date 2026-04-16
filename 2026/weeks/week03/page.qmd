@@ -6,10 +6,21 @@ title: "🗓️ Week 03 - Statistical Modeling and Reproducible Research"
 source(if (file.exists("R/slide-things.R")) "R/slide-things.R" else "../../../R/slide-things.R")
 ```
 
-## Overview
+::: {.lesson-shell}
+
+::: {.lesson-hero}
+<div class="eyebrow">Week 03</div>
 
 This week, we connect statistical modeling with reproducible research practices. The goal is to help you bridge the gap between descriptive coding work and the kind of model-based reasoning you will need in the fall semester. We will focus on model interpretation, documentation, and transparent workflows so that your analytical choices remain legible and defensible.
 
+<div class="lesson-tags">
+  <span class="lesson-chip">modeling</span>
+  <span class="lesson-chip">reproducibility</span>
+  <span class="lesson-chip">Quarto</span>
+</div>
+:::
+
+::: {.slide-panel}
 ## 👨‍🏫 Lesson Slides
 
 Either click on the slide area below or click [here](slides03.qmd) to view it in fullscreen.
@@ -22,7 +33,10 @@ slide_buttons("slides03")
 <div class="container" style="position: relative;overflow: hidden;width: 100%;min-height:600px;">
 <iframe src="slides03.html" style="position=absolute;top: 0;left: 0;bottom: 0;right: 0;width: 100%;min-height:600px;"></iframe>
 </div>
+:::
 
+:::: {.grid .lesson-grid}
+::: {.g-col-12 .g-col-lg-7 .lesson-panel}
 ## Guiding Questions
 
 ::: {.callout-warning}
@@ -33,7 +47,9 @@ You don't need to answer all of these—or even any of them! They are here to he
 - How should you move from exploratory analysis to a model that actually answers your question?
 - What makes a modeling workflow reproducible and easy to audit later?
 - How can Quarto help you connect code, output, interpretation, and caveats in one place?
+:::
 
+::: {.g-col-12 .g-col-lg-5 .lesson-panel}
 ## Readings
 
 - No readings for this session.
@@ -46,3 +62,7 @@ By the end of this week, you should be more comfortable with:
 - separating exploratory patterns from inferential claims;
 - documenting modeling choices in a way that makes revision easier later;
 - using Quarto to keep code, output, and interpretation in one reproducible place.
+:::
+::::
+
+:::
